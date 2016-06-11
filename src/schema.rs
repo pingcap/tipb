@@ -1,6 +1,12 @@
 // This file is generated. Do not edit
 // @generated
 
+// https://github.com/Manishearth/rust-clippy/issues/702
+#![allow(unknown_lints)]
+#![allow(clippy)]
+
+#![cfg_attr(rustfmt, rustfmt_skip)]
+
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
@@ -60,7 +66,7 @@ impl TableInfo {
         self.table_id = ::std::option::Option::Some(v);
     }
 
-    pub fn get_table_id<'a>(&self) -> i64 {
+    pub fn get_table_id(&self) -> i64 {
         self.table_id.unwrap_or(0)
     }
 
@@ -76,7 +82,7 @@ impl TableInfo {
     }
 
     // Mutable pointer to the field.
-    pub fn mut_columns<'a>(&'a mut self) -> &'a mut ::protobuf::RepeatedField<ColumnInfo> {
+    pub fn mut_columns(&mut self) -> &mut ::protobuf::RepeatedField<ColumnInfo> {
         &mut self.columns
     }
 
@@ -85,7 +91,7 @@ impl TableInfo {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
     }
 
-    pub fn get_columns<'a>(&'a self) -> &'a [ColumnInfo] {
+    pub fn get_columns(&self) -> &[ColumnInfo] {
         &self.columns
     }
 }
@@ -150,11 +156,11 @@ impl ::protobuf::Message for TableInfo {
         self.cached_size.get()
     }
 
-    fn get_unknown_fields<'s>(&'s self) -> &'s ::protobuf::UnknownFields {
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
         &self.unknown_fields
     }
 
-    fn mut_unknown_fields<'s>(&'s mut self) -> &'s mut ::protobuf::UnknownFields {
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         &mut self.unknown_fields
     }
 
@@ -287,7 +293,7 @@ impl ColumnInfo {
         self.column_id = ::std::option::Option::Some(v);
     }
 
-    pub fn get_column_id<'a>(&self) -> i64 {
+    pub fn get_column_id(&self) -> i64 {
         self.column_id.unwrap_or(0)
     }
 
@@ -306,7 +312,7 @@ impl ColumnInfo {
         self.tp = ::std::option::Option::Some(v);
     }
 
-    pub fn get_tp<'a>(&self) -> i32 {
+    pub fn get_tp(&self) -> i32 {
         self.tp.unwrap_or(0)
     }
 
@@ -325,7 +331,7 @@ impl ColumnInfo {
         self.collation = ::std::option::Option::Some(v);
     }
 
-    pub fn get_collation<'a>(&self) -> i32 {
+    pub fn get_collation(&self) -> i32 {
         self.collation.unwrap_or(0)
     }
 
@@ -344,7 +350,7 @@ impl ColumnInfo {
         self.columnLen = ::std::option::Option::Some(v);
     }
 
-    pub fn get_columnLen<'a>(&self) -> i32 {
+    pub fn get_columnLen(&self) -> i32 {
         self.columnLen.unwrap_or(0)
     }
 
@@ -363,7 +369,7 @@ impl ColumnInfo {
         self.decimal = ::std::option::Option::Some(v);
     }
 
-    pub fn get_decimal<'a>(&self) -> i32 {
+    pub fn get_decimal(&self) -> i32 {
         self.decimal.unwrap_or(0)
     }
 
@@ -382,7 +388,7 @@ impl ColumnInfo {
         self.flag = ::std::option::Option::Some(v);
     }
 
-    pub fn get_flag<'a>(&self) -> i32 {
+    pub fn get_flag(&self) -> i32 {
         self.flag.unwrap_or(0)
     }
 
@@ -398,7 +404,7 @@ impl ColumnInfo {
     }
 
     // Mutable pointer to the field.
-    pub fn mut_elems<'a>(&'a mut self) -> &'a mut ::protobuf::RepeatedField<::std::string::String> {
+    pub fn mut_elems(&mut self) -> &mut ::protobuf::RepeatedField<::std::string::String> {
         &mut self.elems
     }
 
@@ -407,7 +413,7 @@ impl ColumnInfo {
         ::std::mem::replace(&mut self.elems, ::protobuf::RepeatedField::new())
     }
 
-    pub fn get_elems<'a>(&'a self) -> &'a [::std::string::String] {
+    pub fn get_elems(&self) -> &[::std::string::String] {
         &self.elems
     }
 
@@ -426,7 +432,7 @@ impl ColumnInfo {
         self.pk_handle = ::std::option::Option::Some(v);
     }
 
-    pub fn get_pk_handle<'a>(&self) -> bool {
+    pub fn get_pk_handle(&self) -> bool {
         self.pk_handle.unwrap_or(false)
     }
 }
@@ -566,11 +572,11 @@ impl ::protobuf::Message for ColumnInfo {
         self.cached_size.get()
     }
 
-    fn get_unknown_fields<'s>(&'s self) -> &'s ::protobuf::UnknownFields {
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
         &self.unknown_fields
     }
 
-    fn mut_unknown_fields<'s>(&'s mut self) -> &'s mut ::protobuf::UnknownFields {
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         &mut self.unknown_fields
     }
 
@@ -737,7 +743,7 @@ impl IndexInfo {
         self.table_id = ::std::option::Option::Some(v);
     }
 
-    pub fn get_table_id<'a>(&self) -> i64 {
+    pub fn get_table_id(&self) -> i64 {
         self.table_id.unwrap_or(0)
     }
 
@@ -756,7 +762,7 @@ impl IndexInfo {
         self.index_id = ::std::option::Option::Some(v);
     }
 
-    pub fn get_index_id<'a>(&self) -> i64 {
+    pub fn get_index_id(&self) -> i64 {
         self.index_id.unwrap_or(0)
     }
 
@@ -772,7 +778,7 @@ impl IndexInfo {
     }
 
     // Mutable pointer to the field.
-    pub fn mut_columns<'a>(&'a mut self) -> &'a mut ::protobuf::RepeatedField<ColumnInfo> {
+    pub fn mut_columns(&mut self) -> &mut ::protobuf::RepeatedField<ColumnInfo> {
         &mut self.columns
     }
 
@@ -781,7 +787,7 @@ impl IndexInfo {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
     }
 
-    pub fn get_columns<'a>(&'a self) -> &'a [ColumnInfo] {
+    pub fn get_columns(&self) -> &[ColumnInfo] {
         &self.columns
     }
 
@@ -800,7 +806,7 @@ impl IndexInfo {
         self.unique = ::std::option::Option::Some(v);
     }
 
-    pub fn get_unique<'a>(&self) -> bool {
+    pub fn get_unique(&self) -> bool {
         self.unique.unwrap_or(false)
     }
 }
@@ -891,11 +897,11 @@ impl ::protobuf::Message for IndexInfo {
         self.cached_size.get()
     }
 
-    fn get_unknown_fields<'s>(&'s self) -> &'s ::protobuf::UnknownFields {
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
         &self.unknown_fields
     }
 
-    fn mut_unknown_fields<'s>(&'s mut self) -> &'s mut ::protobuf::UnknownFields {
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         &mut self.unknown_fields
     }
 
