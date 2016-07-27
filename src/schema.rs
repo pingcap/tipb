@@ -7,11 +7,15 @@
 
 #![cfg_attr(rustfmt, rustfmt_skip)]
 
+#![allow(box_pointers)]
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
+#![allow(trivial_casts)]
+#![allow(unsafe_code)]
 #![allow(unused_imports)]
+#![allow(unused_results)]
 
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
@@ -127,10 +131,10 @@ impl ::protobuf::Message for TableInfo {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.table_id.iter() {
+        for value in &self.table_id {
             my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.columns.iter() {
+        for value in &self.columns {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -143,7 +147,7 @@ impl ::protobuf::Message for TableInfo {
         if let Some(v) = self.table_id {
             try!(os.write_int64(1, v));
         };
-        for v in self.columns.iter() {
+        for v in &self.columns {
             try!(os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
@@ -510,25 +514,25 @@ impl ::protobuf::Message for ColumnInfo {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.column_id.iter() {
+        for value in &self.column_id {
             my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.tp.iter() {
+        for value in &self.tp {
             my_size += ::protobuf::rt::value_size(2, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.collation.iter() {
+        for value in &self.collation {
             my_size += ::protobuf::rt::value_size(3, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.columnLen.iter() {
+        for value in &self.columnLen {
             my_size += ::protobuf::rt::value_size(4, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.decimal.iter() {
+        for value in &self.decimal {
             my_size += ::protobuf::rt::value_size(5, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.flag.iter() {
+        for value in &self.flag {
             my_size += ::protobuf::rt::value_size(6, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.elems.iter() {
+        for value in &self.elems {
             my_size += ::protobuf::rt::string_size(7, &value);
         };
         if self.pk_handle.is_some() {
@@ -558,7 +562,7 @@ impl ::protobuf::Message for ColumnInfo {
         if let Some(v) = self.flag {
             try!(os.write_int32(6, v));
         };
-        for v in self.elems.iter() {
+        for v in &self.elems {
             try!(os.write_string(7, &v));
         };
         if let Some(v) = self.pk_handle {
@@ -856,13 +860,13 @@ impl ::protobuf::Message for IndexInfo {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.table_id.iter() {
+        for value in &self.table_id {
             my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.index_id.iter() {
+        for value in &self.index_id {
             my_size += ::protobuf::rt::value_size(2, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.columns.iter() {
+        for value in &self.columns {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -881,7 +885,7 @@ impl ::protobuf::Message for IndexInfo {
         if let Some(v) = self.index_id {
             try!(os.write_int64(2, v));
         };
-        for v in self.columns.iter() {
+        for v in &self.columns {
             try!(os.write_tag(3, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));

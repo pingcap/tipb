@@ -7,11 +7,15 @@
 
 #![cfg_attr(rustfmt, rustfmt_skip)]
 
+#![allow(box_pointers)]
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
+#![allow(trivial_casts)]
+#![allow(unsafe_code)]
 #![allow(unused_imports)]
+#![allow(unused_results)]
 
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
@@ -168,13 +172,13 @@ impl ::protobuf::Message for Expr {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.tp.iter() {
+        for value in &self.tp {
             my_size += ::protobuf::rt::enum_size(1, *value);
         };
-        for value in self.val.iter() {
+        for value in &self.val {
             my_size += ::protobuf::rt::bytes_size(2, &value);
         };
-        for value in self.children.iter() {
+        for value in &self.children {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -190,7 +194,7 @@ impl ::protobuf::Message for Expr {
         if let Some(v) = self.val.as_ref() {
             try!(os.write_bytes(2, &v));
         };
-        for v in self.children.iter() {
+        for v in &self.children {
             try!(os.write_tag(3, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));

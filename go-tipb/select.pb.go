@@ -271,6 +271,8 @@ func init() {
 	proto.RegisterType((*SelectResponse)(nil), "tipb.SelectResponse")
 }
 
+func init() { proto.RegisterFile("select.proto", fileDescriptor2) }
+
 var fileDescriptor2 = []byte{
 	// 408 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x6c, 0x51, 0xcb, 0x6e, 0xdb, 0x30,

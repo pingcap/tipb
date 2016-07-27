@@ -158,6 +158,8 @@ func init() {
 	proto.RegisterType((*IndexInfo)(nil), "tipb.IndexInfo")
 }
 
+func init() { proto.RegisterFile("schema.proto", fileDescriptor1) }
+
 var fileDescriptor1 = []byte{
 	// 249 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x8f, 0x3d, 0x4f, 0xc3, 0x30,

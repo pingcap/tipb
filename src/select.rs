@@ -7,11 +7,15 @@
 
 #![cfg_attr(rustfmt, rustfmt_skip)]
 
+#![allow(box_pointers)]
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
+#![allow(trivial_casts)]
+#![allow(unsafe_code)]
 #![allow(unused_imports)]
+#![allow(unused_results)]
 
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
@@ -151,10 +155,10 @@ impl ::protobuf::Message for KeyRange {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.low.iter() {
+        for value in &self.low {
             my_size += ::protobuf::rt::bytes_size(1, &value);
         };
-        for value in self.high.iter() {
+        for value in &self.high {
             my_size += ::protobuf::rt::bytes_size(2, &value);
         };
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -372,7 +376,7 @@ impl ::protobuf::Message for ByItem {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.expr.iter() {
+        for value in &self.expr {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -916,48 +920,48 @@ impl ::protobuf::Message for SelectRequest {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.start_ts.iter() {
+        for value in &self.start_ts {
             my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.table_info.iter() {
+        for value in &self.table_info {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.index_info.iter() {
+        for value in &self.index_info {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.fields.iter() {
+        for value in &self.fields {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.ranges.iter() {
+        for value in &self.ranges {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
         if self.distinct.is_some() {
             my_size += 2;
         };
-        for value in self.field_where.iter() {
+        for value in &self.field_where {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.group_by.iter() {
+        for value in &self.group_by {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.having.iter() {
+        for value in &self.having {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.order_by.iter() {
+        for value in &self.order_by {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.limit.iter() {
+        for value in &self.limit {
             my_size += ::protobuf::rt::value_size(12, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.aggregates.iter() {
+        for value in &self.aggregates {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -980,12 +984,12 @@ impl ::protobuf::Message for SelectRequest {
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
         };
-        for v in self.fields.iter() {
+        for v in &self.fields {
             try!(os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
         };
-        for v in self.ranges.iter() {
+        for v in &self.ranges {
             try!(os.write_tag(5, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
@@ -998,7 +1002,7 @@ impl ::protobuf::Message for SelectRequest {
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
         };
-        for v in self.group_by.iter() {
+        for v in &self.group_by {
             try!(os.write_tag(8, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
@@ -1008,7 +1012,7 @@ impl ::protobuf::Message for SelectRequest {
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
         };
-        for v in self.order_by.iter() {
+        for v in &self.order_by {
             try!(os.write_tag(10, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
@@ -1016,7 +1020,7 @@ impl ::protobuf::Message for SelectRequest {
         if let Some(v) = self.limit {
             try!(os.write_int64(12, v));
         };
-        for v in self.aggregates.iter() {
+        for v in &self.aggregates {
             try!(os.write_tag(13, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
@@ -1305,10 +1309,10 @@ impl ::protobuf::Message for Row {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.handle.iter() {
+        for value in &self.handle {
             my_size += ::protobuf::rt::bytes_size(1, &value);
         };
-        for value in self.data.iter() {
+        for value in &self.data {
             my_size += ::protobuf::rt::bytes_size(2, &value);
         };
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -1529,10 +1533,10 @@ impl ::protobuf::Message for Error {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.code.iter() {
+        for value in &self.code {
             my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
         };
-        for value in self.msg.iter() {
+        for value in &self.msg {
             my_size += ::protobuf::rt::string_size(2, &value);
         };
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -1752,11 +1756,11 @@ impl ::protobuf::Message for SelectResponse {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        for value in self.error.iter() {
+        for value in &self.error {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        for value in self.rows.iter() {
+        for value in &self.rows {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -1771,7 +1775,7 @@ impl ::protobuf::Message for SelectResponse {
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
         };
-        for v in self.rows.iter() {
+        for v in &self.rows {
             try!(os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited));
             try!(os.write_raw_varint32(v.get_cached_size()));
             try!(v.write_to_with_cached_sizes(os));
