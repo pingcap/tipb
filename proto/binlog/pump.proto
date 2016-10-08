@@ -48,8 +48,8 @@ message PullBinlogResp {
     // An empty errmsg means that the successful acquisition of binlogs.
     string errmsg = 1;
 
-    // The binlogs in a batch pulled.
-    repeated Binlog binlogs = 2 [(gogoproto.nullable) = false];
+    // The binlog entities pulled in a batch
+    repeated Entity entities = 2 [(gogoproto.nullable) = false];
 }
 
 // Binlogs are stored in a number of sequential files in a directory.
@@ -62,10 +62,10 @@ message Pos {
     int64 offset = 2;
 }
 
-message Binlog {
-    // The position of this binlog.
+message Entity {
+    // The position of the binlog entity.
     Pos pos = 1 [(gogoproto.nullable) = false];
 
-    // The bytes of binlog payload encoded by protobuf
+    // The payload of binlog entity.
     bytes payload = 2;
 }
