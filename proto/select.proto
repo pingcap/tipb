@@ -63,6 +63,9 @@ message SelectRequest {
 
 	// aggregate functions
 	repeated Expr aggregates = 13;
+
+	// time zone offset in seconds
+	optional int64 time_zone_offset = 14;
 }
 
 // values are all in text format.
