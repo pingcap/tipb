@@ -45,8 +45,6 @@ type DumpBinlogReq struct {
 	// note that actually the result of dump starts from the one next to beginCommitTS
 	// it should be zero in case of the first request.
 	BeginCommitTS int64 `protobuf:"varint,1,opt,name=beginCommitTS,proto3" json:"beginCommitTS,omitempty"`
-	// limit defines the maximum number of binlogs requested once call.
-	Limit int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 }
 
 func (m *DumpBinlogReq) Reset()                    { *m = DumpBinlogReq{} }
@@ -55,13 +53,12 @@ func (*DumpBinlogReq) ProtoMessage()               {}
 func (*DumpBinlogReq) Descriptor() ([]byte, []int) { return fileDescriptorCistern, []int{0} }
 
 type DumpBinlogResp struct {
-	// An empty errmsg means that the successful acquisition of binlogs.
-	Errmsg string `protobuf:"bytes,1,opt,name=errmsg,proto3" json:"errmsg,omitempty"`
-	// payloads is an array of binlog bytecodes returned.
-	Payloads [][]byte `protobuf:"bytes,2,rep,name=payloads" json:"payloads,omitempty"`
-	// endCommitTS is the commitTS of the last one in binlog payloads
-	// client can use it as beginCommitTS of the next request of dump.
-	EndCommitTS int64 `protobuf:"varint,3,opt,name=endCommitTS,proto3" json:"endCommitTS,omitempty"`
+	// CommitTS specifies the commitTS of binlog
+	CommitTS int64 `protobuf:"varint,1,opt,name=commitTS,proto3" json:"commitTS,omitempty"`
+	// payloads is bytecodes encoded from binlog item
+	Payload []byte `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+	// ddljob is json bytes marshaled from corresponding ddljob struct if payload is a DDL type of binlog
+	Ddljob []byte `protobuf:"bytes,3,opt,name=ddljob,proto3" json:"ddljob,omitempty"`
 }
 
 func (m *DumpBinlogResp) Reset()                    { *m = DumpBinlogResp{} }
@@ -85,8 +82,8 @@ const _ = grpc.SupportPackageIsVersion3
 // Client API for Cistern service
 
 type CisternClient interface {
-	// DumpBinlog dumps a continuous binlogs from a given position in binlog-server.
-	DumpBinlog(ctx context.Context, in *DumpBinlogReq, opts ...grpc.CallOption) (*DumpBinlogResp, error)
+	// DumpBinlog dumps a continuous binlog items from a given position.
+	DumpBinlog(ctx context.Context, in *DumpBinlogReq, opts ...grpc.CallOption) (Cistern_DumpBinlogClient, error)
 }
 
 type cisternClient struct {
@@ -97,54 +94,81 @@ func NewCisternClient(cc *grpc.ClientConn) CisternClient {
 	return &cisternClient{cc}
 }
 
-func (c *cisternClient) DumpBinlog(ctx context.Context, in *DumpBinlogReq, opts ...grpc.CallOption) (*DumpBinlogResp, error) {
-	out := new(DumpBinlogResp)
-	err := grpc.Invoke(ctx, "/binlog.Cistern/DumpBinlog", in, out, c.cc, opts...)
+func (c *cisternClient) DumpBinlog(ctx context.Context, in *DumpBinlogReq, opts ...grpc.CallOption) (Cistern_DumpBinlogClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_Cistern_serviceDesc.Streams[0], c.cc, "/binlog.Cistern/DumpBinlog", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &cisternDumpBinlogClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Cistern_DumpBinlogClient interface {
+	Recv() (*DumpBinlogResp, error)
+	grpc.ClientStream
+}
+
+type cisternDumpBinlogClient struct {
+	grpc.ClientStream
+}
+
+func (x *cisternDumpBinlogClient) Recv() (*DumpBinlogResp, error) {
+	m := new(DumpBinlogResp)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // Server API for Cistern service
 
 type CisternServer interface {
-	// DumpBinlog dumps a continuous binlogs from a given position in binlog-server.
-	DumpBinlog(context.Context, *DumpBinlogReq) (*DumpBinlogResp, error)
+	// DumpBinlog dumps a continuous binlog items from a given position.
+	DumpBinlog(*DumpBinlogReq, Cistern_DumpBinlogServer) error
 }
 
 func RegisterCisternServer(s *grpc.Server, srv CisternServer) {
 	s.RegisterService(&_Cistern_serviceDesc, srv)
 }
 
-func _Cistern_DumpBinlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DumpBinlogReq)
-	if err := dec(in); err != nil {
-		return nil, err
+func _Cistern_DumpBinlog_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(DumpBinlogReq)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(CisternServer).DumpBinlog(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/binlog.Cistern/DumpBinlog",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CisternServer).DumpBinlog(ctx, req.(*DumpBinlogReq))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(CisternServer).DumpBinlog(m, &cisternDumpBinlogServer{stream})
+}
+
+type Cistern_DumpBinlogServer interface {
+	Send(*DumpBinlogResp) error
+	grpc.ServerStream
+}
+
+type cisternDumpBinlogServer struct {
+	grpc.ServerStream
+}
+
+func (x *cisternDumpBinlogServer) Send(m *DumpBinlogResp) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 var _Cistern_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "binlog.Cistern",
 	HandlerType: (*CisternServer)(nil),
-	Methods: []grpc.MethodDesc{
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "DumpBinlog",
-			Handler:    _Cistern_DumpBinlog_Handler,
+			StreamName:    "DumpBinlog",
+			Handler:       _Cistern_DumpBinlog_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: fileDescriptorCistern,
 }
 
@@ -168,11 +192,6 @@ func (m *DumpBinlogReq) MarshalTo(data []byte) (int, error) {
 		i++
 		i = encodeVarintCistern(data, i, uint64(m.BeginCommitTS))
 	}
-	if m.Limit != 0 {
-		data[i] = 0x10
-		i++
-		i = encodeVarintCistern(data, i, uint64(m.Limit))
-	}
 	return i, nil
 }
 
@@ -191,24 +210,22 @@ func (m *DumpBinlogResp) MarshalTo(data []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Errmsg) > 0 {
-		data[i] = 0xa
+	if m.CommitTS != 0 {
+		data[i] = 0x8
 		i++
-		i = encodeVarintCistern(data, i, uint64(len(m.Errmsg)))
-		i += copy(data[i:], m.Errmsg)
+		i = encodeVarintCistern(data, i, uint64(m.CommitTS))
 	}
-	if len(m.Payloads) > 0 {
-		for _, b := range m.Payloads {
-			data[i] = 0x12
-			i++
-			i = encodeVarintCistern(data, i, uint64(len(b)))
-			i += copy(data[i:], b)
-		}
-	}
-	if m.EndCommitTS != 0 {
-		data[i] = 0x18
+	if len(m.Payload) > 0 {
+		data[i] = 0x12
 		i++
-		i = encodeVarintCistern(data, i, uint64(m.EndCommitTS))
+		i = encodeVarintCistern(data, i, uint64(len(m.Payload)))
+		i += copy(data[i:], m.Payload)
+	}
+	if len(m.Ddljob) > 0 {
+		data[i] = 0x1a
+		i++
+		i = encodeVarintCistern(data, i, uint64(len(m.Ddljob)))
+		i += copy(data[i:], m.Ddljob)
 	}
 	return i, nil
 }
@@ -246,27 +263,22 @@ func (m *DumpBinlogReq) Size() (n int) {
 	if m.BeginCommitTS != 0 {
 		n += 1 + sovCistern(uint64(m.BeginCommitTS))
 	}
-	if m.Limit != 0 {
-		n += 1 + sovCistern(uint64(m.Limit))
-	}
 	return n
 }
 
 func (m *DumpBinlogResp) Size() (n int) {
 	var l int
 	_ = l
-	l = len(m.Errmsg)
+	if m.CommitTS != 0 {
+		n += 1 + sovCistern(uint64(m.CommitTS))
+	}
+	l = len(m.Payload)
 	if l > 0 {
 		n += 1 + l + sovCistern(uint64(l))
 	}
-	if len(m.Payloads) > 0 {
-		for _, b := range m.Payloads {
-			l = len(b)
-			n += 1 + l + sovCistern(uint64(l))
-		}
-	}
-	if m.EndCommitTS != 0 {
-		n += 1 + sovCistern(uint64(m.EndCommitTS))
+	l = len(m.Ddljob)
+	if l > 0 {
+		n += 1 + l + sovCistern(uint64(l))
 	}
 	return n
 }
@@ -332,25 +344,6 @@ func (m *DumpBinlogReq) Unmarshal(data []byte) error {
 					break
 				}
 			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
-			}
-			m.Limit = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowCistern
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[iNdEx]
-				iNdEx++
-				m.Limit |= (int32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipCistern(data[iNdEx:])
@@ -402,10 +395,10 @@ func (m *DumpBinlogResp) Unmarshal(data []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Errmsg", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CommitTS", wireType)
 			}
-			var stringLen uint64
+			m.CommitTS = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowCistern
@@ -415,24 +408,14 @@ func (m *DumpBinlogResp) Unmarshal(data []byte) error {
 				}
 				b := data[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				m.CommitTS |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthCistern
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Errmsg = string(data[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Payloads", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Payload", wireType)
 			}
 			var byteLen int
 			for shift := uint(0); ; shift += 7 {
@@ -456,14 +439,16 @@ func (m *DumpBinlogResp) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Payloads = append(m.Payloads, make([]byte, postIndex-iNdEx))
-			copy(m.Payloads[len(m.Payloads)-1], data[iNdEx:postIndex])
+			m.Payload = append(m.Payload[:0], data[iNdEx:postIndex]...)
+			if m.Payload == nil {
+				m.Payload = []byte{}
+			}
 			iNdEx = postIndex
 		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field EndCommitTS", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ddljob", wireType)
 			}
-			m.EndCommitTS = 0
+			var byteLen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowCistern
@@ -473,11 +458,23 @@ func (m *DumpBinlogResp) Unmarshal(data []byte) error {
 				}
 				b := data[iNdEx]
 				iNdEx++
-				m.EndCommitTS |= (int64(b) & 0x7F) << shift
+				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			if byteLen < 0 {
+				return ErrInvalidLengthCistern
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Ddljob = append(m.Ddljob[:0], data[iNdEx:postIndex]...)
+			if m.Ddljob == nil {
+				m.Ddljob = []byte{}
+			}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipCistern(data[iNdEx:])
@@ -607,19 +604,18 @@ var (
 func init() { proto.RegisterFile("cistern.proto", fileDescriptorCistern) }
 
 var fileDescriptorCistern = []byte{
-	// 224 bytes of a gzipped FileDescriptorProto
+	// 204 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x4d, 0xce, 0x2c, 0x2e,
 	0x49, 0x2d, 0xca, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4b, 0xca, 0xcc, 0xcb, 0xc9,
-	0x4f, 0x97, 0x12, 0x49, 0xcf, 0x4f, 0xcf, 0x07, 0x0b, 0xe9, 0x83, 0x58, 0x10, 0x59, 0x25, 0x6f,
+	0x4f, 0x97, 0x12, 0x49, 0xcf, 0x4f, 0xcf, 0x07, 0x0b, 0xe9, 0x83, 0x58, 0x10, 0x59, 0x25, 0x53,
 	0x2e, 0x5e, 0x97, 0xd2, 0xdc, 0x02, 0x27, 0xb0, 0x9a, 0xa0, 0xd4, 0x42, 0x21, 0x15, 0x2e, 0xde,
 	0xa4, 0xd4, 0xf4, 0xcc, 0x3c, 0xe7, 0xfc, 0xdc, 0xdc, 0xcc, 0x92, 0x90, 0x60, 0x09, 0x46, 0x05,
-	0x46, 0x0d, 0xe6, 0x20, 0x54, 0x41, 0x21, 0x11, 0x2e, 0xd6, 0x9c, 0x4c, 0x20, 0x53, 0x82, 0x09,
-	0x28, 0xcb, 0x1a, 0x04, 0xe1, 0x28, 0xa5, 0x71, 0xf1, 0x21, 0x1b, 0x56, 0x5c, 0x20, 0x24, 0xc6,
-	0xc5, 0x96, 0x5a, 0x54, 0x94, 0x5b, 0x9c, 0x0e, 0x36, 0x86, 0x33, 0x08, 0xca, 0x13, 0x92, 0xe2,
-	0xe2, 0x28, 0x48, 0xac, 0xcc, 0xc9, 0x4f, 0x4c, 0x29, 0x06, 0x1a, 0xc1, 0xac, 0xc1, 0x13, 0x04,
-	0xe7, 0x0b, 0x29, 0x70, 0x71, 0xa7, 0xe6, 0xa5, 0xc0, 0xed, 0x67, 0x06, 0xdb, 0x8f, 0x2c, 0x64,
-	0xe4, 0xc1, 0xc5, 0xee, 0x0c, 0xf1, 0xa3, 0x90, 0x2d, 0x17, 0x17, 0xc2, 0x4a, 0x21, 0x51, 0x3d,
-	0x88, 0x67, 0xf5, 0x50, 0xfc, 0x24, 0x25, 0x86, 0x4d, 0xb8, 0xb8, 0x40, 0x89, 0xc1, 0x49, 0xe0,
-	0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x40, 0xfc, 0x00, 0x88, 0x67, 0x3c, 0x96, 0x63, 0x48, 0x62, 0x03,
-	0x87, 0x8b, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x28, 0xb0, 0xc9, 0x70, 0x46, 0x01, 0x00, 0x00,
+	0x46, 0x0d, 0xe6, 0x20, 0x54, 0x41, 0xa5, 0x38, 0x2e, 0x3e, 0x64, 0x6d, 0xc5, 0x05, 0x42, 0x52,
+	0x5c, 0x1c, 0xc9, 0xa8, 0x5a, 0xe0, 0x7c, 0x21, 0x09, 0x2e, 0xf6, 0x82, 0xc4, 0xca, 0x9c, 0xfc,
+	0xc4, 0x14, 0x09, 0x26, 0xa0, 0x14, 0x4f, 0x10, 0x8c, 0x2b, 0x24, 0xc6, 0xc5, 0x96, 0x92, 0x92,
+	0x93, 0x95, 0x9f, 0x24, 0xc1, 0x0c, 0x96, 0x80, 0xf2, 0x8c, 0xbc, 0xb8, 0xd8, 0x9d, 0x21, 0xbe,
+	0x10, 0xb2, 0xe7, 0xe2, 0x42, 0x58, 0x25, 0x24, 0xaa, 0x07, 0xf1, 0x8e, 0x1e, 0x8a, 0xab, 0xa5,
+	0xc4, 0xb0, 0x09, 0x17, 0x17, 0x28, 0x31, 0x18, 0x30, 0x3a, 0x09, 0x9c, 0x78, 0x24, 0xc7, 0x78,
+	0x01, 0x88, 0x1f, 0x00, 0xf1, 0x8c, 0xc7, 0x72, 0x0c, 0x49, 0x6c, 0x60, 0xbf, 0x1b, 0x03, 0x02,
+	0x00, 0x00, 0xff, 0xff, 0x9d, 0x7f, 0x95, 0x3c, 0x2a, 0x01, 0x00, 0x00,
 }
