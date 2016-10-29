@@ -15,6 +15,9 @@ service Cistern {
 
     // DumpDDLJobs dumps all history DDL jobs before a specified commitTS
     rpc DumpDDLJobs(DumpDDLJobsReq) returns (DumpDDLJobsResp) {}
+
+    // GetLastCommitTS returns the Last binlog commitTS of the TiDB
+    rpc GetLastCommitTS(GetLastCommitTSReq) returns (GetLastCommitTSResp) {}
 }
 
 message DumpBinlogReq {
@@ -45,4 +48,12 @@ message DumpDDLJobsReq {
 message DumpDDLJobsResp {
     // ddljobs is an array of JSON encoded history DDL jobs
     repeated bytes ddljobs = 1;
+}
+
+message GetLastCommitTSReq {
+}
+
+message GetLastCommitTSResp {
+    // CommitTS specifies the Last binlog commitTS of the TiDB
+    int64 commitTS = 1;
 }
