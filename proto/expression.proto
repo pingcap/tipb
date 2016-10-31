@@ -86,6 +86,7 @@ enum ExprType {
 	// Math functions.
 	Abs = 3101;
 	Pow = 3102;
+	Round = 3103;
 
 	// String functions.
 	Concat = 3201;
@@ -138,6 +139,8 @@ enum ExprType {
 
 	// Other functions;
 	Coalesce = 3501;
+	Greatest = 3502;
+	Least = 3503;
 
 	/* Other expressions. */
 	In = 4001;
