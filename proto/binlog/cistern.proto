@@ -54,6 +54,9 @@ message GetLatestCommitTSReq {
 }
 
 message GetLatestCommitTSResp {
-    // CommitTS specifies the Last binlog commitTS of the TiDB
+    // commitTS specifies the Last binlog commitTS of the TiDB
     int64 commitTS = 1;
+
+    // isSynced specifies whether the all binlogs are consumed from pump
+    bool isSynced = 2;
 }
