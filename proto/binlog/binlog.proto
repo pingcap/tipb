@@ -8,6 +8,14 @@ option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 
+enum MutationType {
+    Insert = 0;
+    Update = 1;
+    DeleteID = 2;
+    DeletePK = 3;
+    DeleteRow = 4;
+}
+
 // TableMutation contains mutations in a table.
 message TableMutation {
     optional int64 table_id      = 1 [(gogoproto.nullable) = false];
@@ -24,6 +32,9 @@ message TableMutation {
 
     // If the table doesn't have PK, we save the row value of the deleted row.
     repeated bytes deleted_rows  = 6;
+
+    // Used to apply table mutations in original sequence.
+    repeated MutationType sequence = 7;
 }
 
 message PrewriteValue {
