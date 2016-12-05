@@ -15,7 +15,7 @@ service Pump {
     rpc WriteBinlog(WriteBinlogReq) returns (WriteBinlogResp) {}
 
     // Obtains a batch of binlog from a given location.
-    rpc PullBinlogs(PullBinlogReq) returns (PullBinlogResp) {}
+    rpc PullBinlogs(PullBinlogReq) returns (stream PullBinlogResp) {}
 }
 
 message WriteBinlogReq {
@@ -45,11 +45,8 @@ message PullBinlogReq {
 }
 
 message PullBinlogResp {
-    // An empty errmsg means that the successful acquisition of binlogs.
-    string errmsg = 1;
-
     // The binlog entities pulled in a batch
-    repeated Entity entities = 2 [(gogoproto.nullable) = false];
+    Entity entity = 1 [(gogoproto.nullable) = false];
 }
 
 // Binlogs are stored in a number of sequential files in a directory.

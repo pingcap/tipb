@@ -18,6 +18,9 @@ service Cistern {
 
     // GetLatestCommitTS returns the Last binlog commitTS of the TiDB
     rpc GetLatestCommitTS(GetLatestCommitTSReq) returns (GetLatestCommitTSResp) {}
+
+    // Notify notifies a new pump is comming
+    rpc Notify(NotifyReq) returns (NotifyResp) {} 
 }
 
 message DumpBinlogReq {
@@ -59,4 +62,10 @@ message GetLatestCommitTSResp {
 
     // isSynced specifies whether the all binlogs are consumed from pump
     bool isSynced = 2;
+}
+
+message NotifyReq {
+}
+
+message NotifyResp {
 }
