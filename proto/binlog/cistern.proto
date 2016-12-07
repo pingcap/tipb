@@ -19,7 +19,8 @@ service Cistern {
     // GetLatestCommitTS returns the Last binlog commitTS of the TiDB
     rpc GetLatestCommitTS(GetLatestCommitTSReq) returns (GetLatestCommitTSResp) {}
 
-    // Notify notifies a new pump is comming
+    // Notify notifies all living cisterns that a new pump is comming
+    // the living cisterns can be queried from pd
     rpc Notify(NotifyReq) returns (NotifyResp) {} 
 }
 

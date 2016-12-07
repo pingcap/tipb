@@ -158,7 +158,8 @@ type CisternClient interface {
 	DumpDDLJobs(ctx context.Context, in *DumpDDLJobsReq, opts ...grpc.CallOption) (*DumpDDLJobsResp, error)
 	// GetLatestCommitTS returns the Last binlog commitTS of the TiDB
 	GetLatestCommitTS(ctx context.Context, in *GetLatestCommitTSReq, opts ...grpc.CallOption) (*GetLatestCommitTSResp, error)
-	// Notify notifies a new pump is comming
+	// Notify notifies all living cisterns that a new pump is comming
+	// the living cisterns can be queried from pd
 	Notify(ctx context.Context, in *NotifyReq, opts ...grpc.CallOption) (*NotifyResp, error)
 }
 
@@ -238,7 +239,8 @@ type CisternServer interface {
 	DumpDDLJobs(context.Context, *DumpDDLJobsReq) (*DumpDDLJobsResp, error)
 	// GetLatestCommitTS returns the Last binlog commitTS of the TiDB
 	GetLatestCommitTS(context.Context, *GetLatestCommitTSReq) (*GetLatestCommitTSResp, error)
-	// Notify notifies a new pump is comming
+	// Notify notifies all living cisterns that a new pump is comming
+	// the living cisterns can be queried from pd
 	Notify(context.Context, *NotifyReq) (*NotifyResp, error)
 }
 
