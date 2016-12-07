@@ -66,6 +66,14 @@ message SelectRequest {
 
 	// time zone offset in seconds
 	optional int64 time_zone_offset = 14;
+
+	/* flags is used to store flags that change the execution mode, it contains:
+		truncate_as_error = 1
+			Truncate wrong value will return error if set, return warning if not set.
+		...
+		add more when needed.
+	*/
+	optional uint64 flags = 15;
 }
 
 // values are all in text format.
@@ -90,6 +98,8 @@ message SelectResponse {
     	// Use multiple chunks to reduce memory allocation and
         // avoid allocating large contiguous memory.
     	repeated Chunk chunks = 3 [(gogoproto.nullable) = false];
+
+	repeated Error warnings = 4;
 }
 
 // Chunk contains multiple rows data and rows meta.
