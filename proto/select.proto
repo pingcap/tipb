@@ -65,15 +65,17 @@ message SelectRequest {
 	repeated Expr aggregates = 13;
 
 	// time zone offset in seconds
-	optional int64 time_zone_offset = 14;
+	optional int64 time_zone_offset = 14 [(gogoproto.nullable) = false];
 
 	/* flags is used to store flags that change the execution mode, it contains:
-		truncate_as_error = 1
-			Truncate wrong value will return error if set, return warning if not set.
+		ignore_truncate = 1
+			truncate error should be ignore if set.
+		truncate_as_warning = 1 << 1
+			when ignored_truncate is not set, return warning instead of error if this flag is set.
 		...
 		add more when needed.
 	*/
-	optional uint64 flags = 15;
+	optional uint64 flags = 15 [(gogoproto.nullable) = false];
 }
 
 // values are all in text format.
