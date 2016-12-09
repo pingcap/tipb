@@ -14,7 +14,7 @@ service Pump {
     // A response with an empty errmsg is returned if the binlog is written successfully.
     rpc WriteBinlog(WriteBinlogReq) returns (WriteBinlogResp) {}
 
-    // Sends binlogs in the streaming way from a given location.
+    // Sends binlog stream from a given location.
     rpc PullBinlogs(PullBinlogReq) returns (stream PullBinlogResp) {}
 }
 

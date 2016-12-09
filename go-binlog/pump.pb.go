@@ -160,7 +160,7 @@ type PumpClient interface {
 	// Writes a binlog to the local file on the pump machine.
 	// A response with an empty errmsg is returned if the binlog is written successfully.
 	WriteBinlog(ctx context.Context, in *WriteBinlogReq, opts ...grpc.CallOption) (*WriteBinlogResp, error)
-	// Sends binlogs in the streaming way from a given location.
+	// Sends binlog stream from a given location.
 	PullBinlogs(ctx context.Context, in *PullBinlogReq, opts ...grpc.CallOption) (Pump_PullBinlogsClient, error)
 }
 
@@ -219,7 +219,7 @@ type PumpServer interface {
 	// Writes a binlog to the local file on the pump machine.
 	// A response with an empty errmsg is returned if the binlog is written successfully.
 	WriteBinlog(context.Context, *WriteBinlogReq) (*WriteBinlogResp, error)
-	// Sends binlogs in the streaming way from a given location.
+	// Sends binlog stream from a given location.
 	PullBinlogs(*PullBinlogReq, Pump_PullBinlogsServer) error
 }
 

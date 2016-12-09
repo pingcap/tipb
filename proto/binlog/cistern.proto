@@ -16,10 +16,7 @@ service Cistern {
     // DumpDDLJobs dumps all history DDL jobs before a specified commitTS
     rpc DumpDDLJobs(DumpDDLJobsReq) returns (DumpDDLJobsResp) {}
 
-    // GetLatestCommitTS returns the Last binlog commitTS of the TiDB
-    rpc GetLatestCommitTS(GetLatestCommitTSReq) returns (GetLatestCommitTSResp) {}
-
-    // Notify notifies all living cisterns that a new pump is comming
+    // Notify notifies all living cisterns that a new pump is coming
     // the living cisterns can be queried from pd
     rpc Notify(NotifyReq) returns (NotifyResp) {} 
 }
@@ -52,17 +49,6 @@ message DumpDDLJobsReq {
 message DumpDDLJobsResp {
     // ddljobs is an array of JSON encoded history DDL jobs
     repeated bytes ddljobs = 1;
-}
-
-message GetLatestCommitTSReq {
-}
-
-message GetLatestCommitTSResp {
-    // commitTS specifies the Last binlog commitTS of the TiDB
-    int64 commitTS = 1;
-
-    // isSynced specifies whether the all binlogs are consumed from pump
-    bool isSynced = 2;
 }
 
 message NotifyReq {
