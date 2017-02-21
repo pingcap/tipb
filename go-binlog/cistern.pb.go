@@ -22,16 +22,16 @@ import (
 	"fmt"
 
 	proto "github.com/golang/protobuf/proto"
-
-	math "math"
-
-	io "io"
 )
+
+import math "math"
 
 import (
 	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 )
+
+import io "io"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
