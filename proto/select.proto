@@ -106,7 +106,7 @@ message SelectResponse {
 // Chunk contains multiple rows data and rows meta.
 message Chunk {
     	// Data for all rows in the chunk.
-    	optional bytes rows_data = 3;
+    	optional bytes rows_data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
 
     	// Meta data for every row.
     	repeated RowMeta rows_meta = 4 [(gogoproto.nullable) = false];
