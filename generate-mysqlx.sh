@@ -1,0 +1,11 @@
+cd proto
+
+echo "generate go code..."
+GOGO_ROOT=${GOPATH}/src/github.com/gogo/protobuf
+find ./Mysqlx -name "*.proto" -exec protoc -I.:${GOGO_ROOT}:${GOGO_ROOT}/protobuf --gofast_out=.. {} \;
+cd ..
+find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/import _ \"gogoproto\"//g' {} \;
+find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/import fmt \"fmt\"//g' {} \;
+find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/Mysqlx\//github.com\/pingcap\/tipb\/Mysqlx\//g' {} \;
+find ./Mysqlx -name "*.pb.go" -exec goimports -w {} \;
+mv Mysqlx go-mysqlx
