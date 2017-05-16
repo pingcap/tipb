@@ -6,6 +6,6 @@ find ./Mysqlx -name "*.proto" -exec protoc -I.:${GOGO_ROOT}:${GOGO_ROOT}/protobu
 cd ..
 find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/import _ \"gogoproto\"//g' {} \;
 find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/import fmt \"fmt\"//g' {} \;
-find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/Mysqlx\//github.com\/pingcap\/tipb\/Mysqlx\//g' {} \;
+find ./Mysqlx -name "*.pb.go" -exec sed -i -E 's/Mysqlx\//github.com\/pingcap\/tipb\/go-mysqlx\//g' {} \;
 find ./Mysqlx -name "*.pb.go" -exec goimports -w {} \;
-mv Mysqlx go-mysqlx
+rm -rf go-mysqlx && mv Mysqlx go-mysqlx
