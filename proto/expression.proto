@@ -172,7 +172,7 @@ enum ExprType {
 
 enum ScalarFuncSig {
     /* Casting */
-	CastInAsInt = 0;
+	CastIntAsInt = 0;
 	CastIntAsReal = 1;
 	CastIntAsString = 2;
 	CastIntAsDecimal = 3;
