@@ -45,6 +45,10 @@ enum DataType {
 message FieldType {
 	optional DataType tp = 1 [(gogoproto.nullable) = false];
 	optional uint32 flag = 2;
+	optional int32 flen = 3;
+	optional int32 decimal = 4;
+	optional string charset = 5;
+	optional string collate = 6;
 }
 
 enum ExprType {
