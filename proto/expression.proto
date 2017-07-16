@@ -23,23 +23,25 @@ enum DataType {
 	TypeTimestamp = 7;
 	TypeLongLong = 8;
 	TypeInt24 = 9;
-
+	TypeDate = 10;
 	TypeDuration = 11;
 	TypeDatetime = 12;
 	TypeYear = 13;
-
+	TypeNewDate = 14;
 	TypeVarchar = 15;
 	TypeBit = 16;
 
 	TypeJSON = 0xf5;
 	TypeNewDecimal = 0xf6;
-
+	TypeEnum = 0xf7;
+	TypeSet = 0xf8;
 	TypeTinyBlob = 0xf9;
 	TypeMediumBlob = 0xfa;
 	TypeLongBlob = 0xfb;
 	TypeBlob = 0xfc;
 	TypeVarString = 0xfd;
 	TypeString = 0xfe;
+	TypeGeometry = 0xff;
 }
 
 message FieldType {
