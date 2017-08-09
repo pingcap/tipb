@@ -51,11 +51,18 @@ message Selection {
 	repeated Expr conditions = 1;   
 }
 
+message Projection {
+	// Projection expressions.
+	repeated Expr exprs = 1;
+}
+
 message Aggregation {
 	// Group by clause.
 	repeated Expr group_by = 1;
 	// Aggregate functions.
 	repeated Expr agg_func = 2;
+	// If it is a stream aggregation.
+	optional bool streamed = 3 [(gogoproto.nullable) = false];
 }
 
 message TopN {
