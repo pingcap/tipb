@@ -11,46 +11,12 @@ option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 
-// MySQL data types.
-enum DataType {
-	TypeDecimal = 0;
-	TypeTiny = 1;
-	TypeShort = 2;
-	TypeLong = 3;
-	TypeFloat = 4;
-	TypeDouble = 5;
-	TypeNull = 6;
-	TypeTimestamp = 7;
-	TypeLongLong = 8;
-	TypeInt24 = 9;
-	TypeDate = 10;
-	TypeDuration = 11;
-	TypeDatetime = 12;
-	TypeYear = 13;
-	TypeNewDate = 14;
-	TypeVarchar = 15;
-	TypeBit = 16;
-
-	TypeJSON = 0xf5;
-	TypeNewDecimal = 0xf6;
-	TypeEnum = 0xf7;
-	TypeSet = 0xf8;
-	TypeTinyBlob = 0xf9;
-	TypeMediumBlob = 0xfa;
-	TypeLongBlob = 0xfb;
-	TypeBlob = 0xfc;
-	TypeVarString = 0xfd;
-	TypeString = 0xfe;
-	TypeGeometry = 0xff;
-}
-
 message FieldType {
-	optional DataType tp = 1 [(gogoproto.nullable) = false];
-	optional uint32 flag = 2;
-	optional int32 flen = 3;
-	optional int32 decimal = 4;
-	optional string charset = 5;
-	optional string collate = 6;
+	optional int32 tp = 1      [(gogoproto.nullable) = false];
+	optional uint32 flag = 2   [(gogoproto.nullable) = false];
+	optional int32 flen = 3    [(gogoproto.nullable) = false];
+	optional int32 decimal = 4 [(gogoproto.nullable) = false];
+	optional int32 collate = 5 [(gogoproto.nullable) = false];
 }
 
 enum ExprType {
@@ -269,7 +235,7 @@ enum ScalarFuncSig {
 	LEString = 113;
 	LETime = 114;
 	LEDuration = 115;
-	LEJSON = 116;
+	LEJson = 116;
 
 	GTInt = 120;
 	GTReal = 121;
@@ -309,7 +275,7 @@ enum ScalarFuncSig {
 	NullEQString = 163;
 	NullEQTime = 164;
 	NullEQDuration = 165;
-	NullEQJSON = 166;
+	NullEQJson = 166;
 
 	PlusReal = 200;
 	PlusDecimal = 201;
