@@ -333,7 +333,7 @@ enum ScalarFuncSig {
 	CeilDecToInt = 2107;
 	CeilDecToDec = 2108;
 	CeilReal = 2109;
-	FloorIntToDec = 2101;
+	FloorIntToDec = 2110;
 	FloorIntToInt = 2111;
 	FloorDecToInt = 2112;
 	FloorDecToDec = 2113;
