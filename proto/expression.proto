@@ -261,7 +261,7 @@ enum ScalarFuncSig {
 	LTString = 103;
 	LTTime = 104;
 	LTDuration = 105;
-	LTJSON = 106;
+	LTJson = 106;
 
 	LEInt = 110;
 	LEReal = 111;
@@ -277,7 +277,7 @@ enum ScalarFuncSig {
 	GTString = 123;
 	GTTime = 124;
 	GTDuration = 125;
-	GTJSON = 126;
+	GTJson = 126;
 
 	GEInt = 130;
 	GEReal = 131;
@@ -285,7 +285,7 @@ enum ScalarFuncSig {
 	GEString = 133;
 	GETime = 134;
 	GEDuration = 135;
-	GEJSON = 136;
+	GEJson = 136;
 
 	EQInt = 140;
 	EQReal = 141;
@@ -293,7 +293,7 @@ enum ScalarFuncSig {
 	EQString = 143;
 	EQTime = 144;
 	EQDuration = 145;
-	EQJSON = 146;
+	EQJson = 146;
 
 	NEInt = 150;
 	NEReal = 151;
@@ -301,7 +301,7 @@ enum ScalarFuncSig {
 	NEString = 153;
 	NETime = 154;
 	NEDuration = 155;
-	NEJSON = 156;
+	NEJson = 156;
 
 	NullEQInt = 160;
 	NullEQReal = 161;
