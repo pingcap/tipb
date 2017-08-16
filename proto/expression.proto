@@ -38,6 +38,7 @@ enum ExprType {
 	MysqlHex = 105;
 	MysqlSet = 106;
 	MysqlTime = 107;
+	MysqlJson = 108
 
 	// Encoded value list.
 	ValueList = 151;
