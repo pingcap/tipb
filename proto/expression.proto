@@ -17,6 +17,7 @@ message FieldType {
 	optional int32 flen = 3    [(gogoproto.nullable) = false];
 	optional int32 decimal = 4 [(gogoproto.nullable) = false];
 	optional int32 collate = 5 [(gogoproto.nullable) = false];
+	optional string charset = 6 [(gogoproto.nullable) = false];
 }
 
 enum ExprType {
