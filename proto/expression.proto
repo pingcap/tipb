@@ -186,6 +186,7 @@ enum ScalarFuncSig {
 	CastIntAsDecimal = 3;
 	CastIntAsTime = 4;
 	CastIntAsDuration = 5;
+	CastIntAsJson = 6;
 
 	CastRealAsInt = 10;
 	CastRealAsReal = 11;
@@ -193,6 +194,7 @@ enum ScalarFuncSig {
 	CastRealAsDecimal = 13;
 	CastRealAsTime = 14;
 	CastRealAsDuration = 15;
+	CastRealAsJson = 16;
 
 	CastDecimalAsInt = 20;
 	CastDecimalAsReal = 21;
@@ -200,6 +202,7 @@ enum ScalarFuncSig {
 	CastDecimalAsDecimal = 23;
 	CastDecimalAsTime = 24;
 	CastDecimalAsDuration = 25;
+	CastDecimalAsJson = 26;
 
 	CastStringAsInt = 30;
 	CastStringAsReal = 31;
@@ -207,6 +210,7 @@ enum ScalarFuncSig {
 	CastStringAsDecimal = 33;
 	CastStringAsTime = 34;
 	CastStringAsDuration = 35;
+	CastStringAsJson = 36;
 
 	CastTimeAsInt = 40;
 	CastTimeAsReal = 41;
@@ -214,6 +218,7 @@ enum ScalarFuncSig {
 	CastTimeAsDecimal = 43;
 	CastTimeAsTime = 44;
 	CastTimeAsDuration = 45;
+	CastTimeAsJson = 46;
 
 	CastDurationAsInt = 50;
 	CastDurationAsReal = 51;
@@ -221,6 +226,15 @@ enum ScalarFuncSig {
 	CastDurationAsDecimal = 53;
 	CastDurationAsTime = 54;
 	CastDurationAsDuration = 55;
+	CastDurationAsJson = 56;
+
+	CastJsonAsInt = 60;
+	CastJsonAsReal = 61;
+	CastJsonAsString = 62;
+	CastJsonAsDecimal = 63;
+	CastJsonAsTime = 64;
+	CastJsonAsDuration = 65;
+	CastJsonAsJson = 66;
 
 	LTInt = 100;
 	LTReal = 101;
