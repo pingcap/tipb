@@ -302,8 +302,8 @@ enum ScalarFuncSig {
 	MultiplyReal = 208;
 	MultiplyDecimal = 209;
 	MultiplyInt = 210;
-    DivideReal = 211;
-    DivideDecimal = 212;
+	DivideReal = 211;
+	DivideDecimal = 212;
 
 	AbsInt = 2101;
 	AbsUInt = 2102;
@@ -333,16 +333,16 @@ enum ScalarFuncSig {
 	StringIsNull = 3114;
 	TimeIsNull = 3115;
 	IntIsNull = 3116;
-    BitAnd = 3117;
-    BitOr = 3118;
-    BitXor = 3119;
-    BitNeg = 3120;
-    IntIsTrue = 3121;
-    RealIsTrue = 3122;
-    DecimalIsTrue = 3123;
-    IntIsFalse = 3124;
-    RealIsFalse = 3125;
-    DecimalIsFalse = 3126;
+	BitAndNew = 3117;
+	BitOrNew = 3118;
+	BitXorNew = 311;
+	BitNegNew = 3120;
+	IntIsTrue = 3121;
+	RealIsTrue = 3122;
+	DecimalIsTrue = 3123;
+	IntIsFalse = 3124;
+	RealIsFalse = 3125;
+	DecimalIsFalse = 3126;
     
 	IfNullInt = 4101;
 	IfNullReal = 4102;
@@ -360,30 +360,30 @@ enum ScalarFuncSig {
 	IfJson = 4114;
 
     NullIfInt = 4115;
-    NullIfReal = 4116;
-    NullIfDecimal = 4117;
-    NullIfString = 4118;
-    NullIfTime = 4119;
-    NullIfDuration = 4120;
-    NullIfJson = 4121;
+	NullIfReal = 4116;
+	NullIfDecimal = 4117;
+	NullIfString = 4118;
+	NullIfTime = 4119;
+	NullIfDuration = 4120;
+	NullIfJson = 4121;
 
-    CoalesceInt = 4201;
-    CoalesceReal = 4201;
-    CoalesceDecimal = 4203;
-    CoalesceString = 4204;
-    CoalesceTime = 4205;
-    CoalesceDuration = 4206;
-    CoalesceJson = 4207;
+	CoalesceInt = 4201;
+	CoalesceReal = 4201;
+	CoalesceDecimal = 4203;
+	CoalesceString = 4204;
+	CoalesceTime = 4205;
+	CoalesceDuration = 4206;
+	CoalesceJson = 4207;
 
-    CaseWhenInt = 4208;
-    CaseWhenReal = 4209;
-    CaseWhenDecimal = 4210;
-    CaseWhenString = 4211;
-    CaseWhenTime = 4212;
-    CaseWhenDuration = 4213;
-    CaseWhenJson = 4214;
+	CaseWhenInt = 4208;
+	CaseWhenReal = 4209;
+	CaseWhenDecimal = 4210;
+	CaseWhenString = 4211;
+	CaseWhenTime = 4212;
+	CaseWhenDuration = 4213;
+	CaseWhenJson = 4214;
 
-    Like = 4310;
+	Like = 4310;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
