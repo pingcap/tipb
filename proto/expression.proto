@@ -368,7 +368,7 @@ enum ScalarFuncSig {
 	NullIfJson = 4121;
 
 	CoalesceInt = 4201;
-	CoalesceReal = 4201;
+	CoalesceReal = 4202;
 	CoalesceDecimal = 4203;
 	CoalesceString = 4204;
 	CoalesceTime = 4205;
@@ -383,7 +383,7 @@ enum ScalarFuncSig {
 	CaseWhenDuration = 4213;
 	CaseWhenJson = 4214;
 
-	Like = 4310;
+	LikeNew = 4310;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
