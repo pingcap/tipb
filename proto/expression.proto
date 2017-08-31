@@ -324,9 +324,6 @@ enum ScalarFuncSig {
 	LogicalOr = 3102;
 	LogicalXor = 3103;
 	UnaryNot = 3104;
-	RealIsTrue = 3105;
-	DecimalIsTrue = 3106;
-	IntIsFalse = 3107;
 	UnaryMinusInt = 3108;
 	UnaryMinusReal = 3109;
 	UnaryMinusDecimal = 3110;
@@ -340,6 +337,12 @@ enum ScalarFuncSig {
     BitOr = 3118;
     BitXor = 3119;
     BitNeg = 3120;
+    IntIsTrue = 3121;
+    RealIsTrue = 3122;
+    DecimalIsTrue = 3123;
+    IntIsFalse = 3124;
+    RealIsFalse = 3125;
+    DecimalIsFalse = 3126;
     
 	IfNullInt = 4101;
 	IfNullReal = 4102;
@@ -388,7 +391,7 @@ message Expr {
 	optional ExprType tp = 1 [(gogoproto.nullable) = false];
 	optional bytes val = 2;
 	repeated Expr children = 3;
-	optional ScalarFuncSig sig = 4;
+	optional ScalarFuncSig sig = 4 [(gogoproto.nullable) = false];
 	optional FieldType field_type = 5;
 }
 
