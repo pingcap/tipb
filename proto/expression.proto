@@ -359,7 +359,7 @@ enum ScalarFuncSig {
 	IfNullJson = 4113;
 	IfJson = 4114;
 
-    NullIfInt = 4115;
+	NullIfInt = 4115;
 	NullIfReal = 4116;
 	NullIfDecimal = 4117;
 	NullIfString = 4118;
