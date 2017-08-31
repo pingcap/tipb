@@ -335,7 +335,7 @@ enum ScalarFuncSig {
 	IntIsNull = 3116;
 	BitAndNew = 3117;
 	BitOrNew = 3118;
-	BitXorNew = 311;
+	BitXorNew = 3119;
 	BitNegNew = 3120;
 	IntIsTrue = 3121;
 	RealIsTrue = 3122;
