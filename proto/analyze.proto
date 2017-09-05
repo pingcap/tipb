@@ -58,7 +58,7 @@ message AnalyzeColumnsResp {
 }
 
 message AnalyzeIndexResp {
-    optional Histogram hists = 1;
+    optional Histogram hist = 1;
 }
 
 // Bucket is an element of histogram.
