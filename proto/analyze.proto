@@ -49,12 +49,16 @@ message AnalyzeColumnsReq {
     repeated ColumnInfo columns_info = 4;
 }
 
-message AnalyzeColRespose {
+message AnalyzeColumnsResp {
     // collectors is the sample collectors for columns.
     repeated SampleCollector collectors = 1;
 
     // pk_hist is the histogram for primary key when it is the handle.
     optional Histogram pk_hist = 2;
+}
+
+message AnalyzeIndexResp {
+    optional Histogram hists = 1;
 }
 
 // Bucket is an element of histogram.
