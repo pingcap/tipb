@@ -470,6 +470,8 @@ pub struct AnalyzeIndexReq {
     // message fields
     bucket_size: ::std::option::Option<i64>,
     num_columns: ::std::option::Option<i32>,
+    cmsketch_depth: ::std::option::Option<i32>,
+    cmsketch_width: ::std::option::Option<i32>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -546,6 +548,60 @@ impl AnalyzeIndexReq {
     fn mut_num_columns_for_reflect(&mut self) -> &mut ::std::option::Option<i32> {
         &mut self.num_columns
     }
+
+    // optional int32 cmsketch_depth = 3;
+
+    pub fn clear_cmsketch_depth(&mut self) {
+        self.cmsketch_depth = ::std::option::Option::None;
+    }
+
+    pub fn has_cmsketch_depth(&self) -> bool {
+        self.cmsketch_depth.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cmsketch_depth(&mut self, v: i32) {
+        self.cmsketch_depth = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_cmsketch_depth(&self) -> i32 {
+        self.cmsketch_depth.unwrap_or(0)
+    }
+
+    fn get_cmsketch_depth_for_reflect(&self) -> &::std::option::Option<i32> {
+        &self.cmsketch_depth
+    }
+
+    fn mut_cmsketch_depth_for_reflect(&mut self) -> &mut ::std::option::Option<i32> {
+        &mut self.cmsketch_depth
+    }
+
+    // optional int32 cmsketch_width = 4;
+
+    pub fn clear_cmsketch_width(&mut self) {
+        self.cmsketch_width = ::std::option::Option::None;
+    }
+
+    pub fn has_cmsketch_width(&self) -> bool {
+        self.cmsketch_width.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cmsketch_width(&mut self, v: i32) {
+        self.cmsketch_width = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_cmsketch_width(&self) -> i32 {
+        self.cmsketch_width.unwrap_or(0)
+    }
+
+    fn get_cmsketch_width_for_reflect(&self) -> &::std::option::Option<i32> {
+        &self.cmsketch_width
+    }
+
+    fn mut_cmsketch_width_for_reflect(&mut self) -> &mut ::std::option::Option<i32> {
+        &mut self.cmsketch_width
+    }
 }
 
 impl ::protobuf::Message for AnalyzeIndexReq {
@@ -571,6 +627,20 @@ impl ::protobuf::Message for AnalyzeIndexReq {
                     let tmp = is.read_int32()?;
                     self.num_columns = ::std::option::Option::Some(tmp);
                 },
+                3 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int32()?;
+                    self.cmsketch_depth = ::std::option::Option::Some(tmp);
+                },
+                4 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int32()?;
+                    self.cmsketch_width = ::std::option::Option::Some(tmp);
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -589,6 +659,12 @@ impl ::protobuf::Message for AnalyzeIndexReq {
         if let Some(v) = self.num_columns {
             my_size += ::protobuf::rt::value_size(2, v, ::protobuf::wire_format::WireTypeVarint);
         }
+        if let Some(v) = self.cmsketch_depth {
+            my_size += ::protobuf::rt::value_size(3, v, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if let Some(v) = self.cmsketch_width {
+            my_size += ::protobuf::rt::value_size(4, v, ::protobuf::wire_format::WireTypeVarint);
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -600,6 +676,12 @@ impl ::protobuf::Message for AnalyzeIndexReq {
         }
         if let Some(v) = self.num_columns {
             os.write_int32(2, v)?;
+        }
+        if let Some(v) = self.cmsketch_depth {
+            os.write_int32(3, v)?;
+        }
+        if let Some(v) = self.cmsketch_width {
+            os.write_int32(4, v)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -655,6 +737,16 @@ impl ::protobuf::MessageStatic for AnalyzeIndexReq {
                     AnalyzeIndexReq::get_num_columns_for_reflect,
                     AnalyzeIndexReq::mut_num_columns_for_reflect,
                 ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
+                    "cmsketch_depth",
+                    AnalyzeIndexReq::get_cmsketch_depth_for_reflect,
+                    AnalyzeIndexReq::mut_cmsketch_depth_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
+                    "cmsketch_width",
+                    AnalyzeIndexReq::get_cmsketch_width_for_reflect,
+                    AnalyzeIndexReq::mut_cmsketch_width_for_reflect,
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<AnalyzeIndexReq>(
                     "AnalyzeIndexReq",
                     fields,
@@ -669,6 +761,8 @@ impl ::protobuf::Clear for AnalyzeIndexReq {
     fn clear(&mut self) {
         self.clear_bucket_size();
         self.clear_num_columns();
+        self.clear_cmsketch_depth();
+        self.clear_cmsketch_width();
         self.unknown_fields.clear();
     }
 }
@@ -692,6 +786,8 @@ pub struct AnalyzeColumnsReq {
     sample_size: ::std::option::Option<i64>,
     sketch_size: ::std::option::Option<i64>,
     columns_info: ::protobuf::RepeatedField<super::schema::ColumnInfo>,
+    cmsketch_depth: ::std::option::Option<i32>,
+    cmsketch_width: ::std::option::Option<i32>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -828,6 +924,60 @@ impl AnalyzeColumnsReq {
     fn mut_columns_info_for_reflect(&mut self) -> &mut ::protobuf::RepeatedField<super::schema::ColumnInfo> {
         &mut self.columns_info
     }
+
+    // optional int32 cmsketch_depth = 5;
+
+    pub fn clear_cmsketch_depth(&mut self) {
+        self.cmsketch_depth = ::std::option::Option::None;
+    }
+
+    pub fn has_cmsketch_depth(&self) -> bool {
+        self.cmsketch_depth.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cmsketch_depth(&mut self, v: i32) {
+        self.cmsketch_depth = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_cmsketch_depth(&self) -> i32 {
+        self.cmsketch_depth.unwrap_or(0)
+    }
+
+    fn get_cmsketch_depth_for_reflect(&self) -> &::std::option::Option<i32> {
+        &self.cmsketch_depth
+    }
+
+    fn mut_cmsketch_depth_for_reflect(&mut self) -> &mut ::std::option::Option<i32> {
+        &mut self.cmsketch_depth
+    }
+
+    // optional int32 cmsketch_width = 6;
+
+    pub fn clear_cmsketch_width(&mut self) {
+        self.cmsketch_width = ::std::option::Option::None;
+    }
+
+    pub fn has_cmsketch_width(&self) -> bool {
+        self.cmsketch_width.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cmsketch_width(&mut self, v: i32) {
+        self.cmsketch_width = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_cmsketch_width(&self) -> i32 {
+        self.cmsketch_width.unwrap_or(0)
+    }
+
+    fn get_cmsketch_width_for_reflect(&self) -> &::std::option::Option<i32> {
+        &self.cmsketch_width
+    }
+
+    fn mut_cmsketch_width_for_reflect(&mut self) -> &mut ::std::option::Option<i32> {
+        &mut self.cmsketch_width
+    }
 }
 
 impl ::protobuf::Message for AnalyzeColumnsReq {
@@ -868,6 +1018,20 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
                 4 => {
                     ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.columns_info)?;
                 },
+                5 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int32()?;
+                    self.cmsketch_depth = ::std::option::Option::Some(tmp);
+                },
+                6 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int32()?;
+                    self.cmsketch_width = ::std::option::Option::Some(tmp);
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -893,6 +1057,12 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
+        if let Some(v) = self.cmsketch_depth {
+            my_size += ::protobuf::rt::value_size(5, v, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if let Some(v) = self.cmsketch_width {
+            my_size += ::protobuf::rt::value_size(6, v, ::protobuf::wire_format::WireTypeVarint);
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -913,6 +1083,12 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         };
+        if let Some(v) = self.cmsketch_depth {
+            os.write_int32(5, v)?;
+        }
+        if let Some(v) = self.cmsketch_width {
+            os.write_int32(6, v)?;
+        }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
     }
@@ -977,6 +1153,16 @@ impl ::protobuf::MessageStatic for AnalyzeColumnsReq {
                     AnalyzeColumnsReq::get_columns_info_for_reflect,
                     AnalyzeColumnsReq::mut_columns_info_for_reflect,
                 ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
+                    "cmsketch_depth",
+                    AnalyzeColumnsReq::get_cmsketch_depth_for_reflect,
+                    AnalyzeColumnsReq::mut_cmsketch_depth_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
+                    "cmsketch_width",
+                    AnalyzeColumnsReq::get_cmsketch_width_for_reflect,
+                    AnalyzeColumnsReq::mut_cmsketch_width_for_reflect,
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<AnalyzeColumnsReq>(
                     "AnalyzeColumnsReq",
                     fields,
@@ -993,6 +1179,8 @@ impl ::protobuf::Clear for AnalyzeColumnsReq {
         self.clear_sample_size();
         self.clear_sketch_size();
         self.clear_columns_info();
+        self.clear_cmsketch_depth();
+        self.clear_cmsketch_width();
         self.unknown_fields.clear();
     }
 }
@@ -1261,6 +1449,7 @@ impl ::protobuf::reflect::ProtobufValue for AnalyzeColumnsResp {
 pub struct AnalyzeIndexResp {
     // message fields
     hist: ::protobuf::SingularPtrField<Histogram>,
+    cms: ::protobuf::SingularPtrField<CMSketch>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -1324,11 +1513,57 @@ impl AnalyzeIndexResp {
     fn mut_hist_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<Histogram> {
         &mut self.hist
     }
+
+    // optional .tipb.CMSketch cms = 2;
+
+    pub fn clear_cms(&mut self) {
+        self.cms.clear();
+    }
+
+    pub fn has_cms(&self) -> bool {
+        self.cms.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cms(&mut self, v: CMSketch) {
+        self.cms = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_cms(&mut self) -> &mut CMSketch {
+        if self.cms.is_none() {
+            self.cms.set_default();
+        }
+        self.cms.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_cms(&mut self) -> CMSketch {
+        self.cms.take().unwrap_or_else(|| CMSketch::new())
+    }
+
+    pub fn get_cms(&self) -> &CMSketch {
+        self.cms.as_ref().unwrap_or_else(|| CMSketch::default_instance())
+    }
+
+    fn get_cms_for_reflect(&self) -> &::protobuf::SingularPtrField<CMSketch> {
+        &self.cms
+    }
+
+    fn mut_cms_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<CMSketch> {
+        &mut self.cms
+    }
 }
 
 impl ::protobuf::Message for AnalyzeIndexResp {
     fn is_initialized(&self) -> bool {
         for v in &self.hist {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.cms {
             if !v.is_initialized() {
                 return false;
             }
@@ -1342,6 +1577,9 @@ impl ::protobuf::Message for AnalyzeIndexResp {
             match field_number {
                 1 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.hist)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.cms)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -1359,6 +1597,10 @@ impl ::protobuf::Message for AnalyzeIndexResp {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
+        if let Some(ref v) = self.cms.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -1367,6 +1609,11 @@ impl ::protobuf::Message for AnalyzeIndexResp {
     fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
         if let Some(ref v) = self.hist.as_ref() {
             os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.cms.as_ref() {
+            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
@@ -1419,6 +1666,11 @@ impl ::protobuf::MessageStatic for AnalyzeIndexResp {
                     AnalyzeIndexResp::get_hist_for_reflect,
                     AnalyzeIndexResp::mut_hist_for_reflect,
                 ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<CMSketch>>(
+                    "cms",
+                    AnalyzeIndexResp::get_cms_for_reflect,
+                    AnalyzeIndexResp::mut_cms_for_reflect,
+                ));
                 ::protobuf::reflect::MessageDescriptor::new::<AnalyzeIndexResp>(
                     "AnalyzeIndexResp",
                     fields,
@@ -1432,6 +1684,7 @@ impl ::protobuf::MessageStatic for AnalyzeIndexResp {
 impl ::protobuf::Clear for AnalyzeIndexResp {
     fn clear(&mut self) {
         self.clear_hist();
+        self.clear_cms();
         self.unknown_fields.clear();
     }
 }
@@ -2246,7 +2499,8 @@ pub struct SampleCollector {
     samples: ::protobuf::RepeatedField<::std::vec::Vec<u8>>,
     null_count: ::std::option::Option<i64>,
     count: ::std::option::Option<i64>,
-    sketch: ::protobuf::SingularPtrField<FMSketch>,
+    fm_sketch: ::protobuf::SingularPtrField<FMSketch>,
+    cm_sketch: ::protobuf::SingularPtrField<CMSketch>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -2357,51 +2611,97 @@ impl SampleCollector {
         &mut self.count
     }
 
-    // optional .tipb.FMSketch sketch = 4;
+    // optional .tipb.FMSketch fm_sketch = 4;
 
-    pub fn clear_sketch(&mut self) {
-        self.sketch.clear();
+    pub fn clear_fm_sketch(&mut self) {
+        self.fm_sketch.clear();
     }
 
-    pub fn has_sketch(&self) -> bool {
-        self.sketch.is_some()
+    pub fn has_fm_sketch(&self) -> bool {
+        self.fm_sketch.is_some()
     }
 
     // Param is passed by value, moved
-    pub fn set_sketch(&mut self, v: FMSketch) {
-        self.sketch = ::protobuf::SingularPtrField::some(v);
+    pub fn set_fm_sketch(&mut self, v: FMSketch) {
+        self.fm_sketch = ::protobuf::SingularPtrField::some(v);
     }
 
     // Mutable pointer to the field.
     // If field is not initialized, it is initialized with default value first.
-    pub fn mut_sketch(&mut self) -> &mut FMSketch {
-        if self.sketch.is_none() {
-            self.sketch.set_default();
+    pub fn mut_fm_sketch(&mut self) -> &mut FMSketch {
+        if self.fm_sketch.is_none() {
+            self.fm_sketch.set_default();
         }
-        self.sketch.as_mut().unwrap()
+        self.fm_sketch.as_mut().unwrap()
     }
 
     // Take field
-    pub fn take_sketch(&mut self) -> FMSketch {
-        self.sketch.take().unwrap_or_else(|| FMSketch::new())
+    pub fn take_fm_sketch(&mut self) -> FMSketch {
+        self.fm_sketch.take().unwrap_or_else(|| FMSketch::new())
     }
 
-    pub fn get_sketch(&self) -> &FMSketch {
-        self.sketch.as_ref().unwrap_or_else(|| FMSketch::default_instance())
+    pub fn get_fm_sketch(&self) -> &FMSketch {
+        self.fm_sketch.as_ref().unwrap_or_else(|| FMSketch::default_instance())
     }
 
-    fn get_sketch_for_reflect(&self) -> &::protobuf::SingularPtrField<FMSketch> {
-        &self.sketch
+    fn get_fm_sketch_for_reflect(&self) -> &::protobuf::SingularPtrField<FMSketch> {
+        &self.fm_sketch
     }
 
-    fn mut_sketch_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<FMSketch> {
-        &mut self.sketch
+    fn mut_fm_sketch_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<FMSketch> {
+        &mut self.fm_sketch
+    }
+
+    // optional .tipb.CMSketch cm_sketch = 5;
+
+    pub fn clear_cm_sketch(&mut self) {
+        self.cm_sketch.clear();
+    }
+
+    pub fn has_cm_sketch(&self) -> bool {
+        self.cm_sketch.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_cm_sketch(&mut self, v: CMSketch) {
+        self.cm_sketch = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_cm_sketch(&mut self) -> &mut CMSketch {
+        if self.cm_sketch.is_none() {
+            self.cm_sketch.set_default();
+        }
+        self.cm_sketch.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_cm_sketch(&mut self) -> CMSketch {
+        self.cm_sketch.take().unwrap_or_else(|| CMSketch::new())
+    }
+
+    pub fn get_cm_sketch(&self) -> &CMSketch {
+        self.cm_sketch.as_ref().unwrap_or_else(|| CMSketch::default_instance())
+    }
+
+    fn get_cm_sketch_for_reflect(&self) -> &::protobuf::SingularPtrField<CMSketch> {
+        &self.cm_sketch
+    }
+
+    fn mut_cm_sketch_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<CMSketch> {
+        &mut self.cm_sketch
     }
 }
 
 impl ::protobuf::Message for SampleCollector {
     fn is_initialized(&self) -> bool {
-        for v in &self.sketch {
+        for v in &self.fm_sketch {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.cm_sketch {
             if !v.is_initialized() {
                 return false;
             }
@@ -2431,7 +2731,10 @@ impl ::protobuf::Message for SampleCollector {
                     self.count = ::std::option::Option::Some(tmp);
                 },
                 4 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.sketch)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.fm_sketch)?;
+                },
+                5 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.cm_sketch)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2454,7 +2757,11 @@ impl ::protobuf::Message for SampleCollector {
         if let Some(v) = self.count {
             my_size += ::protobuf::rt::value_size(3, v, ::protobuf::wire_format::WireTypeVarint);
         }
-        if let Some(ref v) = self.sketch.as_ref() {
+        if let Some(ref v) = self.fm_sketch.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if let Some(ref v) = self.cm_sketch.as_ref() {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
@@ -2473,8 +2780,13 @@ impl ::protobuf::Message for SampleCollector {
         if let Some(v) = self.count {
             os.write_int64(3, v)?;
         }
-        if let Some(ref v) = self.sketch.as_ref() {
+        if let Some(ref v) = self.fm_sketch.as_ref() {
             os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.cm_sketch.as_ref() {
+            os.write_tag(5, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
@@ -2538,9 +2850,14 @@ impl ::protobuf::MessageStatic for SampleCollector {
                     SampleCollector::mut_count_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<FMSketch>>(
-                    "sketch",
-                    SampleCollector::get_sketch_for_reflect,
-                    SampleCollector::mut_sketch_for_reflect,
+                    "fm_sketch",
+                    SampleCollector::get_fm_sketch_for_reflect,
+                    SampleCollector::mut_fm_sketch_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<CMSketch>>(
+                    "cm_sketch",
+                    SampleCollector::get_cm_sketch_for_reflect,
+                    SampleCollector::mut_cm_sketch_for_reflect,
                 ));
                 ::protobuf::reflect::MessageDescriptor::new::<SampleCollector>(
                     "SampleCollector",
@@ -2557,7 +2874,8 @@ impl ::protobuf::Clear for SampleCollector {
         self.clear_samples();
         self.clear_null_count();
         self.clear_count();
-        self.clear_sketch();
+        self.clear_fm_sketch();
+        self.clear_cm_sketch();
         self.unknown_fields.clear();
     }
 }
@@ -2569,6 +2887,364 @@ impl ::std::fmt::Debug for SampleCollector {
 }
 
 impl ::protobuf::reflect::ProtobufValue for SampleCollector {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct CMSketchRow {
+    // message fields
+    counters: ::std::vec::Vec<u32>,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+// see codegen.rs for the explanation why impl Sync explicitly
+unsafe impl ::std::marker::Sync for CMSketchRow {}
+
+impl CMSketchRow {
+    pub fn new() -> CMSketchRow {
+        ::std::default::Default::default()
+    }
+
+    pub fn default_instance() -> &'static CMSketchRow {
+        static mut instance: ::protobuf::lazy::Lazy<CMSketchRow> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const CMSketchRow,
+        };
+        unsafe {
+            instance.get(CMSketchRow::new)
+        }
+    }
+
+    // repeated uint32 counters = 1;
+
+    pub fn clear_counters(&mut self) {
+        self.counters.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_counters(&mut self, v: ::std::vec::Vec<u32>) {
+        self.counters = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_counters(&mut self) -> &mut ::std::vec::Vec<u32> {
+        &mut self.counters
+    }
+
+    // Take field
+    pub fn take_counters(&mut self) -> ::std::vec::Vec<u32> {
+        ::std::mem::replace(&mut self.counters, ::std::vec::Vec::new())
+    }
+
+    pub fn get_counters(&self) -> &[u32] {
+        &self.counters
+    }
+
+    fn get_counters_for_reflect(&self) -> &::std::vec::Vec<u32> {
+        &self.counters
+    }
+
+    fn mut_counters_for_reflect(&mut self) -> &mut ::std::vec::Vec<u32> {
+        &mut self.counters
+    }
+}
+
+impl ::protobuf::Message for CMSketchRow {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_repeated_uint32_into(wire_type, is, &mut self.counters)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        for value in &self.counters {
+            my_size += ::protobuf::rt::value_size(1, *value, ::protobuf::wire_format::WireTypeVarint);
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        for v in &self.counters {
+            os.write_uint32(1, *v)?;
+        };
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        ::protobuf::MessageStatic::descriptor_static(None::<Self>)
+    }
+}
+
+impl ::protobuf::MessageStatic for CMSketchRow {
+    fn new() -> CMSketchRow {
+        CMSketchRow::new()
+    }
+
+    fn descriptor_static(_: ::std::option::Option<CMSketchRow>) -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
+                    "counters",
+                    CMSketchRow::get_counters_for_reflect,
+                    CMSketchRow::mut_counters_for_reflect,
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<CMSketchRow>(
+                    "CMSketchRow",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+}
+
+impl ::protobuf::Clear for CMSketchRow {
+    fn clear(&mut self) {
+        self.clear_counters();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for CMSketchRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for CMSketchRow {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct CMSketch {
+    // message fields
+    rows: ::protobuf::RepeatedField<CMSketchRow>,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+// see codegen.rs for the explanation why impl Sync explicitly
+unsafe impl ::std::marker::Sync for CMSketch {}
+
+impl CMSketch {
+    pub fn new() -> CMSketch {
+        ::std::default::Default::default()
+    }
+
+    pub fn default_instance() -> &'static CMSketch {
+        static mut instance: ::protobuf::lazy::Lazy<CMSketch> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const CMSketch,
+        };
+        unsafe {
+            instance.get(CMSketch::new)
+        }
+    }
+
+    // repeated .tipb.CMSketchRow rows = 1;
+
+    pub fn clear_rows(&mut self) {
+        self.rows.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_rows(&mut self, v: ::protobuf::RepeatedField<CMSketchRow>) {
+        self.rows = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_rows(&mut self) -> &mut ::protobuf::RepeatedField<CMSketchRow> {
+        &mut self.rows
+    }
+
+    // Take field
+    pub fn take_rows(&mut self) -> ::protobuf::RepeatedField<CMSketchRow> {
+        ::std::mem::replace(&mut self.rows, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_rows(&self) -> &[CMSketchRow] {
+        &self.rows
+    }
+
+    fn get_rows_for_reflect(&self) -> &::protobuf::RepeatedField<CMSketchRow> {
+        &self.rows
+    }
+
+    fn mut_rows_for_reflect(&mut self) -> &mut ::protobuf::RepeatedField<CMSketchRow> {
+        &mut self.rows
+    }
+}
+
+impl ::protobuf::Message for CMSketch {
+    fn is_initialized(&self) -> bool {
+        for v in &self.rows {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.rows)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        for value in &self.rows {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        for v in &self.rows {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        ::protobuf::MessageStatic::descriptor_static(None::<Self>)
+    }
+}
+
+impl ::protobuf::MessageStatic for CMSketch {
+    fn new() -> CMSketch {
+        CMSketch::new()
+    }
+
+    fn descriptor_static(_: ::std::option::Option<CMSketch>) -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<CMSketchRow>>(
+                    "rows",
+                    CMSketch::get_rows_for_reflect,
+                    CMSketch::mut_rows_for_reflect,
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<CMSketch>(
+                    "CMSketch",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+}
+
+impl ::protobuf::Clear for CMSketch {
+    fn clear(&mut self) {
+        self.clear_rows();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for CMSketch {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for CMSketch {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -2632,83 +3308,91 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x18\x04\x20\x01(\x03R\x0etimeZoneOffsetB\x04\xc8\xde\x1f\0\x12.\n\x07id\
     x_req\x18\x05\x20\x01(\x0b2\x15.tipb.AnalyzeIndexReqR\x06idxReq\x120\n\
     \x07col_req\x18\x06\x20\x01(\x0b2\x17.tipb.AnalyzeColumnsReqR\x06colReq\
-    \"_\n\x0fAnalyzeIndexReq\x12%\n\x0bbucket_size\x18\x01\x20\x01(\x03R\nbu\
-    cketSizeB\x04\xc8\xde\x1f\0\x12%\n\x0bnum_columns\x18\x02\x20\x01(\x05R\
-    \nnumColumnsB\x04\xc8\xde\x1f\0\"\xbd\x01\n\x11AnalyzeColumnsReq\x12%\n\
-    \x0bbucket_size\x18\x01\x20\x01(\x03R\nbucketSizeB\x04\xc8\xde\x1f\0\x12\
-    %\n\x0bsample_size\x18\x02\x20\x01(\x03R\nsampleSizeB\x04\xc8\xde\x1f\0\
-    \x12%\n\x0bsketch_size\x18\x03\x20\x01(\x03R\nsketchSizeB\x04\xc8\xde\
-    \x1f\0\x123\n\x0ccolumns_info\x18\x04\x20\x03(\x0b2\x10.tipb.ColumnInfoR\
-    \x0bcolumnsInfo\"u\n\x12AnalyzeColumnsResp\x125\n\ncollectors\x18\x01\
-    \x20\x03(\x0b2\x15.tipb.SampleCollectorR\ncollectors\x12(\n\x07pk_hist\
-    \x18\x02\x20\x01(\x0b2\x0f.tipb.HistogramR\x06pkHist\"7\n\x10AnalyzeInde\
-    xResp\x12#\n\x04hist\x18\x01\x20\x01(\x0b2\x0f.tipb.HistogramR\x04hist\"\
-    \x86\x01\n\x06Bucket\x12\x1a\n\x05count\x18\x01\x20\x01(\x03R\x05countB\
-    \x04\xc8\xde\x1f\0\x12\x1f\n\x0blower_bound\x18\x02\x20\x01(\x0cR\nlower\
-    Bound\x12\x1f\n\x0bupper_bound\x18\x03\x20\x01(\x0cR\nupperBound\x12\x1e\
-    \n\x07repeats\x18\x04\x20\x01(\x03R\x07repeatsB\x04\xc8\xde\x1f\0\"K\n\t\
-    Histogram\x12\x16\n\x03ndv\x18\x01\x20\x01(\x03R\x03ndvB\x04\xc8\xde\x1f\
-    \0\x12&\n\x07buckets\x18\x02\x20\x03(\x0b2\x0c.tipb.BucketR\x07buckets\"\
-    >\n\x08FMSketch\x12\x18\n\x04mask\x18\x01\x20\x01(\x04R\x04maskB\x04\xc8\
-    \xde\x1f\0\x12\x18\n\x07hashset\x18\x02\x20\x03(\x04R\x07hashset\"\x94\
-    \x01\n\x0fSampleCollector\x12\x18\n\x07samples\x18\x01\x20\x03(\x0cR\x07\
-    samples\x12#\n\nnull_count\x18\x02\x20\x01(\x03R\tnullCountB\x04\xc8\xde\
-    \x1f\0\x12\x1a\n\x05count\x18\x03\x20\x01(\x03R\x05countB\x04\xc8\xde\
-    \x1f\0\x12&\n\x06sketch\x18\x04\x20\x01(\x0b2\x0e.tipb.FMSketchR\x06sket\
-    ch*,\n\x0bAnalyzeType\x12\r\n\tTypeIndex\x10\0\x12\x0e\n\nTypeColumn\x10\
-    \x01B%\n\x15com.pingcap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01\
-    \xc8\xe2\x1e\x01J\xb8'\n\x06\x12\x04\0\0[\x01\n\x08\n\x01\x0c\x12\x03\0\
-    \0\x12\n\x08\n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\
-    \"\n\x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\
-    \x02\x12\x03\x04\x07\x1a\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\x04\x07\
-    \x1a\n\x0e\n\x07\x08\xe7\x07\0\x02\0\x01\x12\x03\x04\x07\x1a\n\x0c\n\x05\
-    \x08\xe7\x07\0\x03\x12\x03\x04\x1d!\n\x08\n\x01\x08\x12\x03\x05\0.\n\x0b\
-    \n\x04\x08\xe7\x07\x01\x12\x03\x05\0.\n\x0c\n\x05\x08\xe7\x07\x01\x02\
-    \x12\x03\x05\x07\x13\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03\x05\x07\x13\
-    \n\x0e\n\x07\x08\xe7\x07\x01\x02\0\x01\x12\x03\x05\x07\x13\n\x0c\n\x05\
-    \x08\xe7\x07\x01\x07\x12\x03\x05\x16-\n\t\n\x02\x03\0\x12\x03\x07\x07\
-    \x15\n\t\n\x02\x03\x01\x12\x03\x08\x07\x1d\n\x08\n\x01\x08\x12\x03\n\0(\
-    \n\x0b\n\x04\x08\xe7\x07\x02\x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x02\
-    \x02\x12\x03\n\x07\x20\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x03\n\x07\x20\
-    \n\x0e\n\x07\x08\xe7\x07\x02\x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\
-    \xe7\x07\x02\x03\x12\x03\n#'\n\x08\n\x01\x08\x12\x03\x0b\0$\n\x0b\n\x04\
-    \x08\xe7\x07\x03\x12\x03\x0b\0$\n\x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03\
-    \x0b\x07\x1c\n\r\n\x06\x08\xe7\x07\x03\x02\0\x12\x03\x0b\x07\x1c\n\x0e\n\
-    \x07\x08\xe7\x07\x03\x02\0\x01\x12\x03\x0b\x08\x1b\n\x0c\n\x05\x08\xe7\
-    \x07\x03\x03\x12\x03\x0b\x1f#\n\x08\n\x01\x08\x12\x03\x0c\0*\n\x0b\n\x04\
-    \x08\xe7\x07\x04\x12\x03\x0c\0*\n\x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03\
-    \x0c\x07\"\n\r\n\x06\x08\xe7\x07\x04\x02\0\x12\x03\x0c\x07\"\n\x0e\n\x07\
-    \x08\xe7\x07\x04\x02\0\x01\x12\x03\x0c\x08!\n\x0c\n\x05\x08\xe7\x07\x04\
-    \x03\x12\x03\x0c%)\n\n\n\x02\x05\0\x12\x04\x0e\0\x11\x01\n\n\n\x03\x05\0\
-    \x01\x12\x03\x0e\x05\x10\n\x0b\n\x04\x05\0\x02\0\x12\x03\x0f\x04\x12\n\
-    \x0c\n\x05\x05\0\x02\0\x01\x12\x03\x0f\x04\r\n\x0c\n\x05\x05\0\x02\0\x02\
-    \x12\x03\x0f\x10\x11\n\x0b\n\x04\x05\0\x02\x01\x12\x03\x10\x04\x13\n\x0c\
-    \n\x05\x05\0\x02\x01\x01\x12\x03\x10\x04\x0e\n\x0c\n\x05\x05\0\x02\x01\
-    \x02\x12\x03\x10\x11\x12\n\n\n\x02\x04\0\x12\x04\x13\0\x1a\x01\n\n\n\x03\
-    \x04\0\x01\x12\x03\x13\x08\x12\n\x0b\n\x04\x04\0\x02\0\x12\x03\x14\x04?\
-    \n\x0c\n\x05\x04\0\x02\0\x04\x12\x03\x14\x04\x0c\n\x0c\n\x05\x04\0\x02\0\
-    \x06\x12\x03\x14\r\x18\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x14\x19\x1b\n\
-    \x0c\n\x05\x04\0\x02\0\x03\x12\x03\x14\x1e\x1f\n\x0c\n\x05\x04\0\x02\0\
-    \x08\x12\x03\x14\x20>\n\x0f\n\x08\x04\0\x02\0\x08\xe7\x07\0\x12\x03\x14!\
-    =\n\x10\n\t\x04\0\x02\0\x08\xe7\x07\0\x02\x12\x03\x14!5\n\x11\n\n\x04\0\
-    \x02\0\x08\xe7\x07\0\x02\0\x12\x03\x14!5\n\x12\n\x0b\x04\0\x02\0\x08\xe7\
-    \x07\0\x02\0\x01\x12\x03\x14\"4\n\x10\n\t\x04\0\x02\0\x08\xe7\x07\0\x03\
-    \x12\x03\x148=\n\x0b\n\x04\x04\0\x02\x01\x12\x03\x15\x04@\n\x0c\n\x05\
-    \x04\0\x02\x01\x04\x12\x03\x15\x04\x0c\n\x0c\n\x05\x04\0\x02\x01\x05\x12\
-    \x03\x15\r\x13\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x15\x14\x1c\n\x0c\n\
-    \x05\x04\0\x02\x01\x03\x12\x03\x15\x1f\x20\n\x0c\n\x05\x04\0\x02\x01\x08\
-    \x12\x03\x15!?\n\x0f\n\x08\x04\0\x02\x01\x08\xe7\x07\0\x12\x03\x15\">\n\
-    \x10\n\t\x04\0\x02\x01\x08\xe7\x07\0\x02\x12\x03\x15\"6\n\x11\n\n\x04\0\
-    \x02\x01\x08\xe7\x07\0\x02\0\x12\x03\x15\"6\n\x12\n\x0b\x04\0\x02\x01\
-    \x08\xe7\x07\0\x02\0\x01\x12\x03\x15#5\n\x10\n\t\x04\0\x02\x01\x08\xe7\
-    \x07\0\x03\x12\x03\x159>\n\x0b\n\x04\x04\0\x02\x02\x12\x03\x16\x04=\n\
-    \x0c\n\x05\x04\0\x02\x02\x04\x12\x03\x16\x04\x0c\n\x0c\n\x05\x04\0\x02\
-    \x02\x05\x12\x03\x16\r\x13\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x16\x14\
-    \x19\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x16\x1c\x1d\n\x0c\n\x05\x04\0\
-    \x02\x02\x08\x12\x03\x16\x1e<\n\x0f\n\x08\x04\0\x02\x02\x08\xe7\x07\0\
-    \x12\x03\x16\x1f;\n\x10\n\t\x04\0\x02\x02\x08\xe7\x07\0\x02\x12\x03\x16\
-    \x1f3\n\x11\n\n\x04\0\x02\x02\x08\xe7\x07\0\x02\0\x12\x03\x16\x1f3\n\x12\
-    \n\x0b\x04\0\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x03\x16\x202\n\x10\n\t\
+    \"\xad\x01\n\x0fAnalyzeIndexReq\x12%\n\x0bbucket_size\x18\x01\x20\x01(\
+    \x03R\nbucketSizeB\x04\xc8\xde\x1f\0\x12%\n\x0bnum_columns\x18\x02\x20\
+    \x01(\x05R\nnumColumnsB\x04\xc8\xde\x1f\0\x12%\n\x0ecmsketch_depth\x18\
+    \x03\x20\x01(\x05R\rcmsketchDepth\x12%\n\x0ecmsketch_width\x18\x04\x20\
+    \x01(\x05R\rcmsketchWidth\"\x8b\x02\n\x11AnalyzeColumnsReq\x12%\n\x0bbuc\
+    ket_size\x18\x01\x20\x01(\x03R\nbucketSizeB\x04\xc8\xde\x1f\0\x12%\n\x0b\
+    sample_size\x18\x02\x20\x01(\x03R\nsampleSizeB\x04\xc8\xde\x1f\0\x12%\n\
+    \x0bsketch_size\x18\x03\x20\x01(\x03R\nsketchSizeB\x04\xc8\xde\x1f\0\x12\
+    3\n\x0ccolumns_info\x18\x04\x20\x03(\x0b2\x10.tipb.ColumnInfoR\x0bcolumn\
+    sInfo\x12%\n\x0ecmsketch_depth\x18\x05\x20\x01(\x05R\rcmsketchDepth\x12%\
+    \n\x0ecmsketch_width\x18\x06\x20\x01(\x05R\rcmsketchWidth\"u\n\x12Analyz\
+    eColumnsResp\x125\n\ncollectors\x18\x01\x20\x03(\x0b2\x15.tipb.SampleCol\
+    lectorR\ncollectors\x12(\n\x07pk_hist\x18\x02\x20\x01(\x0b2\x0f.tipb.His\
+    togramR\x06pkHist\"Y\n\x10AnalyzeIndexResp\x12#\n\x04hist\x18\x01\x20\
+    \x01(\x0b2\x0f.tipb.HistogramR\x04hist\x12\x20\n\x03cms\x18\x02\x20\x01(\
+    \x0b2\x0e.tipb.CMSketchR\x03cms\"\x86\x01\n\x06Bucket\x12\x1a\n\x05count\
+    \x18\x01\x20\x01(\x03R\x05countB\x04\xc8\xde\x1f\0\x12\x1f\n\x0blower_bo\
+    und\x18\x02\x20\x01(\x0cR\nlowerBound\x12\x1f\n\x0bupper_bound\x18\x03\
+    \x20\x01(\x0cR\nupperBound\x12\x1e\n\x07repeats\x18\x04\x20\x01(\x03R\
+    \x07repeatsB\x04\xc8\xde\x1f\0\"K\n\tHistogram\x12\x16\n\x03ndv\x18\x01\
+    \x20\x01(\x03R\x03ndvB\x04\xc8\xde\x1f\0\x12&\n\x07buckets\x18\x02\x20\
+    \x03(\x0b2\x0c.tipb.BucketR\x07buckets\">\n\x08FMSketch\x12\x18\n\x04mas\
+    k\x18\x01\x20\x01(\x04R\x04maskB\x04\xc8\xde\x1f\0\x12\x18\n\x07hashset\
+    \x18\x02\x20\x03(\x04R\x07hashset\"\xc6\x01\n\x0fSampleCollector\x12\x18\
+    \n\x07samples\x18\x01\x20\x03(\x0cR\x07samples\x12#\n\nnull_count\x18\
+    \x02\x20\x01(\x03R\tnullCountB\x04\xc8\xde\x1f\0\x12\x1a\n\x05count\x18\
+    \x03\x20\x01(\x03R\x05countB\x04\xc8\xde\x1f\0\x12+\n\tfm_sketch\x18\x04\
+    \x20\x01(\x0b2\x0e.tipb.FMSketchR\x08fmSketch\x12+\n\tcm_sketch\x18\x05\
+    \x20\x01(\x0b2\x0e.tipb.CMSketchR\x08cmSketch\")\n\x0bCMSketchRow\x12\
+    \x1a\n\x08counters\x18\x01\x20\x03(\rR\x08counters\"1\n\x08CMSketch\x12%\
+    \n\x04rows\x18\x01\x20\x03(\x0b2\x11.tipb.CMSketchRowR\x04rows*,\n\x0bAn\
+    alyzeType\x12\r\n\tTypeIndex\x10\0\x12\x0e\n\nTypeColumn\x10\x01B%\n\x15\
+    com.pingcap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\
+    \x01J\x90,\n\x06\x12\x04\0\0m\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\
+    \n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\
+    \x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\
+    \x04\x07\x1a\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\x04\x07\x1a\n\x0e\n\
+    \x07\x08\xe7\x07\0\x02\0\x01\x12\x03\x04\x07\x1a\n\x0c\n\x05\x08\xe7\x07\
+    \0\x03\x12\x03\x04\x1d!\n\x08\n\x01\x08\x12\x03\x05\0.\n\x0b\n\x04\x08\
+    \xe7\x07\x01\x12\x03\x05\0.\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03\x05\
+    \x07\x13\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03\x05\x07\x13\n\x0e\n\x07\
+    \x08\xe7\x07\x01\x02\0\x01\x12\x03\x05\x07\x13\n\x0c\n\x05\x08\xe7\x07\
+    \x01\x07\x12\x03\x05\x16-\n\t\n\x02\x03\0\x12\x03\x07\x07\x15\n\t\n\x02\
+    \x03\x01\x12\x03\x08\x07\x1d\n\x08\n\x01\x08\x12\x03\n\0(\n\x0b\n\x04\
+    \x08\xe7\x07\x02\x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x03\n\
+    \x07\x20\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x03\n\x07\x20\n\x0e\n\x07\
+    \x08\xe7\x07\x02\x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\xe7\x07\x02\
+    \x03\x12\x03\n#'\n\x08\n\x01\x08\x12\x03\x0b\0$\n\x0b\n\x04\x08\xe7\x07\
+    \x03\x12\x03\x0b\0$\n\x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03\x0b\x07\x1c\
+    \n\r\n\x06\x08\xe7\x07\x03\x02\0\x12\x03\x0b\x07\x1c\n\x0e\n\x07\x08\xe7\
+    \x07\x03\x02\0\x01\x12\x03\x0b\x08\x1b\n\x0c\n\x05\x08\xe7\x07\x03\x03\
+    \x12\x03\x0b\x1f#\n\x08\n\x01\x08\x12\x03\x0c\0*\n\x0b\n\x04\x08\xe7\x07\
+    \x04\x12\x03\x0c\0*\n\x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03\x0c\x07\"\n\
+    \r\n\x06\x08\xe7\x07\x04\x02\0\x12\x03\x0c\x07\"\n\x0e\n\x07\x08\xe7\x07\
+    \x04\x02\0\x01\x12\x03\x0c\x08!\n\x0c\n\x05\x08\xe7\x07\x04\x03\x12\x03\
+    \x0c%)\n\n\n\x02\x05\0\x12\x04\x0e\0\x11\x01\n\n\n\x03\x05\0\x01\x12\x03\
+    \x0e\x05\x10\n\x0b\n\x04\x05\0\x02\0\x12\x03\x0f\x04\x12\n\x0c\n\x05\x05\
+    \0\x02\0\x01\x12\x03\x0f\x04\r\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03\x0f\
+    \x10\x11\n\x0b\n\x04\x05\0\x02\x01\x12\x03\x10\x04\x13\n\x0c\n\x05\x05\0\
+    \x02\x01\x01\x12\x03\x10\x04\x0e\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03\
+    \x10\x11\x12\n\n\n\x02\x04\0\x12\x04\x13\0\x1a\x01\n\n\n\x03\x04\0\x01\
+    \x12\x03\x13\x08\x12\n\x0b\n\x04\x04\0\x02\0\x12\x03\x14\x04?\n\x0c\n\
+    \x05\x04\0\x02\0\x04\x12\x03\x14\x04\x0c\n\x0c\n\x05\x04\0\x02\0\x06\x12\
+    \x03\x14\r\x18\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x14\x19\x1b\n\x0c\n\
+    \x05\x04\0\x02\0\x03\x12\x03\x14\x1e\x1f\n\x0c\n\x05\x04\0\x02\0\x08\x12\
+    \x03\x14\x20>\n\x0f\n\x08\x04\0\x02\0\x08\xe7\x07\0\x12\x03\x14!=\n\x10\
+    \n\t\x04\0\x02\0\x08\xe7\x07\0\x02\x12\x03\x14!5\n\x11\n\n\x04\0\x02\0\
+    \x08\xe7\x07\0\x02\0\x12\x03\x14!5\n\x12\n\x0b\x04\0\x02\0\x08\xe7\x07\0\
+    \x02\0\x01\x12\x03\x14\"4\n\x10\n\t\x04\0\x02\0\x08\xe7\x07\0\x03\x12\
+    \x03\x148=\n\x0b\n\x04\x04\0\x02\x01\x12\x03\x15\x04@\n\x0c\n\x05\x04\0\
+    \x02\x01\x04\x12\x03\x15\x04\x0c\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\
+    \x15\r\x13\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x15\x14\x1c\n\x0c\n\x05\
+    \x04\0\x02\x01\x03\x12\x03\x15\x1f\x20\n\x0c\n\x05\x04\0\x02\x01\x08\x12\
+    \x03\x15!?\n\x0f\n\x08\x04\0\x02\x01\x08\xe7\x07\0\x12\x03\x15\">\n\x10\
+    \n\t\x04\0\x02\x01\x08\xe7\x07\0\x02\x12\x03\x15\"6\n\x11\n\n\x04\0\x02\
+    \x01\x08\xe7\x07\0\x02\0\x12\x03\x15\"6\n\x12\n\x0b\x04\0\x02\x01\x08\
+    \xe7\x07\0\x02\0\x01\x12\x03\x15#5\n\x10\n\t\x04\0\x02\x01\x08\xe7\x07\0\
+    \x03\x12\x03\x159>\n\x0b\n\x04\x04\0\x02\x02\x12\x03\x16\x04=\n\x0c\n\
+    \x05\x04\0\x02\x02\x04\x12\x03\x16\x04\x0c\n\x0c\n\x05\x04\0\x02\x02\x05\
+    \x12\x03\x16\r\x13\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x16\x14\x19\n\
+    \x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x16\x1c\x1d\n\x0c\n\x05\x04\0\x02\
+    \x02\x08\x12\x03\x16\x1e<\n\x0f\n\x08\x04\0\x02\x02\x08\xe7\x07\0\x12\
+    \x03\x16\x1f;\n\x10\n\t\x04\0\x02\x02\x08\xe7\x07\0\x02\x12\x03\x16\x1f3\
+    \n\x11\n\n\x04\0\x02\x02\x08\xe7\x07\0\x02\0\x12\x03\x16\x1f3\n\x12\n\
+    \x0b\x04\0\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x03\x16\x202\n\x10\n\t\
     \x04\0\x02\x02\x08\xe7\x07\0\x03\x12\x03\x166;\n\x0b\n\x04\x04\0\x02\x03\
     \x12\x03\x17\x04G\n\x0c\n\x05\x04\0\x02\x03\x04\x12\x03\x17\x04\x0c\n\
     \x0c\n\x05\x04\0\x02\x03\x05\x12\x03\x17\r\x12\n\x0c\n\x05\x04\0\x02\x03\
@@ -2724,7 +3408,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x04\x04\0\x02\x05\x12\x03\x19\x04+\n\x0c\n\x05\x04\0\x02\x05\x04\x12\
     \x03\x19\x04\x0c\n\x0c\n\x05\x04\0\x02\x05\x06\x12\x03\x19\r\x1e\n\x0c\n\
     \x05\x04\0\x02\x05\x01\x12\x03\x19\x1f&\n\x0c\n\x05\x04\0\x02\x05\x03\
-    \x12\x03\x19)*\n\n\n\x02\x04\x01\x12\x04\x1c\0\"\x01\n\n\n\x03\x04\x01\
+    \x12\x03\x19)*\n\n\n\x02\x04\x01\x12\x04\x1c\0&\x01\n\n\n\x03\x04\x01\
     \x01\x12\x03\x1c\x08\x17\n=\n\x04\x04\x01\x02\0\x12\x03\x1e\x04B\x1a0\
     \x20bucket_size\x20is\x20the\x20max\x20histograms\x20bucket\x20size.\n\n\
     \x0c\n\x05\x04\x01\x02\0\x04\x12\x03\x1e\x04\x0c\n\x0c\n\x05\x04\x01\x02\
@@ -2743,133 +3427,160 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x03!$@\n\x10\n\t\x04\x01\x02\x01\x08\xe7\x07\0\x02\x12\x03!$8\n\x11\n\n\
     \x04\x01\x02\x01\x08\xe7\x07\0\x02\0\x12\x03!$8\n\x12\n\x0b\x04\x01\x02\
     \x01\x08\xe7\x07\0\x02\0\x01\x12\x03!%7\n\x10\n\t\x04\x01\x02\x01\x08\
-    \xe7\x07\0\x03\x12\x03!;@\n\n\n\x02\x04\x02\x12\x04$\01\x01\n\n\n\x03\
-    \x04\x02\x01\x12\x03$\x08\x19\n\x96\x01\n\x04\x04\x02\x02\0\x12\x03'\x04\
-    B\x1a\x88\x01\x20bucket_size\x20is\x20the\x20max\x20histograms\x20bucket\
-    \x20size,\x20we\x20need\x20this\x20because\x20when\x20primary\x20key\x20\
-    is\x20handle,\n\x20the\x20histogram\x20will\x20be\x20directly\x20built.\
-    \n\n\x0c\n\x05\x04\x02\x02\0\x04\x12\x03'\x04\x0c\n\x0c\n\x05\x04\x02\
-    \x02\0\x05\x12\x03'\r\x12\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03'\x13\x1e\
-    \n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03'!\"\n\x0c\n\x05\x04\x02\x02\0\x08\
-    \x12\x03'#A\n\x0f\n\x08\x04\x02\x02\0\x08\xe7\x07\0\x12\x03'$@\n\x10\n\t\
-    \x04\x02\x02\0\x08\xe7\x07\0\x02\x12\x03'$8\n\x11\n\n\x04\x02\x02\0\x08\
-    \xe7\x07\0\x02\0\x12\x03'$8\n\x12\n\x0b\x04\x02\x02\0\x08\xe7\x07\0\x02\
-    \0\x01\x12\x03'%7\n\x10\n\t\x04\x02\x02\0\x08\xe7\x07\0\x03\x12\x03';@\n\
-    O\n\x04\x04\x02\x02\x01\x12\x03*\x04B\x1aB\x20sample_size\x20is\x20the\
-    \x20max\x20number\x20of\x20samples\x20that\x20will\x20be\x20collected.\n\
-    \n\x0c\n\x05\x04\x02\x02\x01\x04\x12\x03*\x04\x0c\n\x0c\n\x05\x04\x02\
-    \x02\x01\x05\x12\x03*\r\x12\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x03*\x13\
-    \x1e\n\x0c\n\x05\x04\x02\x02\x01\x03\x12\x03*!\"\n\x0c\n\x05\x04\x02\x02\
-    \x01\x08\x12\x03*#A\n\x0f\n\x08\x04\x02\x02\x01\x08\xe7\x07\0\x12\x03*$@\
-    \n\x10\n\t\x04\x02\x02\x01\x08\xe7\x07\0\x02\x12\x03*$8\n\x11\n\n\x04\
-    \x02\x02\x01\x08\xe7\x07\0\x02\0\x12\x03*$8\n\x12\n\x0b\x04\x02\x02\x01\
-    \x08\xe7\x07\0\x02\0\x01\x12\x03*%7\n\x10\n\t\x04\x02\x02\x01\x08\xe7\
-    \x07\0\x03\x12\x03*;@\n2\n\x04\x04\x02\x02\x02\x12\x03-\x04B\x1a%\x20ske\
-    tch_size\x20is\x20the\x20max\x20sketch\x20size.\n\n\x0c\n\x05\x04\x02\
-    \x02\x02\x04\x12\x03-\x04\x0c\n\x0c\n\x05\x04\x02\x02\x02\x05\x12\x03-\r\
-    \x12\n\x0c\n\x05\x04\x02\x02\x02\x01\x12\x03-\x13\x1e\n\x0c\n\x05\x04\
-    \x02\x02\x02\x03\x12\x03-!\"\n\x0c\n\x05\x04\x02\x02\x02\x08\x12\x03-#A\
-    \n\x0f\n\x08\x04\x02\x02\x02\x08\xe7\x07\0\x12\x03-$@\n\x10\n\t\x04\x02\
-    \x02\x02\x08\xe7\x07\0\x02\x12\x03-$8\n\x11\n\n\x04\x02\x02\x02\x08\xe7\
-    \x07\0\x02\0\x12\x03-$8\n\x12\n\x0b\x04\x02\x02\x02\x08\xe7\x07\0\x02\0\
-    \x01\x12\x03-%7\n\x10\n\t\x04\x02\x02\x02\x08\xe7\x07\0\x03\x12\x03-;@\n\
-    U\n\x04\x04\x02\x02\x03\x12\x030\x04)\x1aH\x20columns_info\x20is\x20the\
-    \x20info\x20of\x20all\x20the\x20columns\x20that\x20needs\x20to\x20be\x20\
-    analyzed.\n\n\x0c\n\x05\x04\x02\x02\x03\x04\x12\x030\x04\x0c\n\x0c\n\x05\
-    \x04\x02\x02\x03\x06\x12\x030\r\x17\n\x0c\n\x05\x04\x02\x02\x03\x01\x12\
-    \x030\x18$\n\x0c\n\x05\x04\x02\x02\x03\x03\x12\x030'(\n\n\n\x02\x04\x03\
-    \x12\x043\09\x01\n\n\n\x03\x04\x03\x01\x12\x033\x08\x1a\n?\n\x04\x04\x03\
-    \x02\0\x12\x035\x04,\x1a2\x20collectors\x20is\x20the\x20sample\x20collec\
-    tors\x20for\x20columns.\n\n\x0c\n\x05\x04\x03\x02\0\x04\x12\x035\x04\x0c\
-    \n\x0c\n\x05\x04\x03\x02\0\x06\x12\x035\r\x1c\n\x0c\n\x05\x04\x03\x02\0\
-    \x01\x12\x035\x1d'\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x035*+\nN\n\x04\x04\
-    \x03\x02\x01\x12\x038\x04#\x1aA\x20pk_hist\x20is\x20the\x20histogram\x20\
+    \xe7\x07\0\x03\x12\x03!;@\n\x0b\n\x04\x04\x01\x02\x02\x12\x03#\x04&\n\
+    \x0c\n\x05\x04\x01\x02\x02\x04\x12\x03#\x04\x0c\n\x0c\n\x05\x04\x01\x02\
+    \x02\x05\x12\x03#\r\x12\n\x0c\n\x05\x04\x01\x02\x02\x01\x12\x03#\x13!\n\
+    \x0c\n\x05\x04\x01\x02\x02\x03\x12\x03#$%\n\x0b\n\x04\x04\x01\x02\x03\
+    \x12\x03%\x04&\n\x0c\n\x05\x04\x01\x02\x03\x04\x12\x03%\x04\x0c\n\x0c\n\
+    \x05\x04\x01\x02\x03\x05\x12\x03%\r\x12\n\x0c\n\x05\x04\x01\x02\x03\x01\
+    \x12\x03%\x13!\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03%$%\n\n\n\x02\x04\
+    \x02\x12\x04(\09\x01\n\n\n\x03\x04\x02\x01\x12\x03(\x08\x19\n\x96\x01\n\
+    \x04\x04\x02\x02\0\x12\x03+\x04B\x1a\x88\x01\x20bucket_size\x20is\x20the\
+    \x20max\x20histograms\x20bucket\x20size,\x20we\x20need\x20this\x20becaus\
+    e\x20when\x20primary\x20key\x20is\x20handle,\n\x20the\x20histogram\x20wi\
+    ll\x20be\x20directly\x20built.\n\n\x0c\n\x05\x04\x02\x02\0\x04\x12\x03+\
+    \x04\x0c\n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03+\r\x12\n\x0c\n\x05\x04\
+    \x02\x02\0\x01\x12\x03+\x13\x1e\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03+!\
+    \"\n\x0c\n\x05\x04\x02\x02\0\x08\x12\x03+#A\n\x0f\n\x08\x04\x02\x02\0\
+    \x08\xe7\x07\0\x12\x03+$@\n\x10\n\t\x04\x02\x02\0\x08\xe7\x07\0\x02\x12\
+    \x03+$8\n\x11\n\n\x04\x02\x02\0\x08\xe7\x07\0\x02\0\x12\x03+$8\n\x12\n\
+    \x0b\x04\x02\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03+%7\n\x10\n\t\x04\x02\
+    \x02\0\x08\xe7\x07\0\x03\x12\x03+;@\nO\n\x04\x04\x02\x02\x01\x12\x03.\
+    \x04B\x1aB\x20sample_size\x20is\x20the\x20max\x20number\x20of\x20samples\
+    \x20that\x20will\x20be\x20collected.\n\n\x0c\n\x05\x04\x02\x02\x01\x04\
+    \x12\x03.\x04\x0c\n\x0c\n\x05\x04\x02\x02\x01\x05\x12\x03.\r\x12\n\x0c\n\
+    \x05\x04\x02\x02\x01\x01\x12\x03.\x13\x1e\n\x0c\n\x05\x04\x02\x02\x01\
+    \x03\x12\x03.!\"\n\x0c\n\x05\x04\x02\x02\x01\x08\x12\x03.#A\n\x0f\n\x08\
+    \x04\x02\x02\x01\x08\xe7\x07\0\x12\x03.$@\n\x10\n\t\x04\x02\x02\x01\x08\
+    \xe7\x07\0\x02\x12\x03.$8\n\x11\n\n\x04\x02\x02\x01\x08\xe7\x07\0\x02\0\
+    \x12\x03.$8\n\x12\n\x0b\x04\x02\x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x03.\
+    %7\n\x10\n\t\x04\x02\x02\x01\x08\xe7\x07\0\x03\x12\x03.;@\n2\n\x04\x04\
+    \x02\x02\x02\x12\x031\x04B\x1a%\x20sketch_size\x20is\x20the\x20max\x20sk\
+    etch\x20size.\n\n\x0c\n\x05\x04\x02\x02\x02\x04\x12\x031\x04\x0c\n\x0c\n\
+    \x05\x04\x02\x02\x02\x05\x12\x031\r\x12\n\x0c\n\x05\x04\x02\x02\x02\x01\
+    \x12\x031\x13\x1e\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x031!\"\n\x0c\n\
+    \x05\x04\x02\x02\x02\x08\x12\x031#A\n\x0f\n\x08\x04\x02\x02\x02\x08\xe7\
+    \x07\0\x12\x031$@\n\x10\n\t\x04\x02\x02\x02\x08\xe7\x07\0\x02\x12\x031$8\
+    \n\x11\n\n\x04\x02\x02\x02\x08\xe7\x07\0\x02\0\x12\x031$8\n\x12\n\x0b\
+    \x04\x02\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x031%7\n\x10\n\t\x04\x02\
+    \x02\x02\x08\xe7\x07\0\x03\x12\x031;@\nU\n\x04\x04\x02\x02\x03\x12\x034\
+    \x04)\x1aH\x20columns_info\x20is\x20the\x20info\x20of\x20all\x20the\x20c\
+    olumns\x20that\x20needs\x20to\x20be\x20analyzed.\n\n\x0c\n\x05\x04\x02\
+    \x02\x03\x04\x12\x034\x04\x0c\n\x0c\n\x05\x04\x02\x02\x03\x06\x12\x034\r\
+    \x17\n\x0c\n\x05\x04\x02\x02\x03\x01\x12\x034\x18$\n\x0c\n\x05\x04\x02\
+    \x02\x03\x03\x12\x034'(\n\x0b\n\x04\x04\x02\x02\x04\x12\x036\x04&\n\x0c\
+    \n\x05\x04\x02\x02\x04\x04\x12\x036\x04\x0c\n\x0c\n\x05\x04\x02\x02\x04\
+    \x05\x12\x036\r\x12\n\x0c\n\x05\x04\x02\x02\x04\x01\x12\x036\x13!\n\x0c\
+    \n\x05\x04\x02\x02\x04\x03\x12\x036$%\n\x0b\n\x04\x04\x02\x02\x05\x12\
+    \x038\x04&\n\x0c\n\x05\x04\x02\x02\x05\x04\x12\x038\x04\x0c\n\x0c\n\x05\
+    \x04\x02\x02\x05\x05\x12\x038\r\x12\n\x0c\n\x05\x04\x02\x02\x05\x01\x12\
+    \x038\x13!\n\x0c\n\x05\x04\x02\x02\x05\x03\x12\x038$%\n\n\n\x02\x04\x03\
+    \x12\x04;\0A\x01\n\n\n\x03\x04\x03\x01\x12\x03;\x08\x1a\n?\n\x04\x04\x03\
+    \x02\0\x12\x03=\x04,\x1a2\x20collectors\x20is\x20the\x20sample\x20collec\
+    tors\x20for\x20columns.\n\n\x0c\n\x05\x04\x03\x02\0\x04\x12\x03=\x04\x0c\
+    \n\x0c\n\x05\x04\x03\x02\0\x06\x12\x03=\r\x1c\n\x0c\n\x05\x04\x03\x02\0\
+    \x01\x12\x03=\x1d'\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03=*+\nN\n\x04\x04\
+    \x03\x02\x01\x12\x03@\x04#\x1aA\x20pk_hist\x20is\x20the\x20histogram\x20\
     for\x20primary\x20key\x20when\x20it\x20is\x20the\x20handle.\n\n\x0c\n\
-    \x05\x04\x03\x02\x01\x04\x12\x038\x04\x0c\n\x0c\n\x05\x04\x03\x02\x01\
-    \x06\x12\x038\r\x16\n\x0c\n\x05\x04\x03\x02\x01\x01\x12\x038\x17\x1e\n\
-    \x0c\n\x05\x04\x03\x02\x01\x03\x12\x038!\"\n\n\n\x02\x04\x04\x12\x04;\0=\
-    \x01\n\n\n\x03\x04\x04\x01\x12\x03;\x08\x18\n\x0b\n\x04\x04\x04\x02\0\
-    \x12\x03<\x04\x20\n\x0c\n\x05\x04\x04\x02\0\x04\x12\x03<\x04\x0c\n\x0c\n\
-    \x05\x04\x04\x02\0\x06\x12\x03<\r\x16\n\x0c\n\x05\x04\x04\x02\0\x01\x12\
-    \x03<\x17\x1b\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03<\x1e\x1f\n0\n\x02\
-    \x04\x05\x12\x04@\0E\x01\x1a$\x20Bucket\x20is\x20an\x20element\x20of\x20\
-    histogram.\n\n\n\n\x03\x04\x05\x01\x12\x03@\x08\x0e\n\x0b\n\x04\x04\x05\
-    \x02\0\x12\x03A\x04<\n\x0c\n\x05\x04\x05\x02\0\x04\x12\x03A\x04\x0c\n\
-    \x0c\n\x05\x04\x05\x02\0\x05\x12\x03A\r\x12\n\x0c\n\x05\x04\x05\x02\0\
-    \x01\x12\x03A\x13\x18\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03A\x1b\x1c\n\
-    \x0c\n\x05\x04\x05\x02\0\x08\x12\x03A\x1d;\n\x0f\n\x08\x04\x05\x02\0\x08\
-    \xe7\x07\0\x12\x03A\x1e:\n\x10\n\t\x04\x05\x02\0\x08\xe7\x07\0\x02\x12\
-    \x03A\x1e2\n\x11\n\n\x04\x05\x02\0\x08\xe7\x07\0\x02\0\x12\x03A\x1e2\n\
-    \x12\n\x0b\x04\x05\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03A\x1f1\n\x10\n\t\
-    \x04\x05\x02\0\x08\xe7\x07\0\x03\x12\x03A5:\n\x0b\n\x04\x04\x05\x02\x01\
-    \x12\x03B\x04#\n\x0c\n\x05\x04\x05\x02\x01\x04\x12\x03B\x04\x0c\n\x0c\n\
-    \x05\x04\x05\x02\x01\x05\x12\x03B\r\x12\n\x0c\n\x05\x04\x05\x02\x01\x01\
-    \x12\x03B\x13\x1e\n\x0c\n\x05\x04\x05\x02\x01\x03\x12\x03B!\"\n\x0b\n\
-    \x04\x04\x05\x02\x02\x12\x03C\x04#\n\x0c\n\x05\x04\x05\x02\x02\x04\x12\
-    \x03C\x04\x0c\n\x0c\n\x05\x04\x05\x02\x02\x05\x12\x03C\r\x12\n\x0c\n\x05\
-    \x04\x05\x02\x02\x01\x12\x03C\x13\x1e\n\x0c\n\x05\x04\x05\x02\x02\x03\
-    \x12\x03C!\"\n\x0b\n\x04\x04\x05\x02\x03\x12\x03D\x04>\n\x0c\n\x05\x04\
-    \x05\x02\x03\x04\x12\x03D\x04\x0c\n\x0c\n\x05\x04\x05\x02\x03\x05\x12\
-    \x03D\r\x12\n\x0c\n\x05\x04\x05\x02\x03\x01\x12\x03D\x13\x1a\n\x0c\n\x05\
-    \x04\x05\x02\x03\x03\x12\x03D\x1d\x1e\n\x0c\n\x05\x04\x05\x02\x03\x08\
-    \x12\x03D\x1f=\n\x0f\n\x08\x04\x05\x02\x03\x08\xe7\x07\0\x12\x03D\x20<\n\
-    \x10\n\t\x04\x05\x02\x03\x08\xe7\x07\0\x02\x12\x03D\x204\n\x11\n\n\x04\
-    \x05\x02\x03\x08\xe7\x07\0\x02\0\x12\x03D\x204\n\x12\n\x0b\x04\x05\x02\
-    \x03\x08\xe7\x07\0\x02\0\x01\x12\x03D!3\n\x10\n\t\x04\x05\x02\x03\x08\
-    \xe7\x07\0\x03\x12\x03D7<\n\n\n\x02\x04\x06\x12\x04G\0M\x01\n\n\n\x03\
-    \x04\x06\x01\x12\x03G\x08\x11\n4\n\x04\x04\x06\x02\0\x12\x03I\x04:\x1a'\
-    \x20ndv\x20is\x20the\x20number\x20of\x20distinct\x20values.\n\n\x0c\n\
-    \x05\x04\x06\x02\0\x04\x12\x03I\x04\x0c\n\x0c\n\x05\x04\x06\x02\0\x05\
-    \x12\x03I\r\x12\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x03I\x13\x16\n\x0c\n\
-    \x05\x04\x06\x02\0\x03\x12\x03I\x19\x1a\n\x0c\n\x05\x04\x06\x02\0\x08\
-    \x12\x03I\x1b9\n\x0f\n\x08\x04\x06\x02\0\x08\xe7\x07\0\x12\x03I\x1c8\n\
-    \x10\n\t\x04\x06\x02\0\x08\xe7\x07\0\x02\x12\x03I\x1c0\n\x11\n\n\x04\x06\
-    \x02\0\x08\xe7\x07\0\x02\0\x12\x03I\x1c0\n\x12\n\x0b\x04\x06\x02\0\x08\
-    \xe7\x07\0\x02\0\x01\x12\x03I\x1d/\n\x10\n\t\x04\x06\x02\0\x08\xe7\x07\0\
-    \x03\x12\x03I38\n2\n\x04\x04\x06\x02\x01\x12\x03L\x04\x20\x1a%\x20bucket\
-    s\x20represents\x20all\x20the\x20buckets.\n\n\x0c\n\x05\x04\x06\x02\x01\
-    \x04\x12\x03L\x04\x0c\n\x0c\n\x05\x04\x06\x02\x01\x06\x12\x03L\r\x13\n\
-    \x0c\n\x05\x04\x06\x02\x01\x01\x12\x03L\x14\x1b\n\x0c\n\x05\x04\x06\x02\
-    \x01\x03\x12\x03L\x1e\x1f\nD\n\x02\x04\x07\x12\x04P\0S\x01\x1a8\x20FMSke\
-    tch\x20is\x20used\x20to\x20count\x20distinct\x20values\x20for\x20columns\
-    .\n\n\n\n\x03\x04\x07\x01\x12\x03P\x08\x10\n\x0b\n\x04\x04\x07\x02\0\x12\
-    \x03Q\x04<\n\x0c\n\x05\x04\x07\x02\0\x04\x12\x03Q\x04\x0c\n\x0c\n\x05\
-    \x04\x07\x02\0\x05\x12\x03Q\r\x13\n\x0c\n\x05\x04\x07\x02\0\x01\x12\x03Q\
-    \x14\x18\n\x0c\n\x05\x04\x07\x02\0\x03\x12\x03Q\x1b\x1c\n\x0c\n\x05\x04\
-    \x07\x02\0\x08\x12\x03Q\x1d;\n\x0f\n\x08\x04\x07\x02\0\x08\xe7\x07\0\x12\
-    \x03Q\x1e:\n\x10\n\t\x04\x07\x02\0\x08\xe7\x07\0\x02\x12\x03Q\x1e2\n\x11\
-    \n\n\x04\x07\x02\0\x08\xe7\x07\0\x02\0\x12\x03Q\x1e2\n\x12\n\x0b\x04\x07\
-    \x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03Q\x1f1\n\x10\n\t\x04\x07\x02\0\x08\
-    \xe7\x07\0\x03\x12\x03Q5:\n\x0b\n\x04\x04\x07\x02\x01\x12\x03R\x04\x20\n\
-    \x0c\n\x05\x04\x07\x02\x01\x04\x12\x03R\x04\x0c\n\x0c\n\x05\x04\x07\x02\
-    \x01\x05\x12\x03R\r\x13\n\x0c\n\x05\x04\x07\x02\x01\x01\x12\x03R\x14\x1b\
-    \n\x0c\n\x05\x04\x07\x02\x01\x03\x12\x03R\x1e\x1f\ng\n\x02\x04\x08\x12\
-    \x04V\0[\x01\x1a[\x20SampleCollector\x20is\x20used\x20for\x20collect\x20\
-    samples\x20and\x20calculate\x20the\x20count\x20and\x20ndv\x20of\x20an\
-    \x20column.\n\n\n\n\x03\x04\x08\x01\x12\x03V\x08\x17\n\x0b\n\x04\x04\x08\
-    \x02\0\x12\x03W\x04\x1f\n\x0c\n\x05\x04\x08\x02\0\x04\x12\x03W\x04\x0c\n\
-    \x0c\n\x05\x04\x08\x02\0\x05\x12\x03W\r\x12\n\x0c\n\x05\x04\x08\x02\0\
-    \x01\x12\x03W\x13\x1a\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03W\x1d\x1e\n\
-    \x0b\n\x04\x04\x08\x02\x01\x12\x03X\x04A\n\x0c\n\x05\x04\x08\x02\x01\x04\
-    \x12\x03X\x04\x0c\n\x0c\n\x05\x04\x08\x02\x01\x05\x12\x03X\r\x12\n\x0c\n\
-    \x05\x04\x08\x02\x01\x01\x12\x03X\x13\x1d\n\x0c\n\x05\x04\x08\x02\x01\
-    \x03\x12\x03X\x20!\n\x0c\n\x05\x04\x08\x02\x01\x08\x12\x03X\"@\n\x0f\n\
-    \x08\x04\x08\x02\x01\x08\xe7\x07\0\x12\x03X#?\n\x10\n\t\x04\x08\x02\x01\
-    \x08\xe7\x07\0\x02\x12\x03X#7\n\x11\n\n\x04\x08\x02\x01\x08\xe7\x07\0\
-    \x02\0\x12\x03X#7\n\x12\n\x0b\x04\x08\x02\x01\x08\xe7\x07\0\x02\0\x01\
-    \x12\x03X$6\n\x10\n\t\x04\x08\x02\x01\x08\xe7\x07\0\x03\x12\x03X:?\n\x0b\
-    \n\x04\x04\x08\x02\x02\x12\x03Y\x04<\n\x0c\n\x05\x04\x08\x02\x02\x04\x12\
-    \x03Y\x04\x0c\n\x0c\n\x05\x04\x08\x02\x02\x05\x12\x03Y\r\x12\n\x0c\n\x05\
-    \x04\x08\x02\x02\x01\x12\x03Y\x13\x18\n\x0c\n\x05\x04\x08\x02\x02\x03\
-    \x12\x03Y\x1b\x1c\n\x0c\n\x05\x04\x08\x02\x02\x08\x12\x03Y\x1d;\n\x0f\n\
-    \x08\x04\x08\x02\x02\x08\xe7\x07\0\x12\x03Y\x1e:\n\x10\n\t\x04\x08\x02\
-    \x02\x08\xe7\x07\0\x02\x12\x03Y\x1e2\n\x11\n\n\x04\x08\x02\x02\x08\xe7\
-    \x07\0\x02\0\x12\x03Y\x1e2\n\x12\n\x0b\x04\x08\x02\x02\x08\xe7\x07\0\x02\
-    \0\x01\x12\x03Y\x1f1\n\x10\n\t\x04\x08\x02\x02\x08\xe7\x07\0\x03\x12\x03\
-    Y5:\n\x0b\n\x04\x04\x08\x02\x03\x12\x03Z\x04!\n\x0c\n\x05\x04\x08\x02\
-    \x03\x04\x12\x03Z\x04\x0c\n\x0c\n\x05\x04\x08\x02\x03\x06\x12\x03Z\r\x15\
-    \n\x0c\n\x05\x04\x08\x02\x03\x01\x12\x03Z\x16\x1c\n\x0c\n\x05\x04\x08\
-    \x02\x03\x03\x12\x03Z\x1f\x20\
+    \x05\x04\x03\x02\x01\x04\x12\x03@\x04\x0c\n\x0c\n\x05\x04\x03\x02\x01\
+    \x06\x12\x03@\r\x16\n\x0c\n\x05\x04\x03\x02\x01\x01\x12\x03@\x17\x1e\n\
+    \x0c\n\x05\x04\x03\x02\x01\x03\x12\x03@!\"\n\n\n\x02\x04\x04\x12\x04C\0F\
+    \x01\n\n\n\x03\x04\x04\x01\x12\x03C\x08\x18\n\x0b\n\x04\x04\x04\x02\0\
+    \x12\x03D\x04\x20\n\x0c\n\x05\x04\x04\x02\0\x04\x12\x03D\x04\x0c\n\x0c\n\
+    \x05\x04\x04\x02\0\x06\x12\x03D\r\x16\n\x0c\n\x05\x04\x04\x02\0\x01\x12\
+    \x03D\x17\x1b\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03D\x1e\x1f\n\x0b\n\x04\
+    \x04\x04\x02\x01\x12\x03E\x04\x1e\n\x0c\n\x05\x04\x04\x02\x01\x04\x12\
+    \x03E\x04\x0c\n\x0c\n\x05\x04\x04\x02\x01\x06\x12\x03E\r\x15\n\x0c\n\x05\
+    \x04\x04\x02\x01\x01\x12\x03E\x16\x19\n\x0c\n\x05\x04\x04\x02\x01\x03\
+    \x12\x03E\x1c\x1d\n0\n\x02\x04\x05\x12\x04I\0N\x01\x1a$\x20Bucket\x20is\
+    \x20an\x20element\x20of\x20histogram.\n\n\n\n\x03\x04\x05\x01\x12\x03I\
+    \x08\x0e\n\x0b\n\x04\x04\x05\x02\0\x12\x03J\x04<\n\x0c\n\x05\x04\x05\x02\
+    \0\x04\x12\x03J\x04\x0c\n\x0c\n\x05\x04\x05\x02\0\x05\x12\x03J\r\x12\n\
+    \x0c\n\x05\x04\x05\x02\0\x01\x12\x03J\x13\x18\n\x0c\n\x05\x04\x05\x02\0\
+    \x03\x12\x03J\x1b\x1c\n\x0c\n\x05\x04\x05\x02\0\x08\x12\x03J\x1d;\n\x0f\
+    \n\x08\x04\x05\x02\0\x08\xe7\x07\0\x12\x03J\x1e:\n\x10\n\t\x04\x05\x02\0\
+    \x08\xe7\x07\0\x02\x12\x03J\x1e2\n\x11\n\n\x04\x05\x02\0\x08\xe7\x07\0\
+    \x02\0\x12\x03J\x1e2\n\x12\n\x0b\x04\x05\x02\0\x08\xe7\x07\0\x02\0\x01\
+    \x12\x03J\x1f1\n\x10\n\t\x04\x05\x02\0\x08\xe7\x07\0\x03\x12\x03J5:\n\
+    \x0b\n\x04\x04\x05\x02\x01\x12\x03K\x04#\n\x0c\n\x05\x04\x05\x02\x01\x04\
+    \x12\x03K\x04\x0c\n\x0c\n\x05\x04\x05\x02\x01\x05\x12\x03K\r\x12\n\x0c\n\
+    \x05\x04\x05\x02\x01\x01\x12\x03K\x13\x1e\n\x0c\n\x05\x04\x05\x02\x01\
+    \x03\x12\x03K!\"\n\x0b\n\x04\x04\x05\x02\x02\x12\x03L\x04#\n\x0c\n\x05\
+    \x04\x05\x02\x02\x04\x12\x03L\x04\x0c\n\x0c\n\x05\x04\x05\x02\x02\x05\
+    \x12\x03L\r\x12\n\x0c\n\x05\x04\x05\x02\x02\x01\x12\x03L\x13\x1e\n\x0c\n\
+    \x05\x04\x05\x02\x02\x03\x12\x03L!\"\n\x0b\n\x04\x04\x05\x02\x03\x12\x03\
+    M\x04>\n\x0c\n\x05\x04\x05\x02\x03\x04\x12\x03M\x04\x0c\n\x0c\n\x05\x04\
+    \x05\x02\x03\x05\x12\x03M\r\x12\n\x0c\n\x05\x04\x05\x02\x03\x01\x12\x03M\
+    \x13\x1a\n\x0c\n\x05\x04\x05\x02\x03\x03\x12\x03M\x1d\x1e\n\x0c\n\x05\
+    \x04\x05\x02\x03\x08\x12\x03M\x1f=\n\x0f\n\x08\x04\x05\x02\x03\x08\xe7\
+    \x07\0\x12\x03M\x20<\n\x10\n\t\x04\x05\x02\x03\x08\xe7\x07\0\x02\x12\x03\
+    M\x204\n\x11\n\n\x04\x05\x02\x03\x08\xe7\x07\0\x02\0\x12\x03M\x204\n\x12\
+    \n\x0b\x04\x05\x02\x03\x08\xe7\x07\0\x02\0\x01\x12\x03M!3\n\x10\n\t\x04\
+    \x05\x02\x03\x08\xe7\x07\0\x03\x12\x03M7<\n\n\n\x02\x04\x06\x12\x04P\0V\
+    \x01\n\n\n\x03\x04\x06\x01\x12\x03P\x08\x11\n4\n\x04\x04\x06\x02\0\x12\
+    \x03R\x04:\x1a'\x20ndv\x20is\x20the\x20number\x20of\x20distinct\x20value\
+    s.\n\n\x0c\n\x05\x04\x06\x02\0\x04\x12\x03R\x04\x0c\n\x0c\n\x05\x04\x06\
+    \x02\0\x05\x12\x03R\r\x12\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x03R\x13\x16\
+    \n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03R\x19\x1a\n\x0c\n\x05\x04\x06\x02\
+    \0\x08\x12\x03R\x1b9\n\x0f\n\x08\x04\x06\x02\0\x08\xe7\x07\0\x12\x03R\
+    \x1c8\n\x10\n\t\x04\x06\x02\0\x08\xe7\x07\0\x02\x12\x03R\x1c0\n\x11\n\n\
+    \x04\x06\x02\0\x08\xe7\x07\0\x02\0\x12\x03R\x1c0\n\x12\n\x0b\x04\x06\x02\
+    \0\x08\xe7\x07\0\x02\0\x01\x12\x03R\x1d/\n\x10\n\t\x04\x06\x02\0\x08\xe7\
+    \x07\0\x03\x12\x03R38\n2\n\x04\x04\x06\x02\x01\x12\x03U\x04\x20\x1a%\x20\
+    buckets\x20represents\x20all\x20the\x20buckets.\n\n\x0c\n\x05\x04\x06\
+    \x02\x01\x04\x12\x03U\x04\x0c\n\x0c\n\x05\x04\x06\x02\x01\x06\x12\x03U\r\
+    \x13\n\x0c\n\x05\x04\x06\x02\x01\x01\x12\x03U\x14\x1b\n\x0c\n\x05\x04\
+    \x06\x02\x01\x03\x12\x03U\x1e\x1f\nD\n\x02\x04\x07\x12\x04Y\0\\\x01\x1a8\
+    \x20FMSketch\x20is\x20used\x20to\x20count\x20distinct\x20values\x20for\
+    \x20columns.\n\n\n\n\x03\x04\x07\x01\x12\x03Y\x08\x10\n\x0b\n\x04\x04\
+    \x07\x02\0\x12\x03Z\x04<\n\x0c\n\x05\x04\x07\x02\0\x04\x12\x03Z\x04\x0c\
+    \n\x0c\n\x05\x04\x07\x02\0\x05\x12\x03Z\r\x13\n\x0c\n\x05\x04\x07\x02\0\
+    \x01\x12\x03Z\x14\x18\n\x0c\n\x05\x04\x07\x02\0\x03\x12\x03Z\x1b\x1c\n\
+    \x0c\n\x05\x04\x07\x02\0\x08\x12\x03Z\x1d;\n\x0f\n\x08\x04\x07\x02\0\x08\
+    \xe7\x07\0\x12\x03Z\x1e:\n\x10\n\t\x04\x07\x02\0\x08\xe7\x07\0\x02\x12\
+    \x03Z\x1e2\n\x11\n\n\x04\x07\x02\0\x08\xe7\x07\0\x02\0\x12\x03Z\x1e2\n\
+    \x12\n\x0b\x04\x07\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03Z\x1f1\n\x10\n\t\
+    \x04\x07\x02\0\x08\xe7\x07\0\x03\x12\x03Z5:\n\x0b\n\x04\x04\x07\x02\x01\
+    \x12\x03[\x04\x20\n\x0c\n\x05\x04\x07\x02\x01\x04\x12\x03[\x04\x0c\n\x0c\
+    \n\x05\x04\x07\x02\x01\x05\x12\x03[\r\x13\n\x0c\n\x05\x04\x07\x02\x01\
+    \x01\x12\x03[\x14\x1b\n\x0c\n\x05\x04\x07\x02\x01\x03\x12\x03[\x1e\x1f\n\
+    g\n\x02\x04\x08\x12\x04_\0e\x01\x1a[\x20SampleCollector\x20is\x20used\
+    \x20for\x20collect\x20samples\x20and\x20calculate\x20the\x20count\x20and\
+    \x20ndv\x20of\x20an\x20column.\n\n\n\n\x03\x04\x08\x01\x12\x03_\x08\x17\
+    \n\x0b\n\x04\x04\x08\x02\0\x12\x03`\x04\x1f\n\x0c\n\x05\x04\x08\x02\0\
+    \x04\x12\x03`\x04\x0c\n\x0c\n\x05\x04\x08\x02\0\x05\x12\x03`\r\x12\n\x0c\
+    \n\x05\x04\x08\x02\0\x01\x12\x03`\x13\x1a\n\x0c\n\x05\x04\x08\x02\0\x03\
+    \x12\x03`\x1d\x1e\n\x0b\n\x04\x04\x08\x02\x01\x12\x03a\x04A\n\x0c\n\x05\
+    \x04\x08\x02\x01\x04\x12\x03a\x04\x0c\n\x0c\n\x05\x04\x08\x02\x01\x05\
+    \x12\x03a\r\x12\n\x0c\n\x05\x04\x08\x02\x01\x01\x12\x03a\x13\x1d\n\x0c\n\
+    \x05\x04\x08\x02\x01\x03\x12\x03a\x20!\n\x0c\n\x05\x04\x08\x02\x01\x08\
+    \x12\x03a\"@\n\x0f\n\x08\x04\x08\x02\x01\x08\xe7\x07\0\x12\x03a#?\n\x10\
+    \n\t\x04\x08\x02\x01\x08\xe7\x07\0\x02\x12\x03a#7\n\x11\n\n\x04\x08\x02\
+    \x01\x08\xe7\x07\0\x02\0\x12\x03a#7\n\x12\n\x0b\x04\x08\x02\x01\x08\xe7\
+    \x07\0\x02\0\x01\x12\x03a$6\n\x10\n\t\x04\x08\x02\x01\x08\xe7\x07\0\x03\
+    \x12\x03a:?\n\x0b\n\x04\x04\x08\x02\x02\x12\x03b\x04<\n\x0c\n\x05\x04\
+    \x08\x02\x02\x04\x12\x03b\x04\x0c\n\x0c\n\x05\x04\x08\x02\x02\x05\x12\
+    \x03b\r\x12\n\x0c\n\x05\x04\x08\x02\x02\x01\x12\x03b\x13\x18\n\x0c\n\x05\
+    \x04\x08\x02\x02\x03\x12\x03b\x1b\x1c\n\x0c\n\x05\x04\x08\x02\x02\x08\
+    \x12\x03b\x1d;\n\x0f\n\x08\x04\x08\x02\x02\x08\xe7\x07\0\x12\x03b\x1e:\n\
+    \x10\n\t\x04\x08\x02\x02\x08\xe7\x07\0\x02\x12\x03b\x1e2\n\x11\n\n\x04\
+    \x08\x02\x02\x08\xe7\x07\0\x02\0\x12\x03b\x1e2\n\x12\n\x0b\x04\x08\x02\
+    \x02\x08\xe7\x07\0\x02\0\x01\x12\x03b\x1f1\n\x10\n\t\x04\x08\x02\x02\x08\
+    \xe7\x07\0\x03\x12\x03b5:\n\x0b\n\x04\x04\x08\x02\x03\x12\x03c\x04$\n\
+    \x0c\n\x05\x04\x08\x02\x03\x04\x12\x03c\x04\x0c\n\x0c\n\x05\x04\x08\x02\
+    \x03\x06\x12\x03c\r\x15\n\x0c\n\x05\x04\x08\x02\x03\x01\x12\x03c\x16\x1f\
+    \n\x0c\n\x05\x04\x08\x02\x03\x03\x12\x03c\"#\n\x0b\n\x04\x04\x08\x02\x04\
+    \x12\x03d\x04$\n\x0c\n\x05\x04\x08\x02\x04\x04\x12\x03d\x04\x0c\n\x0c\n\
+    \x05\x04\x08\x02\x04\x06\x12\x03d\r\x15\n\x0c\n\x05\x04\x08\x02\x04\x01\
+    \x12\x03d\x16\x1f\n\x0c\n\x05\x04\x08\x02\x04\x03\x12\x03d\"#\n\n\n\x02\
+    \x04\t\x12\x04g\0i\x01\n\n\n\x03\x04\t\x01\x12\x03g\x08\x13\n\x0b\n\x04\
+    \x04\t\x02\0\x12\x03h\x04!\n\x0c\n\x05\x04\t\x02\0\x04\x12\x03h\x04\x0c\
+    \n\x0c\n\x05\x04\t\x02\0\x05\x12\x03h\r\x13\n\x0c\n\x05\x04\t\x02\0\x01\
+    \x12\x03h\x14\x1c\n\x0c\n\x05\x04\t\x02\0\x03\x12\x03h\x1f\x20\n\n\n\x02\
+    \x04\n\x12\x04k\0m\x01\n\n\n\x03\x04\n\x01\x12\x03k\x08\x10\n\x0b\n\x04\
+    \x04\n\x02\0\x12\x03l\x04\"\n\x0c\n\x05\x04\n\x02\0\x04\x12\x03l\x04\x0c\
+    \n\x0c\n\x05\x04\n\x02\0\x06\x12\x03l\r\x18\n\x0c\n\x05\x04\n\x02\0\x01\
+    \x12\x03l\x19\x1d\n\x0c\n\x05\x04\n\x02\0\x03\x12\x03l\x20!\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

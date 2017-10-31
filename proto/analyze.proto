@@ -32,6 +32,10 @@ message AnalyzeIndexReq {
 
     // num_columns is the number of columns in the index.
     optional int32 num_columns = 2 [(gogoproto.nullable) = false];
+
+    optional int32 cmsketch_depth = 3;
+
+    optional int32 cmsketch_width = 4;
 }
 
 message AnalyzeColumnsReq {
@@ -47,6 +51,10 @@ message AnalyzeColumnsReq {
 
     // columns_info is the info of all the columns that needs to be analyzed.
     repeated ColumnInfo columns_info = 4;
+
+    optional int32 cmsketch_depth = 5;
+
+    optional int32 cmsketch_width = 6;
 }
 
 message AnalyzeColumnsResp {
@@ -59,6 +67,7 @@ message AnalyzeColumnsResp {
 
 message AnalyzeIndexResp {
     optional Histogram hist = 1;
+    optional CMSketch cms = 2;
 }
 
 // Bucket is an element of histogram.
@@ -88,5 +97,14 @@ message SampleCollector {
     repeated bytes samples = 1;
     optional int64 null_count = 2 [(gogoproto.nullable) = false];
     optional int64 count = 3 [(gogoproto.nullable) = false];
-    optional FMSketch sketch = 4;
+    optional FMSketch fm_sketch = 4;
+    optional CMSketch cm_sketch = 5;
+}
+
+message CMSketchRow {
+    repeated uint32 counters = 1;
+}
+
+message CMSketch {
+    repeated CMSketchRow rows = 1;
 }
