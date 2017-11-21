@@ -15,7 +15,7 @@ TiDB protobuf files
 + `git checkout v0.5`
 
 ### Generate go and rust code.
-We generate all go codes in pkg folder and rust in src folder.
+We generate all go code in pkg folder and rust in src folder.
 
 + `make go`
 + `make rust`
