@@ -91,6 +91,16 @@ enum ExprType {
 	Max = 3005;
 	First = 3006;
 	GroupConcat = 3007;
+	Agg_BitAnd = 3008;
+	Agg_BitOr = 3009;
+	Agg_BitXor = 3010;
+	Std = 3011;
+	Stddev = 3012;
+	StddevPop = 3013;
+	StddevSamp = 3014;
+	VarPop = 3015;
+	VarSamp = 3016;
+	Variance = 3017;
 
 	// Math functions.
 	Abs = 3101;
