@@ -362,7 +362,7 @@ enum ScalarFuncSig {
 	InTime = 4005;
 	InDuration = 4006;
 	InJson = 4007;
-    
+
 	IfNullInt = 4101;
 	IfNullReal = 4102;
 	IfNullDecimal = 4103;
@@ -410,6 +410,8 @@ enum ScalarFuncSig {
 	JsonMergeSig = 5008;
 	JsonObjectSig = 5009;
 	JsonArraySig = 5010;
+
+	DateFormat = 6001;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
