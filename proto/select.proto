@@ -130,3 +130,18 @@ message DAGRequest {
 	// It represents which columns we should output.
 	repeated uint32 output_offsets = 5;
 }
+
+enum EncodeType {
+        TypeDefault = 0;
+        TypeArrow = 1;
+}
+
+message StreamResponse {
+    optional Error error = 1;
+    optional EncodeType encode_type=2;
+		//Data for all rows
+    optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+    repeated Error warnings = 4;
+		// number of calls for each executor's next function
+		repeated int64 output_counts = 5;
+}

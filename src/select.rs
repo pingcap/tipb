@@ -2604,6 +2604,459 @@ impl ::protobuf::reflect::ProtobufValue for DAGRequest {
     }
 }
 
+#[derive(PartialEq,Clone,Default)]
+pub struct StreamResponse {
+    // message fields
+    error: ::protobuf::SingularPtrField<Error>,
+    encode_type: ::std::option::Option<EncodeType>,
+    data: ::protobuf::SingularField<::std::vec::Vec<u8>>,
+    warnings: ::protobuf::RepeatedField<Error>,
+    output_counts: ::std::vec::Vec<i64>,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+// see codegen.rs for the explanation why impl Sync explicitly
+unsafe impl ::std::marker::Sync for StreamResponse {}
+
+impl StreamResponse {
+    pub fn new() -> StreamResponse {
+        ::std::default::Default::default()
+    }
+
+    pub fn default_instance() -> &'static StreamResponse {
+        static mut instance: ::protobuf::lazy::Lazy<StreamResponse> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const StreamResponse,
+        };
+        unsafe {
+            instance.get(StreamResponse::new)
+        }
+    }
+
+    // optional .tipb.Error error = 1;
+
+    pub fn clear_error(&mut self) {
+        self.error.clear();
+    }
+
+    pub fn has_error(&self) -> bool {
+        self.error.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_error(&mut self, v: Error) {
+        self.error = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_error(&mut self) -> &mut Error {
+        if self.error.is_none() {
+            self.error.set_default();
+        }
+        self.error.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_error(&mut self) -> Error {
+        self.error.take().unwrap_or_else(|| Error::new())
+    }
+
+    pub fn get_error(&self) -> &Error {
+        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
+    }
+
+    fn get_error_for_reflect(&self) -> &::protobuf::SingularPtrField<Error> {
+        &self.error
+    }
+
+    fn mut_error_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<Error> {
+        &mut self.error
+    }
+
+    // optional .tipb.EncodeType encode_type = 2;
+
+    pub fn clear_encode_type(&mut self) {
+        self.encode_type = ::std::option::Option::None;
+    }
+
+    pub fn has_encode_type(&self) -> bool {
+        self.encode_type.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_encode_type(&mut self, v: EncodeType) {
+        self.encode_type = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_encode_type(&self) -> EncodeType {
+        self.encode_type.unwrap_or(EncodeType::TypeDefault)
+    }
+
+    fn get_encode_type_for_reflect(&self) -> &::std::option::Option<EncodeType> {
+        &self.encode_type
+    }
+
+    fn mut_encode_type_for_reflect(&mut self) -> &mut ::std::option::Option<EncodeType> {
+        &mut self.encode_type
+    }
+
+    // optional bytes data = 3;
+
+    pub fn clear_data(&mut self) {
+        self.data.clear();
+    }
+
+    pub fn has_data(&self) -> bool {
+        self.data.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_data(&mut self, v: ::std::vec::Vec<u8>) {
+        self.data = ::protobuf::SingularField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_data(&mut self) -> &mut ::std::vec::Vec<u8> {
+        if self.data.is_none() {
+            self.data.set_default();
+        }
+        self.data.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_data(&mut self) -> ::std::vec::Vec<u8> {
+        self.data.take().unwrap_or_else(|| ::std::vec::Vec::new())
+    }
+
+    pub fn get_data(&self) -> &[u8] {
+        match self.data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
+    fn get_data_for_reflect(&self) -> &::protobuf::SingularField<::std::vec::Vec<u8>> {
+        &self.data
+    }
+
+    fn mut_data_for_reflect(&mut self) -> &mut ::protobuf::SingularField<::std::vec::Vec<u8>> {
+        &mut self.data
+    }
+
+    // repeated .tipb.Error warnings = 4;
+
+    pub fn clear_warnings(&mut self) {
+        self.warnings.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_warnings(&mut self, v: ::protobuf::RepeatedField<Error>) {
+        self.warnings = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_warnings(&mut self) -> &mut ::protobuf::RepeatedField<Error> {
+        &mut self.warnings
+    }
+
+    // Take field
+    pub fn take_warnings(&mut self) -> ::protobuf::RepeatedField<Error> {
+        ::std::mem::replace(&mut self.warnings, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_warnings(&self) -> &[Error] {
+        &self.warnings
+    }
+
+    fn get_warnings_for_reflect(&self) -> &::protobuf::RepeatedField<Error> {
+        &self.warnings
+    }
+
+    fn mut_warnings_for_reflect(&mut self) -> &mut ::protobuf::RepeatedField<Error> {
+        &mut self.warnings
+    }
+
+    // repeated int64 output_counts = 5;
+
+    pub fn clear_output_counts(&mut self) {
+        self.output_counts.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_output_counts(&mut self, v: ::std::vec::Vec<i64>) {
+        self.output_counts = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_output_counts(&mut self) -> &mut ::std::vec::Vec<i64> {
+        &mut self.output_counts
+    }
+
+    // Take field
+    pub fn take_output_counts(&mut self) -> ::std::vec::Vec<i64> {
+        ::std::mem::replace(&mut self.output_counts, ::std::vec::Vec::new())
+    }
+
+    pub fn get_output_counts(&self) -> &[i64] {
+        &self.output_counts
+    }
+
+    fn get_output_counts_for_reflect(&self) -> &::std::vec::Vec<i64> {
+        &self.output_counts
+    }
+
+    fn mut_output_counts_for_reflect(&mut self) -> &mut ::std::vec::Vec<i64> {
+        &mut self.output_counts
+    }
+}
+
+impl ::protobuf::Message for StreamResponse {
+    fn is_initialized(&self) -> bool {
+        for v in &self.error {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.warnings {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.error)?;
+                },
+                2 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_enum()?;
+                    self.encode_type = ::std::option::Option::Some(tmp);
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.data)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.warnings)?;
+                },
+                5 => {
+                    ::protobuf::rt::read_repeated_int64_into(wire_type, is, &mut self.output_counts)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.error.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if let Some(v) = self.encode_type {
+            my_size += ::protobuf::rt::enum_size(2, v);
+        }
+        if let Some(ref v) = self.data.as_ref() {
+            my_size += ::protobuf::rt::bytes_size(3, &v);
+        }
+        for value in &self.warnings {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        for value in &self.output_counts {
+            my_size += ::protobuf::rt::value_size(5, *value, ::protobuf::wire_format::WireTypeVarint);
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.error.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(v) = self.encode_type {
+            os.write_enum(2, v.value())?;
+        }
+        if let Some(ref v) = self.data.as_ref() {
+            os.write_bytes(3, &v)?;
+        }
+        for v in &self.warnings {
+            os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        for v in &self.output_counts {
+            os.write_int64(5, *v)?;
+        };
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        ::protobuf::MessageStatic::descriptor_static(None::<Self>)
+    }
+}
+
+impl ::protobuf::MessageStatic for StreamResponse {
+    fn new() -> StreamResponse {
+        StreamResponse::new()
+    }
+
+    fn descriptor_static(_: ::std::option::Option<StreamResponse>) -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
+                    "error",
+                    StreamResponse::get_error_for_reflect,
+                    StreamResponse::mut_error_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<EncodeType>>(
+                    "encode_type",
+                    StreamResponse::get_encode_type_for_reflect,
+                    StreamResponse::mut_encode_type_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "data",
+                    StreamResponse::get_data_for_reflect,
+                    StreamResponse::mut_data_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
+                    "warnings",
+                    StreamResponse::get_warnings_for_reflect,
+                    StreamResponse::mut_warnings_for_reflect,
+                ));
+                fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
+                    "output_counts",
+                    StreamResponse::get_output_counts_for_reflect,
+                    StreamResponse::mut_output_counts_for_reflect,
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<StreamResponse>(
+                    "StreamResponse",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+}
+
+impl ::protobuf::Clear for StreamResponse {
+    fn clear(&mut self) {
+        self.clear_error();
+        self.clear_encode_type();
+        self.clear_data();
+        self.clear_warnings();
+        self.clear_output_counts();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for StreamResponse {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for StreamResponse {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(Clone,PartialEq,Eq,Debug,Hash)]
+pub enum EncodeType {
+    TypeDefault = 0,
+    TypeArrow = 1,
+}
+
+impl ::protobuf::ProtobufEnum for EncodeType {
+    fn value(&self) -> i32 {
+        *self as i32
+    }
+
+    fn from_i32(value: i32) -> ::std::option::Option<EncodeType> {
+        match value {
+            0 => ::std::option::Option::Some(EncodeType::TypeDefault),
+            1 => ::std::option::Option::Some(EncodeType::TypeArrow),
+            _ => ::std::option::Option::None
+        }
+    }
+
+    fn values() -> &'static [Self] {
+        static values: &'static [EncodeType] = &[
+            EncodeType::TypeDefault,
+            EncodeType::TypeArrow,
+        ];
+        values
+    }
+
+    fn enum_descriptor_static(_: ::std::option::Option<EncodeType>) -> &'static ::protobuf::reflect::EnumDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::EnumDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::EnumDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                ::protobuf::reflect::EnumDescriptor::new("EncodeType", file_descriptor_proto())
+            })
+        }
+    }
+}
+
+impl ::std::marker::Copy for EncodeType {
+}
+
+impl ::protobuf::reflect::ProtobufValue for EncodeType {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
+    }
+}
+
 static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0cselect.proto\x12\x04tipb\x1a\x0eexecutor.proto\x1a\x10expression.p\
     roto\x1a\x0cschema.proto\x1a\x14gogoproto/gogo.proto\"\xa4\x04\n\rSelect\
@@ -2629,8 +3082,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x0b2\t.tipb.RowR\x04rows\x12)\n\x06chunks\x18\x03\x20\x03(\x0b2\x0b.tip\
     b.ChunkR\x06chunksB\x04\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03\
     (\x0b2\x0b.tipb.ErrorR\x08warnings\"\x8f\x01\n\x05Chunk\x12T\n\trows_dat\
-    a\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xda\xde\x1f/github.com/pingcap/tip\
-    b/sharedbytes.SharedBytes\xc8\xde\x1f\0\x120\n\trows_meta\x18\x04\x20\
+    a\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xc8\xde\x1f\0\xda\xde\x1f/github.c\
+    om/pingcap/tipb/sharedbytes.SharedBytes\x120\n\trows_meta\x18\x04\x20\
     \x03(\x0b2\r.tipb.RowMetaR\x08rowsMetaB\x04\xc8\xde\x1f\0\"E\n\x07RowMet\
     a\x12\x1c\n\x06handle\x18\x01\x20\x01(\x03R\x06handleB\x04\xc8\xde\x1f\0\
     \x12\x1c\n\x06length\x18\x02\x20\x01(\x03R\x06lengthB\x04\xc8\xde\x1f\0\
@@ -2639,15 +3092,22 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     ipb.ExecutorR\texecutors\x12.\n\x10time_zone_offset\x18\x03\x20\x01(\x03\
     R\x0etimeZoneOffsetB\x04\xc8\xde\x1f\0\x12\x1a\n\x05flags\x18\x04\x20\
     \x01(\x04R\x05flagsB\x04\xc8\xde\x1f\0\x12%\n\x0eoutput_offsets\x18\x05\
-    \x20\x03(\rR\routputOffsetsB%\n\x15com.pingcap.tidb.tipbP\x01\xe0\xe2\
-    \x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01J\xa20\n\x07\x12\x05\0\0\x83\x01\
-    \x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x02\x08\x0c\
-    \n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\
-    \"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\n\x06\x08\xe7\
-    \x07\0\x02\0\x12\x03\x04\x07\x1a\n\x0e\n\x07\x08\xe7\x07\0\x02\0\x01\x12\
-    \x03\x04\x07\x1a\n\x0c\n\x05\x08\xe7\x07\0\x03\x12\x03\x04\x1d!\n\x08\n\
-    \x01\x08\x12\x03\x05\0.\n\x0b\n\x04\x08\xe7\x07\x01\x12\x03\x05\0.\n\x0c\
-    \n\x05\x08\xe7\x07\x01\x02\x12\x03\x05\x07\x13\n\r\n\x06\x08\xe7\x07\x01\
+    \x20\x03(\rR\routputOffsets\"\x81\x02\n\x0eStreamResponse\x12!\n\x05erro\
+    r\x18\x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x121\n\x0bencode_type\
+    \x18\x02\x20\x01(\x0e2\x10.tipb.EncodeTypeR\nencodeType\x12K\n\x04data\
+    \x18\x03\x20\x01(\x0cR\x04dataB7\xda\xde\x1f/github.com/pingcap/tipb/sha\
+    redbytes.SharedBytes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\
+    \x0b2\x0b.tipb.ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\
+    \x03R\x0coutputCounts*,\n\nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\
+    \r\n\tTypeArrow\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xe0\xe2\x1e\
+    \x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01J\xc16\n\x07\x12\x05\0\0\x92\x01\x01\
+    \n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x02\x08\x0c\n\
+    \x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\
+    \n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\n\x06\x08\xe7\x07\
+    \0\x02\0\x12\x03\x04\x07\x1a\n\x0e\n\x07\x08\xe7\x07\0\x02\0\x01\x12\x03\
+    \x04\x07\x1a\n\x0c\n\x05\x08\xe7\x07\0\x03\x12\x03\x04\x1d!\n\x08\n\x01\
+    \x08\x12\x03\x05\0.\n\x0b\n\x04\x08\xe7\x07\x01\x12\x03\x05\0.\n\x0c\n\
+    \x05\x08\xe7\x07\x01\x02\x12\x03\x05\x07\x13\n\r\n\x06\x08\xe7\x07\x01\
     \x02\0\x12\x03\x05\x07\x13\n\x0e\n\x07\x08\xe7\x07\x01\x02\0\x01\x12\x03\
     \x05\x07\x13\n\x0c\n\x05\x08\xe7\x07\x01\x07\x12\x03\x05\x16-\n\t\n\x02\
     \x03\0\x12\x03\x07\x07\x17\n\t\n\x02\x03\x01\x12\x03\x08\x07\x19\n\t\n\
@@ -2878,7 +3338,44 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     epresents\x20which\x20columns\x20we\x20should\x20output.\n\n\r\n\x05\x04\
     \x06\x02\x04\x04\x12\x04\x82\x01\x08\x10\n\r\n\x05\x04\x06\x02\x04\x05\
     \x12\x04\x82\x01\x11\x17\n\r\n\x05\x04\x06\x02\x04\x01\x12\x04\x82\x01\
-    \x18&\n\r\n\x05\x04\x06\x02\x04\x03\x12\x04\x82\x01)*\
+    \x18&\n\r\n\x05\x04\x06\x02\x04\x03\x12\x04\x82\x01)*\n\x0c\n\x02\x05\0\
+    \x12\x06\x85\x01\0\x88\x01\x01\n\x0b\n\x03\x05\0\x01\x12\x04\x85\x01\x05\
+    \x0f\n\x0c\n\x04\x05\0\x02\0\x12\x04\x86\x01\x08\x18\n\r\n\x05\x05\0\x02\
+    \0\x01\x12\x04\x86\x01\x08\x13\n\r\n\x05\x05\0\x02\0\x02\x12\x04\x86\x01\
+    \x16\x17\n\x0c\n\x04\x05\0\x02\x01\x12\x04\x87\x01\x08\x16\n\r\n\x05\x05\
+    \0\x02\x01\x01\x12\x04\x87\x01\x08\x11\n\r\n\x05\x05\0\x02\x01\x02\x12\
+    \x04\x87\x01\x14\x15\n\x0c\n\x02\x04\x07\x12\x06\x8a\x01\0\x92\x01\x01\n\
+    \x0b\n\x03\x04\x07\x01\x12\x04\x8a\x01\x08\x16\n\x0c\n\x04\x04\x07\x02\0\
+    \x12\x04\x8b\x01\x04\x1d\n\r\n\x05\x04\x07\x02\0\x04\x12\x04\x8b\x01\x04\
+    \x0c\n\r\n\x05\x04\x07\x02\0\x06\x12\x04\x8b\x01\r\x12\n\r\n\x05\x04\x07\
+    \x02\0\x01\x12\x04\x8b\x01\x13\x18\n\r\n\x05\x04\x07\x02\0\x03\x12\x04\
+    \x8b\x01\x1b\x1c\n\x0c\n\x04\x04\x07\x02\x01\x12\x04\x8c\x01\x04&\n\r\n\
+    \x05\x04\x07\x02\x01\x04\x12\x04\x8c\x01\x04\x0c\n\r\n\x05\x04\x07\x02\
+    \x01\x06\x12\x04\x8c\x01\r\x17\n\r\n\x05\x04\x07\x02\x01\x01\x12\x04\x8c\
+    \x01\x18#\n\r\n\x05\x04\x07\x02\x01\x03\x12\x04\x8c\x01$%\n!\n\x04\x04\
+    \x07\x02\x02\x12\x05\x8e\x01\x04\x87\x01\x1a\x12Data\x20for\x20all\x20ro\
+    ws\n\n\r\n\x05\x04\x07\x02\x02\x04\x12\x04\x8e\x01\x04\x0c\n\r\n\x05\x04\
+    \x07\x02\x02\x05\x12\x04\x8e\x01\r\x12\n\r\n\x05\x04\x07\x02\x02\x01\x12\
+    \x04\x8e\x01\x13\x17\n\r\n\x05\x04\x07\x02\x02\x03\x12\x04\x8e\x01\x1a\
+    \x1b\n\x0e\n\x05\x04\x07\x02\x02\x08\x12\x05\x8e\x01\x1c\x86\x01\n\x10\n\
+    \x08\x04\x07\x02\x02\x08\xe7\x07\0\x12\x04\x8e\x01\x1dg\n\x11\n\t\x04\
+    \x07\x02\x02\x08\xe7\x07\0\x02\x12\x04\x8e\x01\x1d3\n\x12\n\n\x04\x07\
+    \x02\x02\x08\xe7\x07\0\x02\0\x12\x04\x8e\x01\x1d3\n\x13\n\x0b\x04\x07\
+    \x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x04\x8e\x01\x1e2\n\x11\n\t\x04\x07\
+    \x02\x02\x08\xe7\x07\0\x07\x12\x04\x8e\x016g\n\x11\n\x08\x04\x07\x02\x02\
+    \x08\xe7\x07\x01\x12\x05\x8e\x01i\x85\x01\n\x11\n\t\x04\x07\x02\x02\x08\
+    \xe7\x07\x01\x02\x12\x04\x8e\x01i}\n\x12\n\n\x04\x07\x02\x02\x08\xe7\x07\
+    \x01\x02\0\x12\x04\x8e\x01i}\n\x13\n\x0b\x04\x07\x02\x02\x08\xe7\x07\x01\
+    \x02\0\x01\x12\x04\x8e\x01j|\n\x13\n\t\x04\x07\x02\x02\x08\xe7\x07\x01\
+    \x03\x12\x06\x8e\x01\x80\x01\x85\x01\n\x0c\n\x04\x04\x07\x02\x03\x12\x04\
+    \x8f\x01\x04\x20\n\r\n\x05\x04\x07\x02\x03\x04\x12\x04\x8f\x01\x04\x0c\n\
+    \r\n\x05\x04\x07\x02\x03\x06\x12\x04\x8f\x01\r\x12\n\r\n\x05\x04\x07\x02\
+    \x03\x01\x12\x04\x8f\x01\x13\x1b\n\r\n\x05\x04\x07\x02\x03\x03\x12\x04\
+    \x8f\x01\x1e\x1f\nA\n\x04\x04\x07\x02\x04\x12\x04\x91\x01\x101\x1a3\x20n\
+    umber\x20of\x20calls\x20for\x20each\x20executor's\x20next\x20function\n\
+    \n\r\n\x05\x04\x07\x02\x04\x04\x12\x04\x91\x01\x10\x18\n\r\n\x05\x04\x07\
+    \x02\x04\x05\x12\x04\x91\x01\x19\x1e\n\r\n\x05\x04\x07\x02\x04\x01\x12\
+    \x04\x91\x01\x1f,\n\r\n\x05\x04\x07\x02\x04\x03\x12\x04\x91\x01/0\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {
