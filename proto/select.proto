@@ -139,9 +139,9 @@ enum EncodeType {
 message StreamResponse {
     optional Error error = 1;
     optional EncodeType encode_type=2;
-		//Data for all rows
+	//Data for all rows
     optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
-    repeated Error warnings = 4;
-		// number of calls for each executor's next function
-		repeated int64 output_counts = 5;
+	repeated Error warnings = 4;
+	// number of calls for each executor's next function
+	repeated int64 output_counts = 5;
 }
