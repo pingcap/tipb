@@ -103,8 +103,8 @@ message Chunk {
 
 // RowMeta contains row handle and length of a row.
 message RowMeta {
-        optional int64 handle = 1 [(gogoproto.nullable) = false];
-    	optional int64 length = 2 [(gogoproto.nullable) = false];
+	optional int64 handle = 1 [(gogoproto.nullable) = false];
+	optional int64 length = 2 [(gogoproto.nullable) = false];
 }
 
 // DAGRequest represents the request that will be handled with DAG mode.
@@ -128,7 +128,7 @@ message DAGRequest {
 	optional uint64 flags = 4 [(gogoproto.nullable) = false];
 
 	// It represents which columns we should output.
-    repeated uint32 output_offsets = 5;
+	repeated uint32 output_offsets = 5;
 }
 
 enum EncodeType {
