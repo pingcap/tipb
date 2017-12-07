@@ -103,7 +103,7 @@ message Chunk {
 
 // RowMeta contains row handle and length of a row.
 message RowMeta {
-    	optional int64 handle = 1 [(gogoproto.nullable) = false];
+        optional int64 handle = 1 [(gogoproto.nullable) = false];
     	optional int64 length = 2 [(gogoproto.nullable) = false];
 }
 
@@ -128,20 +128,20 @@ message DAGRequest {
 	optional uint64 flags = 4 [(gogoproto.nullable) = false];
 
 	// It represents which columns we should output.
-	repeated uint32 output_offsets = 5;
+    repeated uint32 output_offsets = 5;
 }
 
 enum EncodeType {
-        TypeDefault = 0;
-        TypeArrow = 1;
+	TypeDefault = 0;
+	TypeArrow = 1;
 }
 
 message StreamResponse {
-    optional Error error = 1;
-    optional EncodeType encode_type=2 [(gogoproto.nullable) = false];
-    //Data for all rows
-    optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
-    repeated Error warnings = 4;
-    // number of calls for each executor's next function
-    repeated int64 output_counts = 5;
+	optional Error error = 1;
+	optional EncodeType encode_type = 2 [(gogoproto.nullable) = false];
+	//Data for all rows
+	optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+	repeated Error warnings = 4;
+	// number of calls for each executor's next function
+	repeated int64 output_counts = 5;
 }
