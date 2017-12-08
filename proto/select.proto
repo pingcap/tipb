@@ -90,6 +90,8 @@ message SelectResponse {
     	repeated Chunk chunks = 3 [(gogoproto.nullable) = false];
 
 	repeated Error warnings = 4;
+
+	repeated int64 output_counts = 5;
 }
 
 // Chunk contains multiple rows data and rows meta.
