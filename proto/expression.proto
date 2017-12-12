@@ -185,6 +185,8 @@ enum ExprType {
 	RLike = 4006;
 	Case = 4007;
 
+	DateFormat = 6001;
+
 	/* Scalar Function */
 	ScalarFunc = 10000;
 }
@@ -411,7 +413,7 @@ enum ScalarFuncSig {
 	JsonObjectSig = 5009;
 	JsonArraySig = 5010;
 
-	DateFormat = 6001;
+	DateFormatSig = 6001;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
