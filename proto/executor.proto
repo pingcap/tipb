@@ -17,9 +17,10 @@ enum ExecType {
 	TypeTableScan = 0;
 	TypeIndexScan = 1;
 	TypeSelection = 2;
-	TypeAggregation = 3;
+	TypeAggregation = 3; // TODO: Rename it to hash aggregation after support stream aggregation in TiKV.
 	TypeTopN = 4;
 	TypeLimit = 5;
+	TypeStreamAgg = 6;
 }
 
 // It represents a Executor.
@@ -31,6 +32,7 @@ message Executor {
 	optional Aggregation aggregation = 5;
 	optional TopN topN = 6;
 	optional Limit limit = 7;
+	optional Aggregation stream_agg= 8;
 }
 
 message TableScan {
