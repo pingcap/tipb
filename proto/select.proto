@@ -6,65 +6,11 @@ option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
 import "executor.proto";
-import "expression.proto";
-import "schema.proto";
 import "gogoproto/gogo.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
-
-// SelectRequest works like a simplified select statement.
-message SelectRequest {
-	// transaction start timestamp.
-	optional uint64 start_ts = 1 [(gogoproto.nullable) = false];
-
-	// If table_info is not null, it represents a table scan, index_info would be null.
-	optional TableInfo table_info = 2;
-
-	// If index_info is not null, it represents an index scan, table_info would be null.
-	optional IndexInfo index_info = 3;
-
-	// fields to be selected, fields type can be column reference for simple scan.
-	// or aggregation function. If no fields specified, only handle will be returned.
-	repeated Expr fields = 4;
-
-	// disjoint handle ranges to be scanned.
-	repeated KeyRange ranges = 5;
-
-	// distinct result.
-	optional bool distinct = 6 [(gogoproto.nullable) = false];
-
-	// where condition.
-	optional Expr where = 7;
-
-	// group by clause.
-	repeated ByItem group_by = 8;
-
-	// having clause.
-	optional Expr having = 9;
-
-	// order by clause.
-	repeated ByItem order_by = 10;
-
-	// limit the result to be returned.
-	optional int64 limit = 12;
-
-	// aggregate functions
-	repeated Expr aggregates = 13;
-
-	// time zone offset in seconds
-	optional int64 time_zone_offset = 14 [(gogoproto.nullable) = false];
-
-	// flags is used to store flags that change the execution mode, it contains:
-	//	ignore_truncate = 1
-	//		truncate error should be ignore if set.
-	//	truncate_as_warning = 1 << 1
-	//		when ignored_truncate is not set, return warning instead of error if this flag is set.
-	//	...
-	//	add more when needed.
-	optional uint64 flags = 15 [(gogoproto.nullable) = false];
-}
 
 // values are all in text format.
 message Row {
