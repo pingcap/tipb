@@ -77,6 +77,9 @@ message DAGRequest {
 
 	// It represents which columns we should output.
 	repeated uint32 output_offsets = 5;
+
+	// It represents whether we collect the detailed scan counts in each range.
+	optional bool collect_range_counts = 6;
 }
 
 enum EncodeType {
