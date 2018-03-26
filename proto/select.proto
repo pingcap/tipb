@@ -83,9 +83,9 @@ message DAGRequest {
 	// It represents whether we collect the detailed scan counts in each range.
 	optional bool collect_range_counts = 6;
 
-	// It indicates the maximum number of error, warning, and note messages,
-	// and thus the number of messages that SHOW WARNINGS displays.
-	optional uint64 max_error_count = 7;
+	// It indicates the maximum number of warning,
+	// which is the number of messages that SHOW WARNINGS displays.
+	optional uint64 max_warning_count = 7;
 }
 
 enum EncodeType {
