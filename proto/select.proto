@@ -101,4 +101,5 @@ message StreamResponse {
 	repeated Error warnings = 4;
 	// output row count for each executor
 	repeated int64 output_counts = 5;
+	optional int64 warning_count = 6;
 }
