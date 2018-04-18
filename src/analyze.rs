@@ -264,11 +264,7 @@ impl ::protobuf::Message for AnalyzeReq {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_enum()?;
-                    self.tp = ::std::option::Option::Some(tmp);
+                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.tp, 1, &mut self.unknown_fields)?
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -3388,7 +3384,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x18\x01\x20\x03(\rR\x08counters\"1\n\x08CMSketch\x12%\n\x04rows\x18\x01\
     \x20\x03(\x0b2\x11.tipb.CMSketchRowR\x04rows*,\n\x0bAnalyzeType\x12\r\n\
     \tTypeIndex\x10\0\x12\x0e\n\nTypeColumn\x10\x01B%\n\x15com.pingcap.tidb.\
-    tipbP\x01\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xd5,\n\x06\
+    tipbP\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xd5,\n\x06\
     \x12\x04\0\0n\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\
     \x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\
     \0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\

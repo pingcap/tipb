@@ -415,11 +415,7 @@ impl ::protobuf::Message for Executor {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_enum()?;
-                    self.tp = ::std::option::Option::Some(tmp);
+                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.tp, 1, &mut self.unknown_fields)?
                 },
                 2 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.tbl_scan)?;
@@ -2448,8 +2444,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x01\n\x08ExecType\x12\x11\n\rTypeTableScan\x10\0\x12\x11\n\rTypeIndexSc\
     an\x10\x01\x12\x11\n\rTypeSelection\x10\x02\x12\x13\n\x0fTypeAggregation\
     \x10\x03\x12\x0c\n\x08TypeTopN\x10\x04\x12\r\n\tTypeLimit\x10\x05\x12\
-    \x11\n\rTypeStreamAgg\x10\x06B%\n\x15com.pingcap.tidb.tipbP\x01\xe0\xe2\
-    \x1e\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xcb\x1e\n\x06\x12\x04\0\0O\x01\
+    \x11\n\rTypeStreamAgg\x10\x06B%\n\x15com.pingcap.tidb.tipbP\x01\xd0\xe2\
+    \x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xcb\x1e\n\x06\x12\x04\0\0O\x01\
     \n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x02\x08\x0c\n\
     \x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\
     \n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\n\x06\x08\xe7\x07\

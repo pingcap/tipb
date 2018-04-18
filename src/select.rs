@@ -2149,11 +2149,7 @@ impl ::protobuf::Message for StreamResponse {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.error)?;
                 },
                 2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_enum()?;
-                    self.encode_type = ::std::option::Option::Some(tmp);
+                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.encode_type, 2, &mut self.unknown_fields)?
                 },
                 3 => {
                     ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.data)?;
@@ -2400,8 +2396,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.ErrorR\x08warnings\
     \x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\x12#\n\rwar\
     ning_count\x18\x06\x20\x01(\x03R\x0cwarningCount\"\x8f\x01\n\x05Chunk\
-    \x12T\n\trows_data\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xda\xde\x1f/githu\
-    b.com/pingcap/tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x120\n\trows_me\
+    \x12T\n\trows_data\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xc8\xde\x1f\0\xda\
+    \xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedBytes\x120\n\trows_me\
     ta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\x08rowsMetaB\x04\xc8\xde\x1f\0\
     \"E\n\x07RowMeta\x12\x1c\n\x06handle\x18\x01\x20\x01(\x03R\x06handleB\
     \x04\xc8\xde\x1f\0\x12\x1c\n\x06length\x18\x02\x20\x01(\x03R\x06lengthB\
@@ -2421,7 +2417,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\x12#\n\rwar\
     ning_count\x18\x06\x20\x01(\x03R\x0cwarningCount*,\n\nEncodeType\x12\x0f\
     \n\x0bTypeDefault\x10\0\x12\r\n\tTypeArrow\x10\x01B%\n\x15com.pingcap.ti\
-    db.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01J\xb4(\n\x06\
+    db.tipbP\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01J\xb4(\n\x06\
     \x12\x04\0\0h\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\
     \x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\
     \0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\
