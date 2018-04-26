@@ -72,7 +72,7 @@ enum ExprType {
 }
 
 enum ScalarFuncSig {
-    /* Casting */
+	/* Casting */
 	CastIntAsInt = 0;
 	CastIntAsReal = 1;
 	CastIntAsString = 2;
@@ -196,11 +196,11 @@ enum ScalarFuncSig {
 	MultiplyInt = 210;
 	DivideReal = 211;
 	DivideDecimal = 212;
-    IntDivideInt = 213;
-    IntDivideDecimal = 214;
-    ModReal = 215;
-    ModDecimal = 216;
-    ModInt = 217;
+	IntDivideInt = 213;
+	IntDivideDecimal = 214;
+	ModReal = 215;
+	ModDecimal = 216;
+	ModInt = 217;
 
 	AbsInt = 2101;
 	AbsUInt = 2102;
@@ -241,9 +241,9 @@ enum ScalarFuncSig {
 	IntIsFalse = 3125;
 	RealIsFalse = 3126;
 	DecimalIsFalse = 3127;
-    BitCount = 3128;
-    LeftShift = 3129;
-    RightShift = 3130;
+	BitCount = 3128;
+	LeftShift = 3129;
+	RightShift = 3130;
 
 	InInt = 4001;
 	InReal = 4002;
@@ -284,26 +284,26 @@ enum ScalarFuncSig {
 	CaseWhenDuration = 4213;
 	CaseWhenJson = 4214;
 
-    GreatestInt = 4215;
-    GreatestReal = 4216;
-    GreatestDecimal = 4217;
-    GreatestString = 4218;
-    GreatestTime = 4219;
-    LeastInt = 4220;
-    LeastReal = 4221;
-    LeastDecimal = 4222;
-    LeastString = 4223;
-    LeastTime = 4224;
-    IntervalInt = 4225;
-    IntervalReal = 4226;
+	GreatestInt = 4215;
+	GreatestReal = 4216;
+	GreatestDecimal = 4217;
+	GreatestString = 4218;
+	GreatestTime = 4219;
+	LeastInt = 4220;
+	LeastReal = 4221;
+	LeastDecimal = 4222;
+	LeastString = 4223;
+	LeastTime = 4224;
+	IntervalInt = 4225;
+	IntervalReal = 4226;
 
 	/*
 	 * Here we use suffix *Sig* to avoid name conflict. After we removes
 	 * all same things in ExprType, we can rename them back.
 	 */
 	LikeSig = 4310;
-    RegexpBinarySig = 4311;
-    RegexpSig = 4312;
+	RegexpBinarySig = 4311;
+	RegexpSig = 4312;
 
 	JsonExtractSig = 5001;
 	JsonUnquoteSig = 5002;
@@ -318,8 +318,8 @@ enum ScalarFuncSig {
 
 	DateFormatSig = 6001;
 
-    /* String functions */
-    BitLength = 7001;
+	/* String functions */
+	BitLength = 7001;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
