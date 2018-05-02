@@ -2,7 +2,7 @@
 
 TiDB protobuf files
 
-## PreRequests
+## Requirements
 
 ### 1. Install [google/protobuf](https://github.com/google/protobuf)
 
