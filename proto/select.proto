@@ -86,6 +86,9 @@ message DAGRequest {
 	// It indicates the maximum number of warning,
 	// which is the number of messages that SHOW WARNINGS displays.
 	optional uint64 max_warning_count = 7;
+
+	// It indicates the encode type of response.
+	optional EncodeType encode_type = 8 [(gogoproto.nullable) = false];
 }
 
 enum EncodeType {
