@@ -31,9 +31,9 @@ message SelectResponse {
 	// Result rows.
 	repeated Row rows = 2;
 
-    	// Use multiple chunks to reduce memory allocation and
-        // avoid allocating large contiguous memory.
-    	repeated Chunk chunks = 3 [(gogoproto.nullable) = false];
+	// Use multiple chunks to reduce memory allocation and
+	// avoid allocating large contiguous memory.
+	repeated Chunk chunks = 3 [(gogoproto.nullable) = false];
 
 	repeated Error warnings = 4;
 
