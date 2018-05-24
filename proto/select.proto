@@ -89,6 +89,12 @@ message DAGRequest {
 
 	// It indicates the encode type of response.
 	optional EncodeType encode_type = 8 [(gogoproto.nullable) = false];
+
+	// It indicates the sql_mode.
+	optional uint64 sql_mode = 9;
+
+	// It indicates whether the sql mode is strict.
+	optional bool is_strict_sql_mode = 10;
 }
 
 enum EncodeType {
