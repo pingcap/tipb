@@ -6,5 +6,4 @@ version = "0.0.1"
 name = "tipb"
 
 [dependencies]
-protobuf = "1.2.1"
-
+protobuf = "~2.0"
