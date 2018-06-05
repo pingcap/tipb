@@ -10,6 +10,8 @@ import (
 
 	math "math"
 
+	_ "github.com/gogo/protobuf/gogoproto"
+
 	io "io"
 )
 
