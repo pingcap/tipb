@@ -8,12 +8,10 @@ TiDB protobuf files
 
 We use `protoc` 3.5.1, to download: [protobuf/releases/tag/v3.5.1](https://github.com/google/protobuf/releases/tag/v3.5.1)
 
-### 2. Install [stepancheg/rust-protobuf](https://github.com/stepancheg/rust-protobuf)
-
-We use `protoc-gen-rust` 1.4.1, to install:
+### 2. Install [protobuf-codegen](https://github.com/stepancheg/rust-protobuf/tree/master/protobuf-codegen)
 
 ```sh
-cargo install --version 1.4.1 protobuf
+cargo install protobuf-codegen --vers 2.0.2 --force
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
