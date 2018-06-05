@@ -67,7 +67,7 @@ message DAGRequest {
 
 	// time zone offset in seconds
 	optional int64 time_zone_offset = 3 [(gogoproto.nullable) = false];
-	
+
 	// flags are used to store flags that change the execution mode, it contains:
 	//	ignore_truncate = 1
 	//		truncate error should be ignore if set.
