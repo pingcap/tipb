@@ -67,7 +67,7 @@ message DAGRequest {
 
 	// time zone offset in seconds
 	optional int64 time_zone_offset = 3 [(gogoproto.nullable) = false];
-
+	
 	// flags are used to store flags that change the execution mode, it contains:
 	//	ignore_truncate = 1
 	//		truncate error should be ignore if set.
@@ -95,6 +95,9 @@ message DAGRequest {
 
 	// It indicates whether the sql mode is strict.
 	optional bool is_strict_sql_mode = 10;
+
+	// supply offset is not enough since we have daylight saving time present in some regions
+	optional string time_zone_name = 11 [(gogoproto.nullable) = false];
 }
 
 enum EncodeType {
