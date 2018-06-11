@@ -95,6 +95,9 @@ message DAGRequest {
 
 	// It indicates whether the sql mode is strict.
 	optional bool is_strict_sql_mode = 10;
+
+	// supply offset is not enough since we have daylight saving time present in some regions
+	optional string time_zone_name = 11 [(gogoproto.nullable) = false];
 }
 
 enum EncodeType {

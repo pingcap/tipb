@@ -560,7 +560,7 @@ impl ::protobuf::Message for Expr {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.tp, 1, &mut self.unknown_fields)?
+                    if wire_type == ::protobuf::wire_format::WireTypeVarint {self.tp = ::std::option::Option::Some(is.read_enum()?);} else { return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type)); }
                 },
                 2 => {
                     ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.val)?;
@@ -569,7 +569,7 @@ impl ::protobuf::Message for Expr {
                     ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.children)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.sig, 4, &mut self.unknown_fields)?
+                    if wire_type == ::protobuf::wire_format::WireTypeVarint {self.sig = ::std::option::Option::Some(is.read_enum()?);} else { return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type)); }
                 },
                 5 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.field_type)?;
@@ -1932,7 +1932,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12\x12\n\rJsonRemoveSig\x10\x8f'\x12\x11\n\x0cJsonMergeSig\x10\x90'\
     \x12\x12\n\rJsonObjectSig\x10\x91'\x12\x11\n\x0cJsonArraySig\x10\x92'\
     \x12\x12\n\rDateFormatSig\x10\xf1.\x12\x0e\n\tBitLength\x10\xd96B%\n\x15\
-    com.pingcap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\
+    com.pingcap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\
     \x01J\xa1n\n\x07\x12\x05\0\0\xd1\x02\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\
     \n\x08\n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\
     \x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\
