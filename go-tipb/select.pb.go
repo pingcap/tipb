@@ -10,8 +10,6 @@ import (
 
 	math "math"
 
-	_ "github.com/gogo/protobuf/gogoproto"
-
 	github_com_pingcap_tipb_sharedbytes "github.com/pingcap/tipb/sharedbytes"
 
 	io "io"
