@@ -1,3 +1,6 @@
+source _help.sh
+
+check_gogo_exist_and_version
 cd proto
 
 echo "generate go code..."

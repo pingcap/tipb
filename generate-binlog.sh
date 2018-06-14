@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+source _help.sh
+
+check_gogo_exist_and_version
 cd proto/binlog
 
 echo "generate binlog code..."
