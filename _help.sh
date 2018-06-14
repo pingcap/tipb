@@ -14,6 +14,8 @@ function check_gogo_exist_and_version(){
 		cd ${GOPATH}/src/github.com/gogo/protobuf
 		if [ $(git describe --tags) != 'v0.5' ]; then
 			echo "please use v0.5 tag of protobuf"
+			echo "cd ${GOPATH}/src/github.com/gogo/protobuf"
+			echo "git checkout v0.5"
 			cd $cur_dir
 			exit 1
 		fi
