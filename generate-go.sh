@@ -5,9 +5,9 @@ GOGO_ROOT=${GOPATH}/src/github.com/gogo/protobuf
 if [ ! -d $GOGO_ROOT ]; then
 	echo "please use the following command to get specific version of gogo.\n\n"
 	echo "go get -u github.com/gogo/protobuf/protoc-gen-gofast"
-	echo "cd /Users/zhexuany/repo/go/src/github.com/gogo/protobuf"
+	echo "cd ${GOPATH}/src/github.com/gogo/protobuf"
 	echo "git checkout v0.5"
-	echo "rm /Users/zhexuany/repo/go/bin/protoc-gen-gofast"
+	echo "rm ${GOPATH}/bin/protoc-gen-gofast"
 	echo "go get github.com/gogo/protobuf/protoc-gen-gofast"
 else
 	protoc -I.:${GOGO_ROOT}:${GOGO_ROOT}/protobuf --gofast_out=../go-tipb *.proto
