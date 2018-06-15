@@ -218,8 +218,8 @@ enum ScalarFuncSig {
 	ModDecimal = 216;
 	ModInt = 217;
 	MultiplyIntUnsigned = 218;
-
-    /*math*/
+	
+	/*math*/
 	AbsInt = 2101;
 	AbsUInt = 2102;
 	AbsReal = 2103;
@@ -234,7 +234,7 @@ enum ScalarFuncSig {
 	FloorDecToInt = 2112;
 	FloorDecToDec = 2113;
 	FloorReal = 2114;
-    RouldReal = 2121;
+	RouldReal = 2121;
 	RoundInt = 2122;
 	RoundDec = 2123;
 	RoundWithFracReal = 2124;
@@ -266,8 +266,8 @@ enum ScalarFuncSig {
 	TruncateInt = 2154;
 	TruncateReal = 2155;
 	TruncateDecimal = 2156;
-
-    /*op*/
+	
+	/*op*/
 	LogicalAnd = 3101;
 	LogicalOr = 3102;
 	LogicalXor = 3103;
@@ -402,8 +402,8 @@ enum ScalarFuncSig {
 	JsonMergeSig = 5008;
 	JsonObjectSig = 5009;
 	JsonArraySig = 5010;
-
-    /*time*/
+	
+	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
 	DateDiff = 6003;
