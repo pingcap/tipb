@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package tipb;
+
+import "gogoproto/gogo.proto";
+
+option java_multiple_files = true;
+option java_package = "com.pingcap.tidb.tipb";
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+message Array {
+    optional int32 length     = 1 [(gogoproto.nullable) = false];
+    optional int32 nullCount  = 2 [(gogoproto.nullable) = false];
+    optional bytes nullBitmap = 3;
+    optional bytes data       = 4;
+    repeated int32 offsets    = 5;
+}
+
+message ChunkedArray {
+    repeated Array arrays = 1;
+}
+
