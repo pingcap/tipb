@@ -62,4 +62,7 @@ message Entity {
 
     // The payload of binlog entity.
     bytes payload = 2;
+
+    // checksum of binlog payload.
+    bytes checksum = 3;
 }
