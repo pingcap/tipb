@@ -20,7 +20,6 @@ message Row {
 
 message Error {
 	optional int32 code = 1 [(gogoproto.nullable) = false];
-
 	optional string msg = 2 [(gogoproto.nullable) = false];
 }
 
@@ -37,8 +36,7 @@ message SelectResponse {
 	repeated Error warnings		  = 4;
 	repeated int64 output_counts  = 5;
 	optional int64 warning_count  = 6;
-	optional int64 version		  = 7;
-	optional bytes row_batch_data = 8 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+	optional bytes row_batch_data = 7 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
 }
 
 // Chunk contains multiple rows data and rows meta.
@@ -106,12 +104,10 @@ enum EncodeType {
 
 message StreamResponse {
 	optional Error error = 1;
-	optional EncodeType encode_type = 2 [(gogoproto.nullable) = false];
 	// Data for all rows
 	optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
 	repeated Error warnings = 4;
 	// output row count for each executor
 	repeated int64 output_counts = 5;
 	optional int64 warning_count = 6;
-	optional int64 version		 = 7;
 }
