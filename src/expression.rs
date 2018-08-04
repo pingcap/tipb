@@ -1253,7 +1253,7 @@ pub enum ScalarFuncSig {
     FloorDecToInt = 2112,
     FloorDecToDec = 2113,
     FloorReal = 2114,
-    RouldReal = 2121,
+    RoundReal = 2121,
     RoundInt = 2122,
     RoundDec = 2123,
     RoundWithFracReal = 2124,
@@ -1731,7 +1731,7 @@ impl ::protobuf::ProtobufEnum for ScalarFuncSig {
             2112 => ::std::option::Option::Some(ScalarFuncSig::FloorDecToInt),
             2113 => ::std::option::Option::Some(ScalarFuncSig::FloorDecToDec),
             2114 => ::std::option::Option::Some(ScalarFuncSig::FloorReal),
-            2121 => ::std::option::Option::Some(ScalarFuncSig::RouldReal),
+            2121 => ::std::option::Option::Some(ScalarFuncSig::RoundReal),
             2122 => ::std::option::Option::Some(ScalarFuncSig::RoundInt),
             2123 => ::std::option::Option::Some(ScalarFuncSig::RoundDec),
             2124 => ::std::option::Option::Some(ScalarFuncSig::RoundWithFracReal),
@@ -2206,7 +2206,7 @@ impl ::protobuf::ProtobufEnum for ScalarFuncSig {
             ScalarFuncSig::FloorDecToInt,
             ScalarFuncSig::FloorDecToDec,
             ScalarFuncSig::FloorReal,
-            ScalarFuncSig::RouldReal,
+            ScalarFuncSig::RoundReal,
             ScalarFuncSig::RoundInt,
             ScalarFuncSig::RoundDec,
             ScalarFuncSig::RoundWithFracReal,
@@ -2654,7 +2654,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     oDec\x10\xbc\x10\x12\r\n\x08CeilReal\x10\xbd\x10\x12\x12\n\rFloorIntToDe\
     c\x10\xbe\x10\x12\x12\n\rFloorIntToInt\x10\xbf\x10\x12\x12\n\rFloorDecTo\
     Int\x10\xc0\x10\x12\x12\n\rFloorDecToDec\x10\xc1\x10\x12\x0e\n\tFloorRea\
-    l\x10\xc2\x10\x12\x0e\n\tRouldReal\x10\xc9\x10\x12\r\n\x08RoundInt\x10\
+    l\x10\xc2\x10\x12\x0e\n\tRoundReal\x10\xc9\x10\x12\r\n\x08RoundInt\x10\
     \xca\x10\x12\r\n\x08RoundDec\x10\xcb\x10\x12\x16\n\x11RoundWithFracReal\
     \x10\xcc\x10\x12\x15\n\x10RoundWithFracInt\x10\xcd\x10\x12\x15\n\x10Roun\
     dWithFracDec\x10\xce\x10\x12\x0c\n\x07Log1Arg\x10\xd3\x10\x12\r\n\x08Log\

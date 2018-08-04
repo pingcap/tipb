@@ -313,7 +313,7 @@ const (
 	ScalarFuncSig_FloorDecToInt     ScalarFuncSig = 2112
 	ScalarFuncSig_FloorDecToDec     ScalarFuncSig = 2113
 	ScalarFuncSig_FloorReal         ScalarFuncSig = 2114
-	ScalarFuncSig_RouldReal         ScalarFuncSig = 2121
+	ScalarFuncSig_RoundReal         ScalarFuncSig = 2121
 	ScalarFuncSig_RoundInt          ScalarFuncSig = 2122
 	ScalarFuncSig_RoundDec          ScalarFuncSig = 2123
 	ScalarFuncSig_RoundWithFracReal ScalarFuncSig = 2124
@@ -797,7 +797,7 @@ var ScalarFuncSig_name = map[int32]string{
 	2112: "FloorDecToInt",
 	2113: "FloorDecToDec",
 	2114: "FloorReal",
-	2121: "RouldReal",
+	2121: "RoundReal",
 	2122: "RoundInt",
 	2123: "RoundDec",
 	2124: "RoundWithFracReal",
@@ -1268,7 +1268,7 @@ var ScalarFuncSig_value = map[string]int32{
 	"FloorDecToInt":            2112,
 	"FloorDecToDec":            2113,
 	"FloorReal":                2114,
-	"RouldReal":                2121,
+	"RoundReal":                2121,
 	"RoundInt":                 2122,
 	"RoundDec":                 2123,
 	"RoundWithFracReal":        2124,

@@ -234,7 +234,7 @@ enum ScalarFuncSig {
 	FloorDecToInt = 2112;
 	FloorDecToDec = 2113;
 	FloorReal = 2114;
-	RouldReal = 2121;
+	RoundReal = 2121;
 	RoundInt = 2122;
 	RoundDec = 2123;
 	RoundWithFracReal = 2124;
