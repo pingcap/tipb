@@ -402,6 +402,8 @@ enum ScalarFuncSig {
 	JsonMergeSig = 5008;
 	JsonObjectSig = 5009;
 	JsonArraySig = 5010;
+	JsonValidSig = 5011;
+	JsonContainsSig = 5012;
 	
 	/*time*/
 	DateFormatSig = 6001;
