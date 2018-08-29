@@ -1,4 +1,4 @@
-all: go rust binlog mysqlx
+all: go rust binlog
 
 go:
 	./generate-go.sh
@@ -8,6 +8,3 @@ rust:
 
 binlog:
 	./generate-binlog.sh
-
-mysqlx:
-	./generate-mysqlx.sh
