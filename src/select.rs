@@ -2327,8 +2327,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.ErrorR\x08warnings\
     \x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\x12#\n\rwar\
     ning_count\x18\x06\x20\x01(\x03R\x0cwarningCount\x12]\n\x0erow_batch_dat\
-    a\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xc8\xde\x1f\0\xda\xde\x1f/gith\
-    ub.com/pingcap/tipb/sharedbytes.SharedBytes\"\x8f\x01\n\x05Chunk\x12T\n\
+    a\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xda\xde\x1f/github.com/pingcap\
+    /tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\"\x8f\x01\n\x05Chunk\x12T\n\
     \trows_data\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xda\xde\x1f/github.com/p\
     ingcap/tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x120\n\trows_meta\x18\
     \x04\x20\x03(\x0b2\r.tipb.RowMetaR\x08rowsMetaB\x04\xc8\xde\x1f\0\"E\n\
