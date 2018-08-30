@@ -1,4 +1,4 @@
-source _help.sh
+source ./_help.sh
 
 # check gogo protobuf's existence and version
 check_gogo_exist_and_version
