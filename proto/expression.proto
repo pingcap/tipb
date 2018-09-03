@@ -404,6 +404,7 @@ enum ScalarFuncSig {
 	JsonArraySig = 5010;
 	JsonValidSig = 5011;
 	JsonContainsSig = 5012;
+	JsonContainsPathSig = 5013;
 	
 	/*time*/
 	DateFormatSig = 6001;
