@@ -66,6 +66,7 @@ enum ExprType {
 	VarPop = 3015;
 	VarSamp = 3016;
 	Variance = 3017;
+	JsonArrayAggr = 3018;
 
 	/* Scalar Function */
 	ScalarFunc = 10000;
@@ -416,6 +417,7 @@ enum ScalarFuncSig {
 	JsonDepthSig = 5022;
 	JsonKeysSig = 5023;
 	JsonLengthSig = 5024;
+	JsonKeys2ArgsSig = 5025;
 	
 	/*time*/
 	DateFormatSig = 6001;
