@@ -66,8 +66,8 @@ enum ExprType {
 	VarPop = 3015;
 	VarSamp = 3016;
 	Variance = 3017;
-	JsonArrayAggr = 3018;
-	JsonObjectAggr = 3019;
+	JsonArrayAgg = 3018;
+	JsonObjectAgg = 3019;
 
 	/* Scalar Function */
 	ScalarFunc = 10000;
