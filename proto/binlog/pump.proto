@@ -54,6 +54,9 @@ message Pos {
 
     // The binlog offset in a file.
     int64 offset = 2;
+
+     // The binlog's ts, start ts for prewrite binlog, and commit ts for commit binlog.
+    int64 ts = 3;
 }
 
 message Entity {
