@@ -51,7 +51,7 @@ message IndexScan {
 
 message Selection {
 	// Where conditions.
-	repeated Expr conditions = 1;   
+	repeated Expr conditions = 1;
 }
 
 message Projection {
@@ -77,4 +77,12 @@ message TopN {
 message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
+}
+
+message ExecutorExecutionSummary {
+	// Total time cost in this executor. Includes self time cost and children time cost.
+	optional uint64 total_time_ms = 1;
+
+	// How many rows this executor produced totally.
+	optional uint64 produced_rows = 2;
 }

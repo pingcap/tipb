@@ -5,14 +5,11 @@ package tipb
 
 import (
 	"fmt"
-
-	proto "github.com/golang/protobuf/proto"
-
+	io "io"
 	math "math"
 
+	proto "github.com/golang/protobuf/proto"
 	github_com_pingcap_tipb_sharedbytes "github.com/pingcap/tipb/sharedbytes"
-
-	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -105,68 +102,6 @@ func (m *Error) GetMsg() string {
 	return ""
 }
 
-// Response for SelectRequest.
-type SelectResponse struct {
-	Error *Error `protobuf:"bytes,1,opt,name=error" json:"error,omitempty"`
-	// Result rows.
-	Rows []*Row `protobuf:"bytes,2,rep,name=rows" json:"rows,omitempty"`
-	// Use multiple chunks to reduce memory allocation and
-	// avoid allocating large contiguous memory.
-	Chunks           []Chunk                                         `protobuf:"bytes,3,rep,name=chunks" json:"chunks"`
-	Warnings         []*Error                                        `protobuf:"bytes,4,rep,name=warnings" json:"warnings,omitempty"`
-	OutputCounts     []int64                                         `protobuf:"varint,5,rep,name=output_counts,json=outputCounts" json:"output_counts,omitempty"`
-	WarningCount     *int64                                          `protobuf:"varint,6,opt,name=warning_count,json=warningCount" json:"warning_count,omitempty"`
-	RowBatchData     github_com_pingcap_tipb_sharedbytes.SharedBytes `protobuf:"bytes,7,opt,name=row_batch_data,json=rowBatchData,customtype=github.com/pingcap/tipb/sharedbytes.SharedBytes" json:"row_batch_data"`
-	XXX_unrecognized []byte                                          `json:"-"`
-}
-
-func (m *SelectResponse) Reset()                    { *m = SelectResponse{} }
-func (m *SelectResponse) String() string            { return proto.CompactTextString(m) }
-func (*SelectResponse) ProtoMessage()               {}
-func (*SelectResponse) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{2} }
-
-func (m *SelectResponse) GetError() *Error {
-	if m != nil {
-		return m.Error
-	}
-	return nil
-}
-
-func (m *SelectResponse) GetRows() []*Row {
-	if m != nil {
-		return m.Rows
-	}
-	return nil
-}
-
-func (m *SelectResponse) GetChunks() []Chunk {
-	if m != nil {
-		return m.Chunks
-	}
-	return nil
-}
-
-func (m *SelectResponse) GetWarnings() []*Error {
-	if m != nil {
-		return m.Warnings
-	}
-	return nil
-}
-
-func (m *SelectResponse) GetOutputCounts() []int64 {
-	if m != nil {
-		return m.OutputCounts
-	}
-	return nil
-}
-
-func (m *SelectResponse) GetWarningCount() int64 {
-	if m != nil && m.WarningCount != nil {
-		return *m.WarningCount
-	}
-	return 0
-}
-
 // Chunk contains multiple rows data and rows meta.
 type Chunk struct {
 	// Data for all rows in the chunk.
@@ -179,7 +114,7 @@ type Chunk struct {
 func (m *Chunk) Reset()                    { *m = Chunk{} }
 func (m *Chunk) String() string            { return proto.CompactTextString(m) }
 func (*Chunk) ProtoMessage()               {}
-func (*Chunk) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{3} }
+func (*Chunk) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{2} }
 
 func (m *Chunk) GetRowsMeta() []RowMeta {
 	if m != nil {
@@ -198,7 +133,7 @@ type RowMeta struct {
 func (m *RowMeta) Reset()                    { *m = RowMeta{} }
 func (m *RowMeta) String() string            { return proto.CompactTextString(m) }
 func (*RowMeta) ProtoMessage()               {}
-func (*RowMeta) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{4} }
+func (*RowMeta) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{3} }
 
 func (m *RowMeta) GetHandle() int64 {
 	if m != nil {
@@ -241,8 +176,6 @@ type DAGRequest struct {
 	EncodeType EncodeType `protobuf:"varint,8,opt,name=encode_type,json=encodeType,enum=tipb.EncodeType" json:"encode_type"`
 	// It indicates the sql_mode.
 	SqlMode *uint64 `protobuf:"varint,9,opt,name=sql_mode,json=sqlMode" json:"sql_mode,omitempty"`
-	// It indicates whether the sql mode is strict.
-	IsStrictSqlMode *bool `protobuf:"varint,10,opt,name=is_strict_sql_mode,json=isStrictSqlMode" json:"is_strict_sql_mode,omitempty"`
 	// supply offset is not enough since we have daylight saving time present in some regions
 	TimeZoneName     string `protobuf:"bytes,11,opt,name=time_zone_name,json=timeZoneName" json:"time_zone_name"`
 	XXX_unrecognized []byte `json:"-"`
@@ -251,7 +184,7 @@ type DAGRequest struct {
 func (m *DAGRequest) Reset()                    { *m = DAGRequest{} }
 func (m *DAGRequest) String() string            { return proto.CompactTextString(m) }
 func (*DAGRequest) ProtoMessage()               {}
-func (*DAGRequest) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{5} }
+func (*DAGRequest) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{4} }
 
 func (m *DAGRequest) GetStartTs() uint64 {
 	if m != nil {
@@ -316,18 +249,82 @@ func (m *DAGRequest) GetSqlMode() uint64 {
 	return 0
 }
 
-func (m *DAGRequest) GetIsStrictSqlMode() bool {
-	if m != nil && m.IsStrictSqlMode != nil {
-		return *m.IsStrictSqlMode
-	}
-	return false
-}
-
 func (m *DAGRequest) GetTimeZoneName() string {
 	if m != nil {
 		return m.TimeZoneName
 	}
 	return ""
+}
+
+// Response for DAGRequest.
+type DAGResponse struct {
+	Error *Error `protobuf:"bytes,1,opt,name=error" json:"error,omitempty"`
+	// Result rows.
+	Rows []*Row `protobuf:"bytes,2,rep,name=rows" json:"rows,omitempty"`
+	// Use multiple chunks to reduce memory allocation and
+	// avoid allocating large contiguous memory.
+	Chunks       []Chunk                                         `protobuf:"bytes,3,rep,name=chunks" json:"chunks"`
+	Warnings     []*Error                                        `protobuf:"bytes,4,rep,name=warnings" json:"warnings,omitempty"`
+	OutputCounts []int64                                         `protobuf:"varint,5,rep,name=output_counts,json=outputCounts" json:"output_counts,omitempty"`
+	WarningCount *int64                                          `protobuf:"varint,6,opt,name=warning_count,json=warningCount" json:"warning_count,omitempty"`
+	RowBatchData github_com_pingcap_tipb_sharedbytes.SharedBytes `protobuf:"bytes,7,opt,name=row_batch_data,json=rowBatchData,customtype=github.com/pingcap/tipb/sharedbytes.SharedBytes" json:"row_batch_data"`
+	// The execution summary of each executor, in the order in request.
+	ExecutionSummaries []*ExecutorExecutionSummary `protobuf:"bytes,8,rep,name=execution_summaries,json=executionSummaries" json:"execution_summaries,omitempty"`
+	XXX_unrecognized   []byte                      `json:"-"`
+}
+
+func (m *DAGResponse) Reset()                    { *m = DAGResponse{} }
+func (m *DAGResponse) String() string            { return proto.CompactTextString(m) }
+func (*DAGResponse) ProtoMessage()               {}
+func (*DAGResponse) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{5} }
+
+func (m *DAGResponse) GetError() *Error {
+	if m != nil {
+		return m.Error
+	}
+	return nil
+}
+
+func (m *DAGResponse) GetRows() []*Row {
+	if m != nil {
+		return m.Rows
+	}
+	return nil
+}
+
+func (m *DAGResponse) GetChunks() []Chunk {
+	if m != nil {
+		return m.Chunks
+	}
+	return nil
+}
+
+func (m *DAGResponse) GetWarnings() []*Error {
+	if m != nil {
+		return m.Warnings
+	}
+	return nil
+}
+
+func (m *DAGResponse) GetOutputCounts() []int64 {
+	if m != nil {
+		return m.OutputCounts
+	}
+	return nil
+}
+
+func (m *DAGResponse) GetWarningCount() int64 {
+	if m != nil && m.WarningCount != nil {
+		return *m.WarningCount
+	}
+	return 0
+}
+
+func (m *DAGResponse) GetExecutionSummaries() []*ExecutorExecutionSummary {
+	if m != nil {
+		return m.ExecutionSummaries
+	}
+	return nil
 }
 
 type StreamResponse struct {
@@ -377,10 +374,10 @@ func (m *StreamResponse) GetWarningCount() int64 {
 func init() {
 	proto.RegisterType((*Row)(nil), "tipb.Row")
 	proto.RegisterType((*Error)(nil), "tipb.Error")
-	proto.RegisterType((*SelectResponse)(nil), "tipb.SelectResponse")
 	proto.RegisterType((*Chunk)(nil), "tipb.Chunk")
 	proto.RegisterType((*RowMeta)(nil), "tipb.RowMeta")
 	proto.RegisterType((*DAGRequest)(nil), "tipb.DAGRequest")
+	proto.RegisterType((*DAGResponse)(nil), "tipb.DAGResponse")
 	proto.RegisterType((*StreamResponse)(nil), "tipb.StreamResponse")
 	proto.RegisterEnum("tipb.EncodeType", EncodeType_name, EncodeType_value)
 }
@@ -445,93 +442,6 @@ func (m *Error) MarshalTo(dAtA []byte) (int, error) {
 	return i, nil
 }
 
-func (m *SelectResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SelectResponse) MarshalTo(dAtA []byte) (int, error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Error != nil {
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintSelect(dAtA, i, uint64(m.Error.Size()))
-		n1, err := m.Error.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n1
-	}
-	if len(m.Rows) > 0 {
-		for _, msg := range m.Rows {
-			dAtA[i] = 0x12
-			i++
-			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if len(m.Chunks) > 0 {
-		for _, msg := range m.Chunks {
-			dAtA[i] = 0x1a
-			i++
-			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if len(m.Warnings) > 0 {
-		for _, msg := range m.Warnings {
-			dAtA[i] = 0x22
-			i++
-			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if len(m.OutputCounts) > 0 {
-		for _, num := range m.OutputCounts {
-			dAtA[i] = 0x28
-			i++
-			i = encodeVarintSelect(dAtA, i, uint64(num))
-		}
-	}
-	if m.WarningCount != nil {
-		dAtA[i] = 0x30
-		i++
-		i = encodeVarintSelect(dAtA, i, uint64(*m.WarningCount))
-	}
-	dAtA[i] = 0x3a
-	i++
-	i = encodeVarintSelect(dAtA, i, uint64(m.RowBatchData.Size()))
-	n2, err := m.RowBatchData.MarshalTo(dAtA[i:])
-	if err != nil {
-		return 0, err
-	}
-	i += n2
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-
 func (m *Chunk) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -550,11 +460,11 @@ func (m *Chunk) MarshalTo(dAtA []byte) (int, error) {
 	dAtA[i] = 0x1a
 	i++
 	i = encodeVarintSelect(dAtA, i, uint64(m.RowsData.Size()))
-	n3, err := m.RowsData.MarshalTo(dAtA[i:])
+	n1, err := m.RowsData.MarshalTo(dAtA[i:])
 	if err != nil {
 		return 0, err
 	}
-	i += n3
+	i += n1
 	if len(m.RowsMeta) > 0 {
 		for _, msg := range m.RowsMeta {
 			dAtA[i] = 0x22
@@ -666,20 +576,109 @@ func (m *DAGRequest) MarshalTo(dAtA []byte) (int, error) {
 		i++
 		i = encodeVarintSelect(dAtA, i, uint64(*m.SqlMode))
 	}
-	if m.IsStrictSqlMode != nil {
-		dAtA[i] = 0x50
-		i++
-		if *m.IsStrictSqlMode {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i++
-	}
 	dAtA[i] = 0x5a
 	i++
 	i = encodeVarintSelect(dAtA, i, uint64(len(m.TimeZoneName)))
 	i += copy(dAtA[i:], m.TimeZoneName)
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *DAGResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DAGResponse) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Error != nil {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintSelect(dAtA, i, uint64(m.Error.Size()))
+		n2, err := m.Error.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n2
+	}
+	if len(m.Rows) > 0 {
+		for _, msg := range m.Rows {
+			dAtA[i] = 0x12
+			i++
+			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if len(m.Chunks) > 0 {
+		for _, msg := range m.Chunks {
+			dAtA[i] = 0x1a
+			i++
+			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if len(m.Warnings) > 0 {
+		for _, msg := range m.Warnings {
+			dAtA[i] = 0x22
+			i++
+			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if len(m.OutputCounts) > 0 {
+		for _, num := range m.OutputCounts {
+			dAtA[i] = 0x28
+			i++
+			i = encodeVarintSelect(dAtA, i, uint64(num))
+		}
+	}
+	if m.WarningCount != nil {
+		dAtA[i] = 0x30
+		i++
+		i = encodeVarintSelect(dAtA, i, uint64(*m.WarningCount))
+	}
+	dAtA[i] = 0x3a
+	i++
+	i = encodeVarintSelect(dAtA, i, uint64(m.RowBatchData.Size()))
+	n3, err := m.RowBatchData.MarshalTo(dAtA[i:])
+	if err != nil {
+		return 0, err
+	}
+	i += n3
+	if len(m.ExecutionSummaries) > 0 {
+		for _, msg := range m.ExecutionSummaries {
+			dAtA[i] = 0x42
+			i++
+			i = encodeVarintSelect(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
 	}
@@ -787,47 +786,6 @@ func (m *Error) Size() (n int) {
 	return n
 }
 
-func (m *SelectResponse) Size() (n int) {
-	var l int
-	_ = l
-	if m.Error != nil {
-		l = m.Error.Size()
-		n += 1 + l + sovSelect(uint64(l))
-	}
-	if len(m.Rows) > 0 {
-		for _, e := range m.Rows {
-			l = e.Size()
-			n += 1 + l + sovSelect(uint64(l))
-		}
-	}
-	if len(m.Chunks) > 0 {
-		for _, e := range m.Chunks {
-			l = e.Size()
-			n += 1 + l + sovSelect(uint64(l))
-		}
-	}
-	if len(m.Warnings) > 0 {
-		for _, e := range m.Warnings {
-			l = e.Size()
-			n += 1 + l + sovSelect(uint64(l))
-		}
-	}
-	if len(m.OutputCounts) > 0 {
-		for _, e := range m.OutputCounts {
-			n += 1 + sovSelect(uint64(e))
-		}
-	}
-	if m.WarningCount != nil {
-		n += 1 + sovSelect(uint64(*m.WarningCount))
-	}
-	l = m.RowBatchData.Size()
-	n += 1 + l + sovSelect(uint64(l))
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
 func (m *Chunk) Size() (n int) {
 	var l int
 	_ = l
@@ -883,11 +841,55 @@ func (m *DAGRequest) Size() (n int) {
 	if m.SqlMode != nil {
 		n += 1 + sovSelect(uint64(*m.SqlMode))
 	}
-	if m.IsStrictSqlMode != nil {
-		n += 2
-	}
 	l = len(m.TimeZoneName)
 	n += 1 + l + sovSelect(uint64(l))
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *DAGResponse) Size() (n int) {
+	var l int
+	_ = l
+	if m.Error != nil {
+		l = m.Error.Size()
+		n += 1 + l + sovSelect(uint64(l))
+	}
+	if len(m.Rows) > 0 {
+		for _, e := range m.Rows {
+			l = e.Size()
+			n += 1 + l + sovSelect(uint64(l))
+		}
+	}
+	if len(m.Chunks) > 0 {
+		for _, e := range m.Chunks {
+			l = e.Size()
+			n += 1 + l + sovSelect(uint64(l))
+		}
+	}
+	if len(m.Warnings) > 0 {
+		for _, e := range m.Warnings {
+			l = e.Size()
+			n += 1 + l + sovSelect(uint64(l))
+		}
+	}
+	if len(m.OutputCounts) > 0 {
+		for _, e := range m.OutputCounts {
+			n += 1 + sovSelect(uint64(e))
+		}
+	}
+	if m.WarningCount != nil {
+		n += 1 + sovSelect(uint64(*m.WarningCount))
+	}
+	l = m.RowBatchData.Size()
+	n += 1 + l + sovSelect(uint64(l))
+	if len(m.ExecutionSummaries) > 0 {
+		for _, e := range m.ExecutionSummaries {
+			l = e.Size()
+			n += 1 + l + sovSelect(uint64(l))
+		}
+	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
 	}
@@ -1125,295 +1127,6 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Msg = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipSelect(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthSelect
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SelectResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowSelect
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SelectResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SelectResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Error", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSelect
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Error == nil {
-				m.Error = &Error{}
-			}
-			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Rows", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSelect
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Rows = append(m.Rows, &Row{})
-			if err := m.Rows[len(m.Rows)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Chunks", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSelect
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Chunks = append(m.Chunks, Chunk{})
-			if err := m.Chunks[len(m.Chunks)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Warnings", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSelect
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Warnings = append(m.Warnings, &Error{})
-			if err := m.Warnings[len(m.Warnings)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 5:
-			if wireType == 0 {
-				var v int64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowSelect
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					v |= (int64(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				m.OutputCounts = append(m.OutputCounts, v)
-			} else if wireType == 2 {
-				var packedLen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowSelect
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					packedLen |= (int(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if packedLen < 0 {
-					return ErrInvalidLengthSelect
-				}
-				postIndex := iNdEx + packedLen
-				if postIndex > l {
-					return io.ErrUnexpectedEOF
-				}
-				for iNdEx < postIndex {
-					var v int64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowSelect
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						v |= (int64(b) & 0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					m.OutputCounts = append(m.OutputCounts, v)
-				}
-			} else {
-				return fmt.Errorf("proto: wrong wireType = %d for field OutputCounts", wireType)
-			}
-		case 6:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field WarningCount", wireType)
-			}
-			var v int64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= (int64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.WarningCount = &v
-		case 7:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field RowBatchData", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthSelect
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.RowBatchData.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1897,27 +1610,6 @@ func (m *DAGRequest) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.SqlMode = &v
-		case 10:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IsStrictSqlMode", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSelect
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			b := bool(v != 0)
-			m.IsStrictSqlMode = &b
 		case 11:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field TimeZoneName", wireType)
@@ -1946,6 +1638,326 @@ func (m *DAGRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.TimeZoneName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipSelect(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthSelect
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DAGResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowSelect
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DAGResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DAGResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Error", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Error == nil {
+				m.Error = &Error{}
+			}
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Rows", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Rows = append(m.Rows, &Row{})
+			if err := m.Rows[len(m.Rows)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Chunks", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Chunks = append(m.Chunks, Chunk{})
+			if err := m.Chunks[len(m.Chunks)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Warnings", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Warnings = append(m.Warnings, &Error{})
+			if err := m.Warnings[len(m.Warnings)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 5:
+			if wireType == 0 {
+				var v int64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowSelect
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= (int64(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.OutputCounts = append(m.OutputCounts, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowSelect
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= (int(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthSelect
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				for iNdEx < postIndex {
+					var v int64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowSelect
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= (int64(b) & 0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.OutputCounts = append(m.OutputCounts, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field OutputCounts", wireType)
+			}
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WarningCount", wireType)
+			}
+			var v int64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.WarningCount = &v
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RowBatchData", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.RowBatchData.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ExecutionSummaries", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSelect
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSelect
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ExecutionSummaries = append(m.ExecutionSummaries, &ExecutorExecutionSummary{})
+			if err := m.ExecutionSummaries[len(m.ExecutionSummaries)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2304,52 +2316,54 @@ var (
 func init() { proto.RegisterFile("select.proto", fileDescriptorSelect) }
 
 var fileDescriptorSelect = []byte{
-	// 748 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xcd, 0x4e, 0xdb, 0x4a,
-	0x18, 0xc5, 0xd8, 0xf9, 0xfb, 0x92, 0x98, 0xdc, 0x11, 0x17, 0xf9, 0x22, 0x6e, 0xc8, 0xcd, 0x55,
-	0xd5, 0x40, 0x91, 0x43, 0xd9, 0xa0, 0x2e, 0x09, 0xa0, 0x2e, 0x2a, 0xda, 0xca, 0x41, 0xaa, 0x54,
-	0xa9, 0xb2, 0x26, 0xce, 0xc4, 0xb1, 0x6a, 0x7b, 0xcc, 0xcc, 0x58, 0x81, 0xbe, 0x44, 0xb7, 0x7d,
-	0x24, 0x76, 0xed, 0xb6, 0x5d, 0xa0, 0x8a, 0x3e, 0x42, 0x5f, 0xa0, 0x9a, 0xf1, 0x24, 0x81, 0x65,
-	0xc5, 0xa2, 0xab, 0x4c, 0xce, 0x39, 0x73, 0xbe, 0xcf, 0xdf, 0x9c, 0x19, 0x68, 0x70, 0x12, 0x93,
-	0x40, 0xb8, 0x19, 0xa3, 0x82, 0x22, 0x4b, 0x44, 0xd9, 0x68, 0xd3, 0x26, 0x97, 0x24, 0xc8, 0x05,
-	0x65, 0x05, 0xba, 0xb9, 0x1e, 0xd2, 0x90, 0xaa, 0x65, 0x5f, 0xae, 0x0a, 0xb4, 0xfb, 0x14, 0x4c,
-	0x8f, 0xce, 0xd0, 0x06, 0x94, 0xa7, 0x38, 0x1d, 0xc7, 0xc4, 0x31, 0x3a, 0x46, 0xaf, 0xe1, 0xe9,
-	0x7f, 0x08, 0x81, 0x35, 0xc6, 0x02, 0x3b, 0xab, 0x0a, 0x55, 0xeb, 0xee, 0x33, 0x28, 0x9d, 0x32,
-	0x46, 0x19, 0x72, 0xc0, 0x0a, 0xe8, 0xb8, 0xd8, 0x52, 0x1a, 0x58, 0xd7, 0x37, 0xdb, 0x2b, 0x9e,
-	0x42, 0xd0, 0x06, 0x98, 0x09, 0x0f, 0xd5, 0xae, 0x9a, 0x26, 0x24, 0xd0, 0xfd, 0xbc, 0x0a, 0xf6,
-	0x50, 0xb5, 0xea, 0x11, 0x9e, 0xd1, 0x94, 0x13, 0xf4, 0x1f, 0x94, 0x88, 0x74, 0x53, 0x2e, 0xf5,
-	0x83, 0xba, 0x2b, 0x9b, 0x77, 0x55, 0x01, 0xaf, 0x60, 0xd0, 0xbf, 0x60, 0x31, 0x3a, 0xe3, 0xce,
-	0x6a, 0xc7, 0xec, 0xd5, 0x0f, 0x6a, 0x85, 0xc2, 0xa3, 0x33, 0x4f, 0xc1, 0x68, 0x07, 0xca, 0xc1,
-	0x34, 0x4f, 0xdf, 0x73, 0xc7, 0x54, 0x02, 0x6d, 0x71, 0x2c, 0x31, 0x5d, 0x5c, 0x0b, 0xd0, 0x63,
-	0xa8, 0xce, 0x30, 0x4b, 0xa3, 0x34, 0xe4, 0x8e, 0x75, 0x57, 0x5c, 0xd4, 0x5b, 0x90, 0xe8, 0x7f,
-	0x68, 0xd2, 0x5c, 0x64, 0xb9, 0xf0, 0x03, 0x9a, 0xa7, 0x82, 0x3b, 0xa5, 0x8e, 0xd9, 0x33, 0xbd,
-	0x46, 0x01, 0x1e, 0x2b, 0x4c, 0x8a, 0xf4, 0x86, 0x42, 0xe5, 0x94, 0x3b, 0x86, 0x14, 0x69, 0x50,
-	0xa9, 0xd0, 0x3b, 0xb0, 0x19, 0x9d, 0xf9, 0x23, 0x2c, 0x82, 0xa9, 0xaf, 0x66, 0x59, 0x91, 0xb3,
-	0x1c, 0x1c, 0xca, 0xc6, 0xbe, 0xdd, 0x6c, 0xf7, 0xc3, 0x48, 0x4c, 0xf3, 0x91, 0x1b, 0xd0, 0xa4,
-	0x9f, 0x45, 0x69, 0x18, 0xe0, 0xac, 0x2f, 0x5b, 0xea, 0xf3, 0x29, 0x66, 0x64, 0x3c, 0xba, 0x12,
-	0x84, 0xbb, 0x43, 0xb5, 0x1e, 0xc8, 0xb5, 0xd7, 0x60, 0x74, 0x36, 0x90, 0x6e, 0x27, 0xf2, 0x30,
-	0x3e, 0x1a, 0x50, 0x52, 0x5f, 0x8a, 0xce, 0xa1, 0x26, 0xc7, 0x51, 0xd4, 0x30, 0x1f, 0x56, 0xa3,
-	0x2a, 0x9d, 0xa4, 0x3f, 0xda, 0xd7, 0xae, 0x09, 0x11, 0x58, 0x8f, 0xac, 0xb9, 0x38, 0x80, 0x33,
-	0x22, 0xb0, 0x9e, 0xb0, 0xda, 0x21, 0xff, 0x77, 0x4f, 0xa1, 0xa2, 0x29, 0xb4, 0x75, 0x2f, 0x55,
-	0xe6, 0xfc, 0x30, 0x74, 0xb6, 0xb6, 0xa0, 0x1c, 0x93, 0x34, 0x14, 0x53, 0x95, 0x93, 0x05, 0x5b,
-	0x60, 0xdd, 0xaf, 0x26, 0xc0, 0xc9, 0xd1, 0x73, 0x8f, 0x5c, 0xe4, 0x84, 0x0b, 0xb4, 0x0d, 0x55,
-	0x2e, 0x30, 0x13, 0xbe, 0xe0, 0xca, 0xcc, 0xd2, 0xf2, 0x8a, 0x42, 0xcf, 0x39, 0xda, 0x83, 0xda,
-	0x3c, 0xf0, 0xf3, 0xa4, 0xd8, 0xfa, 0x6c, 0x35, 0xec, 0x2d, 0x05, 0xc8, 0x85, 0x96, 0x88, 0x12,
-	0xe2, 0x7f, 0xa0, 0x29, 0xf1, 0xe9, 0x64, 0xc2, 0x89, 0x50, 0x33, 0x9b, 0x77, 0x61, 0x4b, 0xf6,
-	0x2d, 0x4d, 0xc9, 0x2b, 0xc5, 0xa1, 0x4d, 0x28, 0x4d, 0x62, 0xac, 0x52, 0xb3, 0xac, 0x5d, 0x40,
-	0xe8, 0x11, 0xd8, 0x3a, 0x2b, 0x85, 0x51, 0x11, 0x96, 0xa6, 0xa7, 0x13, 0x54, 0x38, 0x70, 0xb4,
-	0x0f, 0xeb, 0x01, 0x8d, 0x65, 0xf6, 0x7d, 0x86, 0xd3, 0x90, 0xcc, 0x93, 0x25, 0x43, 0x53, 0xf5,
-	0x90, 0xe6, 0x3c, 0x49, 0xe9, 0x7c, 0xed, 0xc2, 0x5f, 0x09, 0xbe, 0xf4, 0xef, 0x67, 0x4c, 0xa6,
-	0xc7, 0xf2, 0xd6, 0x12, 0x7c, 0xf9, 0xe6, 0x6e, 0xcc, 0x0e, 0xa1, 0x4e, 0x52, 0x79, 0xf7, 0x7c,
-	0x71, 0x95, 0x11, 0xa7, 0xda, 0x31, 0x7a, 0xf6, 0x41, 0x4b, 0x0f, 0x40, 0x11, 0xe7, 0x57, 0x19,
-	0xd1, 0x8d, 0x03, 0x59, 0x20, 0xe8, 0x1f, 0xa8, 0xf2, 0x8b, 0xd8, 0x4f, 0xe4, 0x45, 0xae, 0x29,
-	0xef, 0x0a, 0xbf, 0x88, 0xcf, 0xe4, 0x2d, 0x7e, 0x02, 0x28, 0xe2, 0x3e, 0x17, 0x2c, 0x0a, 0x84,
-	0xbf, 0x10, 0x81, 0xea, 0x77, 0x2d, 0xe2, 0x43, 0x45, 0x0c, 0xb5, 0x78, 0x17, 0xec, 0xe5, 0x44,
-	0x53, 0x9c, 0x10, 0xa7, 0x7e, 0xe7, 0xf6, 0x37, 0xe6, 0xf3, 0x7c, 0x89, 0x13, 0xd2, 0xfd, 0x69,
-	0x80, 0x3d, 0x14, 0x8c, 0xe0, 0xe4, 0x77, 0x9e, 0x81, 0x17, 0xfa, 0x2d, 0x7a, 0x60, 0xb6, 0x95,
-	0xc9, 0x1f, 0x78, 0x09, 0x76, 0xf7, 0x00, 0x96, 0x27, 0x81, 0xd6, 0xa0, 0x2e, 0x7f, 0x4f, 0xc8,
-	0x04, 0xe7, 0xb1, 0x68, 0xad, 0xa0, 0x26, 0xd4, 0x24, 0x70, 0xc4, 0x18, 0x9d, 0xb5, 0x8c, 0xc1,
-	0xce, 0xf5, 0x6d, 0xdb, 0xf8, 0x72, 0xdb, 0x36, 0xbe, 0xdf, 0xb6, 0x8d, 0x4f, 0x3f, 0xda, 0x2b,
-	0xf0, 0x77, 0x40, 0x13, 0x57, 0x7f, 0xa2, 0x2b, 0xa2, 0xf1, 0x48, 0x35, 0xfc, 0xda, 0xf8, 0x15,
-	0x00, 0x00, 0xff, 0xff, 0x04, 0xb1, 0xa6, 0x66, 0xfe, 0x05, 0x00, 0x00,
+	// 769 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xcd, 0x6e, 0xeb, 0x44,
+	0x18, 0xad, 0xaf, 0x9d, 0xbf, 0x2f, 0x89, 0x6f, 0x18, 0x2e, 0x57, 0xa6, 0x2a, 0x69, 0x48, 0x85,
+	0x48, 0xab, 0xca, 0x29, 0xdd, 0x54, 0x2c, 0x9b, 0x36, 0x62, 0x81, 0x4a, 0xd1, 0xb4, 0x12, 0x12,
+	0x12, 0xb2, 0x26, 0xce, 0xc4, 0xb1, 0xb0, 0x3d, 0xee, 0xcc, 0x58, 0x6e, 0x78, 0x09, 0xb6, 0x6c,
+	0x78, 0x03, 0x1e, 0xa4, 0x4b, 0xd6, 0x2c, 0x2a, 0x54, 0x1e, 0x81, 0x17, 0x40, 0x33, 0x9e, 0xa4,
+	0xcd, 0x12, 0x75, 0x71, 0x57, 0x1e, 0x9f, 0xf3, 0xcd, 0xf1, 0x37, 0xe7, 0x3b, 0x63, 0xe8, 0x08,
+	0x9a, 0xd0, 0x50, 0xfa, 0x39, 0x67, 0x92, 0x21, 0x47, 0xc6, 0xf9, 0x6c, 0xd7, 0xa5, 0xf7, 0x34,
+	0x2c, 0x24, 0xe3, 0x15, 0xba, 0xfb, 0x2e, 0x62, 0x11, 0xd3, 0xcb, 0xb1, 0x5a, 0x55, 0xe8, 0xf0,
+	0x2b, 0xb0, 0x31, 0x2b, 0xd1, 0x7b, 0xa8, 0x2f, 0x49, 0x36, 0x4f, 0xa8, 0x67, 0x0d, 0xac, 0x51,
+	0x07, 0x9b, 0x37, 0x84, 0xc0, 0x99, 0x13, 0x49, 0xbc, 0x37, 0x1a, 0xd5, 0xeb, 0xe1, 0xd7, 0x50,
+	0x9b, 0x72, 0xce, 0x38, 0xf2, 0xc0, 0x09, 0xd9, 0xbc, 0xda, 0x52, 0x9b, 0x38, 0x0f, 0x8f, 0xfb,
+	0x3b, 0x58, 0x23, 0xe8, 0x3d, 0xd8, 0xa9, 0x88, 0xf4, 0xae, 0x96, 0x21, 0x14, 0x30, 0xfc, 0xd5,
+	0x82, 0xda, 0xc5, 0xb2, 0xc8, 0x7e, 0x46, 0xb7, 0xd0, 0xe2, 0xac, 0x14, 0x81, 0x56, 0xb7, 0x95,
+	0xfa, 0xe4, 0x4c, 0xd5, 0xfd, 0xf5, 0xb8, 0x3f, 0x8e, 0x62, 0xb9, 0x2c, 0x66, 0x7e, 0xc8, 0xd2,
+	0x71, 0x1e, 0x67, 0x51, 0x48, 0xf2, 0xb1, 0x3a, 0xd1, 0x58, 0x2c, 0x09, 0xa7, 0xf3, 0xd9, 0x4a,
+	0x52, 0xe1, 0xdf, 0xe8, 0xf5, 0x44, 0xad, 0x71, 0x53, 0x29, 0x5d, 0x12, 0x49, 0xd0, 0x89, 0x51,
+	0x4d, 0xa9, 0x24, 0x9e, 0x33, 0xb0, 0x47, 0xed, 0xd3, 0xae, 0xaf, 0xf6, 0xfa, 0x98, 0x95, 0x57,
+	0x54, 0x12, 0xd3, 0x8c, 0xde, 0xa1, 0xde, 0x87, 0x53, 0x68, 0x18, 0x0a, 0xed, 0x6d, 0x79, 0x60,
+	0x9b, 0xd2, 0xb5, 0x13, 0x7b, 0x50, 0x4f, 0x68, 0x16, 0xc9, 0xa5, 0x3e, 0xd5, 0x86, 0xad, 0xb0,
+	0xe1, 0x1f, 0x36, 0xc0, 0xe5, 0xf9, 0x37, 0x98, 0xde, 0x15, 0x54, 0x48, 0xb4, 0x0f, 0x4d, 0x21,
+	0x09, 0x97, 0x81, 0x14, 0x5a, 0xcc, 0x31, 0xe5, 0x0d, 0x8d, 0xde, 0x0a, 0x74, 0x0c, 0xad, 0xf5,
+	0x78, 0x84, 0xf7, 0x46, 0x37, 0xea, 0x56, 0x8d, 0x4e, 0x0d, 0x8c, 0x9f, 0x0b, 0x90, 0x0f, 0x3d,
+	0x19, 0xa7, 0x34, 0xf8, 0x85, 0x65, 0x34, 0x60, 0x8b, 0x85, 0xa0, 0x52, 0x7b, 0xb6, 0xee, 0xc2,
+	0x55, 0xec, 0x8f, 0x2c, 0xa3, 0xd7, 0x9a, 0x43, 0xbb, 0x50, 0x5b, 0x24, 0x24, 0x12, 0x9e, 0xf3,
+	0xe2, 0xdb, 0x15, 0x84, 0xbe, 0x00, 0x97, 0x15, 0x32, 0x2f, 0xa4, 0x11, 0x12, 0x5e, 0x6d, 0x60,
+	0x8f, 0xba, 0xb8, 0x5b, 0xa1, 0x95, 0x82, 0x40, 0x27, 0xf0, 0x2e, 0x64, 0x89, 0x0a, 0x55, 0xc0,
+	0x49, 0x16, 0xd1, 0x20, 0x64, 0x45, 0x26, 0x85, 0x57, 0x1f, 0x58, 0xa3, 0x26, 0x46, 0x86, 0xc3,
+	0x8a, 0xba, 0xd0, 0x0c, 0x3a, 0x82, 0x8f, 0x52, 0x72, 0x1f, 0x94, 0x84, 0x67, 0x71, 0x16, 0x55,
+	0xf5, 0x5e, 0x43, 0x35, 0x80, 0xdf, 0xa6, 0xe4, 0xfe, 0x87, 0x0a, 0xd7, 0xc5, 0xe8, 0x0c, 0xda,
+	0x34, 0x53, 0x49, 0x09, 0xe4, 0x2a, 0xa7, 0x5e, 0x73, 0x60, 0x8d, 0xdc, 0xd3, 0x9e, 0x31, 0x40,
+	0x13, 0xb7, 0xab, 0x9c, 0x9a, 0xc6, 0x81, 0x6e, 0x10, 0xf4, 0x29, 0x34, 0xc5, 0x5d, 0x12, 0xa4,
+	0x2a, 0x76, 0x2d, 0xad, 0xdd, 0x10, 0x77, 0xc9, 0x95, 0xca, 0xdc, 0x11, 0xb8, 0xcf, 0x26, 0x65,
+	0x24, 0xa5, 0x5e, 0xfb, 0x45, 0xfc, 0x3a, 0x6b, 0x8b, 0xbe, 0x23, 0x29, 0x1d, 0xfe, 0x6e, 0x43,
+	0x5b, 0x8f, 0x4b, 0xe4, 0x2c, 0x13, 0x14, 0x7d, 0x0e, 0x35, 0xaa, 0x22, 0xad, 0x87, 0xd5, 0x3e,
+	0x6d, 0x9b, 0x4e, 0x14, 0x84, 0x2b, 0x06, 0x7d, 0x06, 0x8e, 0x0a, 0x8d, 0x19, 0x56, 0x6b, 0x93,
+	0x2a, 0xac, 0x61, 0x74, 0x08, 0xf5, 0x50, 0x05, 0x5b, 0x78, 0xb6, 0x2e, 0x30, 0x12, 0x3a, 0xec,
+	0xeb, 0xac, 0x54, 0x05, 0xe8, 0x4b, 0x68, 0x1a, 0x93, 0x84, 0xc9, 0xe8, 0xd6, 0xf7, 0x36, 0x24,
+	0x3a, 0x00, 0x33, 0x94, 0xb5, 0xf9, 0x6a, 0x52, 0x36, 0xee, 0x54, 0xa0, 0xb1, 0xfd, 0x00, 0xba,
+	0xdb, 0x96, 0xab, 0x09, 0xd9, 0xb8, 0x53, 0xbe, 0xf4, 0xfb, 0x27, 0x70, 0x39, 0x2b, 0x83, 0x19,
+	0x91, 0xe1, 0xb2, 0xba, 0x72, 0x8d, 0xd7, 0x5d, 0xb9, 0x0e, 0x67, 0xe5, 0x44, 0xa9, 0xe9, 0x6b,
+	0x77, 0x0d, 0x1f, 0x57, 0x61, 0x8d, 0x59, 0x16, 0x88, 0x22, 0x4d, 0x09, 0x8f, 0xa9, 0xf0, 0x9a,
+	0xfa, 0x70, 0xfd, 0xed, 0x5c, 0x4f, 0xd7, 0x85, 0x37, 0xba, 0x6e, 0x85, 0x11, 0xdd, 0x46, 0x62,
+	0x2a, 0x86, 0xff, 0x5a, 0xe0, 0xde, 0x48, 0x4e, 0x49, 0xfa, 0x7f, 0x46, 0xf4, 0xad, 0xf9, 0x59,
+	0xbd, 0xf2, 0x77, 0xa2, 0x45, 0x3e, 0xc0, 0x94, 0x8e, 0x8e, 0x01, 0x9e, 0xc3, 0x8f, 0xde, 0x42,
+	0x5b, 0x3d, 0x2f, 0xe9, 0x82, 0x14, 0x89, 0xec, 0xed, 0xa0, 0x2e, 0xb4, 0x14, 0x70, 0xce, 0x39,
+	0x2b, 0x7b, 0xd6, 0xe4, 0xf0, 0xe1, 0xa9, 0x6f, 0xfd, 0xf9, 0xd4, 0xb7, 0xfe, 0x7e, 0xea, 0x5b,
+	0xbf, 0xfd, 0xd3, 0xdf, 0x81, 0x4f, 0x42, 0x96, 0xfa, 0xe6, 0x88, 0xbe, 0x8c, 0xe7, 0x33, 0xdd,
+	0xf0, 0xf7, 0xd6, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xeb, 0x48, 0xab, 0x8e, 0x1f, 0x06, 0x00,
+	0x00,
 }
