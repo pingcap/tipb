@@ -55,8 +55,11 @@ message Pos {
     // The binlog offset in a file.
     int64 offset = 2;
 
-     // The binlog's ts, start ts for prewrite binlog, and commit ts for commit binlog.
-    int64 ts = 3;
+     // The binlog's start ts, used in Prewrite, Commit and Rollback type binlog.
+    int64 startTs = 3;
+
+    // The binlog's commit ts, used only in Commit type binlog.
+    int64 commitTs = 4;
 }
 
 message Entity {
