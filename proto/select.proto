@@ -99,6 +99,11 @@ message DAGRequest {
 
 	// supply offset is not enough since we have daylight saving time present in some regions
 	optional string time_zone_name = 11 [(gogoproto.nullable) = false];
+
+	// It represents whether or not TiKV should collect execution summaries.
+	// Execution summaries will be collected into `execution_summaries` field
+	// in the response.
+	optional bool collect_execution_summaries = 12;
 }
 
 enum EncodeType {
