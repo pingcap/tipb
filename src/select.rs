@@ -459,6 +459,512 @@ impl ::protobuf::reflect::ProtobufValue for Error {
 }
 
 #[derive(PartialEq,Clone,Default)]
+pub struct SelectResponse {
+    // message fields
+    error: ::protobuf::SingularPtrField<Error>,
+    rows: ::protobuf::RepeatedField<Row>,
+    chunks: ::protobuf::RepeatedField<Chunk>,
+    warnings: ::protobuf::RepeatedField<Error>,
+    output_counts: ::std::vec::Vec<i64>,
+    warning_count: ::std::option::Option<i64>,
+    row_batch_data: ::protobuf::SingularField<::std::vec::Vec<u8>>,
+    execution_summaries: ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary>,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl SelectResponse {
+    pub fn new() -> SelectResponse {
+        ::std::default::Default::default()
+    }
+
+    // optional .tipb.Error error = 1;
+
+    pub fn clear_error(&mut self) {
+        self.error.clear();
+    }
+
+    pub fn has_error(&self) -> bool {
+        self.error.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_error(&mut self, v: Error) {
+        self.error = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_error(&mut self) -> &mut Error {
+        if self.error.is_none() {
+            self.error.set_default();
+        }
+        self.error.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_error(&mut self) -> Error {
+        self.error.take().unwrap_or_else(|| Error::new())
+    }
+
+    pub fn get_error(&self) -> &Error {
+        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
+    }
+
+    // repeated .tipb.Row rows = 2;
+
+    pub fn clear_rows(&mut self) {
+        self.rows.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_rows(&mut self, v: ::protobuf::RepeatedField<Row>) {
+        self.rows = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_rows(&mut self) -> &mut ::protobuf::RepeatedField<Row> {
+        &mut self.rows
+    }
+
+    // Take field
+    pub fn take_rows(&mut self) -> ::protobuf::RepeatedField<Row> {
+        ::std::mem::replace(&mut self.rows, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_rows(&self) -> &[Row] {
+        &self.rows
+    }
+
+    // repeated .tipb.Chunk chunks = 3;
+
+    pub fn clear_chunks(&mut self) {
+        self.chunks.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_chunks(&mut self, v: ::protobuf::RepeatedField<Chunk>) {
+        self.chunks = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_chunks(&mut self) -> &mut ::protobuf::RepeatedField<Chunk> {
+        &mut self.chunks
+    }
+
+    // Take field
+    pub fn take_chunks(&mut self) -> ::protobuf::RepeatedField<Chunk> {
+        ::std::mem::replace(&mut self.chunks, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_chunks(&self) -> &[Chunk] {
+        &self.chunks
+    }
+
+    // repeated .tipb.Error warnings = 4;
+
+    pub fn clear_warnings(&mut self) {
+        self.warnings.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_warnings(&mut self, v: ::protobuf::RepeatedField<Error>) {
+        self.warnings = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_warnings(&mut self) -> &mut ::protobuf::RepeatedField<Error> {
+        &mut self.warnings
+    }
+
+    // Take field
+    pub fn take_warnings(&mut self) -> ::protobuf::RepeatedField<Error> {
+        ::std::mem::replace(&mut self.warnings, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_warnings(&self) -> &[Error] {
+        &self.warnings
+    }
+
+    // repeated int64 output_counts = 5;
+
+    pub fn clear_output_counts(&mut self) {
+        self.output_counts.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_output_counts(&mut self, v: ::std::vec::Vec<i64>) {
+        self.output_counts = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_output_counts(&mut self) -> &mut ::std::vec::Vec<i64> {
+        &mut self.output_counts
+    }
+
+    // Take field
+    pub fn take_output_counts(&mut self) -> ::std::vec::Vec<i64> {
+        ::std::mem::replace(&mut self.output_counts, ::std::vec::Vec::new())
+    }
+
+    pub fn get_output_counts(&self) -> &[i64] {
+        &self.output_counts
+    }
+
+    // optional int64 warning_count = 6;
+
+    pub fn clear_warning_count(&mut self) {
+        self.warning_count = ::std::option::Option::None;
+    }
+
+    pub fn has_warning_count(&self) -> bool {
+        self.warning_count.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_warning_count(&mut self, v: i64) {
+        self.warning_count = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_warning_count(&self) -> i64 {
+        self.warning_count.unwrap_or(0)
+    }
+
+    // optional bytes row_batch_data = 7;
+
+    pub fn clear_row_batch_data(&mut self) {
+        self.row_batch_data.clear();
+    }
+
+    pub fn has_row_batch_data(&self) -> bool {
+        self.row_batch_data.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_row_batch_data(&mut self, v: ::std::vec::Vec<u8>) {
+        self.row_batch_data = ::protobuf::SingularField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_row_batch_data(&mut self) -> &mut ::std::vec::Vec<u8> {
+        if self.row_batch_data.is_none() {
+            self.row_batch_data.set_default();
+        }
+        self.row_batch_data.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_row_batch_data(&mut self) -> ::std::vec::Vec<u8> {
+        self.row_batch_data.take().unwrap_or_else(|| ::std::vec::Vec::new())
+    }
+
+    pub fn get_row_batch_data(&self) -> &[u8] {
+        match self.row_batch_data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
+    // repeated .tipb.ExecutorExecutionSummary execution_summaries = 8;
+
+    pub fn clear_execution_summaries(&mut self) {
+        self.execution_summaries.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_execution_summaries(&mut self, v: ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary>) {
+        self.execution_summaries = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_execution_summaries(&mut self) -> &mut ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary> {
+        &mut self.execution_summaries
+    }
+
+    // Take field
+    pub fn take_execution_summaries(&mut self) -> ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary> {
+        ::std::mem::replace(&mut self.execution_summaries, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_execution_summaries(&self) -> &[super::executor::ExecutorExecutionSummary] {
+        &self.execution_summaries
+    }
+}
+
+impl ::protobuf::Message for SelectResponse {
+    fn is_initialized(&self) -> bool {
+        for v in &self.error {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.rows {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.chunks {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.warnings {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.execution_summaries {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.error)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.rows)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.chunks)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.warnings)?;
+                },
+                5 => {
+                    ::protobuf::rt::read_repeated_int64_into(wire_type, is, &mut self.output_counts)?;
+                },
+                6 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int64()?;
+                    self.warning_count = ::std::option::Option::Some(tmp);
+                },
+                7 => {
+                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.row_batch_data)?;
+                },
+                8 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.execution_summaries)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.error.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        for value in &self.rows {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        for value in &self.chunks {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        for value in &self.warnings {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        for value in &self.output_counts {
+            my_size += ::protobuf::rt::value_size(5, *value, ::protobuf::wire_format::WireTypeVarint);
+        };
+        if let Some(v) = self.warning_count {
+            my_size += ::protobuf::rt::value_size(6, v, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if let Some(ref v) = self.row_batch_data.as_ref() {
+            my_size += ::protobuf::rt::bytes_size(7, &v);
+        }
+        for value in &self.execution_summaries {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.error.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        for v in &self.rows {
+            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        for v in &self.chunks {
+            os.write_tag(3, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        for v in &self.warnings {
+            os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        for v in &self.output_counts {
+            os.write_int64(5, *v)?;
+        };
+        if let Some(v) = self.warning_count {
+            os.write_int64(6, v)?;
+        }
+        if let Some(ref v) = self.row_batch_data.as_ref() {
+            os.write_bytes(7, &v)?;
+        }
+        for v in &self.execution_summaries {
+            os.write_tag(8, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> SelectResponse {
+        SelectResponse::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
+                    "error",
+                    |m: &SelectResponse| { &m.error },
+                    |m: &mut SelectResponse| { &mut m.error },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Row>>(
+                    "rows",
+                    |m: &SelectResponse| { &m.rows },
+                    |m: &mut SelectResponse| { &mut m.rows },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Chunk>>(
+                    "chunks",
+                    |m: &SelectResponse| { &m.chunks },
+                    |m: &mut SelectResponse| { &mut m.chunks },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
+                    "warnings",
+                    |m: &SelectResponse| { &m.warnings },
+                    |m: &mut SelectResponse| { &mut m.warnings },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
+                    "output_counts",
+                    |m: &SelectResponse| { &m.output_counts },
+                    |m: &mut SelectResponse| { &mut m.output_counts },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
+                    "warning_count",
+                    |m: &SelectResponse| { &m.warning_count },
+                    |m: &mut SelectResponse| { &mut m.warning_count },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "row_batch_data",
+                    |m: &SelectResponse| { &m.row_batch_data },
+                    |m: &mut SelectResponse| { &mut m.row_batch_data },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::executor::ExecutorExecutionSummary>>(
+                    "execution_summaries",
+                    |m: &SelectResponse| { &m.execution_summaries },
+                    |m: &mut SelectResponse| { &mut m.execution_summaries },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<SelectResponse>(
+                    "SelectResponse",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static SelectResponse {
+        static mut instance: ::protobuf::lazy::Lazy<SelectResponse> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const SelectResponse,
+        };
+        unsafe {
+            instance.get(SelectResponse::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for SelectResponse {
+    fn clear(&mut self) {
+        self.clear_error();
+        self.clear_rows();
+        self.clear_chunks();
+        self.clear_warnings();
+        self.clear_output_counts();
+        self.clear_warning_count();
+        self.clear_row_batch_data();
+        self.clear_execution_summaries();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for SelectResponse {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for SelectResponse {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
 pub struct Chunk {
     // message fields
     rows_data: ::protobuf::SingularField<::std::vec::Vec<u8>>,
@@ -1412,512 +1918,6 @@ impl ::protobuf::reflect::ProtobufValue for DAGRequest {
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct DAGResponse {
-    // message fields
-    error: ::protobuf::SingularPtrField<Error>,
-    rows: ::protobuf::RepeatedField<Row>,
-    chunks: ::protobuf::RepeatedField<Chunk>,
-    warnings: ::protobuf::RepeatedField<Error>,
-    output_counts: ::std::vec::Vec<i64>,
-    warning_count: ::std::option::Option<i64>,
-    row_batch_data: ::protobuf::SingularField<::std::vec::Vec<u8>>,
-    execution_summaries: ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary>,
-    // special fields
-    unknown_fields: ::protobuf::UnknownFields,
-    cached_size: ::protobuf::CachedSize,
-}
-
-impl DAGResponse {
-    pub fn new() -> DAGResponse {
-        ::std::default::Default::default()
-    }
-
-    // optional .tipb.Error error = 1;
-
-    pub fn clear_error(&mut self) {
-        self.error.clear();
-    }
-
-    pub fn has_error(&self) -> bool {
-        self.error.is_some()
-    }
-
-    // Param is passed by value, moved
-    pub fn set_error(&mut self, v: Error) {
-        self.error = ::protobuf::SingularPtrField::some(v);
-    }
-
-    // Mutable pointer to the field.
-    // If field is not initialized, it is initialized with default value first.
-    pub fn mut_error(&mut self) -> &mut Error {
-        if self.error.is_none() {
-            self.error.set_default();
-        }
-        self.error.as_mut().unwrap()
-    }
-
-    // Take field
-    pub fn take_error(&mut self) -> Error {
-        self.error.take().unwrap_or_else(|| Error::new())
-    }
-
-    pub fn get_error(&self) -> &Error {
-        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
-    }
-
-    // repeated .tipb.Row rows = 2;
-
-    pub fn clear_rows(&mut self) {
-        self.rows.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_rows(&mut self, v: ::protobuf::RepeatedField<Row>) {
-        self.rows = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_rows(&mut self) -> &mut ::protobuf::RepeatedField<Row> {
-        &mut self.rows
-    }
-
-    // Take field
-    pub fn take_rows(&mut self) -> ::protobuf::RepeatedField<Row> {
-        ::std::mem::replace(&mut self.rows, ::protobuf::RepeatedField::new())
-    }
-
-    pub fn get_rows(&self) -> &[Row] {
-        &self.rows
-    }
-
-    // repeated .tipb.Chunk chunks = 3;
-
-    pub fn clear_chunks(&mut self) {
-        self.chunks.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_chunks(&mut self, v: ::protobuf::RepeatedField<Chunk>) {
-        self.chunks = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_chunks(&mut self) -> &mut ::protobuf::RepeatedField<Chunk> {
-        &mut self.chunks
-    }
-
-    // Take field
-    pub fn take_chunks(&mut self) -> ::protobuf::RepeatedField<Chunk> {
-        ::std::mem::replace(&mut self.chunks, ::protobuf::RepeatedField::new())
-    }
-
-    pub fn get_chunks(&self) -> &[Chunk] {
-        &self.chunks
-    }
-
-    // repeated .tipb.Error warnings = 4;
-
-    pub fn clear_warnings(&mut self) {
-        self.warnings.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_warnings(&mut self, v: ::protobuf::RepeatedField<Error>) {
-        self.warnings = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_warnings(&mut self) -> &mut ::protobuf::RepeatedField<Error> {
-        &mut self.warnings
-    }
-
-    // Take field
-    pub fn take_warnings(&mut self) -> ::protobuf::RepeatedField<Error> {
-        ::std::mem::replace(&mut self.warnings, ::protobuf::RepeatedField::new())
-    }
-
-    pub fn get_warnings(&self) -> &[Error] {
-        &self.warnings
-    }
-
-    // repeated int64 output_counts = 5;
-
-    pub fn clear_output_counts(&mut self) {
-        self.output_counts.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_output_counts(&mut self, v: ::std::vec::Vec<i64>) {
-        self.output_counts = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_output_counts(&mut self) -> &mut ::std::vec::Vec<i64> {
-        &mut self.output_counts
-    }
-
-    // Take field
-    pub fn take_output_counts(&mut self) -> ::std::vec::Vec<i64> {
-        ::std::mem::replace(&mut self.output_counts, ::std::vec::Vec::new())
-    }
-
-    pub fn get_output_counts(&self) -> &[i64] {
-        &self.output_counts
-    }
-
-    // optional int64 warning_count = 6;
-
-    pub fn clear_warning_count(&mut self) {
-        self.warning_count = ::std::option::Option::None;
-    }
-
-    pub fn has_warning_count(&self) -> bool {
-        self.warning_count.is_some()
-    }
-
-    // Param is passed by value, moved
-    pub fn set_warning_count(&mut self, v: i64) {
-        self.warning_count = ::std::option::Option::Some(v);
-    }
-
-    pub fn get_warning_count(&self) -> i64 {
-        self.warning_count.unwrap_or(0)
-    }
-
-    // optional bytes row_batch_data = 7;
-
-    pub fn clear_row_batch_data(&mut self) {
-        self.row_batch_data.clear();
-    }
-
-    pub fn has_row_batch_data(&self) -> bool {
-        self.row_batch_data.is_some()
-    }
-
-    // Param is passed by value, moved
-    pub fn set_row_batch_data(&mut self, v: ::std::vec::Vec<u8>) {
-        self.row_batch_data = ::protobuf::SingularField::some(v);
-    }
-
-    // Mutable pointer to the field.
-    // If field is not initialized, it is initialized with default value first.
-    pub fn mut_row_batch_data(&mut self) -> &mut ::std::vec::Vec<u8> {
-        if self.row_batch_data.is_none() {
-            self.row_batch_data.set_default();
-        }
-        self.row_batch_data.as_mut().unwrap()
-    }
-
-    // Take field
-    pub fn take_row_batch_data(&mut self) -> ::std::vec::Vec<u8> {
-        self.row_batch_data.take().unwrap_or_else(|| ::std::vec::Vec::new())
-    }
-
-    pub fn get_row_batch_data(&self) -> &[u8] {
-        match self.row_batch_data.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
-
-    // repeated .tipb.ExecutorExecutionSummary execution_summaries = 8;
-
-    pub fn clear_execution_summaries(&mut self) {
-        self.execution_summaries.clear();
-    }
-
-    // Param is passed by value, moved
-    pub fn set_execution_summaries(&mut self, v: ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary>) {
-        self.execution_summaries = v;
-    }
-
-    // Mutable pointer to the field.
-    pub fn mut_execution_summaries(&mut self) -> &mut ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary> {
-        &mut self.execution_summaries
-    }
-
-    // Take field
-    pub fn take_execution_summaries(&mut self) -> ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary> {
-        ::std::mem::replace(&mut self.execution_summaries, ::protobuf::RepeatedField::new())
-    }
-
-    pub fn get_execution_summaries(&self) -> &[super::executor::ExecutorExecutionSummary] {
-        &self.execution_summaries
-    }
-}
-
-impl ::protobuf::Message for DAGResponse {
-    fn is_initialized(&self) -> bool {
-        for v in &self.error {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        for v in &self.rows {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        for v in &self.chunks {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        for v in &self.warnings {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        for v in &self.execution_summaries {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.error)?;
-                },
-                2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.rows)?;
-                },
-                3 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.chunks)?;
-                },
-                4 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.warnings)?;
-                },
-                5 => {
-                    ::protobuf::rt::read_repeated_int64_into(wire_type, is, &mut self.output_counts)?;
-                },
-                6 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_int64()?;
-                    self.warning_count = ::std::option::Option::Some(tmp);
-                },
-                7 => {
-                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.row_batch_data)?;
-                },
-                8 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.execution_summaries)?;
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if let Some(ref v) = self.error.as_ref() {
-            let len = v.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        }
-        for value in &self.rows {
-            let len = value.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        };
-        for value in &self.chunks {
-            let len = value.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        };
-        for value in &self.warnings {
-            let len = value.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        };
-        for value in &self.output_counts {
-            my_size += ::protobuf::rt::value_size(5, *value, ::protobuf::wire_format::WireTypeVarint);
-        };
-        if let Some(v) = self.warning_count {
-            my_size += ::protobuf::rt::value_size(6, v, ::protobuf::wire_format::WireTypeVarint);
-        }
-        if let Some(ref v) = self.row_batch_data.as_ref() {
-            my_size += ::protobuf::rt::bytes_size(7, &v);
-        }
-        for value in &self.execution_summaries {
-            let len = value.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        };
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
-        if let Some(ref v) = self.error.as_ref() {
-            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        }
-        for v in &self.rows {
-            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        };
-        for v in &self.chunks {
-            os.write_tag(3, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        };
-        for v in &self.warnings {
-            os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        };
-        for v in &self.output_counts {
-            os.write_int64(5, *v)?;
-        };
-        if let Some(v) = self.warning_count {
-            os.write_int64(6, v)?;
-        }
-        if let Some(ref v) = self.row_batch_data.as_ref() {
-            os.write_bytes(7, &v)?;
-        }
-        for v in &self.execution_summaries {
-            os.write_tag(8, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        };
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
-    }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
-    }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> DAGResponse {
-        DAGResponse::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
-            lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
-        };
-        unsafe {
-            descriptor.get(|| {
-                let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
-                    "error",
-                    |m: &DAGResponse| { &m.error },
-                    |m: &mut DAGResponse| { &mut m.error },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Row>>(
-                    "rows",
-                    |m: &DAGResponse| { &m.rows },
-                    |m: &mut DAGResponse| { &mut m.rows },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Chunk>>(
-                    "chunks",
-                    |m: &DAGResponse| { &m.chunks },
-                    |m: &mut DAGResponse| { &mut m.chunks },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Error>>(
-                    "warnings",
-                    |m: &DAGResponse| { &m.warnings },
-                    |m: &mut DAGResponse| { &mut m.warnings },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
-                    "output_counts",
-                    |m: &DAGResponse| { &m.output_counts },
-                    |m: &mut DAGResponse| { &mut m.output_counts },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
-                    "warning_count",
-                    |m: &DAGResponse| { &m.warning_count },
-                    |m: &mut DAGResponse| { &mut m.warning_count },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
-                    "row_batch_data",
-                    |m: &DAGResponse| { &m.row_batch_data },
-                    |m: &mut DAGResponse| { &mut m.row_batch_data },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::executor::ExecutorExecutionSummary>>(
-                    "execution_summaries",
-                    |m: &DAGResponse| { &m.execution_summaries },
-                    |m: &mut DAGResponse| { &mut m.execution_summaries },
-                ));
-                ::protobuf::reflect::MessageDescriptor::new::<DAGResponse>(
-                    "DAGResponse",
-                    fields,
-                    file_descriptor_proto()
-                )
-            })
-        }
-    }
-
-    fn default_instance() -> &'static DAGResponse {
-        static mut instance: ::protobuf::lazy::Lazy<DAGResponse> = ::protobuf::lazy::Lazy {
-            lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const DAGResponse,
-        };
-        unsafe {
-            instance.get(DAGResponse::new)
-        }
-    }
-}
-
-impl ::protobuf::Clear for DAGResponse {
-    fn clear(&mut self) {
-        self.clear_error();
-        self.clear_rows();
-        self.clear_chunks();
-        self.clear_warnings();
-        self.clear_output_counts();
-        self.clear_warning_count();
-        self.clear_row_batch_data();
-        self.clear_execution_summaries();
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for DAGResponse {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for DAGResponse {
-    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
-        ::protobuf::reflect::ProtobufValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
 pub struct StreamResponse {
     // message fields
     error: ::protobuf::SingularPtrField<Error>,
@@ -2330,288 +2330,287 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     go.proto\"1\n\x03Row\x12\x16\n\x06handle\x18\x01\x20\x01(\x0cR\x06handle\
     \x12\x12\n\x04data\x18\x02\x20\x01(\x0cR\x04data\"9\n\x05Error\x12\x18\n\
     \x04code\x18\x01\x20\x01(\x05R\x04codeB\x04\xc8\xde\x1f\0\x12\x16\n\x03m\
-    sg\x18\x02\x20\x01(\tR\x03msgB\x04\xc8\xde\x1f\0\"\x8f\x01\n\x05Chunk\
-    \x12T\n\trows_data\x18\x03\x20\x01(\x0cR\x08rowsDataB7\xda\xde\x1f/githu\
-    b.com/pingcap/tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x120\n\trows_me\
-    ta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\x08rowsMetaB\x04\xc8\xde\x1f\0\
-    \"E\n\x07RowMeta\x12\x1c\n\x06handle\x18\x01\x20\x01(\x03R\x06handleB\
-    \x04\xc8\xde\x1f\0\x12\x1c\n\x06length\x18\x02\x20\x01(\x03R\x06lengthB\
-    \x04\xc8\xde\x1f\0\"\xac\x03\n\nDAGRequest\x12\x1f\n\x08start_ts\x18\x01\
-    \x20\x01(\x04R\x07startTsB\x04\xc8\xde\x1f\0\x12,\n\texecutors\x18\x02\
-    \x20\x03(\x0b2\x0e.tipb.ExecutorR\texecutors\x12.\n\x10time_zone_offset\
-    \x18\x03\x20\x01(\x03R\x0etimeZoneOffsetB\x04\xc8\xde\x1f\0\x12\x1a\n\
-    \x05flags\x18\x04\x20\x01(\x04R\x05flagsB\x04\xc8\xde\x1f\0\x12%\n\x0eou\
-    tput_offsets\x18\x05\x20\x03(\rR\routputOffsets\x120\n\x14collect_range_\
-    counts\x18\x06\x20\x01(\x08R\x12collectRangeCounts\x12*\n\x11max_warning\
-    _count\x18\x07\x20\x01(\x04R\x0fmaxWarningCount\x127\n\x0bencode_type\
-    \x18\x08\x20\x01(\x0e2\x10.tipb.EncodeTypeR\nencodeTypeB\x04\xc8\xde\x1f\
-    \0\x12\x19\n\x08sql_mode\x18\t\x20\x01(\x04R\x07sqlMode\x12*\n\x0etime_z\
-    one_name\x18\x0b\x20\x01(\tR\x0ctimeZoneNameB\x04\xc8\xde\x1f\0\"\x9d\
-    \x03\n\x0bDAGResponse\x12!\n\x05error\x18\x01\x20\x01(\x0b2\x0b.tipb.Err\
-    orR\x05error\x12\x1d\n\x04rows\x18\x02\x20\x03(\x0b2\t.tipb.RowR\x04rows\
-    \x12)\n\x06chunks\x18\x03\x20\x03(\x0b2\x0b.tipb.ChunkR\x06chunksB\x04\
-    \xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.ErrorR\
-    \x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\
-    \x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwarningCount\x12]\n\x0er\
-    ow_batch_data\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xda\xde\x1f/github\
-    .com/pingcap/tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x12O\n\x13execut\
-    ion_summaries\x18\x08\x20\x03(\x0b2\x1e.tipb.ExecutorExecutionSummaryR\
-    \x12executionSummaries\"\xf3\x01\n\x0eStreamResponse\x12!\n\x05error\x18\
-    \x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x12K\n\x04data\x18\x03\x20\
-    \x01(\x0cR\x04dataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.Sha\
-    redBytes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb\
-    .ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutpu\
-    tCounts\x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwarningCount*,\n\
-    \nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\r\n\tTypeArrow\x10\x01B%\
-    \n\x15com.pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\
-    \x1e\x01J\xd7/\n\x06\x12\x04\0\0t\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\
-    \x08\n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\
-    \n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\
-    \x03\x04\x07\x1a\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\x04\x07\x1a\n\x0e\
-    \n\x07\x08\xe7\x07\0\x02\0\x01\x12\x03\x04\x07\x1a\n\x0c\n\x05\x08\xe7\
-    \x07\0\x03\x12\x03\x04\x1d!\n\x08\n\x01\x08\x12\x03\x05\0.\n\x0b\n\x04\
-    \x08\xe7\x07\x01\x12\x03\x05\0.\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03\
-    \x05\x07\x13\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03\x05\x07\x13\n\x0e\n\
-    \x07\x08\xe7\x07\x01\x02\0\x01\x12\x03\x05\x07\x13\n\x0c\n\x05\x08\xe7\
-    \x07\x01\x07\x12\x03\x05\x16-\n\t\n\x02\x03\0\x12\x03\x07\x07\x17\n\t\n\
-    \x02\x03\x01\x12\x03\x08\x07\x1d\n\x08\n\x01\x08\x12\x03\n\0(\n\x0b\n\
-    \x04\x08\xe7\x07\x02\x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\
-    \x03\n\x07\x20\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x03\n\x07\x20\n\x0e\n\
-    \x07\x08\xe7\x07\x02\x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\xe7\x07\
-    \x02\x03\x12\x03\n#'\n\x08\n\x01\x08\x12\x03\x0b\0$\n\x0b\n\x04\x08\xe7\
-    \x07\x03\x12\x03\x0b\0$\n\x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03\x0b\x07\
-    \x1c\n\r\n\x06\x08\xe7\x07\x03\x02\0\x12\x03\x0b\x07\x1c\n\x0e\n\x07\x08\
-    \xe7\x07\x03\x02\0\x01\x12\x03\x0b\x08\x1b\n\x0c\n\x05\x08\xe7\x07\x03\
-    \x03\x12\x03\x0b\x1f#\n\x08\n\x01\x08\x12\x03\x0c\0*\n\x0b\n\x04\x08\xe7\
-    \x07\x04\x12\x03\x0c\0*\n\x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03\x0c\x07\
-    \"\n\r\n\x06\x08\xe7\x07\x04\x02\0\x12\x03\x0c\x07\"\n\x0e\n\x07\x08\xe7\
-    \x07\x04\x02\0\x01\x12\x03\x0c\x08!\n\x0c\n\x05\x08\xe7\x07\x04\x03\x12\
-    \x03\x0c%)\n,\n\x02\x04\0\x12\x04\x0f\0\x12\x01\x1a\x20\x20values\x20are\
-    \x20all\x20in\x20text\x20format.\n\n\n\n\x03\x04\0\x01\x12\x03\x0f\x08\
-    \x0b\n\x0b\n\x04\x04\0\x02\0\x12\x03\x10\x08\"\n\x0c\n\x05\x04\0\x02\0\
-    \x04\x12\x03\x10\x08\x10\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03\x10\x11\x16\
-    \n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x10\x17\x1d\n\x0c\n\x05\x04\0\x02\0\
-    \x03\x12\x03\x10\x20!\n\x0b\n\x04\x04\0\x02\x01\x12\x03\x11\x08\x20\n\
-    \x0c\n\x05\x04\0\x02\x01\x04\x12\x03\x11\x08\x10\n\x0c\n\x05\x04\0\x02\
-    \x01\x05\x12\x03\x11\x11\x16\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x11\
-    \x17\x1b\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x11\x1e\x1f\n\n\n\x02\x04\
-    \x01\x12\x04\x14\0\x17\x01\n\n\n\x03\x04\x01\x01\x12\x03\x14\x08\r\n\x0b\
-    \n\x04\x04\x01\x02\0\x12\x03\x15\x08?\n\x0c\n\x05\x04\x01\x02\0\x04\x12\
-    \x03\x15\x08\x10\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03\x15\x11\x16\n\x0c\
-    \n\x05\x04\x01\x02\0\x01\x12\x03\x15\x17\x1b\n\x0c\n\x05\x04\x01\x02\0\
-    \x03\x12\x03\x15\x1e\x1f\n\x0c\n\x05\x04\x01\x02\0\x08\x12\x03\x15\x20>\
-    \n\x0f\n\x08\x04\x01\x02\0\x08\xe7\x07\0\x12\x03\x15!=\n\x10\n\t\x04\x01\
-    \x02\0\x08\xe7\x07\0\x02\x12\x03\x15!5\n\x11\n\n\x04\x01\x02\0\x08\xe7\
-    \x07\0\x02\0\x12\x03\x15!5\n\x12\n\x0b\x04\x01\x02\0\x08\xe7\x07\0\x02\0\
-    \x01\x12\x03\x15\"4\n\x10\n\t\x04\x01\x02\0\x08\xe7\x07\0\x03\x12\x03\
-    \x158=\n\x0b\n\x04\x04\x01\x02\x01\x12\x03\x16\x08?\n\x0c\n\x05\x04\x01\
-    \x02\x01\x04\x12\x03\x16\x08\x10\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\
-    \x16\x11\x17\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x16\x18\x1b\n\x0c\n\
-    \x05\x04\x01\x02\x01\x03\x12\x03\x16\x1e\x1f\n\x0c\n\x05\x04\x01\x02\x01\
-    \x08\x12\x03\x16\x20>\n\x0f\n\x08\x04\x01\x02\x01\x08\xe7\x07\0\x12\x03\
-    \x16!=\n\x10\n\t\x04\x01\x02\x01\x08\xe7\x07\0\x02\x12\x03\x16!5\n\x11\n\
-    \n\x04\x01\x02\x01\x08\xe7\x07\0\x02\0\x12\x03\x16!5\n\x12\n\x0b\x04\x01\
+    sg\x18\x02\x20\x01(\tR\x03msgB\x04\xc8\xde\x1f\0\"\xa0\x03\n\x0eSelectRe\
+    sponse\x12!\n\x05error\x18\x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\
+    \x12\x1d\n\x04rows\x18\x02\x20\x03(\x0b2\t.tipb.RowR\x04rows\x12)\n\x06c\
+    hunks\x18\x03\x20\x03(\x0b2\x0b.tipb.ChunkR\x06chunksB\x04\xc8\xde\x1f\0\
+    \x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.ErrorR\x08warnings\
+    \x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\x12#\n\rwar\
+    ning_count\x18\x06\x20\x01(\x03R\x0cwarningCount\x12]\n\x0erow_batch_dat\
+    a\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xc8\xde\x1f\0\xda\xde\x1f/gith\
+    ub.com/pingcap/tipb/sharedbytes.SharedBytes\x12O\n\x13execution_summarie\
+    s\x18\x08\x20\x03(\x0b2\x1e.tipb.ExecutorExecutionSummaryR\x12executionS\
+    ummaries\"\x8f\x01\n\x05Chunk\x12T\n\trows_data\x18\x03\x20\x01(\x0cR\
+    \x08rowsDataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedByt\
+    es\xc8\xde\x1f\0\x120\n\trows_meta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\
+    \x08rowsMetaB\x04\xc8\xde\x1f\0\"E\n\x07RowMeta\x12\x1c\n\x06handle\x18\
+    \x01\x20\x01(\x03R\x06handleB\x04\xc8\xde\x1f\0\x12\x1c\n\x06length\x18\
+    \x02\x20\x01(\x03R\x06lengthB\x04\xc8\xde\x1f\0\"\xac\x03\n\nDAGRequest\
+    \x12\x1f\n\x08start_ts\x18\x01\x20\x01(\x04R\x07startTsB\x04\xc8\xde\x1f\
+    \0\x12,\n\texecutors\x18\x02\x20\x03(\x0b2\x0e.tipb.ExecutorR\texecutors\
+    \x12.\n\x10time_zone_offset\x18\x03\x20\x01(\x03R\x0etimeZoneOffsetB\x04\
+    \xc8\xde\x1f\0\x12\x1a\n\x05flags\x18\x04\x20\x01(\x04R\x05flagsB\x04\
+    \xc8\xde\x1f\0\x12%\n\x0eoutput_offsets\x18\x05\x20\x03(\rR\routputOffse\
+    ts\x120\n\x14collect_range_counts\x18\x06\x20\x01(\x08R\x12collectRangeC\
+    ounts\x12*\n\x11max_warning_count\x18\x07\x20\x01(\x04R\x0fmaxWarningCou\
+    nt\x127\n\x0bencode_type\x18\x08\x20\x01(\x0e2\x10.tipb.EncodeTypeR\nenc\
+    odeTypeB\x04\xc8\xde\x1f\0\x12\x19\n\x08sql_mode\x18\t\x20\x01(\x04R\x07\
+    sqlMode\x12*\n\x0etime_zone_name\x18\x0b\x20\x01(\tR\x0ctimeZoneNameB\
+    \x04\xc8\xde\x1f\0\"\xf3\x01\n\x0eStreamResponse\x12!\n\x05error\x18\x01\
+    \x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x12K\n\x04data\x18\x03\x20\x01(\
+    \x0cR\x04dataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedBy\
+    tes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.Erro\
+    rR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCoun\
+    ts\x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwarningCount*,\n\nEnco\
+    deType\x12\x0f\n\x0bTypeDefault\x10\0\x12\r\n\tTypeArrow\x10\x01B%\n\x15\
+    com.pingcap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\
+    \x01J\xda/\n\x06\x12\x04\0\0t\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\
+    \n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\
+    \x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\
+    \x04\x07\x1a\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\x04\x07\x1a\n\x0e\n\
+    \x07\x08\xe7\x07\0\x02\0\x01\x12\x03\x04\x07\x1a\n\x0c\n\x05\x08\xe7\x07\
+    \0\x03\x12\x03\x04\x1d!\n\x08\n\x01\x08\x12\x03\x05\0.\n\x0b\n\x04\x08\
+    \xe7\x07\x01\x12\x03\x05\0.\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03\x05\
+    \x07\x13\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03\x05\x07\x13\n\x0e\n\x07\
+    \x08\xe7\x07\x01\x02\0\x01\x12\x03\x05\x07\x13\n\x0c\n\x05\x08\xe7\x07\
+    \x01\x07\x12\x03\x05\x16-\n\t\n\x02\x03\0\x12\x03\x07\x07\x17\n\t\n\x02\
+    \x03\x01\x12\x03\x08\x07\x1d\n\x08\n\x01\x08\x12\x03\n\0(\n\x0b\n\x04\
+    \x08\xe7\x07\x02\x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x03\n\
+    \x07\x20\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x03\n\x07\x20\n\x0e\n\x07\
+    \x08\xe7\x07\x02\x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\xe7\x07\x02\
+    \x03\x12\x03\n#'\n\x08\n\x01\x08\x12\x03\x0b\0$\n\x0b\n\x04\x08\xe7\x07\
+    \x03\x12\x03\x0b\0$\n\x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03\x0b\x07\x1c\
+    \n\r\n\x06\x08\xe7\x07\x03\x02\0\x12\x03\x0b\x07\x1c\n\x0e\n\x07\x08\xe7\
+    \x07\x03\x02\0\x01\x12\x03\x0b\x08\x1b\n\x0c\n\x05\x08\xe7\x07\x03\x03\
+    \x12\x03\x0b\x1f#\n\x08\n\x01\x08\x12\x03\x0c\0*\n\x0b\n\x04\x08\xe7\x07\
+    \x04\x12\x03\x0c\0*\n\x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03\x0c\x07\"\n\
+    \r\n\x06\x08\xe7\x07\x04\x02\0\x12\x03\x0c\x07\"\n\x0e\n\x07\x08\xe7\x07\
+    \x04\x02\0\x01\x12\x03\x0c\x08!\n\x0c\n\x05\x08\xe7\x07\x04\x03\x12\x03\
+    \x0c%)\n,\n\x02\x04\0\x12\x04\x0f\0\x12\x01\x1a\x20\x20values\x20are\x20\
+    all\x20in\x20text\x20format.\n\n\n\n\x03\x04\0\x01\x12\x03\x0f\x08\x0b\n\
+    \x0b\n\x04\x04\0\x02\0\x12\x03\x10\x08\"\n\x0c\n\x05\x04\0\x02\0\x04\x12\
+    \x03\x10\x08\x10\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03\x10\x11\x16\n\x0c\n\
+    \x05\x04\0\x02\0\x01\x12\x03\x10\x17\x1d\n\x0c\n\x05\x04\0\x02\0\x03\x12\
+    \x03\x10\x20!\n\x0b\n\x04\x04\0\x02\x01\x12\x03\x11\x08\x20\n\x0c\n\x05\
+    \x04\0\x02\x01\x04\x12\x03\x11\x08\x10\n\x0c\n\x05\x04\0\x02\x01\x05\x12\
+    \x03\x11\x11\x16\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x11\x17\x1b\n\x0c\
+    \n\x05\x04\0\x02\x01\x03\x12\x03\x11\x1e\x1f\n\n\n\x02\x04\x01\x12\x04\
+    \x14\0\x17\x01\n\n\n\x03\x04\x01\x01\x12\x03\x14\x08\r\n\x0b\n\x04\x04\
+    \x01\x02\0\x12\x03\x15\x08?\n\x0c\n\x05\x04\x01\x02\0\x04\x12\x03\x15\
+    \x08\x10\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03\x15\x11\x16\n\x0c\n\x05\
+    \x04\x01\x02\0\x01\x12\x03\x15\x17\x1b\n\x0c\n\x05\x04\x01\x02\0\x03\x12\
+    \x03\x15\x1e\x1f\n\x0c\n\x05\x04\x01\x02\0\x08\x12\x03\x15\x20>\n\x0f\n\
+    \x08\x04\x01\x02\0\x08\xe7\x07\0\x12\x03\x15!=\n\x10\n\t\x04\x01\x02\0\
+    \x08\xe7\x07\0\x02\x12\x03\x15!5\n\x11\n\n\x04\x01\x02\0\x08\xe7\x07\0\
+    \x02\0\x12\x03\x15!5\n\x12\n\x0b\x04\x01\x02\0\x08\xe7\x07\0\x02\0\x01\
+    \x12\x03\x15\"4\n\x10\n\t\x04\x01\x02\0\x08\xe7\x07\0\x03\x12\x03\x158=\
+    \n\x0b\n\x04\x04\x01\x02\x01\x12\x03\x16\x08?\n\x0c\n\x05\x04\x01\x02\
+    \x01\x04\x12\x03\x16\x08\x10\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x16\
+    \x11\x17\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x16\x18\x1b\n\x0c\n\x05\
+    \x04\x01\x02\x01\x03\x12\x03\x16\x1e\x1f\n\x0c\n\x05\x04\x01\x02\x01\x08\
+    \x12\x03\x16\x20>\n\x0f\n\x08\x04\x01\x02\x01\x08\xe7\x07\0\x12\x03\x16!\
+    =\n\x10\n\t\x04\x01\x02\x01\x08\xe7\x07\0\x02\x12\x03\x16!5\n\x11\n\n\
+    \x04\x01\x02\x01\x08\xe7\x07\0\x02\0\x12\x03\x16!5\n\x12\n\x0b\x04\x01\
     \x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x03\x16\"4\n\x10\n\t\x04\x01\x02\
-    \x01\x08\xe7\x07\0\x03\x12\x03\x168=\n>\n\x02\x04\x02\x12\x04\x1a\0\x20\
-    \x01\x1a2\x20Chunk\x20contains\x20multiple\x20rows\x20data\x20and\x20row\
-    s\x20meta.\n\n\n\n\x03\x04\x02\x01\x12\x03\x1a\x08\r\n/\n\x04\x04\x02\
-    \x02\0\x12\x04\x1c\x08\x90\x01\x1a!\x20Data\x20for\x20all\x20rows\x20in\
-    \x20the\x20chunk.\n\n\x0c\n\x05\x04\x02\x02\0\x04\x12\x03\x1c\x08\x10\n\
-    \x0c\n\x05\x04\x02\x02\0\x05\x12\x03\x1c\x11\x16\n\x0c\n\x05\x04\x02\x02\
-    \0\x01\x12\x03\x1c\x17\x20\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03\x1c#$\n\
-    \r\n\x05\x04\x02\x02\0\x08\x12\x04\x1c%\x8f\x01\n\x0f\n\x08\x04\x02\x02\
-    \0\x08\xe7\x07\0\x12\x03\x1c&p\n\x10\n\t\x04\x02\x02\0\x08\xe7\x07\0\x02\
-    \x12\x03\x1c&<\n\x11\n\n\x04\x02\x02\0\x08\xe7\x07\0\x02\0\x12\x03\x1c&<\
-    \n\x12\n\x0b\x04\x02\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03\x1c';\n\x10\n\
-    \t\x04\x02\x02\0\x08\xe7\x07\0\x07\x12\x03\x1c?p\n\x10\n\x08\x04\x02\x02\
-    \0\x08\xe7\x07\x01\x12\x04\x1cr\x8e\x01\n\x11\n\t\x04\x02\x02\0\x08\xe7\
-    \x07\x01\x02\x12\x04\x1cr\x86\x01\n\x12\n\n\x04\x02\x02\0\x08\xe7\x07\
-    \x01\x02\0\x12\x04\x1cr\x86\x01\n\x13\n\x0b\x04\x02\x02\0\x08\xe7\x07\
-    \x01\x02\0\x01\x12\x04\x1cs\x85\x01\n\x12\n\t\x04\x02\x02\0\x08\xe7\x07\
-    \x01\x03\x12\x05\x1c\x89\x01\x8e\x01\n'\n\x04\x04\x02\x02\x01\x12\x03\
-    \x1f\x08F\x1a\x1a\x20Meta\x20data\x20for\x20every\x20row.\n\n\x0c\n\x05\
-    \x04\x02\x02\x01\x04\x12\x03\x1f\x08\x10\n\x0c\n\x05\x04\x02\x02\x01\x06\
-    \x12\x03\x1f\x11\x18\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x03\x1f\x19\"\n\
-    \x0c\n\x05\x04\x02\x02\x01\x03\x12\x03\x1f%&\n\x0c\n\x05\x04\x02\x02\x01\
-    \x08\x12\x03\x1f'E\n\x0f\n\x08\x04\x02\x02\x01\x08\xe7\x07\0\x12\x03\x1f\
-    (D\n\x10\n\t\x04\x02\x02\x01\x08\xe7\x07\0\x02\x12\x03\x1f(<\n\x11\n\n\
-    \x04\x02\x02\x01\x08\xe7\x07\0\x02\0\x12\x03\x1f(<\n\x12\n\x0b\x04\x02\
-    \x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x03\x1f);\n\x10\n\t\x04\x02\x02\x01\
-    \x08\xe7\x07\0\x03\x12\x03\x1f?D\n>\n\x02\x04\x03\x12\x04#\0&\x01\x1a2\
-    \x20RowMeta\x20contains\x20row\x20handle\x20and\x20length\x20of\x20a\x20\
-    row.\n\n\n\n\x03\x04\x03\x01\x12\x03#\x08\x0f\n\x0b\n\x04\x04\x03\x02\0\
-    \x12\x03$\x08A\n\x0c\n\x05\x04\x03\x02\0\x04\x12\x03$\x08\x10\n\x0c\n\
-    \x05\x04\x03\x02\0\x05\x12\x03$\x11\x16\n\x0c\n\x05\x04\x03\x02\0\x01\
-    \x12\x03$\x17\x1d\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03$\x20!\n\x0c\n\
-    \x05\x04\x03\x02\0\x08\x12\x03$\"@\n\x0f\n\x08\x04\x03\x02\0\x08\xe7\x07\
-    \0\x12\x03$#?\n\x10\n\t\x04\x03\x02\0\x08\xe7\x07\0\x02\x12\x03$#7\n\x11\
-    \n\n\x04\x03\x02\0\x08\xe7\x07\0\x02\0\x12\x03$#7\n\x12\n\x0b\x04\x03\
-    \x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03$$6\n\x10\n\t\x04\x03\x02\0\x08\
-    \xe7\x07\0\x03\x12\x03$:?\n\x0b\n\x04\x04\x03\x02\x01\x12\x03%\x08A\n\
-    \x0c\n\x05\x04\x03\x02\x01\x04\x12\x03%\x08\x10\n\x0c\n\x05\x04\x03\x02\
-    \x01\x05\x12\x03%\x11\x16\n\x0c\n\x05\x04\x03\x02\x01\x01\x12\x03%\x17\
-    \x1d\n\x0c\n\x05\x04\x03\x02\x01\x03\x12\x03%\x20!\n\x0c\n\x05\x04\x03\
-    \x02\x01\x08\x12\x03%\"@\n\x0f\n\x08\x04\x03\x02\x01\x08\xe7\x07\0\x12\
-    \x03%#?\n\x10\n\t\x04\x03\x02\x01\x08\xe7\x07\0\x02\x12\x03%#7\n\x11\n\n\
-    \x04\x03\x02\x01\x08\xe7\x07\0\x02\0\x12\x03%#7\n\x12\n\x0b\x04\x03\x02\
-    \x01\x08\xe7\x07\0\x02\0\x01\x12\x03%$6\n\x10\n\t\x04\x03\x02\x01\x08\
-    \xe7\x07\0\x03\x12\x03%:?\nS\n\x02\x04\x04\x12\x04)\0R\x01\x1aG\x20DAGRe\
-    quest\x20represents\x20the\x20request\x20that\x20will\x20be\x20handled\
-    \x20with\x20DAG\x20mode.\n\n\n\n\x03\x04\x04\x01\x12\x03)\x08\x12\n+\n\
-    \x04\x04\x04\x02\0\x12\x03+\x08D\x1a\x1e\x20Transaction\x20start\x20time\
-    stamp.\n\n\x0c\n\x05\x04\x04\x02\0\x04\x12\x03+\x08\x10\n\x0c\n\x05\x04\
-    \x04\x02\0\x05\x12\x03+\x11\x17\n\x0c\n\x05\x04\x04\x02\0\x01\x12\x03+\
-    \x18\x20\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03+#$\n\x0c\n\x05\x04\x04\
-    \x02\0\x08\x12\x03+%C\n\x0f\n\x08\x04\x04\x02\0\x08\xe7\x07\0\x12\x03+&B\
-    \n\x10\n\t\x04\x04\x02\0\x08\xe7\x07\0\x02\x12\x03+&:\n\x11\n\n\x04\x04\
-    \x02\0\x08\xe7\x07\0\x02\0\x12\x03+&:\n\x12\n\x0b\x04\x04\x02\0\x08\xe7\
-    \x07\0\x02\0\x01\x12\x03+'9\n\x10\n\t\x04\x04\x02\0\x08\xe7\x07\0\x03\
-    \x12\x03+=B\n1\n\x04\x04\x04\x02\x01\x12\x03.\x08(\x1a$\x20It\x20represe\
-    nts\x20push\x20down\x20Executors.\n\n\x0c\n\x05\x04\x04\x02\x01\x04\x12\
-    \x03.\x08\x10\n\x0c\n\x05\x04\x04\x02\x01\x06\x12\x03.\x11\x19\n\x0c\n\
-    \x05\x04\x04\x02\x01\x01\x12\x03.\x1a#\n\x0c\n\x05\x04\x04\x02\x01\x03\
-    \x12\x03.&'\n*\n\x04\x04\x04\x02\x02\x12\x031\x08K\x1a\x1d\x20time\x20zo\
-    ne\x20offset\x20in\x20seconds\n\n\x0c\n\x05\x04\x04\x02\x02\x04\x12\x031\
-    \x08\x10\n\x0c\n\x05\x04\x04\x02\x02\x05\x12\x031\x11\x16\n\x0c\n\x05\
-    \x04\x04\x02\x02\x01\x12\x031\x17'\n\x0c\n\x05\x04\x04\x02\x02\x03\x12\
-    \x031*+\n\x0c\n\x05\x04\x04\x02\x02\x08\x12\x031,J\n\x0f\n\x08\x04\x04\
-    \x02\x02\x08\xe7\x07\0\x12\x031-I\n\x10\n\t\x04\x04\x02\x02\x08\xe7\x07\
-    \0\x02\x12\x031-A\n\x11\n\n\x04\x04\x02\x02\x08\xe7\x07\0\x02\0\x12\x031\
-    -A\n\x12\n\x0b\x04\x04\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x031.@\n\x10\
-    \n\t\x04\x04\x02\x02\x08\xe7\x07\0\x03\x12\x031DI\n\xac\x02\n\x04\x04\
-    \x04\x02\x03\x12\x03:\x08A\x1a\x9e\x02\x20flags\x20are\x20used\x20to\x20\
+    \x01\x08\xe7\x07\0\x03\x12\x03\x168=\n)\n\x02\x04\x02\x12\x04\x1a\0*\x01\
+    \x1a\x1d\x20Response\x20for\x20SelectRequest.\n\n\n\n\x03\x04\x02\x01\
+    \x12\x03\x1a\x08\x16\n\x0b\n\x04\x04\x02\x02\0\x12\x03\x1b\x08!\n\x0c\n\
+    \x05\x04\x02\x02\0\x04\x12\x03\x1b\x08\x10\n\x0c\n\x05\x04\x02\x02\0\x06\
+    \x12\x03\x1b\x11\x16\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03\x1b\x17\x1c\n\
+    \x0c\n\x05\x04\x02\x02\0\x03\x12\x03\x1b\x1f\x20\n\x1b\n\x04\x04\x02\x02\
+    \x01\x12\x03\x1e\x08\x1e\x1a\x0e\x20Result\x20rows.\n\n\x0c\n\x05\x04\
+    \x02\x02\x01\x04\x12\x03\x1e\x08\x10\n\x0c\n\x05\x04\x02\x02\x01\x06\x12\
+    \x03\x1e\x11\x14\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x03\x1e\x15\x19\n\
+    \x0c\n\x05\x04\x02\x02\x01\x03\x12\x03\x1e\x1c\x1d\nm\n\x04\x04\x02\x02\
+    \x02\x12\x03\"\x08A\x1a`\x20Use\x20multiple\x20chunks\x20to\x20reduce\
+    \x20memory\x20allocation\x20and\n\x20avoid\x20allocating\x20large\x20con\
+    tiguous\x20memory.\n\n\x0c\n\x05\x04\x02\x02\x02\x04\x12\x03\"\x08\x10\n\
+    \x0c\n\x05\x04\x02\x02\x02\x06\x12\x03\"\x11\x16\n\x0c\n\x05\x04\x02\x02\
+    \x02\x01\x12\x03\"\x17\x1d\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x03\"\x20\
+    !\n\x0c\n\x05\x04\x02\x02\x02\x08\x12\x03\"\"@\n\x0f\n\x08\x04\x02\x02\
+    \x02\x08\xe7\x07\0\x12\x03\"#?\n\x10\n\t\x04\x02\x02\x02\x08\xe7\x07\0\
+    \x02\x12\x03\"#7\n\x11\n\n\x04\x02\x02\x02\x08\xe7\x07\0\x02\0\x12\x03\"\
+    #7\n\x12\n\x0b\x04\x02\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x03\"$6\n\x10\
+    \n\t\x04\x02\x02\x02\x08\xe7\x07\0\x03\x12\x03\":?\n\x0b\n\x04\x04\x02\
+    \x02\x03\x12\x03#\x08$\n\x0c\n\x05\x04\x02\x02\x03\x04\x12\x03#\x08\x10\
+    \n\x0c\n\x05\x04\x02\x02\x03\x06\x12\x03#\x11\x16\n\x0c\n\x05\x04\x02\
+    \x02\x03\x01\x12\x03#\x17\x1f\n\x0c\n\x05\x04\x02\x02\x03\x03\x12\x03#\"\
+    #\n\x0b\n\x04\x04\x02\x02\x04\x12\x03$\x08)\n\x0c\n\x05\x04\x02\x02\x04\
+    \x04\x12\x03$\x08\x10\n\x0c\n\x05\x04\x02\x02\x04\x05\x12\x03$\x11\x16\n\
+    \x0c\n\x05\x04\x02\x02\x04\x01\x12\x03$\x17$\n\x0c\n\x05\x04\x02\x02\x04\
+    \x03\x12\x03$'(\n\x0b\n\x04\x04\x02\x02\x05\x12\x03%\x08)\n\x0c\n\x05\
+    \x04\x02\x02\x05\x04\x12\x03%\x08\x10\n\x0c\n\x05\x04\x02\x02\x05\x05\
+    \x12\x03%\x11\x16\n\x0c\n\x05\x04\x02\x02\x05\x01\x12\x03%\x17$\n\x0c\n\
+    \x05\x04\x02\x02\x05\x03\x12\x03%'(\n\x0c\n\x04\x04\x02\x02\x06\x12\x04&\
+    \x08\x95\x01\n\x0c\n\x05\x04\x02\x02\x06\x04\x12\x03&\x08\x10\n\x0c\n\
+    \x05\x04\x02\x02\x06\x05\x12\x03&\x11\x16\n\x0c\n\x05\x04\x02\x02\x06\
+    \x01\x12\x03&\x17%\n\x0c\n\x05\x04\x02\x02\x06\x03\x12\x03&()\n\r\n\x05\
+    \x04\x02\x02\x06\x08\x12\x04&*\x94\x01\n\x0f\n\x08\x04\x02\x02\x06\x08\
+    \xe7\x07\0\x12\x03&+u\n\x10\n\t\x04\x02\x02\x06\x08\xe7\x07\0\x02\x12\
+    \x03&+A\n\x11\n\n\x04\x02\x02\x06\x08\xe7\x07\0\x02\0\x12\x03&+A\n\x12\n\
+    \x0b\x04\x02\x02\x06\x08\xe7\x07\0\x02\0\x01\x12\x03&,@\n\x10\n\t\x04\
+    \x02\x02\x06\x08\xe7\x07\0\x07\x12\x03&Du\n\x10\n\x08\x04\x02\x02\x06\
+    \x08\xe7\x07\x01\x12\x04&w\x93\x01\n\x11\n\t\x04\x02\x02\x06\x08\xe7\x07\
+    \x01\x02\x12\x04&w\x8b\x01\n\x12\n\n\x04\x02\x02\x06\x08\xe7\x07\x01\x02\
+    \0\x12\x04&w\x8b\x01\n\x13\n\x0b\x04\x02\x02\x06\x08\xe7\x07\x01\x02\0\
+    \x01\x12\x04&x\x8a\x01\n\x12\n\t\x04\x02\x02\x06\x08\xe7\x07\x01\x03\x12\
+    \x05&\x8e\x01\x93\x01\nO\n\x04\x04\x02\x02\x07\x12\x03)\x08B\x1aB\x20The\
+    \x20execution\x20summary\x20of\x20each\x20executor,\x20in\x20the\x20orde\
+    r\x20in\x20request.\n\n\x0c\n\x05\x04\x02\x02\x07\x04\x12\x03)\x08\x10\n\
+    \x0c\n\x05\x04\x02\x02\x07\x06\x12\x03)\x11)\n\x0c\n\x05\x04\x02\x02\x07\
+    \x01\x12\x03)*=\n\x0c\n\x05\x04\x02\x02\x07\x03\x12\x03)@A\n>\n\x02\x04\
+    \x03\x12\x04-\03\x01\x1a2\x20Chunk\x20contains\x20multiple\x20rows\x20da\
+    ta\x20and\x20rows\x20meta.\n\n\n\n\x03\x04\x03\x01\x12\x03-\x08\r\n/\n\
+    \x04\x04\x03\x02\0\x12\x04/\x08\x90\x01\x1a!\x20Data\x20for\x20all\x20ro\
+    ws\x20in\x20the\x20chunk.\n\n\x0c\n\x05\x04\x03\x02\0\x04\x12\x03/\x08\
+    \x10\n\x0c\n\x05\x04\x03\x02\0\x05\x12\x03/\x11\x16\n\x0c\n\x05\x04\x03\
+    \x02\0\x01\x12\x03/\x17\x20\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03/#$\n\r\
+    \n\x05\x04\x03\x02\0\x08\x12\x04/%\x8f\x01\n\x0f\n\x08\x04\x03\x02\0\x08\
+    \xe7\x07\0\x12\x03/&p\n\x10\n\t\x04\x03\x02\0\x08\xe7\x07\0\x02\x12\x03/\
+    &<\n\x11\n\n\x04\x03\x02\0\x08\xe7\x07\0\x02\0\x12\x03/&<\n\x12\n\x0b\
+    \x04\x03\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x03/';\n\x10\n\t\x04\x03\x02\
+    \0\x08\xe7\x07\0\x07\x12\x03/?p\n\x10\n\x08\x04\x03\x02\0\x08\xe7\x07\
+    \x01\x12\x04/r\x8e\x01\n\x11\n\t\x04\x03\x02\0\x08\xe7\x07\x01\x02\x12\
+    \x04/r\x86\x01\n\x12\n\n\x04\x03\x02\0\x08\xe7\x07\x01\x02\0\x12\x04/r\
+    \x86\x01\n\x13\n\x0b\x04\x03\x02\0\x08\xe7\x07\x01\x02\0\x01\x12\x04/s\
+    \x85\x01\n\x12\n\t\x04\x03\x02\0\x08\xe7\x07\x01\x03\x12\x05/\x89\x01\
+    \x8e\x01\n'\n\x04\x04\x03\x02\x01\x12\x032\x08F\x1a\x1a\x20Meta\x20data\
+    \x20for\x20every\x20row.\n\n\x0c\n\x05\x04\x03\x02\x01\x04\x12\x032\x08\
+    \x10\n\x0c\n\x05\x04\x03\x02\x01\x06\x12\x032\x11\x18\n\x0c\n\x05\x04\
+    \x03\x02\x01\x01\x12\x032\x19\"\n\x0c\n\x05\x04\x03\x02\x01\x03\x12\x032\
+    %&\n\x0c\n\x05\x04\x03\x02\x01\x08\x12\x032'E\n\x0f\n\x08\x04\x03\x02\
+    \x01\x08\xe7\x07\0\x12\x032(D\n\x10\n\t\x04\x03\x02\x01\x08\xe7\x07\0\
+    \x02\x12\x032(<\n\x11\n\n\x04\x03\x02\x01\x08\xe7\x07\0\x02\0\x12\x032(<\
+    \n\x12\n\x0b\x04\x03\x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x032);\n\x10\n\
+    \t\x04\x03\x02\x01\x08\xe7\x07\0\x03\x12\x032?D\n>\n\x02\x04\x04\x12\x04\
+    6\09\x01\x1a2\x20RowMeta\x20contains\x20row\x20handle\x20and\x20length\
+    \x20of\x20a\x20row.\n\n\n\n\x03\x04\x04\x01\x12\x036\x08\x0f\n\x0b\n\x04\
+    \x04\x04\x02\0\x12\x037\x08A\n\x0c\n\x05\x04\x04\x02\0\x04\x12\x037\x08\
+    \x10\n\x0c\n\x05\x04\x04\x02\0\x05\x12\x037\x11\x16\n\x0c\n\x05\x04\x04\
+    \x02\0\x01\x12\x037\x17\x1d\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x037\x20!\
+    \n\x0c\n\x05\x04\x04\x02\0\x08\x12\x037\"@\n\x0f\n\x08\x04\x04\x02\0\x08\
+    \xe7\x07\0\x12\x037#?\n\x10\n\t\x04\x04\x02\0\x08\xe7\x07\0\x02\x12\x037\
+    #7\n\x11\n\n\x04\x04\x02\0\x08\xe7\x07\0\x02\0\x12\x037#7\n\x12\n\x0b\
+    \x04\x04\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x037$6\n\x10\n\t\x04\x04\x02\
+    \0\x08\xe7\x07\0\x03\x12\x037:?\n\x0b\n\x04\x04\x04\x02\x01\x12\x038\x08\
+    A\n\x0c\n\x05\x04\x04\x02\x01\x04\x12\x038\x08\x10\n\x0c\n\x05\x04\x04\
+    \x02\x01\x05\x12\x038\x11\x16\n\x0c\n\x05\x04\x04\x02\x01\x01\x12\x038\
+    \x17\x1d\n\x0c\n\x05\x04\x04\x02\x01\x03\x12\x038\x20!\n\x0c\n\x05\x04\
+    \x04\x02\x01\x08\x12\x038\"@\n\x0f\n\x08\x04\x04\x02\x01\x08\xe7\x07\0\
+    \x12\x038#?\n\x10\n\t\x04\x04\x02\x01\x08\xe7\x07\0\x02\x12\x038#7\n\x11\
+    \n\n\x04\x04\x02\x01\x08\xe7\x07\0\x02\0\x12\x038#7\n\x12\n\x0b\x04\x04\
+    \x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x038$6\n\x10\n\t\x04\x04\x02\x01\
+    \x08\xe7\x07\0\x03\x12\x038:?\nS\n\x02\x04\x05\x12\x04<\0e\x01\x1aG\x20D\
+    AGRequest\x20represents\x20the\x20request\x20that\x20will\x20be\x20handl\
+    ed\x20with\x20DAG\x20mode.\n\n\n\n\x03\x04\x05\x01\x12\x03<\x08\x12\n+\n\
+    \x04\x04\x05\x02\0\x12\x03>\x08D\x1a\x1e\x20Transaction\x20start\x20time\
+    stamp.\n\n\x0c\n\x05\x04\x05\x02\0\x04\x12\x03>\x08\x10\n\x0c\n\x05\x04\
+    \x05\x02\0\x05\x12\x03>\x11\x17\n\x0c\n\x05\x04\x05\x02\0\x01\x12\x03>\
+    \x18\x20\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03>#$\n\x0c\n\x05\x04\x05\
+    \x02\0\x08\x12\x03>%C\n\x0f\n\x08\x04\x05\x02\0\x08\xe7\x07\0\x12\x03>&B\
+    \n\x10\n\t\x04\x05\x02\0\x08\xe7\x07\0\x02\x12\x03>&:\n\x11\n\n\x04\x05\
+    \x02\0\x08\xe7\x07\0\x02\0\x12\x03>&:\n\x12\n\x0b\x04\x05\x02\0\x08\xe7\
+    \x07\0\x02\0\x01\x12\x03>'9\n\x10\n\t\x04\x05\x02\0\x08\xe7\x07\0\x03\
+    \x12\x03>=B\n1\n\x04\x04\x05\x02\x01\x12\x03A\x08(\x1a$\x20It\x20represe\
+    nts\x20push\x20down\x20Executors.\n\n\x0c\n\x05\x04\x05\x02\x01\x04\x12\
+    \x03A\x08\x10\n\x0c\n\x05\x04\x05\x02\x01\x06\x12\x03A\x11\x19\n\x0c\n\
+    \x05\x04\x05\x02\x01\x01\x12\x03A\x1a#\n\x0c\n\x05\x04\x05\x02\x01\x03\
+    \x12\x03A&'\n*\n\x04\x04\x05\x02\x02\x12\x03D\x08K\x1a\x1d\x20time\x20zo\
+    ne\x20offset\x20in\x20seconds\n\n\x0c\n\x05\x04\x05\x02\x02\x04\x12\x03D\
+    \x08\x10\n\x0c\n\x05\x04\x05\x02\x02\x05\x12\x03D\x11\x16\n\x0c\n\x05\
+    \x04\x05\x02\x02\x01\x12\x03D\x17'\n\x0c\n\x05\x04\x05\x02\x02\x03\x12\
+    \x03D*+\n\x0c\n\x05\x04\x05\x02\x02\x08\x12\x03D,J\n\x0f\n\x08\x04\x05\
+    \x02\x02\x08\xe7\x07\0\x12\x03D-I\n\x10\n\t\x04\x05\x02\x02\x08\xe7\x07\
+    \0\x02\x12\x03D-A\n\x11\n\n\x04\x05\x02\x02\x08\xe7\x07\0\x02\0\x12\x03D\
+    -A\n\x12\n\x0b\x04\x05\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x03D.@\n\x10\
+    \n\t\x04\x05\x02\x02\x08\xe7\x07\0\x03\x12\x03DDI\n\xac\x02\n\x04\x04\
+    \x05\x02\x03\x12\x03M\x08A\x1a\x9e\x02\x20flags\x20are\x20used\x20to\x20\
     store\x20flags\x20that\x20change\x20the\x20execution\x20mode,\x20it\x20c\
     ontains:\n\tignore_truncate\x20=\x201\n\t\ttruncate\x20error\x20should\
     \x20be\x20ignore\x20if\x20set.\n\ttruncate_as_warning\x20=\x201\x20<<\
     \x201\n\t\twhen\x20ignored_truncate\x20is\x20not\x20set,\x20return\x20wa\
     rning\x20instead\x20of\x20error\x20if\x20this\x20flag\x20is\x20set.\n\t.\
-    ..\n\tadd\x20more\x20when\x20needed.\n\n\x0c\n\x05\x04\x04\x02\x03\x04\
-    \x12\x03:\x08\x10\n\x0c\n\x05\x04\x04\x02\x03\x05\x12\x03:\x11\x17\n\x0c\
-    \n\x05\x04\x04\x02\x03\x01\x12\x03:\x18\x1d\n\x0c\n\x05\x04\x04\x02\x03\
-    \x03\x12\x03:\x20!\n\x0c\n\x05\x04\x04\x02\x03\x08\x12\x03:\"@\n\x0f\n\
-    \x08\x04\x04\x02\x03\x08\xe7\x07\0\x12\x03:#?\n\x10\n\t\x04\x04\x02\x03\
-    \x08\xe7\x07\0\x02\x12\x03:#7\n\x11\n\n\x04\x04\x02\x03\x08\xe7\x07\0\
-    \x02\0\x12\x03:#7\n\x12\n\x0b\x04\x04\x02\x03\x08\xe7\x07\0\x02\0\x01\
-    \x12\x03:$6\n\x10\n\t\x04\x04\x02\x03\x08\xe7\x07\0\x03\x12\x03::?\n<\n\
-    \x04\x04\x04\x02\x04\x12\x03=\x08+\x1a/\x20It\x20represents\x20which\x20\
-    columns\x20we\x20should\x20output.\n\n\x0c\n\x05\x04\x04\x02\x04\x04\x12\
-    \x03=\x08\x10\n\x0c\n\x05\x04\x04\x02\x04\x05\x12\x03=\x11\x17\n\x0c\n\
-    \x05\x04\x04\x02\x04\x01\x12\x03=\x18&\n\x0c\n\x05\x04\x04\x02\x04\x03\
-    \x12\x03=)*\nW\n\x04\x04\x04\x02\x05\x12\x03@\x08/\x1aJ\x20It\x20represe\
+    ..\n\tadd\x20more\x20when\x20needed.\n\n\x0c\n\x05\x04\x05\x02\x03\x04\
+    \x12\x03M\x08\x10\n\x0c\n\x05\x04\x05\x02\x03\x05\x12\x03M\x11\x17\n\x0c\
+    \n\x05\x04\x05\x02\x03\x01\x12\x03M\x18\x1d\n\x0c\n\x05\x04\x05\x02\x03\
+    \x03\x12\x03M\x20!\n\x0c\n\x05\x04\x05\x02\x03\x08\x12\x03M\"@\n\x0f\n\
+    \x08\x04\x05\x02\x03\x08\xe7\x07\0\x12\x03M#?\n\x10\n\t\x04\x05\x02\x03\
+    \x08\xe7\x07\0\x02\x12\x03M#7\n\x11\n\n\x04\x05\x02\x03\x08\xe7\x07\0\
+    \x02\0\x12\x03M#7\n\x12\n\x0b\x04\x05\x02\x03\x08\xe7\x07\0\x02\0\x01\
+    \x12\x03M$6\n\x10\n\t\x04\x05\x02\x03\x08\xe7\x07\0\x03\x12\x03M:?\n<\n\
+    \x04\x04\x05\x02\x04\x12\x03P\x08+\x1a/\x20It\x20represents\x20which\x20\
+    columns\x20we\x20should\x20output.\n\n\x0c\n\x05\x04\x05\x02\x04\x04\x12\
+    \x03P\x08\x10\n\x0c\n\x05\x04\x05\x02\x04\x05\x12\x03P\x11\x17\n\x0c\n\
+    \x05\x04\x05\x02\x04\x01\x12\x03P\x18&\n\x0c\n\x05\x04\x05\x02\x04\x03\
+    \x12\x03P)*\nW\n\x04\x04\x05\x02\x05\x12\x03S\x08/\x1aJ\x20It\x20represe\
     nts\x20whether\x20we\x20collect\x20the\x20detailed\x20scan\x20counts\x20\
-    in\x20each\x20range.\n\n\x0c\n\x05\x04\x04\x02\x05\x04\x12\x03@\x08\x10\
-    \n\x0c\n\x05\x04\x04\x02\x05\x05\x12\x03@\x11\x15\n\x0c\n\x05\x04\x04\
-    \x02\x05\x01\x12\x03@\x16*\n\x0c\n\x05\x04\x04\x02\x05\x03\x12\x03@-.\nx\
-    \n\x04\x04\x04\x02\x06\x12\x03D\x08.\x1ak\x20It\x20indicates\x20the\x20m\
+    in\x20each\x20range.\n\n\x0c\n\x05\x04\x05\x02\x05\x04\x12\x03S\x08\x10\
+    \n\x0c\n\x05\x04\x05\x02\x05\x05\x12\x03S\x11\x15\n\x0c\n\x05\x04\x05\
+    \x02\x05\x01\x12\x03S\x16*\n\x0c\n\x05\x04\x05\x02\x05\x03\x12\x03S-.\nx\
+    \n\x04\x04\x05\x02\x06\x12\x03W\x08.\x1ak\x20It\x20indicates\x20the\x20m\
     aximum\x20number\x20of\x20warning,\n\x20which\x20is\x20the\x20number\x20\
     of\x20messages\x20that\x20SHOW\x20WARNINGS\x20displays.\n\n\x0c\n\x05\
-    \x04\x04\x02\x06\x04\x12\x03D\x08\x10\n\x0c\n\x05\x04\x04\x02\x06\x05\
-    \x12\x03D\x11\x17\n\x0c\n\x05\x04\x04\x02\x06\x01\x12\x03D\x18)\n\x0c\n\
-    \x05\x04\x04\x02\x06\x03\x12\x03D,-\n8\n\x04\x04\x04\x02\x07\x12\x03G\
+    \x04\x05\x02\x06\x04\x12\x03W\x08\x10\n\x0c\n\x05\x04\x05\x02\x06\x05\
+    \x12\x03W\x11\x17\n\x0c\n\x05\x04\x05\x02\x06\x01\x12\x03W\x18)\n\x0c\n\
+    \x05\x04\x05\x02\x06\x03\x12\x03W,-\n8\n\x04\x04\x05\x02\x07\x12\x03Z\
     \x08K\x1a+\x20It\x20indicates\x20the\x20encode\x20type\x20of\x20response\
-    .\n\n\x0c\n\x05\x04\x04\x02\x07\x04\x12\x03G\x08\x10\n\x0c\n\x05\x04\x04\
-    \x02\x07\x06\x12\x03G\x11\x1b\n\x0c\n\x05\x04\x04\x02\x07\x01\x12\x03G\
-    \x1c'\n\x0c\n\x05\x04\x04\x02\x07\x03\x12\x03G*+\n\x0c\n\x05\x04\x04\x02\
-    \x07\x08\x12\x03G,J\n\x0f\n\x08\x04\x04\x02\x07\x08\xe7\x07\0\x12\x03G-I\
-    \n\x10\n\t\x04\x04\x02\x07\x08\xe7\x07\0\x02\x12\x03G-A\n\x11\n\n\x04\
-    \x04\x02\x07\x08\xe7\x07\0\x02\0\x12\x03G-A\n\x12\n\x0b\x04\x04\x02\x07\
-    \x08\xe7\x07\0\x02\0\x01\x12\x03G.@\n\x10\n\t\x04\x04\x02\x07\x08\xe7\
-    \x07\0\x03\x12\x03GDI\n)\n\x04\x04\x04\x02\x08\x12\x03J\x08%\x1a\x1c\x20\
-    It\x20indicates\x20the\x20sql_mode.\n\n\x0c\n\x05\x04\x04\x02\x08\x04\
-    \x12\x03J\x08\x10\n\x0c\n\x05\x04\x04\x02\x08\x05\x12\x03J\x11\x17\n\x0c\
-    \n\x05\x04\x04\x02\x08\x01\x12\x03J\x18\x20\n\x0c\n\x05\x04\x04\x02\x08\
-    \x03\x12\x03J#$\n\xd5\x01\n\x04\x04\x04\x02\t\x12\x03Q\x08K\x1aX\x20supp\
+    .\n\n\x0c\n\x05\x04\x05\x02\x07\x04\x12\x03Z\x08\x10\n\x0c\n\x05\x04\x05\
+    \x02\x07\x06\x12\x03Z\x11\x1b\n\x0c\n\x05\x04\x05\x02\x07\x01\x12\x03Z\
+    \x1c'\n\x0c\n\x05\x04\x05\x02\x07\x03\x12\x03Z*+\n\x0c\n\x05\x04\x05\x02\
+    \x07\x08\x12\x03Z,J\n\x0f\n\x08\x04\x05\x02\x07\x08\xe7\x07\0\x12\x03Z-I\
+    \n\x10\n\t\x04\x05\x02\x07\x08\xe7\x07\0\x02\x12\x03Z-A\n\x11\n\n\x04\
+    \x05\x02\x07\x08\xe7\x07\0\x02\0\x12\x03Z-A\n\x12\n\x0b\x04\x05\x02\x07\
+    \x08\xe7\x07\0\x02\0\x01\x12\x03Z.@\n\x10\n\t\x04\x05\x02\x07\x08\xe7\
+    \x07\0\x03\x12\x03ZDI\n)\n\x04\x04\x05\x02\x08\x12\x03]\x08%\x1a\x1c\x20\
+    It\x20indicates\x20the\x20sql_mode.\n\n\x0c\n\x05\x04\x05\x02\x08\x04\
+    \x12\x03]\x08\x10\n\x0c\n\x05\x04\x05\x02\x08\x05\x12\x03]\x11\x17\n\x0c\
+    \n\x05\x04\x05\x02\x08\x01\x12\x03]\x18\x20\n\x0c\n\x05\x04\x05\x02\x08\
+    \x03\x12\x03]#$\n\xd5\x01\n\x04\x04\x05\x02\t\x12\x03d\x08K\x1aX\x20supp\
     ly\x20offset\x20is\x20not\x20enough\x20since\x20we\x20have\x20daylight\
     \x20saving\x20time\x20present\x20in\x20some\x20regions\n2n\x20It\x20indi\
     cates\x20whether\x20the\x20sql\x20mode\x20is\x20strict.\n\x20Deprecated.\
     \x20Don't\x20use.\n\x20optional\x20bool\x20is_strict_sql_mode\x20=\x2010\
-    ;\n\n\x0c\n\x05\x04\x04\x02\t\x04\x12\x03Q\x08\x10\n\x0c\n\x05\x04\x04\
-    \x02\t\x05\x12\x03Q\x11\x17\n\x0c\n\x05\x04\x04\x02\t\x01\x12\x03Q\x18&\
-    \n\x0c\n\x05\x04\x04\x02\t\x03\x12\x03Q)+\n\x0c\n\x05\x04\x04\x02\t\x08\
-    \x12\x03Q,J\n\x0f\n\x08\x04\x04\x02\t\x08\xe7\x07\0\x12\x03Q-I\n\x10\n\t\
-    \x04\x04\x02\t\x08\xe7\x07\0\x02\x12\x03Q-A\n\x11\n\n\x04\x04\x02\t\x08\
-    \xe7\x07\0\x02\0\x12\x03Q-A\n\x12\n\x0b\x04\x04\x02\t\x08\xe7\x07\0\x02\
-    \0\x01\x12\x03Q.@\n\x10\n\t\x04\x04\x02\t\x08\xe7\x07\0\x03\x12\x03QDI\n\
-    &\n\x02\x04\x05\x12\x04U\0e\x01\x1a\x1a\x20Response\x20for\x20DAGRequest\
-    .\n\n\n\n\x03\x04\x05\x01\x12\x03U\x08\x13\n\x0b\n\x04\x04\x05\x02\0\x12\
-    \x03V\x08!\n\x0c\n\x05\x04\x05\x02\0\x04\x12\x03V\x08\x10\n\x0c\n\x05\
-    \x04\x05\x02\0\x06\x12\x03V\x11\x16\n\x0c\n\x05\x04\x05\x02\0\x01\x12\
-    \x03V\x17\x1c\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03V\x1f\x20\n\x1b\n\x04\
-    \x04\x05\x02\x01\x12\x03Y\x08\x1e\x1a\x0e\x20Result\x20rows.\n\n\x0c\n\
-    \x05\x04\x05\x02\x01\x04\x12\x03Y\x08\x10\n\x0c\n\x05\x04\x05\x02\x01\
-    \x06\x12\x03Y\x11\x14\n\x0c\n\x05\x04\x05\x02\x01\x01\x12\x03Y\x15\x19\n\
-    \x0c\n\x05\x04\x05\x02\x01\x03\x12\x03Y\x1c\x1d\nm\n\x04\x04\x05\x02\x02\
-    \x12\x03]\x08A\x1a`\x20Use\x20multiple\x20chunks\x20to\x20reduce\x20memo\
-    ry\x20allocation\x20and\n\x20avoid\x20allocating\x20large\x20contiguous\
-    \x20memory.\n\n\x0c\n\x05\x04\x05\x02\x02\x04\x12\x03]\x08\x10\n\x0c\n\
-    \x05\x04\x05\x02\x02\x06\x12\x03]\x11\x16\n\x0c\n\x05\x04\x05\x02\x02\
-    \x01\x12\x03]\x17\x1d\n\x0c\n\x05\x04\x05\x02\x02\x03\x12\x03]\x20!\n\
-    \x0c\n\x05\x04\x05\x02\x02\x08\x12\x03]\"@\n\x0f\n\x08\x04\x05\x02\x02\
-    \x08\xe7\x07\0\x12\x03]#?\n\x10\n\t\x04\x05\x02\x02\x08\xe7\x07\0\x02\
-    \x12\x03]#7\n\x11\n\n\x04\x05\x02\x02\x08\xe7\x07\0\x02\0\x12\x03]#7\n\
-    \x12\n\x0b\x04\x05\x02\x02\x08\xe7\x07\0\x02\0\x01\x12\x03]$6\n\x10\n\t\
-    \x04\x05\x02\x02\x08\xe7\x07\0\x03\x12\x03]:?\n\x0b\n\x04\x04\x05\x02\
-    \x03\x12\x03^\x08$\n\x0c\n\x05\x04\x05\x02\x03\x04\x12\x03^\x08\x10\n\
-    \x0c\n\x05\x04\x05\x02\x03\x06\x12\x03^\x11\x16\n\x0c\n\x05\x04\x05\x02\
-    \x03\x01\x12\x03^\x17\x1f\n\x0c\n\x05\x04\x05\x02\x03\x03\x12\x03^\"#\n\
-    \x0b\n\x04\x04\x05\x02\x04\x12\x03_\x08)\n\x0c\n\x05\x04\x05\x02\x04\x04\
-    \x12\x03_\x08\x10\n\x0c\n\x05\x04\x05\x02\x04\x05\x12\x03_\x11\x16\n\x0c\
-    \n\x05\x04\x05\x02\x04\x01\x12\x03_\x17$\n\x0c\n\x05\x04\x05\x02\x04\x03\
-    \x12\x03_'(\n\x0b\n\x04\x04\x05\x02\x05\x12\x03`\x08)\n\x0c\n\x05\x04\
-    \x05\x02\x05\x04\x12\x03`\x08\x10\n\x0c\n\x05\x04\x05\x02\x05\x05\x12\
-    \x03`\x11\x16\n\x0c\n\x05\x04\x05\x02\x05\x01\x12\x03`\x17$\n\x0c\n\x05\
-    \x04\x05\x02\x05\x03\x12\x03`'(\n\x0c\n\x04\x04\x05\x02\x06\x12\x04a\x08\
-    \x95\x01\n\x0c\n\x05\x04\x05\x02\x06\x04\x12\x03a\x08\x10\n\x0c\n\x05\
-    \x04\x05\x02\x06\x05\x12\x03a\x11\x16\n\x0c\n\x05\x04\x05\x02\x06\x01\
-    \x12\x03a\x17%\n\x0c\n\x05\x04\x05\x02\x06\x03\x12\x03a()\n\r\n\x05\x04\
-    \x05\x02\x06\x08\x12\x04a*\x94\x01\n\x0f\n\x08\x04\x05\x02\x06\x08\xe7\
-    \x07\0\x12\x03a+u\n\x10\n\t\x04\x05\x02\x06\x08\xe7\x07\0\x02\x12\x03a+A\
-    \n\x11\n\n\x04\x05\x02\x06\x08\xe7\x07\0\x02\0\x12\x03a+A\n\x12\n\x0b\
-    \x04\x05\x02\x06\x08\xe7\x07\0\x02\0\x01\x12\x03a,@\n\x10\n\t\x04\x05\
-    \x02\x06\x08\xe7\x07\0\x07\x12\x03aDu\n\x10\n\x08\x04\x05\x02\x06\x08\
-    \xe7\x07\x01\x12\x04aw\x93\x01\n\x11\n\t\x04\x05\x02\x06\x08\xe7\x07\x01\
-    \x02\x12\x04aw\x8b\x01\n\x12\n\n\x04\x05\x02\x06\x08\xe7\x07\x01\x02\0\
-    \x12\x04aw\x8b\x01\n\x13\n\x0b\x04\x05\x02\x06\x08\xe7\x07\x01\x02\0\x01\
-    \x12\x04ax\x8a\x01\n\x12\n\t\x04\x05\x02\x06\x08\xe7\x07\x01\x03\x12\x05\
-    a\x8e\x01\x93\x01\nO\n\x04\x04\x05\x02\x07\x12\x03d\x08B\x1aB\x20The\x20\
-    execution\x20summary\x20of\x20each\x20executor,\x20in\x20the\x20order\
-    \x20in\x20request.\n\n\x0c\n\x05\x04\x05\x02\x07\x04\x12\x03d\x08\x10\n\
-    \x0c\n\x05\x04\x05\x02\x07\x06\x12\x03d\x11)\n\x0c\n\x05\x04\x05\x02\x07\
-    \x01\x12\x03d*=\n\x0c\n\x05\x04\x05\x02\x07\x03\x12\x03d@A\n\n\n\x02\x05\
-    \0\x12\x04g\0j\x01\n\n\n\x03\x05\0\x01\x12\x03g\x05\x0f\n\x0b\n\x04\x05\
-    \0\x02\0\x12\x03h\x08\x18\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03h\x08\x13\n\
-    \x0c\n\x05\x05\0\x02\0\x02\x12\x03h\x16\x17\n\x0b\n\x04\x05\0\x02\x01\
-    \x12\x03i\x08\x16\n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03i\x08\x11\n\x0c\n\
-    \x05\x05\0\x02\x01\x02\x12\x03i\x14\x15\n\n\n\x02\x04\x06\x12\x04l\0t\
-    \x01\n\n\n\x03\x04\x06\x01\x12\x03l\x08\x16\n\x0b\n\x04\x04\x06\x02\0\
-    \x12\x03m\x08!\n\x0c\n\x05\x04\x06\x02\0\x04\x12\x03m\x08\x10\n\x0c\n\
-    \x05\x04\x06\x02\0\x06\x12\x03m\x11\x16\n\x0c\n\x05\x04\x06\x02\0\x01\
-    \x12\x03m\x17\x1c\n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03m\x1f\x20\n!\n\
-    \x04\x04\x06\x02\x01\x12\x04o\x08\x8b\x01\x1a\x13\x20Data\x20for\x20all\
-    \x20rows\n\n\x0c\n\x05\x04\x06\x02\x01\x04\x12\x03o\x08\x10\n\x0c\n\x05\
-    \x04\x06\x02\x01\x05\x12\x03o\x11\x16\n\x0c\n\x05\x04\x06\x02\x01\x01\
-    \x12\x03o\x17\x1b\n\x0c\n\x05\x04\x06\x02\x01\x03\x12\x03o\x1e\x1f\n\r\n\
-    \x05\x04\x06\x02\x01\x08\x12\x04o\x20\x8a\x01\n\x0f\n\x08\x04\x06\x02\
-    \x01\x08\xe7\x07\0\x12\x03o!k\n\x10\n\t\x04\x06\x02\x01\x08\xe7\x07\0\
-    \x02\x12\x03o!7\n\x11\n\n\x04\x06\x02\x01\x08\xe7\x07\0\x02\0\x12\x03o!7\
-    \n\x12\n\x0b\x04\x06\x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x03o\"6\n\x10\n\
-    \t\x04\x06\x02\x01\x08\xe7\x07\0\x07\x12\x03o:k\n\x10\n\x08\x04\x06\x02\
-    \x01\x08\xe7\x07\x01\x12\x04om\x89\x01\n\x11\n\t\x04\x06\x02\x01\x08\xe7\
-    \x07\x01\x02\x12\x04om\x81\x01\n\x12\n\n\x04\x06\x02\x01\x08\xe7\x07\x01\
-    \x02\0\x12\x04om\x81\x01\n\x13\n\x0b\x04\x06\x02\x01\x08\xe7\x07\x01\x02\
-    \0\x01\x12\x04on\x80\x01\n\x12\n\t\x04\x06\x02\x01\x08\xe7\x07\x01\x03\
-    \x12\x05o\x84\x01\x89\x01\n\x0b\n\x04\x04\x06\x02\x02\x12\x03p\x08$\n\
-    \x0c\n\x05\x04\x06\x02\x02\x04\x12\x03p\x08\x10\n\x0c\n\x05\x04\x06\x02\
-    \x02\x06\x12\x03p\x11\x16\n\x0c\n\x05\x04\x06\x02\x02\x01\x12\x03p\x17\
-    \x1f\n\x0c\n\x05\x04\x06\x02\x02\x03\x12\x03p\"#\n1\n\x04\x04\x06\x02\
-    \x03\x12\x03r\x08)\x1a$\x20output\x20row\x20count\x20for\x20each\x20exec\
-    utor\n\n\x0c\n\x05\x04\x06\x02\x03\x04\x12\x03r\x08\x10\n\x0c\n\x05\x04\
-    \x06\x02\x03\x05\x12\x03r\x11\x16\n\x0c\n\x05\x04\x06\x02\x03\x01\x12\
-    \x03r\x17$\n\x0c\n\x05\x04\x06\x02\x03\x03\x12\x03r'(\n\x0b\n\x04\x04\
-    \x06\x02\x04\x12\x03s\x08)\n\x0c\n\x05\x04\x06\x02\x04\x04\x12\x03s\x08\
-    \x10\n\x0c\n\x05\x04\x06\x02\x04\x05\x12\x03s\x11\x16\n\x0c\n\x05\x04\
-    \x06\x02\x04\x01\x12\x03s\x17$\n\x0c\n\x05\x04\x06\x02\x04\x03\x12\x03s'\
-    (\
+    ;\n\n\x0c\n\x05\x04\x05\x02\t\x04\x12\x03d\x08\x10\n\x0c\n\x05\x04\x05\
+    \x02\t\x05\x12\x03d\x11\x17\n\x0c\n\x05\x04\x05\x02\t\x01\x12\x03d\x18&\
+    \n\x0c\n\x05\x04\x05\x02\t\x03\x12\x03d)+\n\x0c\n\x05\x04\x05\x02\t\x08\
+    \x12\x03d,J\n\x0f\n\x08\x04\x05\x02\t\x08\xe7\x07\0\x12\x03d-I\n\x10\n\t\
+    \x04\x05\x02\t\x08\xe7\x07\0\x02\x12\x03d-A\n\x11\n\n\x04\x05\x02\t\x08\
+    \xe7\x07\0\x02\0\x12\x03d-A\n\x12\n\x0b\x04\x05\x02\t\x08\xe7\x07\0\x02\
+    \0\x01\x12\x03d.@\n\x10\n\t\x04\x05\x02\t\x08\xe7\x07\0\x03\x12\x03dDI\n\
+    \n\n\x02\x05\0\x12\x04g\0j\x01\n\n\n\x03\x05\0\x01\x12\x03g\x05\x0f\n\
+    \x0b\n\x04\x05\0\x02\0\x12\x03h\x08\x18\n\x0c\n\x05\x05\0\x02\0\x01\x12\
+    \x03h\x08\x13\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03h\x16\x17\n\x0b\n\x04\
+    \x05\0\x02\x01\x12\x03i\x08\x16\n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03i\
+    \x08\x11\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03i\x14\x15\n\n\n\x02\x04\
+    \x06\x12\x04l\0t\x01\n\n\n\x03\x04\x06\x01\x12\x03l\x08\x16\n\x0b\n\x04\
+    \x04\x06\x02\0\x12\x03m\x08!\n\x0c\n\x05\x04\x06\x02\0\x04\x12\x03m\x08\
+    \x10\n\x0c\n\x05\x04\x06\x02\0\x06\x12\x03m\x11\x16\n\x0c\n\x05\x04\x06\
+    \x02\0\x01\x12\x03m\x17\x1c\n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03m\x1f\
+    \x20\n!\n\x04\x04\x06\x02\x01\x12\x04o\x08\x8b\x01\x1a\x13\x20Data\x20fo\
+    r\x20all\x20rows\n\n\x0c\n\x05\x04\x06\x02\x01\x04\x12\x03o\x08\x10\n\
+    \x0c\n\x05\x04\x06\x02\x01\x05\x12\x03o\x11\x16\n\x0c\n\x05\x04\x06\x02\
+    \x01\x01\x12\x03o\x17\x1b\n\x0c\n\x05\x04\x06\x02\x01\x03\x12\x03o\x1e\
+    \x1f\n\r\n\x05\x04\x06\x02\x01\x08\x12\x04o\x20\x8a\x01\n\x0f\n\x08\x04\
+    \x06\x02\x01\x08\xe7\x07\0\x12\x03o!k\n\x10\n\t\x04\x06\x02\x01\x08\xe7\
+    \x07\0\x02\x12\x03o!7\n\x11\n\n\x04\x06\x02\x01\x08\xe7\x07\0\x02\0\x12\
+    \x03o!7\n\x12\n\x0b\x04\x06\x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x03o\"6\
+    \n\x10\n\t\x04\x06\x02\x01\x08\xe7\x07\0\x07\x12\x03o:k\n\x10\n\x08\x04\
+    \x06\x02\x01\x08\xe7\x07\x01\x12\x04om\x89\x01\n\x11\n\t\x04\x06\x02\x01\
+    \x08\xe7\x07\x01\x02\x12\x04om\x81\x01\n\x12\n\n\x04\x06\x02\x01\x08\xe7\
+    \x07\x01\x02\0\x12\x04om\x81\x01\n\x13\n\x0b\x04\x06\x02\x01\x08\xe7\x07\
+    \x01\x02\0\x01\x12\x04on\x80\x01\n\x12\n\t\x04\x06\x02\x01\x08\xe7\x07\
+    \x01\x03\x12\x05o\x84\x01\x89\x01\n\x0b\n\x04\x04\x06\x02\x02\x12\x03p\
+    \x08$\n\x0c\n\x05\x04\x06\x02\x02\x04\x12\x03p\x08\x10\n\x0c\n\x05\x04\
+    \x06\x02\x02\x06\x12\x03p\x11\x16\n\x0c\n\x05\x04\x06\x02\x02\x01\x12\
+    \x03p\x17\x1f\n\x0c\n\x05\x04\x06\x02\x02\x03\x12\x03p\"#\n1\n\x04\x04\
+    \x06\x02\x03\x12\x03r\x08)\x1a$\x20output\x20row\x20count\x20for\x20each\
+    \x20executor\n\n\x0c\n\x05\x04\x06\x02\x03\x04\x12\x03r\x08\x10\n\x0c\n\
+    \x05\x04\x06\x02\x03\x05\x12\x03r\x11\x16\n\x0c\n\x05\x04\x06\x02\x03\
+    \x01\x12\x03r\x17$\n\x0c\n\x05\x04\x06\x02\x03\x03\x12\x03r'(\n\x0b\n\
+    \x04\x04\x06\x02\x04\x12\x03s\x08)\n\x0c\n\x05\x04\x06\x02\x04\x04\x12\
+    \x03s\x08\x10\n\x0c\n\x05\x04\x06\x02\x04\x05\x12\x03s\x11\x16\n\x0c\n\
+    \x05\x04\x06\x02\x04\x01\x12\x03s\x17$\n\x0c\n\x05\x04\x06\x02\x04\x03\
+    \x12\x03s'(\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

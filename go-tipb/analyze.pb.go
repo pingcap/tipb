@@ -44,10 +44,10 @@
 		KeyRange
 		Row
 		Error
+		SelectResponse
 		Chunk
 		RowMeta
 		DAGRequest
-		DAGResponse
 		StreamResponse
 */
 package tipb
