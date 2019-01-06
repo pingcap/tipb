@@ -2380,8 +2380,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     ub.com/pingcap/tipb/sharedbytes.SharedBytes\x12O\n\x13execution_summarie\
     s\x18\x08\x20\x03(\x0b2\x1e.tipb.ExecutorExecutionSummaryR\x12executionS\
     ummaries\"\x8f\x01\n\x05Chunk\x12T\n\trows_data\x18\x03\x20\x01(\x0cR\
-    \x08rowsDataB7\xc8\xde\x1f\0\xda\xde\x1f/github.com/pingcap/tipb/sharedb\
-    ytes.SharedBytes\x120\n\trows_meta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\
+    \x08rowsDataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedByt\
+    es\xc8\xde\x1f\0\x120\n\trows_meta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\
     \x08rowsMetaB\x04\xc8\xde\x1f\0\"E\n\x07RowMeta\x12\x1c\n\x06handle\x18\
     \x01\x20\x01(\x03R\x06handleB\x04\xc8\xde\x1f\0\x12\x1c\n\x06length\x18\
     \x02\x20\x01(\x03R\x06lengthB\x04\xc8\xde\x1f\0\"\xec\x03\n\nDAGRequest\

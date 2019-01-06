@@ -81,11 +81,11 @@ message Limit {
 
 message ExecutorExecutionSummary {
 	// Total time cost in this executor. Includes self time cost and children time cost.
-	optional uint64 total_time_ms = 1;
+	optional uint64 time_processed_ns = 1;
 
 	// How many rows this executor produced totally.
-	optional uint64 produced_rows = 2;
+	optional uint64 num_produced_rows = 2;
 
 	// How many times executor's `next()` is called.
-	optional uint64 next_calls = 3;
+	optional uint64 num_iterations = 3;
 }
