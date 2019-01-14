@@ -5,11 +5,14 @@ package tipb
 
 import (
 	"fmt"
-	io "io"
-	math "math"
 
 	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
 	github_com_pingcap_tipb_sharedbytes "github.com/pingcap/tipb/sharedbytes"
+
+	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
