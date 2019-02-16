@@ -82,6 +82,7 @@ enum ScalarFuncSig {
 	CastIntAsTime = 4;
 	CastIntAsDuration = 5;
 	CastIntAsJson = 6;
+	CastIntAsYear = 7;
 
 	CastRealAsInt = 10;
 	CastRealAsReal = 11;
@@ -90,6 +91,7 @@ enum ScalarFuncSig {
 	CastRealAsTime = 14;
 	CastRealAsDuration = 15;
 	CastRealAsJson = 16;
+	CastRealAsYear = 17;
 
 	CastDecimalAsInt = 20;
 	CastDecimalAsReal = 21;
@@ -98,6 +100,7 @@ enum ScalarFuncSig {
 	CastDecimalAsTime = 24;
 	CastDecimalAsDuration = 25;
 	CastDecimalAsJson = 26;
+	CastDecimalAsYear = 27;
 
 	CastStringAsInt = 30;
 	CastStringAsReal = 31;
@@ -106,6 +109,7 @@ enum ScalarFuncSig {
 	CastStringAsTime = 34;
 	CastStringAsDuration = 35;
 	CastStringAsJson = 36;
+	CastStringAsYear = 37;
 
 	CastTimeAsInt = 40;
 	CastTimeAsReal = 41;
@@ -114,6 +118,7 @@ enum ScalarFuncSig {
 	CastTimeAsTime = 44;
 	CastTimeAsDuration = 45;
 	CastTimeAsJson = 46;
+	CastTimeAsYear = 47;
 
 	CastDurationAsInt = 50;
 	CastDurationAsReal = 51;
@@ -122,6 +127,7 @@ enum ScalarFuncSig {
 	CastDurationAsTime = 54;
 	CastDurationAsDuration = 55;
 	CastDurationAsJson = 56;
+	CastDurationAsYear = 57;
 
 	CastJsonAsInt = 60;
 	CastJsonAsReal = 61;
@@ -130,6 +136,7 @@ enum ScalarFuncSig {
 	CastJsonAsTime = 64;
 	CastJsonAsDuration = 65;
 	CastJsonAsJson = 66;
+	CastJsonAsYear = 67;
 
 	/*compare*/
 	CoalesceInt = 4201;
