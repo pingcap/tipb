@@ -54,15 +54,10 @@ message Pos {
 
     // The binlog offset in a file.
     int64 offset = 2;
-
-     
 }
 
-// Meta saves the binlog entity's meta information.
+// Meta saves the binlog's meta information.
 message Meta {
-    // The position of the binlog entity.
-    Pos pos = 1 [(gogoproto.nullable) = false];
-
     // The binlog's start ts, used in Prewrite, Commit and Rollback type binlog.
     int64 startTs = 2;
 
@@ -71,12 +66,15 @@ message Meta {
 }
 
 message Entity {
+    // The position of the binlog entity.
+	Pos pos = 1 [(gogoproto.nullable) = false];
+
     // The meta information of the binlog entity.
-    Meta meta = 1 [(gogoproto.nullable) = false];
+    Meta meta = 2 [(gogoproto.nullable) = false];
 
     // The payload of binlog entity.
-    bytes payload = 2;
+    bytes payload = 3;
 
     // checksum of binlog payload.
-    bytes checksum = 3;
+    bytes checksum = 4;
 }
