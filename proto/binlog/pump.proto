@@ -59,10 +59,10 @@ message Pos {
 // Meta saves the binlog's meta information.
 message Meta {
     // The binlog's start ts, used in Prewrite, Commit and Rollback type binlog.
-    int64 startTs = 2;
+    int64 startTs = 1;
 
     // The binlog's commit ts, used only in Commit type binlog.
-    int64 commitTs = 3;
+    int64 commitTs = 2;
 }
 
 message Entity {
