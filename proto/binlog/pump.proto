@@ -69,12 +69,12 @@ message Entity {
     // The position of the binlog entity.
     Pos pos = 1 [(gogoproto.nullable) = false];
 
-    // The meta information of the binlog entity.
-    Meta meta = 2 [(gogoproto.nullable) = false];
-
     // The payload of binlog entity.
-    bytes payload = 3;
+    bytes payload = 2;
 
     // checksum of binlog payload.
-    bytes checksum = 4;
+    bytes checksum = 3;
+
+    // The meta information of the binlog entity.
+    Meta meta = 4 [(gogoproto.nullable) = false];
 }
