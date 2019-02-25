@@ -5,10 +5,12 @@ package tipb
 
 import (
 	"fmt"
-	io "io"
-	math "math"
 
 	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
+	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

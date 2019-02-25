@@ -16,10 +16,12 @@ package binlog
 
 import (
 	"fmt"
-	io "io"
-	math "math"
 
 	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
+	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -232,11 +234,10 @@ type Binlog struct {
 	// prewrite_data is marshalled from PrewriteData type,
 	// we do not need to unmarshal prewrite data before the binlog have been successfully paired.
 	PrewriteValue []byte `protobuf:"bytes,5,opt,name=prewrite_value,json=prewriteValue" json:"prewrite_value,omitempty"`
-	// ddl_query is the original ddl statement query, used for PreDDL type.
+	// ddl_query is the original DDL statement query.
 	DdlQuery []byte `protobuf:"bytes,6,opt,name=ddl_query,json=ddlQuery" json:"ddl_query,omitempty"`
-	// ddl_job_id is used for PreDDL and PostDDL binlog type.
-	// If PreDDL has matching PostDDL with the same job_id, we can execute the DDL right away, otherwise,
-	// we can use the job_id to check if the ddl statement has been successfully added to DDL job list.
+	// ddl_job_id is used for DDL Binlog.
+	// If ddl_job_id is setted, this is a DDL Binlog and ddl_query contains the DDL query, we can query the informations about this job from TiKV.
 	DdlJobId         int64  `protobuf:"varint,7,opt,name=ddl_job_id,json=ddlJobId" json:"ddl_job_id"`
 	XXX_unrecognized []byte `json:"-"`
 }
