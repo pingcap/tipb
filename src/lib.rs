@@ -1,12 +1,12 @@
-#[rustfmt::skip]
-pub mod analyze;
-#[rustfmt::skip]
-pub mod checksum;
-#[rustfmt::skip]
-pub mod executor;
-#[rustfmt::skip]
-pub mod expression;
-#[rustfmt::skip]
-pub mod schema;
-#[rustfmt::skip]
-pub mod select;
+#[cfg(feature = "prost-codec")]
+pub use crate::prost::*;
+#[cfg(feature = "protobuf-codec")]
+pub use crate::protobuf::*;
+
+#[cfg(feature = "protobuf-codec")]
+mod protobuf;
+#[cfg(feature = "prost-codec")]
+mod prost {
+    include!("prost/tipb.rs");
+    include!("prost/wrapper_tipb.rs");
+}

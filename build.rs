@@ -11,8 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::io::Write;
+#[cfg(feature = "gen")]
 use std::fs::File;
+#[cfg(feature = "gen")]
+use std::io::Write;
 
 fn main() {
     if !cfg!(feature = "gen") {
@@ -46,12 +48,19 @@ fn main() {
         }
 
         // Rust-protobuf
-        generate_protobuf_files(&protos, "src");
+        generate_protobuf_files(&protos, "src/protobuf");
         replace_read_unknown_fields(&protos);
         generate_lib_file(&mods);
+
+        // Prost
+        generate_prost_files(&protos, "src/prost");
+        generate_wrappers(&["src/prost/tipb.rs"], "src/prost");
+        fs::remove_file("src/prost/gogoproto.rs").unwrap();
+        fs::remove_file("src/prost/google.protobuf.rs").unwrap();
     }
 }
 
+#[cfg(feature = "gen")]
 fn generate_lib_file<T: AsRef<str>>(mod_names: &[T]) {
     let mut text = String::new();
 
@@ -61,8 +70,7 @@ fn generate_lib_file<T: AsRef<str>>(mod_names: &[T]) {
         text.push_str(";\n");
     }
 
-    let mut lib = File::create("src/lib.rs").expect("Could not create lib.rs");
+    let mut lib = File::create("src/protobuf.rs").expect("Could not create protobuf.rs");
     lib.write_all(text.as_bytes())
-        .expect("Could not write lib.rs");
-
+        .expect("Could not write protobuf.rs");
 }
