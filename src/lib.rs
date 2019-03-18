@@ -1,12 +1,12 @@
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod analyze;
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod checksum;
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod executor;
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod expression;
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod schema;
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 pub mod select;
