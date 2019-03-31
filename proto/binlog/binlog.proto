@@ -48,8 +48,8 @@ enum BinlogType {
     Prewrite = 0; // has start_ts, prewrite_key, prewrite_value.
     Commit   = 1; // has start_ts, commit_ts.
     Rollback = 2; // has start_ts.
-    PreDDL   = 3; // has ddl_query, ddl_job_id.
-    PostDDL  = 4; // has ddl_job_id.
+    PreDDL   = 3; // Obsolete field.
+    PostDDL  = 4; // Obsolete field.
 }
 
 // Binlog contains all the changes in a transaction, which can be used to reconstruct SQL statement, then export to
@@ -73,11 +73,10 @@ message Binlog {
     // we do not need to unmarshal prewrite data before the binlog have been successfully paired.
     optional bytes         prewrite_value = 5;
 
-    // ddl_query is the original ddl statement query, used for PreDDL type.
+    // ddl_query is the original DDL statement query.
     optional bytes         ddl_query      = 6;
 
-    // ddl_job_id is used for PreDDL and PostDDL binlog type.
-    // If PreDDL has matching PostDDL with the same job_id, we can execute the DDL right away, otherwise,
-    // we can use the job_id to check if the ddl statement has been successfully added to DDL job list.
+    // ddl_job_id is used for DDL Binlog.
+    // If ddl_job_id is setted, this is a DDL Binlog and ddl_query contains the DDL query, we can query the informations about this job from TiKV.
     optional int64         ddl_job_id     = 7 [(gogoproto.nullable) = false];
 }
