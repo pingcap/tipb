@@ -9,7 +9,8 @@ impl TableInfo {
         self.table_id = ::std::option::Option::None
     }
     pub fn set_table_id(&mut self, v: i64) {
-        self.table_id = ::std::option::Option::Some(v);;    }
+        self.table_id = ::std::option::Option::Some(v);
+    }
     pub fn get_table_id(&self) -> i64 {
         match self.table_id {
             Some(v) => v,
@@ -63,7 +64,7 @@ impl ::protobuf::Message for TableInfo {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -89,7 +90,8 @@ impl ColumnInfo {
         self.column_id = ::std::option::Option::None
     }
     pub fn set_column_id(&mut self, v: i64) {
-        self.column_id = ::std::option::Option::Some(v);;    }
+        self.column_id = ::std::option::Option::Some(v);
+    }
     pub fn get_column_id(&self) -> i64 {
         match self.column_id {
             Some(v) => v,
@@ -103,7 +105,8 @@ impl ColumnInfo {
         self.tp = ::std::option::Option::None
     }
     pub fn set_tp(&mut self, v: i32) {
-        self.tp = ::std::option::Option::Some(v);;    }
+        self.tp = ::std::option::Option::Some(v);
+    }
     pub fn get_tp(&self) -> i32 {
         match self.tp {
             Some(v) => v,
@@ -117,7 +120,8 @@ impl ColumnInfo {
         self.collation = ::std::option::Option::None
     }
     pub fn set_collation(&mut self, v: i32) {
-        self.collation = ::std::option::Option::Some(v);;    }
+        self.collation = ::std::option::Option::Some(v);
+    }
     pub fn get_collation(&self) -> i32 {
         match self.collation {
             Some(v) => v,
@@ -131,7 +135,8 @@ impl ColumnInfo {
         self.column_len = ::std::option::Option::None
     }
     pub fn set_column_len(&mut self, v: i32) {
-        self.column_len = ::std::option::Option::Some(v);;    }
+        self.column_len = ::std::option::Option::Some(v);
+    }
     pub fn get_column_len(&self) -> i32 {
         match self.column_len {
             Some(v) => v,
@@ -145,7 +150,8 @@ impl ColumnInfo {
         self.decimal = ::std::option::Option::None
     }
     pub fn set_decimal(&mut self, v: i32) {
-        self.decimal = ::std::option::Option::Some(v);;    }
+        self.decimal = ::std::option::Option::Some(v);
+    }
     pub fn get_decimal(&self) -> i32 {
         match self.decimal {
             Some(v) => v,
@@ -159,7 +165,8 @@ impl ColumnInfo {
         self.flag = ::std::option::Option::None
     }
     pub fn set_flag(&mut self, v: i32) {
-        self.flag = ::std::option::Option::Some(v);;    }
+        self.flag = ::std::option::Option::Some(v);
+    }
     pub fn get_flag(&self) -> i32 {
         match self.flag {
             Some(v) => v,
@@ -188,7 +195,8 @@ impl ColumnInfo {
         self.default_val = ::std::option::Option::None
     }
     pub fn set_default_val(&mut self, v: std::vec::Vec<u8>) {
-        self.default_val = ::std::option::Option::Some(v);;    }
+        self.default_val = ::std::option::Option::Some(v);
+    }
     pub fn get_default_val(&self) -> &[u8] {
         match self.default_val.as_ref() {
             Some(v) => v,
@@ -211,7 +219,8 @@ impl ColumnInfo {
         self.pk_handle = ::std::option::Option::None
     }
     pub fn set_pk_handle(&mut self, v: bool) {
-        self.pk_handle = ::std::option::Option::Some(v);;    }
+        self.pk_handle = ::std::option::Option::Some(v);
+    }
     pub fn get_pk_handle(&self) -> bool {
         match self.pk_handle {
             Some(v) => v,
@@ -250,7 +259,7 @@ impl ::protobuf::Message for ColumnInfo {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -276,7 +285,8 @@ impl IndexInfo {
         self.table_id = ::std::option::Option::None
     }
     pub fn set_table_id(&mut self, v: i64) {
-        self.table_id = ::std::option::Option::Some(v);;    }
+        self.table_id = ::std::option::Option::Some(v);
+    }
     pub fn get_table_id(&self) -> i64 {
         match self.table_id {
             Some(v) => v,
@@ -290,7 +300,8 @@ impl IndexInfo {
         self.index_id = ::std::option::Option::None
     }
     pub fn set_index_id(&mut self, v: i64) {
-        self.index_id = ::std::option::Option::Some(v);;    }
+        self.index_id = ::std::option::Option::Some(v);
+    }
     pub fn get_index_id(&self) -> i64 {
         match self.index_id {
             Some(v) => v,
@@ -319,7 +330,8 @@ impl IndexInfo {
         self.unique = ::std::option::Option::None
     }
     pub fn set_unique(&mut self, v: bool) {
-        self.unique = ::std::option::Option::Some(v);;    }
+        self.unique = ::std::option::Option::Some(v);
+    }
     pub fn get_unique(&self) -> bool {
         match self.unique {
             Some(v) => v,
@@ -358,7 +370,7 @@ impl ::protobuf::Message for IndexInfo {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -384,7 +396,8 @@ impl KeyRange {
         self.low = ::std::option::Option::None
     }
     pub fn set_low(&mut self, v: std::vec::Vec<u8>) {
-        self.low = ::std::option::Option::Some(v);;    }
+        self.low = ::std::option::Option::Some(v);
+    }
     pub fn get_low(&self) -> &[u8] {
         match self.low.as_ref() {
             Some(v) => v,
@@ -407,7 +420,8 @@ impl KeyRange {
         self.high = ::std::option::Option::None
     }
     pub fn set_high(&mut self, v: std::vec::Vec<u8>) {
-        self.high = ::std::option::Option::Some(v);;    }
+        self.high = ::std::option::Option::Some(v);
+    }
     pub fn get_high(&self) -> &[u8] {
         match self.high.as_ref() {
             Some(v) => v,
@@ -455,7 +469,7 @@ impl ::protobuf::Message for KeyRange {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -480,7 +494,7 @@ impl AnalyzeReq {
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None
     }
-    pub fn set_tp(&mut self, v: AnalyzeType) {
+    pub fn set_tp_(&mut self, v: AnalyzeType) {
         self.tp =
             ::std::option::Option::Some(unsafe { ::std::mem::transmute::<AnalyzeType, i32>(v) });
     }
@@ -499,7 +513,8 @@ impl AnalyzeReq {
         self.start_ts = ::std::option::Option::None
     }
     pub fn set_start_ts(&mut self, v: u64) {
-        self.start_ts = ::std::option::Option::Some(v);;    }
+        self.start_ts = ::std::option::Option::Some(v);
+    }
     pub fn get_start_ts(&self) -> u64 {
         match self.start_ts {
             Some(v) => v,
@@ -513,7 +528,8 @@ impl AnalyzeReq {
         self.flags = ::std::option::Option::None
     }
     pub fn set_flags(&mut self, v: u64) {
-        self.flags = ::std::option::Option::Some(v);;    }
+        self.flags = ::std::option::Option::Some(v);
+    }
     pub fn get_flags(&self) -> u64 {
         match self.flags {
             Some(v) => v,
@@ -527,7 +543,8 @@ impl AnalyzeReq {
         self.time_zone_offset = ::std::option::Option::None
     }
     pub fn set_time_zone_offset(&mut self, v: i64) {
-        self.time_zone_offset = ::std::option::Option::Some(v);;    }
+        self.time_zone_offset = ::std::option::Option::Some(v);
+    }
     pub fn get_time_zone_offset(&self) -> i64 {
         match self.time_zone_offset {
             Some(v) => v,
@@ -541,7 +558,8 @@ impl AnalyzeReq {
         self.idx_req = ::std::option::Option::None
     }
     pub fn set_idx_req(&mut self, v: AnalyzeIndexReq) {
-        self.idx_req = ::std::option::Option::Some(v);;    }
+        self.idx_req = ::std::option::Option::Some(v);
+    }
     pub fn get_idx_req(&self) -> &AnalyzeIndexReq {
         match self.idx_req.as_ref() {
             Some(v) => v,
@@ -564,7 +582,8 @@ impl AnalyzeReq {
         self.col_req = ::std::option::Option::None
     }
     pub fn set_col_req(&mut self, v: AnalyzeColumnsReq) {
-        self.col_req = ::std::option::Option::Some(v);;    }
+        self.col_req = ::std::option::Option::Some(v);
+    }
     pub fn get_col_req(&self) -> &AnalyzeColumnsReq {
         match self.col_req.as_ref() {
             Some(v) => v,
@@ -614,7 +633,7 @@ impl ::protobuf::Message for AnalyzeReq {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -640,7 +659,8 @@ impl AnalyzeIndexReq {
         self.bucket_size = ::std::option::Option::None
     }
     pub fn set_bucket_size(&mut self, v: i64) {
-        self.bucket_size = ::std::option::Option::Some(v);;    }
+        self.bucket_size = ::std::option::Option::Some(v);
+    }
     pub fn get_bucket_size(&self) -> i64 {
         match self.bucket_size {
             Some(v) => v,
@@ -654,7 +674,8 @@ impl AnalyzeIndexReq {
         self.num_columns = ::std::option::Option::None
     }
     pub fn set_num_columns(&mut self, v: i32) {
-        self.num_columns = ::std::option::Option::Some(v);;    }
+        self.num_columns = ::std::option::Option::Some(v);
+    }
     pub fn get_num_columns(&self) -> i32 {
         match self.num_columns {
             Some(v) => v,
@@ -668,7 +689,8 @@ impl AnalyzeIndexReq {
         self.cmsketch_depth = ::std::option::Option::None
     }
     pub fn set_cmsketch_depth(&mut self, v: i32) {
-        self.cmsketch_depth = ::std::option::Option::Some(v);;    }
+        self.cmsketch_depth = ::std::option::Option::Some(v);
+    }
     pub fn get_cmsketch_depth(&self) -> i32 {
         match self.cmsketch_depth {
             Some(v) => v,
@@ -682,7 +704,8 @@ impl AnalyzeIndexReq {
         self.cmsketch_width = ::std::option::Option::None
     }
     pub fn set_cmsketch_width(&mut self, v: i32) {
-        self.cmsketch_width = ::std::option::Option::Some(v);;    }
+        self.cmsketch_width = ::std::option::Option::Some(v);
+    }
     pub fn get_cmsketch_width(&self) -> i32 {
         match self.cmsketch_width {
             Some(v) => v,
@@ -721,7 +744,7 @@ impl ::protobuf::Message for AnalyzeIndexReq {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -747,7 +770,8 @@ impl AnalyzeColumnsReq {
         self.bucket_size = ::std::option::Option::None
     }
     pub fn set_bucket_size(&mut self, v: i64) {
-        self.bucket_size = ::std::option::Option::Some(v);;    }
+        self.bucket_size = ::std::option::Option::Some(v);
+    }
     pub fn get_bucket_size(&self) -> i64 {
         match self.bucket_size {
             Some(v) => v,
@@ -761,7 +785,8 @@ impl AnalyzeColumnsReq {
         self.sample_size = ::std::option::Option::None
     }
     pub fn set_sample_size(&mut self, v: i64) {
-        self.sample_size = ::std::option::Option::Some(v);;    }
+        self.sample_size = ::std::option::Option::Some(v);
+    }
     pub fn get_sample_size(&self) -> i64 {
         match self.sample_size {
             Some(v) => v,
@@ -775,7 +800,8 @@ impl AnalyzeColumnsReq {
         self.sketch_size = ::std::option::Option::None
     }
     pub fn set_sketch_size(&mut self, v: i64) {
-        self.sketch_size = ::std::option::Option::Some(v);;    }
+        self.sketch_size = ::std::option::Option::Some(v);
+    }
     pub fn get_sketch_size(&self) -> i64 {
         match self.sketch_size {
             Some(v) => v,
@@ -804,7 +830,8 @@ impl AnalyzeColumnsReq {
         self.cmsketch_depth = ::std::option::Option::None
     }
     pub fn set_cmsketch_depth(&mut self, v: i32) {
-        self.cmsketch_depth = ::std::option::Option::Some(v);;    }
+        self.cmsketch_depth = ::std::option::Option::Some(v);
+    }
     pub fn get_cmsketch_depth(&self) -> i32 {
         match self.cmsketch_depth {
             Some(v) => v,
@@ -818,7 +845,8 @@ impl AnalyzeColumnsReq {
         self.cmsketch_width = ::std::option::Option::None
     }
     pub fn set_cmsketch_width(&mut self, v: i32) {
-        self.cmsketch_width = ::std::option::Option::Some(v);;    }
+        self.cmsketch_width = ::std::option::Option::Some(v);
+    }
     pub fn get_cmsketch_width(&self) -> i32 {
         match self.cmsketch_width {
             Some(v) => v,
@@ -857,7 +885,7 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -898,7 +926,8 @@ impl AnalyzeColumnsResp {
         self.pk_hist = ::std::option::Option::None
     }
     pub fn set_pk_hist(&mut self, v: Histogram) {
-        self.pk_hist = ::std::option::Option::Some(v);;    }
+        self.pk_hist = ::std::option::Option::Some(v);
+    }
     pub fn get_pk_hist(&self) -> &Histogram {
         match self.pk_hist.as_ref() {
             Some(v) => v,
@@ -946,7 +975,7 @@ impl ::protobuf::Message for AnalyzeColumnsResp {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -972,7 +1001,8 @@ impl AnalyzeIndexResp {
         self.hist = ::std::option::Option::None
     }
     pub fn set_hist(&mut self, v: Histogram) {
-        self.hist = ::std::option::Option::Some(v);;    }
+        self.hist = ::std::option::Option::Some(v);
+    }
     pub fn get_hist(&self) -> &Histogram {
         match self.hist.as_ref() {
             Some(v) => v,
@@ -995,7 +1025,8 @@ impl AnalyzeIndexResp {
         self.cms = ::std::option::Option::None
     }
     pub fn set_cms(&mut self, v: CmSketch) {
-        self.cms = ::std::option::Option::Some(v);;    }
+        self.cms = ::std::option::Option::Some(v);
+    }
     pub fn get_cms(&self) -> &CmSketch {
         match self.cms.as_ref() {
             Some(v) => v,
@@ -1043,7 +1074,7 @@ impl ::protobuf::Message for AnalyzeIndexResp {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1069,7 +1100,8 @@ impl Bucket {
         self.count = ::std::option::Option::None
     }
     pub fn set_count(&mut self, v: i64) {
-        self.count = ::std::option::Option::Some(v);;    }
+        self.count = ::std::option::Option::Some(v);
+    }
     pub fn get_count(&self) -> i64 {
         match self.count {
             Some(v) => v,
@@ -1083,7 +1115,8 @@ impl Bucket {
         self.lower_bound = ::std::option::Option::None
     }
     pub fn set_lower_bound(&mut self, v: std::vec::Vec<u8>) {
-        self.lower_bound = ::std::option::Option::Some(v);;    }
+        self.lower_bound = ::std::option::Option::Some(v);
+    }
     pub fn get_lower_bound(&self) -> &[u8] {
         match self.lower_bound.as_ref() {
             Some(v) => v,
@@ -1106,7 +1139,8 @@ impl Bucket {
         self.upper_bound = ::std::option::Option::None
     }
     pub fn set_upper_bound(&mut self, v: std::vec::Vec<u8>) {
-        self.upper_bound = ::std::option::Option::Some(v);;    }
+        self.upper_bound = ::std::option::Option::Some(v);
+    }
     pub fn get_upper_bound(&self) -> &[u8] {
         match self.upper_bound.as_ref() {
             Some(v) => v,
@@ -1129,7 +1163,8 @@ impl Bucket {
         self.repeats = ::std::option::Option::None
     }
     pub fn set_repeats(&mut self, v: i64) {
-        self.repeats = ::std::option::Option::Some(v);;    }
+        self.repeats = ::std::option::Option::Some(v);
+    }
     pub fn get_repeats(&self) -> i64 {
         match self.repeats {
             Some(v) => v,
@@ -1168,7 +1203,7 @@ impl ::protobuf::Message for Bucket {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1194,7 +1229,8 @@ impl Histogram {
         self.ndv = ::std::option::Option::None
     }
     pub fn set_ndv(&mut self, v: i64) {
-        self.ndv = ::std::option::Option::Some(v);;    }
+        self.ndv = ::std::option::Option::Some(v);
+    }
     pub fn get_ndv(&self) -> i64 {
         match self.ndv {
             Some(v) => v,
@@ -1248,7 +1284,7 @@ impl ::protobuf::Message for Histogram {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1274,7 +1310,8 @@ impl FmSketch {
         self.mask = ::std::option::Option::None
     }
     pub fn set_mask(&mut self, v: u64) {
-        self.mask = ::std::option::Option::Some(v);;    }
+        self.mask = ::std::option::Option::Some(v);
+    }
     pub fn get_mask(&self) -> u64 {
         match self.mask {
             Some(v) => v,
@@ -1328,7 +1365,7 @@ impl ::protobuf::Message for FmSketch {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1369,7 +1406,8 @@ impl SampleCollector {
         self.null_count = ::std::option::Option::None
     }
     pub fn set_null_count(&mut self, v: i64) {
-        self.null_count = ::std::option::Option::Some(v);;    }
+        self.null_count = ::std::option::Option::Some(v);
+    }
     pub fn get_null_count(&self) -> i64 {
         match self.null_count {
             Some(v) => v,
@@ -1383,7 +1421,8 @@ impl SampleCollector {
         self.count = ::std::option::Option::None
     }
     pub fn set_count(&mut self, v: i64) {
-        self.count = ::std::option::Option::Some(v);;    }
+        self.count = ::std::option::Option::Some(v);
+    }
     pub fn get_count(&self) -> i64 {
         match self.count {
             Some(v) => v,
@@ -1397,7 +1436,8 @@ impl SampleCollector {
         self.fm_sketch = ::std::option::Option::None
     }
     pub fn set_fm_sketch(&mut self, v: FmSketch) {
-        self.fm_sketch = ::std::option::Option::Some(v);;    }
+        self.fm_sketch = ::std::option::Option::Some(v);
+    }
     pub fn get_fm_sketch(&self) -> &FmSketch {
         match self.fm_sketch.as_ref() {
             Some(v) => v,
@@ -1420,7 +1460,8 @@ impl SampleCollector {
         self.cm_sketch = ::std::option::Option::None
     }
     pub fn set_cm_sketch(&mut self, v: CmSketch) {
-        self.cm_sketch = ::std::option::Option::Some(v);;    }
+        self.cm_sketch = ::std::option::Option::Some(v);
+    }
     pub fn get_cm_sketch(&self) -> &CmSketch {
         match self.cm_sketch.as_ref() {
             Some(v) => v,
@@ -1443,7 +1484,8 @@ impl SampleCollector {
         self.total_size = ::std::option::Option::None
     }
     pub fn set_total_size(&mut self, v: i64) {
-        self.total_size = ::std::option::Option::Some(v);;    }
+        self.total_size = ::std::option::Option::Some(v);
+    }
     pub fn get_total_size(&self) -> i64 {
         match self.total_size {
             Some(v) => v,
@@ -1482,7 +1524,7 @@ impl ::protobuf::Message for SampleCollector {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1548,7 +1590,7 @@ impl ::protobuf::Message for CmSketchRow {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1614,7 +1656,7 @@ impl ::protobuf::Message for CmSketch {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1629,6 +1671,12 @@ impl ::protobuf::Message for CmSketch {
         unimplemented!();
     }
 }
+impl AnalyzeType {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [AnalyzeType] = &[AnalyzeType::TypeIndex, AnalyzeType::TypeColumn];
+        VALUES
+    }
+}
 impl ChecksumRequest {
     pub fn new_() -> ChecksumRequest {
         ::std::default::Default::default()
@@ -1640,7 +1688,8 @@ impl ChecksumRequest {
         self.start_ts = ::std::option::Option::None
     }
     pub fn set_start_ts(&mut self, v: u64) {
-        self.start_ts = ::std::option::Option::Some(v);;    }
+        self.start_ts = ::std::option::Option::Some(v);
+    }
     pub fn get_start_ts(&self) -> u64 {
         match self.start_ts {
             Some(v) => v,
@@ -1653,7 +1702,7 @@ impl ChecksumRequest {
     pub fn clear_scan_on(&mut self) {
         self.scan_on = ::std::option::Option::None
     }
-    pub fn set_scan_on(&mut self, v: ChecksumScanOn) {
+    pub fn set_scan_on_(&mut self, v: ChecksumScanOn) {
         self.scan_on =
             ::std::option::Option::Some(unsafe { ::std::mem::transmute::<ChecksumScanOn, i32>(v) });
     }
@@ -1671,7 +1720,7 @@ impl ChecksumRequest {
     pub fn clear_algorithm(&mut self) {
         self.algorithm = ::std::option::Option::None
     }
-    pub fn set_algorithm(&mut self, v: ChecksumAlgorithm) {
+    pub fn set_algorithm_(&mut self, v: ChecksumAlgorithm) {
         self.algorithm = ::std::option::Option::Some(unsafe {
             ::std::mem::transmute::<ChecksumAlgorithm, i32>(v)
         });
@@ -1716,7 +1765,7 @@ impl ::protobuf::Message for ChecksumRequest {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1742,7 +1791,8 @@ impl ChecksumResponse {
         self.checksum = ::std::option::Option::None
     }
     pub fn set_checksum(&mut self, v: u64) {
-        self.checksum = ::std::option::Option::Some(v);;    }
+        self.checksum = ::std::option::Option::Some(v);
+    }
     pub fn get_checksum(&self) -> u64 {
         match self.checksum {
             Some(v) => v,
@@ -1756,7 +1806,8 @@ impl ChecksumResponse {
         self.total_kvs = ::std::option::Option::None
     }
     pub fn set_total_kvs(&mut self, v: u64) {
-        self.total_kvs = ::std::option::Option::Some(v);;    }
+        self.total_kvs = ::std::option::Option::Some(v);
+    }
     pub fn get_total_kvs(&self) -> u64 {
         match self.total_kvs {
             Some(v) => v,
@@ -1770,7 +1821,8 @@ impl ChecksumResponse {
         self.total_bytes = ::std::option::Option::None
     }
     pub fn set_total_bytes(&mut self, v: u64) {
-        self.total_bytes = ::std::option::Option::Some(v);;    }
+        self.total_bytes = ::std::option::Option::Some(v);
+    }
     pub fn get_total_bytes(&self) -> u64 {
         match self.total_bytes {
             Some(v) => v,
@@ -1809,7 +1861,7 @@ impl ::protobuf::Message for ChecksumResponse {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1824,6 +1876,18 @@ impl ::protobuf::Message for ChecksumResponse {
         unimplemented!();
     }
 }
+impl ChecksumScanOn {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [ChecksumScanOn] = &[ChecksumScanOn::Table, ChecksumScanOn::Index];
+        VALUES
+    }
+}
+impl ChecksumAlgorithm {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [ChecksumAlgorithm] = &[ChecksumAlgorithm::Crc64Xor];
+        VALUES
+    }
+}
 impl FieldType {
     pub fn new_() -> FieldType {
         ::std::default::Default::default()
@@ -1835,7 +1899,8 @@ impl FieldType {
         self.tp = ::std::option::Option::None
     }
     pub fn set_tp(&mut self, v: i32) {
-        self.tp = ::std::option::Option::Some(v);;    }
+        self.tp = ::std::option::Option::Some(v);
+    }
     pub fn get_tp(&self) -> i32 {
         match self.tp {
             Some(v) => v,
@@ -1849,7 +1914,8 @@ impl FieldType {
         self.flag = ::std::option::Option::None
     }
     pub fn set_flag(&mut self, v: u32) {
-        self.flag = ::std::option::Option::Some(v);;    }
+        self.flag = ::std::option::Option::Some(v);
+    }
     pub fn get_flag(&self) -> u32 {
         match self.flag {
             Some(v) => v,
@@ -1863,7 +1929,8 @@ impl FieldType {
         self.flen = ::std::option::Option::None
     }
     pub fn set_flen(&mut self, v: i32) {
-        self.flen = ::std::option::Option::Some(v);;    }
+        self.flen = ::std::option::Option::Some(v);
+    }
     pub fn get_flen(&self) -> i32 {
         match self.flen {
             Some(v) => v,
@@ -1877,7 +1944,8 @@ impl FieldType {
         self.decimal = ::std::option::Option::None
     }
     pub fn set_decimal(&mut self, v: i32) {
-        self.decimal = ::std::option::Option::Some(v);;    }
+        self.decimal = ::std::option::Option::Some(v);
+    }
     pub fn get_decimal(&self) -> i32 {
         match self.decimal {
             Some(v) => v,
@@ -1891,7 +1959,8 @@ impl FieldType {
         self.collate = ::std::option::Option::None
     }
     pub fn set_collate(&mut self, v: i32) {
-        self.collate = ::std::option::Option::Some(v);;    }
+        self.collate = ::std::option::Option::Some(v);
+    }
     pub fn get_collate(&self) -> i32 {
         match self.collate {
             Some(v) => v,
@@ -1905,7 +1974,8 @@ impl FieldType {
         self.charset = ::std::option::Option::None
     }
     pub fn set_charset(&mut self, v: std::string::String) {
-        self.charset = ::std::option::Option::Some(v);;    }
+        self.charset = ::std::option::Option::Some(v);
+    }
     pub fn get_charset(&self) -> &str {
         match self.charset.as_ref() {
             Some(v) => v,
@@ -1955,7 +2025,7 @@ impl ::protobuf::Message for FieldType {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -1980,7 +2050,7 @@ impl Expr {
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None
     }
-    pub fn set_tp(&mut self, v: ExprType) {
+    pub fn set_tp_(&mut self, v: ExprType) {
         self.tp = ::std::option::Option::Some(unsafe { ::std::mem::transmute::<ExprType, i32>(v) });
     }
     pub fn get_tp(&self) -> ExprType {
@@ -1998,7 +2068,8 @@ impl Expr {
         self.val = ::std::option::Option::None
     }
     pub fn set_val(&mut self, v: std::vec::Vec<u8>) {
-        self.val = ::std::option::Option::Some(v);;    }
+        self.val = ::std::option::Option::Some(v);
+    }
     pub fn get_val(&self) -> &[u8] {
         match self.val.as_ref() {
             Some(v) => v,
@@ -2035,7 +2106,7 @@ impl Expr {
     pub fn clear_sig(&mut self) {
         self.sig = ::std::option::Option::None
     }
-    pub fn set_sig(&mut self, v: ScalarFuncSig) {
+    pub fn set_sig_(&mut self, v: ScalarFuncSig) {
         self.sig =
             ::std::option::Option::Some(unsafe { ::std::mem::transmute::<ScalarFuncSig, i32>(v) });
     }
@@ -2054,7 +2125,8 @@ impl Expr {
         self.field_type = ::std::option::Option::None
     }
     pub fn set_field_type(&mut self, v: FieldType) {
-        self.field_type = ::std::option::Option::Some(v);;    }
+        self.field_type = ::std::option::Option::Some(v);
+    }
     pub fn get_field_type(&self) -> &FieldType {
         match self.field_type.as_ref() {
             Some(v) => v,
@@ -2102,7 +2174,7 @@ impl ::protobuf::Message for Expr {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2128,7 +2200,8 @@ impl ByItem {
         self.expr = ::std::option::Option::None
     }
     pub fn set_expr(&mut self, v: Expr) {
-        self.expr = ::std::option::Option::Some(v);;    }
+        self.expr = ::std::option::Option::Some(v);
+    }
     pub fn get_expr(&self) -> &Expr {
         match self.expr.as_ref() {
             Some(v) => v,
@@ -2151,7 +2224,8 @@ impl ByItem {
         self.desc = ::std::option::Option::None
     }
     pub fn set_desc(&mut self, v: bool) {
-        self.desc = ::std::option::Option::Some(v);;    }
+        self.desc = ::std::option::Option::Some(v);
+    }
     pub fn get_desc(&self) -> bool {
         match self.desc {
             Some(v) => v,
@@ -2190,7 +2264,7 @@ impl ::protobuf::Message for ByItem {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2205,6 +2279,542 @@ impl ::protobuf::Message for ByItem {
         unimplemented!();
     }
 }
+impl ExprType {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [ExprType] = &[
+            ExprType::Null,
+            ExprType::Int64,
+            ExprType::Uint64,
+            ExprType::Float32,
+            ExprType::Float64,
+            ExprType::String,
+            ExprType::Bytes,
+            ExprType::MysqlBit,
+            ExprType::MysqlDecimal,
+            ExprType::MysqlDuration,
+            ExprType::MysqlEnum,
+            ExprType::MysqlHex,
+            ExprType::MysqlSet,
+            ExprType::MysqlTime,
+            ExprType::MysqlJson,
+            ExprType::ValueList,
+            ExprType::ColumnRef,
+            ExprType::Count,
+            ExprType::Sum,
+            ExprType::Avg,
+            ExprType::Min,
+            ExprType::Max,
+            ExprType::First,
+            ExprType::GroupConcat,
+            ExprType::AggBitAnd,
+            ExprType::AggBitOr,
+            ExprType::AggBitXor,
+            ExprType::Std,
+            ExprType::Stddev,
+            ExprType::StddevPop,
+            ExprType::StddevSamp,
+            ExprType::VarPop,
+            ExprType::VarSamp,
+            ExprType::Variance,
+            ExprType::JsonArrayAgg,
+            ExprType::JsonObjectAgg,
+            ExprType::ScalarFunc,
+        ];
+        VALUES
+    }
+}
+impl ScalarFuncSig {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [ScalarFuncSig] = &[
+            ScalarFuncSig::CastIntAsInt,
+            ScalarFuncSig::CastIntAsReal,
+            ScalarFuncSig::CastIntAsString,
+            ScalarFuncSig::CastIntAsDecimal,
+            ScalarFuncSig::CastIntAsTime,
+            ScalarFuncSig::CastIntAsDuration,
+            ScalarFuncSig::CastIntAsJson,
+            ScalarFuncSig::CastRealAsInt,
+            ScalarFuncSig::CastRealAsReal,
+            ScalarFuncSig::CastRealAsString,
+            ScalarFuncSig::CastRealAsDecimal,
+            ScalarFuncSig::CastRealAsTime,
+            ScalarFuncSig::CastRealAsDuration,
+            ScalarFuncSig::CastRealAsJson,
+            ScalarFuncSig::CastDecimalAsInt,
+            ScalarFuncSig::CastDecimalAsReal,
+            ScalarFuncSig::CastDecimalAsString,
+            ScalarFuncSig::CastDecimalAsDecimal,
+            ScalarFuncSig::CastDecimalAsTime,
+            ScalarFuncSig::CastDecimalAsDuration,
+            ScalarFuncSig::CastDecimalAsJson,
+            ScalarFuncSig::CastStringAsInt,
+            ScalarFuncSig::CastStringAsReal,
+            ScalarFuncSig::CastStringAsString,
+            ScalarFuncSig::CastStringAsDecimal,
+            ScalarFuncSig::CastStringAsTime,
+            ScalarFuncSig::CastStringAsDuration,
+            ScalarFuncSig::CastStringAsJson,
+            ScalarFuncSig::CastTimeAsInt,
+            ScalarFuncSig::CastTimeAsReal,
+            ScalarFuncSig::CastTimeAsString,
+            ScalarFuncSig::CastTimeAsDecimal,
+            ScalarFuncSig::CastTimeAsTime,
+            ScalarFuncSig::CastTimeAsDuration,
+            ScalarFuncSig::CastTimeAsJson,
+            ScalarFuncSig::CastDurationAsInt,
+            ScalarFuncSig::CastDurationAsReal,
+            ScalarFuncSig::CastDurationAsString,
+            ScalarFuncSig::CastDurationAsDecimal,
+            ScalarFuncSig::CastDurationAsTime,
+            ScalarFuncSig::CastDurationAsDuration,
+            ScalarFuncSig::CastDurationAsJson,
+            ScalarFuncSig::CastJsonAsInt,
+            ScalarFuncSig::CastJsonAsReal,
+            ScalarFuncSig::CastJsonAsString,
+            ScalarFuncSig::CastJsonAsDecimal,
+            ScalarFuncSig::CastJsonAsTime,
+            ScalarFuncSig::CastJsonAsDuration,
+            ScalarFuncSig::CastJsonAsJson,
+            ScalarFuncSig::CoalesceInt,
+            ScalarFuncSig::CoalesceReal,
+            ScalarFuncSig::CoalesceDecimal,
+            ScalarFuncSig::CoalesceString,
+            ScalarFuncSig::CoalesceTime,
+            ScalarFuncSig::CoalesceDuration,
+            ScalarFuncSig::CoalesceJson,
+            ScalarFuncSig::LtInt,
+            ScalarFuncSig::LtReal,
+            ScalarFuncSig::LtDecimal,
+            ScalarFuncSig::LtString,
+            ScalarFuncSig::LtTime,
+            ScalarFuncSig::LtDuration,
+            ScalarFuncSig::LtJson,
+            ScalarFuncSig::LeInt,
+            ScalarFuncSig::LeReal,
+            ScalarFuncSig::LeDecimal,
+            ScalarFuncSig::LeString,
+            ScalarFuncSig::LeTime,
+            ScalarFuncSig::LeDuration,
+            ScalarFuncSig::LeJson,
+            ScalarFuncSig::GtInt,
+            ScalarFuncSig::GtReal,
+            ScalarFuncSig::GtDecimal,
+            ScalarFuncSig::GtString,
+            ScalarFuncSig::GtTime,
+            ScalarFuncSig::GtDuration,
+            ScalarFuncSig::GtJson,
+            ScalarFuncSig::GreatestInt,
+            ScalarFuncSig::GreatestReal,
+            ScalarFuncSig::GreatestDecimal,
+            ScalarFuncSig::GreatestString,
+            ScalarFuncSig::GreatestTime,
+            ScalarFuncSig::LeastInt,
+            ScalarFuncSig::LeastReal,
+            ScalarFuncSig::LeastDecimal,
+            ScalarFuncSig::LeastString,
+            ScalarFuncSig::LeastTime,
+            ScalarFuncSig::IntervalInt,
+            ScalarFuncSig::IntervalReal,
+            ScalarFuncSig::GeInt,
+            ScalarFuncSig::GeReal,
+            ScalarFuncSig::GeDecimal,
+            ScalarFuncSig::GeString,
+            ScalarFuncSig::GeTime,
+            ScalarFuncSig::GeDuration,
+            ScalarFuncSig::GeJson,
+            ScalarFuncSig::EqInt,
+            ScalarFuncSig::EqReal,
+            ScalarFuncSig::EqDecimal,
+            ScalarFuncSig::EqString,
+            ScalarFuncSig::EqTime,
+            ScalarFuncSig::EqDuration,
+            ScalarFuncSig::EqJson,
+            ScalarFuncSig::NeInt,
+            ScalarFuncSig::NeReal,
+            ScalarFuncSig::NeDecimal,
+            ScalarFuncSig::NeString,
+            ScalarFuncSig::NeTime,
+            ScalarFuncSig::NeDuration,
+            ScalarFuncSig::NeJson,
+            ScalarFuncSig::NullEqInt,
+            ScalarFuncSig::NullEqReal,
+            ScalarFuncSig::NullEqDecimal,
+            ScalarFuncSig::NullEqString,
+            ScalarFuncSig::NullEqTime,
+            ScalarFuncSig::NullEqDuration,
+            ScalarFuncSig::NullEqJson,
+            ScalarFuncSig::PlusReal,
+            ScalarFuncSig::PlusDecimal,
+            ScalarFuncSig::PlusInt,
+            ScalarFuncSig::MinusReal,
+            ScalarFuncSig::MinusDecimal,
+            ScalarFuncSig::MinusInt,
+            ScalarFuncSig::MultiplyReal,
+            ScalarFuncSig::MultiplyDecimal,
+            ScalarFuncSig::MultiplyInt,
+            ScalarFuncSig::DivideReal,
+            ScalarFuncSig::DivideDecimal,
+            ScalarFuncSig::IntDivideInt,
+            ScalarFuncSig::IntDivideDecimal,
+            ScalarFuncSig::ModReal,
+            ScalarFuncSig::ModDecimal,
+            ScalarFuncSig::ModInt,
+            ScalarFuncSig::MultiplyIntUnsigned,
+            ScalarFuncSig::AbsInt,
+            ScalarFuncSig::AbsUInt,
+            ScalarFuncSig::AbsReal,
+            ScalarFuncSig::AbsDecimal,
+            ScalarFuncSig::CeilIntToDec,
+            ScalarFuncSig::CeilIntToInt,
+            ScalarFuncSig::CeilDecToInt,
+            ScalarFuncSig::CeilDecToDec,
+            ScalarFuncSig::CeilReal,
+            ScalarFuncSig::FloorIntToDec,
+            ScalarFuncSig::FloorIntToInt,
+            ScalarFuncSig::FloorDecToInt,
+            ScalarFuncSig::FloorDecToDec,
+            ScalarFuncSig::FloorReal,
+            ScalarFuncSig::RoundReal,
+            ScalarFuncSig::RoundInt,
+            ScalarFuncSig::RoundDec,
+            ScalarFuncSig::RoundWithFracReal,
+            ScalarFuncSig::RoundWithFracInt,
+            ScalarFuncSig::RoundWithFracDec,
+            ScalarFuncSig::Log1Arg,
+            ScalarFuncSig::Log2Args,
+            ScalarFuncSig::Log2,
+            ScalarFuncSig::Log10,
+            ScalarFuncSig::Rand,
+            ScalarFuncSig::RandWithSeed,
+            ScalarFuncSig::Pow,
+            ScalarFuncSig::Conv,
+            ScalarFuncSig::Crc32,
+            ScalarFuncSig::Sign,
+            ScalarFuncSig::Sqrt,
+            ScalarFuncSig::Acos,
+            ScalarFuncSig::Asin,
+            ScalarFuncSig::Atan1Arg,
+            ScalarFuncSig::Atan2Args,
+            ScalarFuncSig::Cos,
+            ScalarFuncSig::Cot,
+            ScalarFuncSig::Degrees,
+            ScalarFuncSig::Exp,
+            ScalarFuncSig::Pi,
+            ScalarFuncSig::Radians,
+            ScalarFuncSig::Sin,
+            ScalarFuncSig::Tan,
+            ScalarFuncSig::TruncateInt,
+            ScalarFuncSig::TruncateReal,
+            ScalarFuncSig::TruncateDecimal,
+            ScalarFuncSig::LogicalAnd,
+            ScalarFuncSig::LogicalOr,
+            ScalarFuncSig::LogicalXor,
+            ScalarFuncSig::UnaryNot,
+            ScalarFuncSig::UnaryMinusInt,
+            ScalarFuncSig::UnaryMinusReal,
+            ScalarFuncSig::UnaryMinusDecimal,
+            ScalarFuncSig::DecimalIsNull,
+            ScalarFuncSig::DurationIsNull,
+            ScalarFuncSig::RealIsNull,
+            ScalarFuncSig::StringIsNull,
+            ScalarFuncSig::TimeIsNull,
+            ScalarFuncSig::IntIsNull,
+            ScalarFuncSig::JsonIsNull,
+            ScalarFuncSig::BitAndSig,
+            ScalarFuncSig::BitOrSig,
+            ScalarFuncSig::BitXorSig,
+            ScalarFuncSig::BitNegSig,
+            ScalarFuncSig::IntIsTrue,
+            ScalarFuncSig::RealIsTrue,
+            ScalarFuncSig::DecimalIsTrue,
+            ScalarFuncSig::IntIsFalse,
+            ScalarFuncSig::RealIsFalse,
+            ScalarFuncSig::DecimalIsFalse,
+            ScalarFuncSig::LeftShift,
+            ScalarFuncSig::RightShift,
+            ScalarFuncSig::BitCount,
+            ScalarFuncSig::GetParamString,
+            ScalarFuncSig::GetVar,
+            ScalarFuncSig::RowSig,
+            ScalarFuncSig::SetVar,
+            ScalarFuncSig::ValuesDecimal,
+            ScalarFuncSig::ValuesDuration,
+            ScalarFuncSig::ValuesInt,
+            ScalarFuncSig::ValuesJson,
+            ScalarFuncSig::ValuesReal,
+            ScalarFuncSig::ValuesString,
+            ScalarFuncSig::ValuesTime,
+            ScalarFuncSig::InInt,
+            ScalarFuncSig::InReal,
+            ScalarFuncSig::InDecimal,
+            ScalarFuncSig::InString,
+            ScalarFuncSig::InTime,
+            ScalarFuncSig::InDuration,
+            ScalarFuncSig::InJson,
+            ScalarFuncSig::IfNullInt,
+            ScalarFuncSig::IfNullReal,
+            ScalarFuncSig::IfNullDecimal,
+            ScalarFuncSig::IfNullString,
+            ScalarFuncSig::IfNullTime,
+            ScalarFuncSig::IfNullDuration,
+            ScalarFuncSig::IfInt,
+            ScalarFuncSig::IfReal,
+            ScalarFuncSig::IfDecimal,
+            ScalarFuncSig::IfString,
+            ScalarFuncSig::IfTime,
+            ScalarFuncSig::IfDuration,
+            ScalarFuncSig::IfNullJson,
+            ScalarFuncSig::IfJson,
+            ScalarFuncSig::CaseWhenInt,
+            ScalarFuncSig::CaseWhenReal,
+            ScalarFuncSig::CaseWhenDecimal,
+            ScalarFuncSig::CaseWhenString,
+            ScalarFuncSig::CaseWhenTime,
+            ScalarFuncSig::CaseWhenDuration,
+            ScalarFuncSig::CaseWhenJson,
+            ScalarFuncSig::AesDecrypt,
+            ScalarFuncSig::AesEncrypt,
+            ScalarFuncSig::Compress,
+            ScalarFuncSig::Md5,
+            ScalarFuncSig::Password,
+            ScalarFuncSig::RandomBytes,
+            ScalarFuncSig::Sha1,
+            ScalarFuncSig::Sha2,
+            ScalarFuncSig::Uncompress,
+            ScalarFuncSig::UncompressedLength,
+            ScalarFuncSig::Database,
+            ScalarFuncSig::FoundRows,
+            ScalarFuncSig::CurrentUser,
+            ScalarFuncSig::User,
+            ScalarFuncSig::ConnectionId,
+            ScalarFuncSig::LastInsertId,
+            ScalarFuncSig::LastInsertIdWithId,
+            ScalarFuncSig::Version,
+            ScalarFuncSig::TiDbVersion,
+            ScalarFuncSig::RowCount,
+            ScalarFuncSig::Sleep,
+            ScalarFuncSig::Lock,
+            ScalarFuncSig::ReleaseLock,
+            ScalarFuncSig::DecimalAnyValue,
+            ScalarFuncSig::DurationAnyValue,
+            ScalarFuncSig::IntAnyValue,
+            ScalarFuncSig::JsonAnyValue,
+            ScalarFuncSig::RealAnyValue,
+            ScalarFuncSig::StringAnyValue,
+            ScalarFuncSig::TimeAnyValue,
+            ScalarFuncSig::InetAton,
+            ScalarFuncSig::InetNtoa,
+            ScalarFuncSig::Inet6Aton,
+            ScalarFuncSig::Inet6Ntoa,
+            ScalarFuncSig::IsIPv4,
+            ScalarFuncSig::IsIPv4Compat,
+            ScalarFuncSig::IsIPv4Mapped,
+            ScalarFuncSig::IsIPv6,
+            ScalarFuncSig::Uuid,
+            ScalarFuncSig::LikeSig,
+            ScalarFuncSig::RegexpBinarySig,
+            ScalarFuncSig::RegexpSig,
+            ScalarFuncSig::JsonExtractSig,
+            ScalarFuncSig::JsonUnquoteSig,
+            ScalarFuncSig::JsonTypeSig,
+            ScalarFuncSig::JsonSetSig,
+            ScalarFuncSig::JsonInsertSig,
+            ScalarFuncSig::JsonReplaceSig,
+            ScalarFuncSig::JsonRemoveSig,
+            ScalarFuncSig::JsonMergeSig,
+            ScalarFuncSig::JsonObjectSig,
+            ScalarFuncSig::JsonArraySig,
+            ScalarFuncSig::JsonValidJsonSig,
+            ScalarFuncSig::JsonContainsSig,
+            ScalarFuncSig::JsonArrayAppendSig,
+            ScalarFuncSig::JsonArrayInsertSig,
+            ScalarFuncSig::JsonMergePatchSig,
+            ScalarFuncSig::JsonMergePreserveSig,
+            ScalarFuncSig::JsonContainsPathSig,
+            ScalarFuncSig::JsonPrettySig,
+            ScalarFuncSig::JsonQuoteSig,
+            ScalarFuncSig::JsonSearchSig,
+            ScalarFuncSig::JsonStorageSizeSig,
+            ScalarFuncSig::JsonDepthSig,
+            ScalarFuncSig::JsonKeysSig,
+            ScalarFuncSig::JsonLengthSig,
+            ScalarFuncSig::JsonKeys2ArgsSig,
+            ScalarFuncSig::JsonValidStringSig,
+            ScalarFuncSig::DateFormatSig,
+            ScalarFuncSig::DateLiteral,
+            ScalarFuncSig::DateDiff,
+            ScalarFuncSig::NullTimeDiff,
+            ScalarFuncSig::TimeStringTimeDiff,
+            ScalarFuncSig::DurationStringTimeDiff,
+            ScalarFuncSig::DurationDurationTimeDiff,
+            ScalarFuncSig::StringTimeTimeDiff,
+            ScalarFuncSig::StringDurationTimeDiff,
+            ScalarFuncSig::StringStringTimeDiff,
+            ScalarFuncSig::TimeTimeTimeDiff,
+            ScalarFuncSig::Date,
+            ScalarFuncSig::Hour,
+            ScalarFuncSig::Minute,
+            ScalarFuncSig::Second,
+            ScalarFuncSig::MicroSecond,
+            ScalarFuncSig::Month,
+            ScalarFuncSig::MonthName,
+            ScalarFuncSig::NowWithArg,
+            ScalarFuncSig::NowWithoutArg,
+            ScalarFuncSig::DayName,
+            ScalarFuncSig::DayOfMonth,
+            ScalarFuncSig::DayOfWeek,
+            ScalarFuncSig::DayOfYear,
+            ScalarFuncSig::WeekWithMode,
+            ScalarFuncSig::WeekWithoutMode,
+            ScalarFuncSig::WeekDay,
+            ScalarFuncSig::WeekOfYear,
+            ScalarFuncSig::Year,
+            ScalarFuncSig::YearWeekWithMode,
+            ScalarFuncSig::YearWeekWithoutMode,
+            ScalarFuncSig::GetFormat,
+            ScalarFuncSig::SysDateWithFsp,
+            ScalarFuncSig::SysDateWithoutFsp,
+            ScalarFuncSig::CurrentDate,
+            ScalarFuncSig::CurrentTime0Arg,
+            ScalarFuncSig::CurrentTime1Arg,
+            ScalarFuncSig::Time,
+            ScalarFuncSig::TimeLiteral,
+            ScalarFuncSig::UtcDate,
+            ScalarFuncSig::UtcTimestampWithArg,
+            ScalarFuncSig::UtcTimestampWithoutArg,
+            ScalarFuncSig::AddDatetimeAndDuration,
+            ScalarFuncSig::AddDatetimeAndString,
+            ScalarFuncSig::AddTimeDateTimeNull,
+            ScalarFuncSig::AddStringAndDuration,
+            ScalarFuncSig::AddStringAndString,
+            ScalarFuncSig::AddTimeStringNull,
+            ScalarFuncSig::AddDurationAndDuration,
+            ScalarFuncSig::AddDurationAndString,
+            ScalarFuncSig::AddTimeDurationNull,
+            ScalarFuncSig::AddDateAndDuration,
+            ScalarFuncSig::AddDateAndString,
+            ScalarFuncSig::SubDatetimeAndDuration,
+            ScalarFuncSig::SubDatetimeAndString,
+            ScalarFuncSig::SubTimeDateTimeNull,
+            ScalarFuncSig::SubStringAndDuration,
+            ScalarFuncSig::SubStringAndString,
+            ScalarFuncSig::SubTimeStringNull,
+            ScalarFuncSig::SubDurationAndDuration,
+            ScalarFuncSig::SubDurationAndString,
+            ScalarFuncSig::SubTimeDurationNull,
+            ScalarFuncSig::SubDateAndDuration,
+            ScalarFuncSig::SubDateAndString,
+            ScalarFuncSig::UnixTimestampCurrent,
+            ScalarFuncSig::UnixTimestampInt,
+            ScalarFuncSig::UnixTimestampDec,
+            ScalarFuncSig::ConvertTz,
+            ScalarFuncSig::MakeDate,
+            ScalarFuncSig::MakeTime,
+            ScalarFuncSig::PeriodAdd,
+            ScalarFuncSig::PeriodDiff,
+            ScalarFuncSig::Quarter,
+            ScalarFuncSig::SecToTime,
+            ScalarFuncSig::TimeToSec,
+            ScalarFuncSig::TimestampAdd,
+            ScalarFuncSig::ToDays,
+            ScalarFuncSig::ToSeconds,
+            ScalarFuncSig::UtcTimeWithArg,
+            ScalarFuncSig::UtcTimeWithoutArg,
+            ScalarFuncSig::Timestamp1Arg,
+            ScalarFuncSig::Timestamp2Args,
+            ScalarFuncSig::TimestampLiteral,
+            ScalarFuncSig::LastDay,
+            ScalarFuncSig::StrToDateDate,
+            ScalarFuncSig::StrToDateDatetime,
+            ScalarFuncSig::StrToDateDuration,
+            ScalarFuncSig::FromUnixTime1Arg,
+            ScalarFuncSig::FromUnixTime2Arg,
+            ScalarFuncSig::ExtractDatetime,
+            ScalarFuncSig::ExtractDuration,
+            ScalarFuncSig::AddDateStringString,
+            ScalarFuncSig::AddDateStringInt,
+            ScalarFuncSig::AddDateStringDecimal,
+            ScalarFuncSig::AddDateIntString,
+            ScalarFuncSig::AddDateIntInt,
+            ScalarFuncSig::AddDateDatetimeString,
+            ScalarFuncSig::AddDateDatetimeInt,
+            ScalarFuncSig::SubDateStringString,
+            ScalarFuncSig::SubDateStringInt,
+            ScalarFuncSig::SubDateStringDecimal,
+            ScalarFuncSig::SubDateIntString,
+            ScalarFuncSig::SubDateIntInt,
+            ScalarFuncSig::SubDateDatetimeString,
+            ScalarFuncSig::SubDateDatetimeInt,
+            ScalarFuncSig::FromDays,
+            ScalarFuncSig::TimeFormat,
+            ScalarFuncSig::TimestampDiff,
+            ScalarFuncSig::BitLength,
+            ScalarFuncSig::Bin,
+            ScalarFuncSig::Ascii,
+            ScalarFuncSig::Char,
+            ScalarFuncSig::CharLength,
+            ScalarFuncSig::Concat,
+            ScalarFuncSig::ConcatWs,
+            ScalarFuncSig::Convert,
+            ScalarFuncSig::Elt,
+            ScalarFuncSig::ExportSet3Arg,
+            ScalarFuncSig::ExportSet4Arg,
+            ScalarFuncSig::ExportSet5Arg,
+            ScalarFuncSig::FieldInt,
+            ScalarFuncSig::FieldReal,
+            ScalarFuncSig::FieldString,
+            ScalarFuncSig::FindInSet,
+            ScalarFuncSig::Format,
+            ScalarFuncSig::FormatWithLocale,
+            ScalarFuncSig::FromBase64,
+            ScalarFuncSig::HexIntArg,
+            ScalarFuncSig::HexStrArg,
+            ScalarFuncSig::Insert,
+            ScalarFuncSig::InsertBinary,
+            ScalarFuncSig::Instr,
+            ScalarFuncSig::InstrBinary,
+            ScalarFuncSig::LTrim,
+            ScalarFuncSig::Left,
+            ScalarFuncSig::LeftBinary,
+            ScalarFuncSig::Length,
+            ScalarFuncSig::Locate2Args,
+            ScalarFuncSig::Locate3Args,
+            ScalarFuncSig::LocateBinary2Args,
+            ScalarFuncSig::LocateBinary3Args,
+            ScalarFuncSig::Lower,
+            ScalarFuncSig::Lpad,
+            ScalarFuncSig::LpadBinary,
+            ScalarFuncSig::MakeSet,
+            ScalarFuncSig::OctInt,
+            ScalarFuncSig::OctString,
+            ScalarFuncSig::Ord,
+            ScalarFuncSig::Quote,
+            ScalarFuncSig::RTrim,
+            ScalarFuncSig::Repeat,
+            ScalarFuncSig::Replace,
+            ScalarFuncSig::Reverse,
+            ScalarFuncSig::ReverseBinary,
+            ScalarFuncSig::Right,
+            ScalarFuncSig::RightBinary,
+            ScalarFuncSig::Rpad,
+            ScalarFuncSig::RpadBinary,
+            ScalarFuncSig::Space,
+            ScalarFuncSig::Strcmp,
+            ScalarFuncSig::Substring2Args,
+            ScalarFuncSig::Substring3Args,
+            ScalarFuncSig::SubstringBinary2Args,
+            ScalarFuncSig::SubstringBinary3Args,
+            ScalarFuncSig::SubstringIndex,
+            ScalarFuncSig::ToBase64,
+            ScalarFuncSig::Trim1Arg,
+            ScalarFuncSig::Trim2Args,
+            ScalarFuncSig::Trim3Args,
+            ScalarFuncSig::UnHex,
+            ScalarFuncSig::Upper,
+        ];
+        VALUES
+    }
+}
 impl Executor {
     pub fn new_() -> Executor {
         ::std::default::Default::default()
@@ -2215,7 +2825,7 @@ impl Executor {
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None
     }
-    pub fn set_tp(&mut self, v: ExecType) {
+    pub fn set_tp_(&mut self, v: ExecType) {
         self.tp = ::std::option::Option::Some(unsafe { ::std::mem::transmute::<ExecType, i32>(v) });
     }
     pub fn get_tp(&self) -> ExecType {
@@ -2233,7 +2843,8 @@ impl Executor {
         self.tbl_scan = ::std::option::Option::None
     }
     pub fn set_tbl_scan(&mut self, v: TableScan) {
-        self.tbl_scan = ::std::option::Option::Some(v);;    }
+        self.tbl_scan = ::std::option::Option::Some(v);
+    }
     pub fn get_tbl_scan(&self) -> &TableScan {
         match self.tbl_scan.as_ref() {
             Some(v) => v,
@@ -2256,7 +2867,8 @@ impl Executor {
         self.idx_scan = ::std::option::Option::None
     }
     pub fn set_idx_scan(&mut self, v: IndexScan) {
-        self.idx_scan = ::std::option::Option::Some(v);;    }
+        self.idx_scan = ::std::option::Option::Some(v);
+    }
     pub fn get_idx_scan(&self) -> &IndexScan {
         match self.idx_scan.as_ref() {
             Some(v) => v,
@@ -2279,7 +2891,8 @@ impl Executor {
         self.selection = ::std::option::Option::None
     }
     pub fn set_selection(&mut self, v: Selection) {
-        self.selection = ::std::option::Option::Some(v);;    }
+        self.selection = ::std::option::Option::Some(v);
+    }
     pub fn get_selection(&self) -> &Selection {
         match self.selection.as_ref() {
             Some(v) => v,
@@ -2302,7 +2915,8 @@ impl Executor {
         self.aggregation = ::std::option::Option::None
     }
     pub fn set_aggregation(&mut self, v: Aggregation) {
-        self.aggregation = ::std::option::Option::Some(v);;    }
+        self.aggregation = ::std::option::Option::Some(v);
+    }
     pub fn get_aggregation(&self) -> &Aggregation {
         match self.aggregation.as_ref() {
             Some(v) => v,
@@ -2325,7 +2939,8 @@ impl Executor {
         self.top_n = ::std::option::Option::None
     }
     pub fn set_top_n(&mut self, v: TopN) {
-        self.top_n = ::std::option::Option::Some(v);;    }
+        self.top_n = ::std::option::Option::Some(v);
+    }
     pub fn get_top_n(&self) -> &TopN {
         match self.top_n.as_ref() {
             Some(v) => v,
@@ -2348,7 +2963,8 @@ impl Executor {
         self.limit = ::std::option::Option::None
     }
     pub fn set_limit(&mut self, v: Limit) {
-        self.limit = ::std::option::Option::Some(v);;    }
+        self.limit = ::std::option::Option::Some(v);
+    }
     pub fn get_limit(&self) -> &Limit {
         match self.limit.as_ref() {
             Some(v) => v,
@@ -2371,7 +2987,8 @@ impl Executor {
         self.stream_agg = ::std::option::Option::None
     }
     pub fn set_stream_agg(&mut self, v: Aggregation) {
-        self.stream_agg = ::std::option::Option::Some(v);;    }
+        self.stream_agg = ::std::option::Option::Some(v);
+    }
     pub fn get_stream_agg(&self) -> &Aggregation {
         match self.stream_agg.as_ref() {
             Some(v) => v,
@@ -2419,7 +3036,7 @@ impl ::protobuf::Message for Executor {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2445,7 +3062,8 @@ impl TableScan {
         self.table_id = ::std::option::Option::None
     }
     pub fn set_table_id(&mut self, v: i64) {
-        self.table_id = ::std::option::Option::Some(v);;    }
+        self.table_id = ::std::option::Option::Some(v);
+    }
     pub fn get_table_id(&self) -> i64 {
         match self.table_id {
             Some(v) => v,
@@ -2474,7 +3092,8 @@ impl TableScan {
         self.desc = ::std::option::Option::None
     }
     pub fn set_desc(&mut self, v: bool) {
-        self.desc = ::std::option::Option::Some(v);;    }
+        self.desc = ::std::option::Option::Some(v);
+    }
     pub fn get_desc(&self) -> bool {
         match self.desc {
             Some(v) => v,
@@ -2513,7 +3132,7 @@ impl ::protobuf::Message for TableScan {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2539,7 +3158,8 @@ impl IndexScan {
         self.table_id = ::std::option::Option::None
     }
     pub fn set_table_id(&mut self, v: i64) {
-        self.table_id = ::std::option::Option::Some(v);;    }
+        self.table_id = ::std::option::Option::Some(v);
+    }
     pub fn get_table_id(&self) -> i64 {
         match self.table_id {
             Some(v) => v,
@@ -2553,7 +3173,8 @@ impl IndexScan {
         self.index_id = ::std::option::Option::None
     }
     pub fn set_index_id(&mut self, v: i64) {
-        self.index_id = ::std::option::Option::Some(v);;    }
+        self.index_id = ::std::option::Option::Some(v);
+    }
     pub fn get_index_id(&self) -> i64 {
         match self.index_id {
             Some(v) => v,
@@ -2582,7 +3203,8 @@ impl IndexScan {
         self.desc = ::std::option::Option::None
     }
     pub fn set_desc(&mut self, v: bool) {
-        self.desc = ::std::option::Option::Some(v);;    }
+        self.desc = ::std::option::Option::Some(v);
+    }
     pub fn get_desc(&self) -> bool {
         match self.desc {
             Some(v) => v,
@@ -2596,7 +3218,8 @@ impl IndexScan {
         self.unique = ::std::option::Option::None
     }
     pub fn set_unique(&mut self, v: bool) {
-        self.unique = ::std::option::Option::Some(v);;    }
+        self.unique = ::std::option::Option::Some(v);
+    }
     pub fn get_unique(&self) -> bool {
         match self.unique {
             Some(v) => v,
@@ -2635,7 +3258,7 @@ impl ::protobuf::Message for IndexScan {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2701,7 +3324,7 @@ impl ::protobuf::Message for Selection {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2767,7 +3390,7 @@ impl ::protobuf::Message for Projection {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2823,7 +3446,8 @@ impl Aggregation {
         self.streamed = ::std::option::Option::None
     }
     pub fn set_streamed(&mut self, v: bool) {
-        self.streamed = ::std::option::Option::Some(v);;    }
+        self.streamed = ::std::option::Option::Some(v);
+    }
     pub fn get_streamed(&self) -> bool {
         match self.streamed {
             Some(v) => v,
@@ -2862,7 +3486,7 @@ impl ::protobuf::Message for Aggregation {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2903,7 +3527,8 @@ impl TopN {
         self.limit = ::std::option::Option::None
     }
     pub fn set_limit(&mut self, v: u64) {
-        self.limit = ::std::option::Option::Some(v);;    }
+        self.limit = ::std::option::Option::Some(v);
+    }
     pub fn get_limit(&self) -> u64 {
         match self.limit {
             Some(v) => v,
@@ -2942,7 +3567,7 @@ impl ::protobuf::Message for TopN {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -2968,7 +3593,8 @@ impl Limit {
         self.limit = ::std::option::Option::None
     }
     pub fn set_limit(&mut self, v: u64) {
-        self.limit = ::std::option::Option::Some(v);;    }
+        self.limit = ::std::option::Option::Some(v);
+    }
     pub fn get_limit(&self) -> u64 {
         match self.limit {
             Some(v) => v,
@@ -3007,7 +3633,7 @@ impl ::protobuf::Message for Limit {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3033,7 +3659,8 @@ impl ExecutorExecutionSummary {
         self.time_processed_ns = ::std::option::Option::None
     }
     pub fn set_time_processed_ns(&mut self, v: u64) {
-        self.time_processed_ns = ::std::option::Option::Some(v);;    }
+        self.time_processed_ns = ::std::option::Option::Some(v);
+    }
     pub fn get_time_processed_ns(&self) -> u64 {
         match self.time_processed_ns {
             Some(v) => v,
@@ -3047,7 +3674,8 @@ impl ExecutorExecutionSummary {
         self.num_produced_rows = ::std::option::Option::None
     }
     pub fn set_num_produced_rows(&mut self, v: u64) {
-        self.num_produced_rows = ::std::option::Option::Some(v);;    }
+        self.num_produced_rows = ::std::option::Option::Some(v);
+    }
     pub fn get_num_produced_rows(&self) -> u64 {
         match self.num_produced_rows {
             Some(v) => v,
@@ -3061,7 +3689,8 @@ impl ExecutorExecutionSummary {
         self.num_iterations = ::std::option::Option::None
     }
     pub fn set_num_iterations(&mut self, v: u64) {
-        self.num_iterations = ::std::option::Option::Some(v);;    }
+        self.num_iterations = ::std::option::Option::Some(v);
+    }
     pub fn get_num_iterations(&self) -> u64 {
         match self.num_iterations {
             Some(v) => v,
@@ -3100,7 +3729,7 @@ impl ::protobuf::Message for ExecutorExecutionSummary {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3115,6 +3744,20 @@ impl ::protobuf::Message for ExecutorExecutionSummary {
         unimplemented!();
     }
 }
+impl ExecType {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [ExecType] = &[
+            ExecType::TypeTableScan,
+            ExecType::TypeIndexScan,
+            ExecType::TypeSelection,
+            ExecType::TypeAggregation,
+            ExecType::TypeTopN,
+            ExecType::TypeLimit,
+            ExecType::TypeStreamAgg,
+        ];
+        VALUES
+    }
+}
 impl Row {
     pub fn new_() -> Row {
         ::std::default::Default::default()
@@ -3126,7 +3769,8 @@ impl Row {
         self.handle = ::std::option::Option::None
     }
     pub fn set_handle(&mut self, v: std::vec::Vec<u8>) {
-        self.handle = ::std::option::Option::Some(v);;    }
+        self.handle = ::std::option::Option::Some(v);
+    }
     pub fn get_handle(&self) -> &[u8] {
         match self.handle.as_ref() {
             Some(v) => v,
@@ -3149,7 +3793,8 @@ impl Row {
         self.data = ::std::option::Option::None
     }
     pub fn set_data(&mut self, v: std::vec::Vec<u8>) {
-        self.data = ::std::option::Option::Some(v);;    }
+        self.data = ::std::option::Option::Some(v);
+    }
     pub fn get_data(&self) -> &[u8] {
         match self.data.as_ref() {
             Some(v) => v,
@@ -3197,7 +3842,7 @@ impl ::protobuf::Message for Row {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3223,7 +3868,8 @@ impl Error {
         self.code = ::std::option::Option::None
     }
     pub fn set_code(&mut self, v: i32) {
-        self.code = ::std::option::Option::Some(v);;    }
+        self.code = ::std::option::Option::Some(v);
+    }
     pub fn get_code(&self) -> i32 {
         match self.code {
             Some(v) => v,
@@ -3237,7 +3883,8 @@ impl Error {
         self.msg = ::std::option::Option::None
     }
     pub fn set_msg(&mut self, v: std::string::String) {
-        self.msg = ::std::option::Option::Some(v);;    }
+        self.msg = ::std::option::Option::Some(v);
+    }
     pub fn get_msg(&self) -> &str {
         match self.msg.as_ref() {
             Some(v) => v,
@@ -3285,7 +3932,7 @@ impl ::protobuf::Message for Error {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3311,7 +3958,8 @@ impl SelectResponse {
         self.error = ::std::option::Option::None
     }
     pub fn set_error(&mut self, v: Error) {
-        self.error = ::std::option::Option::Some(v);;    }
+        self.error = ::std::option::Option::Some(v);
+    }
     pub fn get_error(&self) -> &Error {
         match self.error.as_ref() {
             Some(v) => v,
@@ -3394,7 +4042,8 @@ impl SelectResponse {
         self.warning_count = ::std::option::Option::None
     }
     pub fn set_warning_count(&mut self, v: i64) {
-        self.warning_count = ::std::option::Option::Some(v);;    }
+        self.warning_count = ::std::option::Option::Some(v);
+    }
     pub fn get_warning_count(&self) -> i64 {
         match self.warning_count {
             Some(v) => v,
@@ -3408,7 +4057,8 @@ impl SelectResponse {
         self.row_batch_data = ::std::option::Option::None
     }
     pub fn set_row_batch_data(&mut self, v: std::vec::Vec<u8>) {
-        self.row_batch_data = ::std::option::Option::Some(v);;    }
+        self.row_batch_data = ::std::option::Option::Some(v);
+    }
     pub fn get_row_batch_data(&self) -> &[u8] {
         match self.row_batch_data.as_ref() {
             Some(v) => v,
@@ -3473,7 +4123,7 @@ impl ::protobuf::Message for SelectResponse {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3499,7 +4149,8 @@ impl Chunk {
         self.rows_data = ::std::option::Option::None
     }
     pub fn set_rows_data(&mut self, v: std::vec::Vec<u8>) {
-        self.rows_data = ::std::option::Option::Some(v);;    }
+        self.rows_data = ::std::option::Option::Some(v);
+    }
     pub fn get_rows_data(&self) -> &[u8] {
         match self.rows_data.as_ref() {
             Some(v) => v,
@@ -3562,7 +4213,7 @@ impl ::protobuf::Message for Chunk {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3588,7 +4239,8 @@ impl RowMeta {
         self.handle = ::std::option::Option::None
     }
     pub fn set_handle(&mut self, v: i64) {
-        self.handle = ::std::option::Option::Some(v);;    }
+        self.handle = ::std::option::Option::Some(v);
+    }
     pub fn get_handle(&self) -> i64 {
         match self.handle {
             Some(v) => v,
@@ -3602,7 +4254,8 @@ impl RowMeta {
         self.length = ::std::option::Option::None
     }
     pub fn set_length(&mut self, v: i64) {
-        self.length = ::std::option::Option::Some(v);;    }
+        self.length = ::std::option::Option::Some(v);
+    }
     pub fn get_length(&self) -> i64 {
         match self.length {
             Some(v) => v,
@@ -3641,7 +4294,7 @@ impl ::protobuf::Message for RowMeta {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3667,7 +4320,8 @@ impl DagRequest {
         self.start_ts = ::std::option::Option::None
     }
     pub fn set_start_ts(&mut self, v: u64) {
-        self.start_ts = ::std::option::Option::Some(v);;    }
+        self.start_ts = ::std::option::Option::Some(v);
+    }
     pub fn get_start_ts(&self) -> u64 {
         match self.start_ts {
             Some(v) => v,
@@ -3696,7 +4350,8 @@ impl DagRequest {
         self.time_zone_offset = ::std::option::Option::None
     }
     pub fn set_time_zone_offset(&mut self, v: i64) {
-        self.time_zone_offset = ::std::option::Option::Some(v);;    }
+        self.time_zone_offset = ::std::option::Option::Some(v);
+    }
     pub fn get_time_zone_offset(&self) -> i64 {
         match self.time_zone_offset {
             Some(v) => v,
@@ -3710,7 +4365,8 @@ impl DagRequest {
         self.flags = ::std::option::Option::None
     }
     pub fn set_flags(&mut self, v: u64) {
-        self.flags = ::std::option::Option::Some(v);;    }
+        self.flags = ::std::option::Option::Some(v);
+    }
     pub fn get_flags(&self) -> u64 {
         match self.flags {
             Some(v) => v,
@@ -3739,7 +4395,8 @@ impl DagRequest {
         self.collect_range_counts = ::std::option::Option::None
     }
     pub fn set_collect_range_counts(&mut self, v: bool) {
-        self.collect_range_counts = ::std::option::Option::Some(v);;    }
+        self.collect_range_counts = ::std::option::Option::Some(v);
+    }
     pub fn get_collect_range_counts(&self) -> bool {
         match self.collect_range_counts {
             Some(v) => v,
@@ -3753,7 +4410,8 @@ impl DagRequest {
         self.max_warning_count = ::std::option::Option::None
     }
     pub fn set_max_warning_count(&mut self, v: u64) {
-        self.max_warning_count = ::std::option::Option::Some(v);;    }
+        self.max_warning_count = ::std::option::Option::Some(v);
+    }
     pub fn get_max_warning_count(&self) -> u64 {
         match self.max_warning_count {
             Some(v) => v,
@@ -3766,7 +4424,7 @@ impl DagRequest {
     pub fn clear_encode_type(&mut self) {
         self.encode_type = ::std::option::Option::None
     }
-    pub fn set_encode_type(&mut self, v: EncodeType) {
+    pub fn set_encode_type_(&mut self, v: EncodeType) {
         self.encode_type =
             ::std::option::Option::Some(unsafe { ::std::mem::transmute::<EncodeType, i32>(v) });
     }
@@ -3785,7 +4443,8 @@ impl DagRequest {
         self.sql_mode = ::std::option::Option::None
     }
     pub fn set_sql_mode(&mut self, v: u64) {
-        self.sql_mode = ::std::option::Option::Some(v);;    }
+        self.sql_mode = ::std::option::Option::Some(v);
+    }
     pub fn get_sql_mode(&self) -> u64 {
         match self.sql_mode {
             Some(v) => v,
@@ -3799,7 +4458,8 @@ impl DagRequest {
         self.time_zone_name = ::std::option::Option::None
     }
     pub fn set_time_zone_name(&mut self, v: std::string::String) {
-        self.time_zone_name = ::std::option::Option::Some(v);;    }
+        self.time_zone_name = ::std::option::Option::Some(v);
+    }
     pub fn get_time_zone_name(&self) -> &str {
         match self.time_zone_name.as_ref() {
             Some(v) => v,
@@ -3824,7 +4484,8 @@ impl DagRequest {
         self.collect_execution_summaries = ::std::option::Option::None
     }
     pub fn set_collect_execution_summaries(&mut self, v: bool) {
-        self.collect_execution_summaries = ::std::option::Option::Some(v);;    }
+        self.collect_execution_summaries = ::std::option::Option::Some(v);
+    }
     pub fn get_collect_execution_summaries(&self) -> bool {
         match self.collect_execution_summaries {
             Some(v) => v,
@@ -3863,7 +4524,7 @@ impl ::protobuf::Message for DagRequest {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -3889,7 +4550,8 @@ impl StreamResponse {
         self.error = ::std::option::Option::None
     }
     pub fn set_error(&mut self, v: Error) {
-        self.error = ::std::option::Option::Some(v);;    }
+        self.error = ::std::option::Option::Some(v);
+    }
     pub fn get_error(&self) -> &Error {
         match self.error.as_ref() {
             Some(v) => v,
@@ -3912,7 +4574,8 @@ impl StreamResponse {
         self.data = ::std::option::Option::None
     }
     pub fn set_data(&mut self, v: std::vec::Vec<u8>) {
-        self.data = ::std::option::Option::Some(v);;    }
+        self.data = ::std::option::Option::Some(v);
+    }
     pub fn get_data(&self) -> &[u8] {
         match self.data.as_ref() {
             Some(v) => v,
@@ -3965,7 +4628,8 @@ impl StreamResponse {
         self.warning_count = ::std::option::Option::None
     }
     pub fn set_warning_count(&mut self, v: i64) {
-        self.warning_count = ::std::option::Option::Some(v);;    }
+        self.warning_count = ::std::option::Option::Some(v);
+    }
     pub fn get_warning_count(&self) -> i64 {
         match self.warning_count {
             Some(v) => v,
@@ -4004,7 +4668,7 @@ impl ::protobuf::Message for StreamResponse {
         unimplemented!();
     }
     fn is_initialized(&self) -> bool {
-        unimplemented!();
+        true
     }
     fn merge_from(
         &mut self,
@@ -4017,5 +4681,11 @@ impl ::protobuf::Message for StreamResponse {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+}
+impl EncodeType {
+    pub fn values() -> &'static [Self] {
+        static VALUES: &'static [EncodeType] = &[EncodeType::TypeDefault, EncodeType::TypeArrow];
+        VALUES
     }
 }
