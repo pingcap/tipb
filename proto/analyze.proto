@@ -108,4 +108,5 @@ message CMSketchRow {
 
 message CMSketch {
     repeated CMSketchRow rows = 1;
+    repeated uint32 top_n = 2;
 }
