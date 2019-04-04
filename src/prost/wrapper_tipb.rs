@@ -61,7 +61,10 @@ impl ::protobuf::Message for TableInfo {
         unimplemented!();
     }
     fn default_instance() -> &'static TableInfo {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: TableInfo = TableInfo::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -77,6 +80,23 @@ impl ::protobuf::Message for TableInfo {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ColumnInfo {
@@ -256,7 +276,10 @@ impl ::protobuf::Message for ColumnInfo {
         unimplemented!();
     }
     fn default_instance() -> &'static ColumnInfo {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: ColumnInfo = ColumnInfo::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -272,6 +295,23 @@ impl ::protobuf::Message for ColumnInfo {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl IndexInfo {
@@ -367,7 +407,10 @@ impl ::protobuf::Message for IndexInfo {
         unimplemented!();
     }
     fn default_instance() -> &'static IndexInfo {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: IndexInfo = IndexInfo::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -383,6 +426,23 @@ impl ::protobuf::Message for IndexInfo {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl KeyRange {
@@ -466,7 +526,10 @@ impl ::protobuf::Message for KeyRange {
         unimplemented!();
     }
     fn default_instance() -> &'static KeyRange {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: KeyRange = KeyRange::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -482,6 +545,23 @@ impl ::protobuf::Message for KeyRange {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeReq {
@@ -630,7 +710,10 @@ impl ::protobuf::Message for AnalyzeReq {
         unimplemented!();
     }
     fn default_instance() -> &'static AnalyzeReq {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: AnalyzeReq = AnalyzeReq::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -646,6 +729,23 @@ impl ::protobuf::Message for AnalyzeReq {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeIndexReq {
@@ -741,7 +841,10 @@ impl ::protobuf::Message for AnalyzeIndexReq {
         unimplemented!();
     }
     fn default_instance() -> &'static AnalyzeIndexReq {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: AnalyzeIndexReq = AnalyzeIndexReq::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -757,6 +860,23 @@ impl ::protobuf::Message for AnalyzeIndexReq {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeColumnsReq {
@@ -882,7 +1002,10 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
         unimplemented!();
     }
     fn default_instance() -> &'static AnalyzeColumnsReq {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: AnalyzeColumnsReq = AnalyzeColumnsReq::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -898,6 +1021,23 @@ impl ::protobuf::Message for AnalyzeColumnsReq {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeColumnsResp {
@@ -972,7 +1112,10 @@ impl ::protobuf::Message for AnalyzeColumnsResp {
         unimplemented!();
     }
     fn default_instance() -> &'static AnalyzeColumnsResp {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: AnalyzeColumnsResp = AnalyzeColumnsResp::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -988,6 +1131,23 @@ impl ::protobuf::Message for AnalyzeColumnsResp {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeIndexResp {
@@ -1071,7 +1231,10 @@ impl ::protobuf::Message for AnalyzeIndexResp {
         unimplemented!();
     }
     fn default_instance() -> &'static AnalyzeIndexResp {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: AnalyzeIndexResp = AnalyzeIndexResp::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1087,6 +1250,23 @@ impl ::protobuf::Message for AnalyzeIndexResp {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Bucket {
@@ -1200,7 +1380,10 @@ impl ::protobuf::Message for Bucket {
         unimplemented!();
     }
     fn default_instance() -> &'static Bucket {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Bucket = Bucket::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1216,6 +1399,23 @@ impl ::protobuf::Message for Bucket {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Histogram {
@@ -1281,7 +1481,10 @@ impl ::protobuf::Message for Histogram {
         unimplemented!();
     }
     fn default_instance() -> &'static Histogram {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Histogram = Histogram::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1297,6 +1500,23 @@ impl ::protobuf::Message for Histogram {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl FmSketch {
@@ -1362,7 +1582,10 @@ impl ::protobuf::Message for FmSketch {
         unimplemented!();
     }
     fn default_instance() -> &'static FmSketch {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: FmSketch = FmSketch::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1378,6 +1601,23 @@ impl ::protobuf::Message for FmSketch {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl SampleCollector {
@@ -1521,7 +1761,10 @@ impl ::protobuf::Message for SampleCollector {
         unimplemented!();
     }
     fn default_instance() -> &'static SampleCollector {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: SampleCollector = SampleCollector::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1537,6 +1780,23 @@ impl ::protobuf::Message for SampleCollector {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl CmSketchRow {
@@ -1587,7 +1847,10 @@ impl ::protobuf::Message for CmSketchRow {
         unimplemented!();
     }
     fn default_instance() -> &'static CmSketchRow {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: CmSketchRow = CmSketchRow::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1603,6 +1866,23 @@ impl ::protobuf::Message for CmSketchRow {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl CmSketch {
@@ -1653,7 +1933,10 @@ impl ::protobuf::Message for CmSketch {
         unimplemented!();
     }
     fn default_instance() -> &'static CmSketch {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: CmSketch = CmSketch::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1669,6 +1952,23 @@ impl ::protobuf::Message for CmSketch {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl AnalyzeType {
@@ -1762,7 +2062,10 @@ impl ::protobuf::Message for ChecksumRequest {
         unimplemented!();
     }
     fn default_instance() -> &'static ChecksumRequest {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: ChecksumRequest = ChecksumRequest::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1778,6 +2081,23 @@ impl ::protobuf::Message for ChecksumRequest {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ChecksumResponse {
@@ -1858,7 +2178,10 @@ impl ::protobuf::Message for ChecksumResponse {
         unimplemented!();
     }
     fn default_instance() -> &'static ChecksumResponse {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: ChecksumResponse = ChecksumResponse::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -1874,6 +2197,23 @@ impl ::protobuf::Message for ChecksumResponse {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ChecksumScanOn {
@@ -2022,7 +2362,10 @@ impl ::protobuf::Message for FieldType {
         unimplemented!();
     }
     fn default_instance() -> &'static FieldType {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: FieldType = FieldType::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -2038,6 +2381,23 @@ impl ::protobuf::Message for FieldType {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Expr {
@@ -2171,7 +2531,10 @@ impl ::protobuf::Message for Expr {
         unimplemented!();
     }
     fn default_instance() -> &'static Expr {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Expr = Expr::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -2187,6 +2550,23 @@ impl ::protobuf::Message for Expr {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ByItem {
@@ -2261,7 +2641,10 @@ impl ::protobuf::Message for ByItem {
         unimplemented!();
     }
     fn default_instance() -> &'static ByItem {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: ByItem = ByItem::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -2277,6 +2660,23 @@ impl ::protobuf::Message for ByItem {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ExprType {
@@ -3033,7 +3433,10 @@ impl ::protobuf::Message for Executor {
         unimplemented!();
     }
     fn default_instance() -> &'static Executor {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Executor = Executor::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3049,6 +3452,23 @@ impl ::protobuf::Message for Executor {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl TableScan {
@@ -3129,7 +3549,10 @@ impl ::protobuf::Message for TableScan {
         unimplemented!();
     }
     fn default_instance() -> &'static TableScan {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: TableScan = TableScan::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3145,6 +3568,23 @@ impl ::protobuf::Message for TableScan {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl IndexScan {
@@ -3255,7 +3695,10 @@ impl ::protobuf::Message for IndexScan {
         unimplemented!();
     }
     fn default_instance() -> &'static IndexScan {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: IndexScan = IndexScan::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3271,6 +3714,23 @@ impl ::protobuf::Message for IndexScan {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Selection {
@@ -3321,7 +3781,10 @@ impl ::protobuf::Message for Selection {
         unimplemented!();
     }
     fn default_instance() -> &'static Selection {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Selection = Selection::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3337,6 +3800,23 @@ impl ::protobuf::Message for Selection {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Projection {
@@ -3387,7 +3867,10 @@ impl ::protobuf::Message for Projection {
         unimplemented!();
     }
     fn default_instance() -> &'static Projection {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Projection = Projection::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3403,6 +3886,23 @@ impl ::protobuf::Message for Projection {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Aggregation {
@@ -3483,7 +3983,10 @@ impl ::protobuf::Message for Aggregation {
         unimplemented!();
     }
     fn default_instance() -> &'static Aggregation {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Aggregation = Aggregation::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3499,6 +4002,23 @@ impl ::protobuf::Message for Aggregation {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl TopN {
@@ -3564,7 +4084,10 @@ impl ::protobuf::Message for TopN {
         unimplemented!();
     }
     fn default_instance() -> &'static TopN {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: TopN = TopN::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3580,6 +4103,23 @@ impl ::protobuf::Message for TopN {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Limit {
@@ -3630,7 +4170,10 @@ impl ::protobuf::Message for Limit {
         unimplemented!();
     }
     fn default_instance() -> &'static Limit {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Limit = Limit::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3646,6 +4189,23 @@ impl ::protobuf::Message for Limit {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ExecutorExecutionSummary {
@@ -3726,7 +4286,10 @@ impl ::protobuf::Message for ExecutorExecutionSummary {
         unimplemented!();
     }
     fn default_instance() -> &'static ExecutorExecutionSummary {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: ExecutorExecutionSummary = ExecutorExecutionSummary::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3742,6 +4305,23 @@ impl ::protobuf::Message for ExecutorExecutionSummary {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl ExecType {
@@ -3839,7 +4419,10 @@ impl ::protobuf::Message for Row {
         unimplemented!();
     }
     fn default_instance() -> &'static Row {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Row = Row::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3855,6 +4438,23 @@ impl ::protobuf::Message for Row {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Error {
@@ -3929,7 +4529,10 @@ impl ::protobuf::Message for Error {
         unimplemented!();
     }
     fn default_instance() -> &'static Error {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Error = Error::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -3945,6 +4548,23 @@ impl ::protobuf::Message for Error {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl SelectResponse {
@@ -4120,7 +4740,10 @@ impl ::protobuf::Message for SelectResponse {
         unimplemented!();
     }
     fn default_instance() -> &'static SelectResponse {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: SelectResponse = SelectResponse::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -4136,6 +4759,23 @@ impl ::protobuf::Message for SelectResponse {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl Chunk {
@@ -4210,7 +4850,10 @@ impl ::protobuf::Message for Chunk {
         unimplemented!();
     }
     fn default_instance() -> &'static Chunk {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: Chunk = Chunk::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -4226,6 +4869,23 @@ impl ::protobuf::Message for Chunk {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl RowMeta {
@@ -4291,7 +4951,10 @@ impl ::protobuf::Message for RowMeta {
         unimplemented!();
     }
     fn default_instance() -> &'static RowMeta {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: RowMeta = RowMeta::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -4307,6 +4970,23 @@ impl ::protobuf::Message for RowMeta {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl DagRequest {
@@ -4521,7 +5201,10 @@ impl ::protobuf::Message for DagRequest {
         unimplemented!();
     }
     fn default_instance() -> &'static DagRequest {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: DagRequest = DagRequest::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -4537,6 +5220,23 @@ impl ::protobuf::Message for DagRequest {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl StreamResponse {
@@ -4665,7 +5365,10 @@ impl ::protobuf::Message for StreamResponse {
         unimplemented!();
     }
     fn default_instance() -> &'static StreamResponse {
-        unimplemented!();
+        ::lazy_static::lazy_static! {
+            static ref INSTANCE: StreamResponse = StreamResponse::new_();
+        }
+        &*INSTANCE
     }
     fn is_initialized(&self) -> bool {
         true
@@ -4681,6 +5384,23 @@ impl ::protobuf::Message for StreamResponse {
     }
     fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
         unimplemented!();
+    }
+    fn write_to_bytes(&self) -> ::protobuf::ProtobufResult<Vec<u8>> {
+        let mut buf = Vec::new();
+        if let Err(_) = ::prost::Message::encode(self, &mut buf) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(buf)
+    }
+    fn merge_from_bytes(&mut self, bytes: &[u8]) -> ::protobuf::ProtobufResult<()> {
+        if let Err(_) = ::prost::Message::merge(self, bytes) {
+            return Err(::protobuf::ProtobufError::WireError(
+                ::protobuf::error::WireError::Other,
+            ));
+        }
+        Ok(())
     }
 }
 impl EncodeType {
