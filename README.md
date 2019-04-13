@@ -27,6 +27,12 @@ rm $GOPATH/bin/protoc-gen-gofast
 go get github.com/gogo/protobuf/protoc-gen-gofast
 ```
 
+### 4. Install [goimports](https://golang.org/x/tools/cmd/goimports)
+
+```sh
+go get golang.org/x/tools/cmd/goimports
+```
+
 ## Generate the Go and Rust codes
 
 ```sh
