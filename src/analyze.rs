@@ -2831,7 +2831,7 @@ impl CMSketchTopN {
         }
     }
 
-    // required uint64 count = 2;
+    // optional uint64 count = 2;
 
     pub fn clear_count(&mut self) {
         self.count = ::std::option::Option::None;
@@ -2853,9 +2853,6 @@ impl CMSketchTopN {
 
 impl ::protobuf::Message for CMSketchTopN {
     fn is_initialized(&self) -> bool {
-        if self.count.is_none() {
-            return false;
-        }
         true
     }
 
@@ -3342,13 +3339,13 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20\x01(\x0b2\x0e.tipb.CMSketchR\x08cmSketch\x12\x1d\n\ntotal_size\x18\
     \x06\x20\x01(\x03R\ttotalSize\")\n\x0bCMSketchRow\x12\x1a\n\x08counters\
     \x18\x01\x20\x03(\rR\x08counters\">\n\x0cCMSketchTopN\x12\x12\n\x04data\
-    \x18\x01\x20\x01(\x0cR\x04data\x12\x1a\n\x05count\x18\x02\x20\x02(\x04R\
+    \x18\x01\x20\x01(\x0cR\x04data\x12\x1a\n\x05count\x18\x02\x20\x01(\x04R\
     \x05countB\x04\xc8\xde\x1f\0\"\x85\x01\n\x08CMSketch\x12%\n\x04rows\x18\
     \x01\x20\x03(\x0b2\x11.tipb.CMSketchRowR\x04rows\x12'\n\x05top_n\x18\x02\
     \x20\x03(\x0b2\x12.tipb.CMSketchTopNR\x04topN\x12)\n\rdefault_value\x18\
     \x03\x20\x01(\x04R\x0cdefaultValueB\x04\xc8\xde\x1f\0*,\n\x0bAnalyzeType\
     \x12\r\n\tTypeIndex\x10\0\x12\x0e\n\nTypeColumn\x10\x01B%\n\x15com.pingc\
-    ap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xaf$\
+    ap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01J\xaf$\
     \n\x06\x12\x04\0\0u\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\
     \x12\x03\x02\0\r\n\x08\n\x01\x08\x12\x03\x04\0\"\n\t\n\x02\x08\n\x12\x03\
     \x04\0\"\n\x08\n\x01\x08\x12\x03\x05\0.\n\t\n\x02\x08\x01\x12\x03\x05\0.\

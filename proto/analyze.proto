@@ -108,7 +108,7 @@ message CMSketchRow {
 
 message CMSketchTopN {
     optional bytes data = 1;
-    required uint64 count = 2 [(gogoproto.nullable) = false];
+    optional uint64 count = 2 [(gogoproto.nullable) = false];
 }
 
 message CMSketch {
