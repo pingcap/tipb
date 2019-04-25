@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 source ./_help.sh
 
 # check gogo protobuf's existence and version
