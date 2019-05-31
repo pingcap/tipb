@@ -1017,6 +1017,10 @@ pub struct DagRequest {
     /// in the response.
     #[prost(bool, optional, tag="12")]
     pub collect_execution_summaries: ::std::option::Option<bool>,
+    /// It represents the maximum size of one packet or any generated string or any parameter sent as long data.
+    /// The default is 4MB in MySQL.
+    #[prost(uint64, optional, tag="4194304")]
+    pub max_allowed_packet: ::std::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamResponse {

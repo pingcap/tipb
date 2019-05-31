@@ -2812,6 +2812,13 @@ pub fn get_collect_execution_summaries(&self) -> bool { match self.collect_execu
                             Some(v) => v,
                             None => false,
                         } }
+pub fn has_max_allowed_packet(&self) -> bool { self.max_allowed_packet.is_some() }
+pub fn clear_max_allowed_packet(&mut self) { self.max_allowed_packet = ::std::option::Option::None }
+pub fn set_max_allowed_packet(&mut self, v: u64) { self.max_allowed_packet = ::std::option::Option::Some(v); }
+pub fn get_max_allowed_packet(&self) -> u64 { match self.max_allowed_packet {
+                            Some(v) => v,
+                            None => 0,
+                        } }
 }
 impl ::protobuf::Clear for DagRequest {fn clear(&mut self) { ::prost::Message::clear(self); }
 }

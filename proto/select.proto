@@ -104,6 +104,10 @@ message DAGRequest {
 	// Execution summaries will be collected into `execution_summaries` field
 	// in the response.
 	optional bool collect_execution_summaries = 12;
+
+	// It represents the maximum size of one packet or any generated string or any parameter sent as long data.
+	// The default is 4MB in MySQL.
+	optional uint64 max_allowed_packet = 4194304;
 }
 
 enum EncodeType {
