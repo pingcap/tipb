@@ -3423,7 +3423,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20\x03(\x0b2\x12.tipb.CMSketchTopNR\x04topN\x12)\n\rdefault_value\x18\
     \x03\x20\x01(\x04R\x0cdefaultValueB\x04\xc8\xde\x1f\0*,\n\x0bAnalyzeType\
     \x12\r\n\tTypeIndex\x10\0\x12\x0e\n\nTypeColumn\x10\x01B%\n\x15com.pingc\
-    ap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\
+    ap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

@@ -1684,7 +1684,7 @@ impl DAGRequest {
         self.collect_execution_summaries = ::std::option::Option::Some(v);
     }
 
-    // optional uint64 max_allowed_packet = 4194304;
+    // optional uint64 max_allowed_packet = 13;
 
 
     pub fn get_max_allowed_packet(&self) -> u64 {
@@ -1779,7 +1779,7 @@ impl ::protobuf::Message for DAGRequest {
                     let tmp = is.read_bool()?;
                     self.collect_execution_summaries = ::std::option::Option::Some(tmp);
                 },
-                4194304 => {
+                13 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
@@ -1833,7 +1833,7 @@ impl ::protobuf::Message for DAGRequest {
             my_size += 2;
         }
         if let Some(v) = self.max_allowed_packet {
-            my_size += ::protobuf::rt::value_size(4194304, v, ::protobuf::wire_format::WireTypeVarint);
+            my_size += ::protobuf::rt::value_size(13, v, ::protobuf::wire_format::WireTypeVarint);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -1877,7 +1877,7 @@ impl ::protobuf::Message for DAGRequest {
             os.write_bool(12, v)?;
         }
         if let Some(v) = self.max_allowed_packet {
-            os.write_uint64(4194304, v)?;
+            os.write_uint64(13, v)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -2467,11 +2467,11 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     ub.com/pingcap/tipb/sharedbytes.SharedBytes\x12O\n\x13execution_summarie\
     s\x18\x08\x20\x03(\x0b2\x1e.tipb.ExecutorExecutionSummaryR\x12executionS\
     ummaries\"\x8f\x01\n\x05Chunk\x12T\n\trows_data\x18\x03\x20\x01(\x0cR\
-    \x08rowsDataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedByt\
-    es\xc8\xde\x1f\0\x120\n\trows_meta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\
+    \x08rowsDataB7\xc8\xde\x1f\0\xda\xde\x1f/github.com/pingcap/tipb/sharedb\
+    ytes.SharedBytes\x120\n\trows_meta\x18\x04\x20\x03(\x0b2\r.tipb.RowMetaR\
     \x08rowsMetaB\x04\xc8\xde\x1f\0\"E\n\x07RowMeta\x12\x1c\n\x06handle\x18\
     \x01\x20\x01(\x03R\x06handleB\x04\xc8\xde\x1f\0\x12\x1c\n\x06length\x18\
-    \x02\x20\x01(\x03R\x06lengthB\x04\xc8\xde\x1f\0\"\x9d\x04\n\nDAGRequest\
+    \x02\x20\x01(\x03R\x06lengthB\x04\xc8\xde\x1f\0\"\x9a\x04\n\nDAGRequest\
     \x12\x1f\n\x08start_ts\x18\x01\x20\x01(\x04R\x07startTsB\x04\xc8\xde\x1f\
     \0\x12,\n\texecutors\x18\x02\x20\x03(\x0b2\x0e.tipb.ExecutorR\texecutors\
     \x12.\n\x10time_zone_offset\x18\x03\x20\x01(\x03R\x0etimeZoneOffsetB\x04\
@@ -2483,16 +2483,16 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     odeTypeB\x04\xc8\xde\x1f\0\x12\x19\n\x08sql_mode\x18\t\x20\x01(\x04R\x07\
     sqlMode\x12*\n\x0etime_zone_name\x18\x0b\x20\x01(\tR\x0ctimeZoneNameB\
     \x04\xc8\xde\x1f\0\x12>\n\x1bcollect_execution_summaries\x18\x0c\x20\x01\
-    (\x08R\x19collectExecutionSummaries\x12/\n\x12max_allowed_packet\x18\x80\
-    \x80\x80\x02\x20\x01(\x04R\x10maxAllowedPacket\"\xf3\x01\n\x0eStreamResp\
-    onse\x12!\n\x05error\x18\x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x12K\
-    \n\x04data\x18\x03\x20\x01(\x0cR\x04dataB7\xda\xde\x1f/github.com/pingca\
-    p/tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\
-    \x20\x03(\x0b2\x0b.tipb.ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\
-    \x20\x03(\x03R\x0coutputCounts\x12#\n\rwarning_count\x18\x06\x20\x01(\
-    \x03R\x0cwarningCount*,\n\nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\
-    \r\n\tTypeArrow\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xe0\xe2\x1e\
-    \x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01\
+    (\x08R\x19collectExecutionSummaries\x12,\n\x12max_allowed_packet\x18\r\
+    \x20\x01(\x04R\x10maxAllowedPacket\"\xf3\x01\n\x0eStreamResponse\x12!\n\
+    \x05error\x18\x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x12K\n\x04data\
+    \x18\x03\x20\x01(\x0cR\x04dataB7\xda\xde\x1f/github.com/pingcap/tipb/sha\
+    redbytes.SharedBytes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\
+    \x0b2\x0b.tipb.ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\
+    \x03R\x0coutputCounts\x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwar\
+    ningCount*,\n\nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\r\n\tTypeAr\
+    row\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\
+    \x1e\x01\xd0\xe2\x1e\x01\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {
