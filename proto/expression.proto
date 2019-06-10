@@ -282,6 +282,7 @@ enum ScalarFuncSig {
 	RealIsNull = 3113;
 	StringIsNull = 3114;
 	TimeIsNull = 3115;
+	TimeIsNullOnNotNullCol = 3142;
 	IntIsNull = 3116;
 	// unimplemented in tidb
 	JsonIsNull = 3117;
