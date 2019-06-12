@@ -13,7 +13,7 @@ gen = []
 name = "tipb"
 
 [dependencies]
-protobuf = "2.1"
+protobuf = "2.5.0"
 prost = { version = "0.5", optional = true }
 prost-derive = { version = "0.5", optional = true }
 bytes = { version = "0.4", optional = true }
