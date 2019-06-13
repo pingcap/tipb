@@ -2514,7 +2514,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     n\x10\0\x12\x11\n\rTypeIndexScan\x10\x01\x12\x11\n\rTypeSelection\x10\
     \x02\x12\x13\n\x0fTypeAggregation\x10\x03\x12\x0c\n\x08TypeTopN\x10\x04\
     \x12\r\n\tTypeLimit\x10\x05\x12\x11\n\rTypeStreamAgg\x10\x06B%\n\x15com.\
-    pingcap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01\
+    pingcap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

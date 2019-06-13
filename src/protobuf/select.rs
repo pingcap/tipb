@@ -2491,8 +2491,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x0b2\x0b.tipb.ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\
     \x03R\x0coutputCounts\x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwar\
     ningCount*,\n\nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\r\n\tTypeAr\
-    row\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\
-    \x1e\x01\xd0\xe2\x1e\x01\
+    row\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xd0\xe2\
+    \x1e\x01\xe0\xe2\x1e\x01\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

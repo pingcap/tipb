@@ -256,7 +256,7 @@ type DAGRequest struct {
 	// Execution summaries will be collected into `execution_summaries` field
 	// in the response.
 	CollectExecutionSummaries *bool `protobuf:"varint,12,opt,name=collect_execution_summaries,json=collectExecutionSummaries" json:"collect_execution_summaries,omitempty"`
-	// It represents the maximum size of one packet or any generated string or any parameter sent as long data.
+	// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
 	MaxAllowedPacket *uint64 `protobuf:"varint,13,opt,name=max_allowed_packet,json=maxAllowedPacket" json:"max_allowed_packet,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }

@@ -105,7 +105,7 @@ message DAGRequest {
 	// in the response.
 	optional bool collect_execution_summaries = 12;
 
-	// It represents the maximum size of one packet or any generated string or any parameter sent as long data.
+	// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
 	optional uint64 max_allowed_packet = 13;
 }
 

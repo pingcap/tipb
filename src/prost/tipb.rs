@@ -1017,7 +1017,7 @@ pub struct DagRequest {
     /// in the response.
     #[prost(bool, optional, tag="12")]
     pub collect_execution_summaries: ::std::option::Option<bool>,
-    /// It represents the maximum size of one packet or any generated string or any parameter sent as long data.
+    /// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
     #[prost(uint64, optional, tag="13")]
     pub max_allowed_packet: ::std::option::Option<u64>,
 }
