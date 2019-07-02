@@ -54,7 +54,7 @@ fn main() {
 
         // Prost
         generate_prost_files(&protos, "src/prost");
-        generate_wrappers(&["src/prost/tipb.rs"], "src/prost");
+        generate_wrappers(&["src/prost/tipb.rs"], "src/prost", GenOpt::all());
         fs::remove_file("src/prost/gogoproto.rs").unwrap();
         fs::remove_file("src/prost/google.protobuf.rs").unwrap();
     }

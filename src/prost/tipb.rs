@@ -1,181 +1,181 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableInfo {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub table_id: ::std::option::Option<i64>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub columns: ::std::vec::Vec<ColumnInfo>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnInfo {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub column_id: ::std::option::Option<i64>,
     /// MySQL type.
-    #[prost(int32, optional, tag="2")]
+    #[prost(int32, optional, tag = "2")]
     pub tp: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="3")]
+    #[prost(int32, optional, tag = "3")]
     pub collation: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="4")]
+    #[prost(int32, optional, tag = "4")]
     pub column_len: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="5")]
+    #[prost(int32, optional, tag = "5")]
     pub decimal: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="6")]
+    #[prost(int32, optional, tag = "6")]
     pub flag: ::std::option::Option<i32>,
-    #[prost(string, repeated, tag="7")]
+    #[prost(string, repeated, tag = "7")]
     pub elems: ::std::vec::Vec<std::string::String>,
     /// Encoded datum.
-    #[prost(bytes, optional, tag="8")]
+    #[prost(bytes, optional, tag = "8")]
     pub default_val: ::std::option::Option<std::vec::Vec<u8>>,
     /// PK handle column value is row handle.
-    #[prost(bool, optional, tag="21")]
+    #[prost(bool, optional, tag = "21")]
     pub pk_handle: ::std::option::Option<bool>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexInfo {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub table_id: ::std::option::Option<i64>,
-    #[prost(int64, optional, tag="2")]
+    #[prost(int64, optional, tag = "2")]
     pub index_id: ::std::option::Option<i64>,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub columns: ::std::vec::Vec<ColumnInfo>,
-    #[prost(bool, optional, tag="4")]
+    #[prost(bool, optional, tag = "4")]
     pub unique: ::std::option::Option<bool>,
 }
 /// KeyRange is the encoded index key range, low is closed, high is open. (low <= x < high)
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyRange {
-    #[prost(bytes, optional, tag="1")]
+    #[prost(bytes, optional, tag = "1")]
     pub low: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(bytes, optional, tag="2")]
+    #[prost(bytes, optional, tag = "2")]
     pub high: ::std::option::Option<std::vec::Vec<u8>>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeReq {
-    #[prost(enumeration="AnalyzeType", optional, tag="1")]
+    #[prost(enumeration = "AnalyzeType", optional, tag = "1")]
     pub tp: ::std::option::Option<i32>,
-    #[prost(uint64, optional, tag="2")]
+    #[prost(uint64, optional, tag = "2")]
     pub start_ts: ::std::option::Option<u64>,
-    #[prost(uint64, optional, tag="3")]
+    #[prost(uint64, optional, tag = "3")]
     pub flags: ::std::option::Option<u64>,
-    #[prost(int64, optional, tag="4")]
+    #[prost(int64, optional, tag = "4")]
     pub time_zone_offset: ::std::option::Option<i64>,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub idx_req: ::std::option::Option<AnalyzeIndexReq>,
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub col_req: ::std::option::Option<AnalyzeColumnsReq>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeIndexReq {
     /// bucket_size is the max histograms bucket size.
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub bucket_size: ::std::option::Option<i64>,
     /// num_columns is the number of columns in the index.
-    #[prost(int32, optional, tag="2")]
+    #[prost(int32, optional, tag = "2")]
     pub num_columns: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="3")]
+    #[prost(int32, optional, tag = "3")]
     pub cmsketch_depth: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="4")]
+    #[prost(int32, optional, tag = "4")]
     pub cmsketch_width: ::std::option::Option<i32>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeColumnsReq {
     /// bucket_size is the max histograms bucket size, we need this because when primary key is handle,
     /// the histogram will be directly built.
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub bucket_size: ::std::option::Option<i64>,
     /// sample_size is the max number of samples that will be collected.
-    #[prost(int64, optional, tag="2")]
+    #[prost(int64, optional, tag = "2")]
     pub sample_size: ::std::option::Option<i64>,
     /// sketch_size is the max sketch size.
-    #[prost(int64, optional, tag="3")]
+    #[prost(int64, optional, tag = "3")]
     pub sketch_size: ::std::option::Option<i64>,
     /// columns_info is the info of all the columns that needs to be analyzed.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub columns_info: ::std::vec::Vec<ColumnInfo>,
-    #[prost(int32, optional, tag="5")]
+    #[prost(int32, optional, tag = "5")]
     pub cmsketch_depth: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="6")]
+    #[prost(int32, optional, tag = "6")]
     pub cmsketch_width: ::std::option::Option<i32>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeColumnsResp {
     /// collectors is the sample collectors for columns.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub collectors: ::std::vec::Vec<SampleCollector>,
     /// pk_hist is the histogram for primary key when it is the handle.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub pk_hist: ::std::option::Option<Histogram>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeIndexResp {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub hist: ::std::option::Option<Histogram>,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub cms: ::std::option::Option<CmSketch>,
 }
 /// Bucket is an element of histogram.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Bucket {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub count: ::std::option::Option<i64>,
-    #[prost(bytes, optional, tag="2")]
+    #[prost(bytes, optional, tag = "2")]
     pub lower_bound: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(bytes, optional, tag="3")]
+    #[prost(bytes, optional, tag = "3")]
     pub upper_bound: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(int64, optional, tag="4")]
+    #[prost(int64, optional, tag = "4")]
     pub repeats: ::std::option::Option<i64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Histogram {
     /// ndv is the number of distinct values.
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub ndv: ::std::option::Option<i64>,
     /// buckets represents all the buckets.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub buckets: ::std::vec::Vec<Bucket>,
 }
 /// FMSketch is used to count distinct values for columns.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FmSketch {
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub mask: ::std::option::Option<u64>,
-    #[prost(uint64, repeated, packed="false", tag="2")]
+    #[prost(uint64, repeated, packed = "false", tag = "2")]
     pub hashset: ::std::vec::Vec<u64>,
 }
 /// SampleCollector is used for collect samples and calculate the count and ndv of an column.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SampleCollector {
-    #[prost(bytes, repeated, tag="1")]
+    #[prost(bytes, repeated, tag = "1")]
     pub samples: ::std::vec::Vec<std::vec::Vec<u8>>,
-    #[prost(int64, optional, tag="2")]
+    #[prost(int64, optional, tag = "2")]
     pub null_count: ::std::option::Option<i64>,
-    #[prost(int64, optional, tag="3")]
+    #[prost(int64, optional, tag = "3")]
     pub count: ::std::option::Option<i64>,
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub fm_sketch: ::std::option::Option<FmSketch>,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub cm_sketch: ::std::option::Option<CmSketch>,
-    #[prost(int64, optional, tag="6")]
+    #[prost(int64, optional, tag = "6")]
     pub total_size: ::std::option::Option<i64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CmSketchRow {
-    #[prost(uint32, repeated, packed="false", tag="1")]
+    #[prost(uint32, repeated, packed = "false", tag = "1")]
     pub counters: ::std::vec::Vec<u32>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CmSketchTopN {
-    #[prost(bytes, optional, tag="1")]
+    #[prost(bytes, optional, tag = "1")]
     pub data: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(uint64, optional, tag="2")]
+    #[prost(uint64, optional, tag = "2")]
     pub count: ::std::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CmSketch {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub rows: ::std::vec::Vec<CmSketchRow>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub top_n: ::std::vec::Vec<CmSketchTopN>,
-    #[prost(uint64, optional, tag="3")]
+    #[prost(uint64, optional, tag = "3")]
     pub default_value: ::std::option::Option<u64>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -186,20 +186,20 @@ pub enum AnalyzeType {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChecksumRequest {
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub start_ts: ::std::option::Option<u64>,
-    #[prost(enumeration="ChecksumScanOn", optional, tag="2")]
+    #[prost(enumeration = "ChecksumScanOn", optional, tag = "2")]
     pub scan_on: ::std::option::Option<i32>,
-    #[prost(enumeration="ChecksumAlgorithm", optional, tag="3")]
+    #[prost(enumeration = "ChecksumAlgorithm", optional, tag = "3")]
     pub algorithm: ::std::option::Option<i32>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChecksumResponse {
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub checksum: ::std::option::Option<u64>,
-    #[prost(uint64, optional, tag="2")]
+    #[prost(uint64, optional, tag = "2")]
     pub total_kvs: ::std::option::Option<u64>,
-    #[prost(uint64, optional, tag="3")]
+    #[prost(uint64, optional, tag = "3")]
     pub total_bytes: ::std::option::Option<u64>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -215,42 +215,42 @@ pub enum ChecksumAlgorithm {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldType {
-    #[prost(int32, optional, tag="1")]
+    #[prost(int32, optional, tag = "1")]
     pub tp: ::std::option::Option<i32>,
-    #[prost(uint32, optional, tag="2")]
+    #[prost(uint32, optional, tag = "2")]
     pub flag: ::std::option::Option<u32>,
-    #[prost(int32, optional, tag="3")]
+    #[prost(int32, optional, tag = "3")]
     pub flen: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="4")]
+    #[prost(int32, optional, tag = "4")]
     pub decimal: ::std::option::Option<i32>,
-    #[prost(int32, optional, tag="5")]
+    #[prost(int32, optional, tag = "5")]
     pub collate: ::std::option::Option<i32>,
-    #[prost(string, optional, tag="6")]
+    #[prost(string, optional, tag = "6")]
     pub charset: ::std::option::Option<std::string::String>,
 }
 /// Evaluators should implement evaluation functions for every expression type.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Expr {
-    #[prost(enumeration="ExprType", optional, tag="1")]
+    #[prost(enumeration = "ExprType", optional, tag = "1")]
     pub tp: ::std::option::Option<i32>,
-    #[prost(bytes, optional, tag="2")]
+    #[prost(bytes, optional, tag = "2")]
     pub val: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub children: ::std::vec::Vec<Expr>,
-    #[prost(enumeration="ScalarFuncSig", optional, tag="4")]
+    #[prost(enumeration = "ScalarFuncSig", optional, tag = "4")]
     pub sig: ::std::option::Option<i32>,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub field_type: ::std::option::Option<FieldType>,
 }
 /// ByItem type for group by and order by.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ByItem {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub expr: ::std::option::Option<Expr>,
-    #[prost(bool, optional, tag="2")]
+    #[prost(bool, optional, tag = "2")]
     pub desc: ::std::option::Option<bool>,
 }
-/// Children count 0. 
+/// Children count 0.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExprType {
@@ -275,8 +275,7 @@ pub enum ExprType {
     ValueList = 151,
     /// Column reference. value is int64 column ID.
     ColumnRef = 201,
-    // Mysql functions, children count is function specific. 
-
+    // Mysql functions, children count is function specific.
     /// Aggregate functions.
     Count = 3001,
     Sum = 3002,
@@ -297,13 +296,13 @@ pub enum ExprType {
     Variance = 3017,
     JsonArrayAgg = 3018,
     JsonObjectAgg = 3019,
-    /// Scalar Function 
+    /// Scalar Function
     ScalarFunc = 10000,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ScalarFuncSig {
-    /// Casting 
+    /// Casting
     CastIntAsInt = 0,
     CastIntAsReal = 1,
     CastIntAsString = 2,
@@ -559,7 +558,7 @@ pub enum ScalarFuncSig {
     CaseWhenDuration = 4213,
     /// unimplemented in tidb
     CaseWhenJson = 4214,
-    /// encryption 
+    /// encryption
     AesDecrypt = 4501,
     AesEncrypt = 4502,
     Compress = 4503,
@@ -741,7 +740,7 @@ pub enum ScalarFuncSig {
     FromDays = 6106,
     TimeFormat = 6107,
     TimestampDiff = 6108,
-    /// String functions 
+    /// String functions
     BitLength = 7001,
     Bin = 7002,
     Ascii = 7003,
@@ -809,94 +808,94 @@ pub enum ScalarFuncSig {
 /// It represents a Executor.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Executor {
-    #[prost(enumeration="ExecType", optional, tag="1")]
+    #[prost(enumeration = "ExecType", optional, tag = "1")]
     pub tp: ::std::option::Option<i32>,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub tbl_scan: ::std::option::Option<TableScan>,
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub idx_scan: ::std::option::Option<IndexScan>,
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub selection: ::std::option::Option<Selection>,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub aggregation: ::std::option::Option<Aggregation>,
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub top_n: ::std::option::Option<TopN>,
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub limit: ::std::option::Option<Limit>,
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub stream_agg: ::std::option::Option<Aggregation>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableScan {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub table_id: ::std::option::Option<i64>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub columns: ::std::vec::Vec<ColumnInfo>,
-    #[prost(bool, optional, tag="3")]
+    #[prost(bool, optional, tag = "3")]
     pub desc: ::std::option::Option<bool>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexScan {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub table_id: ::std::option::Option<i64>,
-    #[prost(int64, optional, tag="2")]
+    #[prost(int64, optional, tag = "2")]
     pub index_id: ::std::option::Option<i64>,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub columns: ::std::vec::Vec<ColumnInfo>,
-    #[prost(bool, optional, tag="4")]
+    #[prost(bool, optional, tag = "4")]
     pub desc: ::std::option::Option<bool>,
     /// check whether it is a unique index.
-    #[prost(bool, optional, tag="5")]
+    #[prost(bool, optional, tag = "5")]
     pub unique: ::std::option::Option<bool>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Selection {
     /// Where conditions.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub conditions: ::std::vec::Vec<Expr>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Projection {
     /// Projection expressions.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub exprs: ::std::vec::Vec<Expr>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Aggregation {
     /// Group by clause.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub group_by: ::std::vec::Vec<Expr>,
     /// Aggregate functions.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub agg_func: ::std::vec::Vec<Expr>,
     /// If it is a stream aggregation.
-    #[prost(bool, optional, tag="3")]
+    #[prost(bool, optional, tag = "3")]
     pub streamed: ::std::option::Option<bool>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TopN {
     /// Order by clause.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub order_by: ::std::vec::Vec<ByItem>,
-    #[prost(uint64, optional, tag="2")]
+    #[prost(uint64, optional, tag = "2")]
     pub limit: ::std::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Limit {
     /// Limit the result to be returned.
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub limit: ::std::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutorExecutionSummary {
     /// Total time cost in this executor. Includes self time cost and children time cost.
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub time_processed_ns: ::std::option::Option<u64>,
     /// How many rows this executor produced totally.
-    #[prost(uint64, optional, tag="2")]
+    #[prost(uint64, optional, tag = "2")]
     pub num_produced_rows: ::std::option::Option<u64>,
     /// How many times executor's `next()` is called.
-    #[prost(uint64, optional, tag="3")]
+    #[prost(uint64, optional, tag = "3")]
     pub num_iterations: ::std::option::Option<u64>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -914,71 +913,71 @@ pub enum ExecType {
 /// values are all in text format.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Row {
-    #[prost(bytes, optional, tag="1")]
+    #[prost(bytes, optional, tag = "1")]
     pub handle: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(bytes, optional, tag="2")]
+    #[prost(bytes, optional, tag = "2")]
     pub data: ::std::option::Option<std::vec::Vec<u8>>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Error {
-    #[prost(int32, optional, tag="1")]
+    #[prost(int32, optional, tag = "1")]
     pub code: ::std::option::Option<i32>,
-    #[prost(string, optional, tag="2")]
+    #[prost(string, optional, tag = "2")]
     pub msg: ::std::option::Option<std::string::String>,
 }
 /// Response for SelectRequest.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SelectResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub error: ::std::option::Option<Error>,
     /// Result rows.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub rows: ::std::vec::Vec<Row>,
     /// Use multiple chunks to reduce memory allocation and
     /// avoid allocating large contiguous memory.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub chunks: ::std::vec::Vec<Chunk>,
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub warnings: ::std::vec::Vec<Error>,
-    #[prost(int64, repeated, packed="false", tag="5")]
+    #[prost(int64, repeated, packed = "false", tag = "5")]
     pub output_counts: ::std::vec::Vec<i64>,
-    #[prost(int64, optional, tag="6")]
+    #[prost(int64, optional, tag = "6")]
     pub warning_count: ::std::option::Option<i64>,
-    #[prost(bytes, optional, tag="7")]
+    #[prost(bytes, optional, tag = "7")]
     pub row_batch_data: ::std::option::Option<std::vec::Vec<u8>>,
     /// The execution summary of each executor, in the order in request.
-    #[prost(message, repeated, tag="8")]
+    #[prost(message, repeated, tag = "8")]
     pub execution_summaries: ::std::vec::Vec<ExecutorExecutionSummary>,
 }
 /// Chunk contains multiple rows data and rows meta.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Chunk {
     /// Data for all rows in the chunk.
-    #[prost(bytes, optional, tag="3")]
+    #[prost(bytes, optional, tag = "3")]
     pub rows_data: ::std::option::Option<std::vec::Vec<u8>>,
     /// Meta data for every row.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub rows_meta: ::std::vec::Vec<RowMeta>,
 }
 /// RowMeta contains row handle and length of a row.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RowMeta {
-    #[prost(int64, optional, tag="1")]
+    #[prost(int64, optional, tag = "1")]
     pub handle: ::std::option::Option<i64>,
-    #[prost(int64, optional, tag="2")]
+    #[prost(int64, optional, tag = "2")]
     pub length: ::std::option::Option<i64>,
 }
 /// DAGRequest represents the request that will be handled with DAG mode.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DagRequest {
     /// Transaction start timestamp.
-    #[prost(uint64, optional, tag="1")]
+    #[prost(uint64, optional, tag = "1")]
     pub start_ts: ::std::option::Option<u64>,
     /// It represents push down Executors.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub executors: ::std::vec::Vec<Executor>,
     /// time zone offset in seconds
-    #[prost(int64, optional, tag="3")]
+    #[prost(int64, optional, tag = "3")]
     pub time_zone_offset: ::std::option::Option<i64>,
     /// flags are used to store flags that change the execution mode, it contains:
     ///	ignore_truncate = 1
@@ -987,53 +986,52 @@ pub struct DagRequest {
     ///		when ignored_truncate is not set, return warning instead of error if this flag is set.
     ///	...
     ///	add more when needed.
-    #[prost(uint64, optional, tag="4")]
+    #[prost(uint64, optional, tag = "4")]
     pub flags: ::std::option::Option<u64>,
     /// It represents which columns we should output.
-    #[prost(uint32, repeated, packed="false", tag="5")]
+    #[prost(uint32, repeated, packed = "false", tag = "5")]
     pub output_offsets: ::std::vec::Vec<u32>,
     /// It represents whether we collect the detailed scan counts in each range.
-    #[prost(bool, optional, tag="6")]
+    #[prost(bool, optional, tag = "6")]
     pub collect_range_counts: ::std::option::Option<bool>,
     /// It indicates the maximum number of warning,
     /// which is the number of messages that SHOW WARNINGS displays.
-    #[prost(uint64, optional, tag="7")]
+    #[prost(uint64, optional, tag = "7")]
     pub max_warning_count: ::std::option::Option<u64>,
     /// It indicates the encode type of response.
-    #[prost(enumeration="EncodeType", optional, tag="8")]
+    #[prost(enumeration = "EncodeType", optional, tag = "8")]
     pub encode_type: ::std::option::Option<i32>,
     /// It indicates the sql_mode.
-    #[prost(uint64, optional, tag="9")]
+    #[prost(uint64, optional, tag = "9")]
     pub sql_mode: ::std::option::Option<u64>,
     // It indicates whether the sql mode is strict.
     // Deprecated. Don't use.
     // optional bool is_strict_sql_mode = 10;
-
     /// supply offset is not enough since we have daylight saving time present in some regions
-    #[prost(string, optional, tag="11")]
+    #[prost(string, optional, tag = "11")]
     pub time_zone_name: ::std::option::Option<std::string::String>,
     /// It represents whether or not TiKV should collect execution summaries.
     /// Execution summaries will be collected into `execution_summaries` field
     /// in the response.
-    #[prost(bool, optional, tag="12")]
+    #[prost(bool, optional, tag = "12")]
     pub collect_execution_summaries: ::std::option::Option<bool>,
     /// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
-    #[prost(uint64, optional, tag="13")]
+    #[prost(uint64, optional, tag = "13")]
     pub max_allowed_packet: ::std::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub error: ::std::option::Option<Error>,
     /// Data for all rows
-    #[prost(bytes, optional, tag="3")]
+    #[prost(bytes, optional, tag = "3")]
     pub data: ::std::option::Option<std::vec::Vec<u8>>,
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub warnings: ::std::vec::Vec<Error>,
     /// output row count for each executor
-    #[prost(int64, repeated, packed="false", tag="5")]
+    #[prost(int64, repeated, packed = "false", tag = "5")]
     pub output_counts: ::std::vec::Vec<i64>,
-    #[prost(int64, optional, tag="6")]
+    #[prost(int64, optional, tag = "6")]
     pub warning_count: ::std::option::Option<i64>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
