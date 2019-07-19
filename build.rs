@@ -11,7 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::fs;
+use std::fs::{self, File};
+use std::io::prelude::*;
+use std::io::BufReader;
+use std::path::Path;
+
+const BLACK_LIST: &[&str] = &[
+    "protobuf.",
+    "gogoproto",
+];
 
 fn main() {
     let out_dir = format!("{}/protos", std::env::var("OUT_DIR").unwrap());
@@ -27,4 +35,13 @@ fn main() {
             })
             .collect();
     protobuf_build::generate_files(&["include".to_owned(), "proto".to_owned()], &mods, &out_dir);
+    let mod_file_path = Path::new(&out_dir).join("mod.rs");
+    let mod_file = File::open(&mod_file_path).unwrap();
+    let reader = BufReader::new(mod_file);
+    let content: Vec<_> = reader.lines().map(|l| l.unwrap()).filter(|l| BLACK_LIST.iter().all(|i| !l.contains(i))).collect();
+
+    let mut mod_file = File::create(&mod_file_path).unwrap();
+    for l in content {
+        writeln!(mod_file, "{}", l).unwrap();
+    }
 }

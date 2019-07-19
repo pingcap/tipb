@@ -19,4 +19,4 @@ bytes = { version = "0.4", optional = true }
 lazy_static = { version = "1.3", optional = true }
 
 [build-dependencies]
-protobuf-build = { git = "https://github.com/tikv/protobuf-build", rev = "cf98f650c5e045b3c1f203183e5330bb5509df55", default-features = false }
+protobuf-build = { git = "https://github.com/tikv/protobuf-build", rev = "b0495b4f29d283d2f2287ab493fc5ffa004e2307", default-features = false }

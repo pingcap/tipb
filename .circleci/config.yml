@@ -40,7 +40,7 @@ jobs:
       # TODO: Run make rust and check whether it generates different contents.
       - run:
           name: Test Rust
-          command: cargo check
+          command: cargo check && cargo check --features prost-codec --no-default-features
           no_output_timeout: 1800s
 
 workflows:
