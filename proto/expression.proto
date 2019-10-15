@@ -420,6 +420,7 @@ enum ScalarFuncSig {
 	JsonLengthSig = 5024;
 	JsonKeys2ArgsSig = 5025;
 	JsonValidStringSig = 5026;
+	JsonValidOthersSig = 5027;
 	
 	/*time*/
 	DateFormatSig = 6001;
