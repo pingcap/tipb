@@ -270,8 +270,10 @@ enum ScalarFuncSig {
 	TruncateDecimal = 2156;
 	
 	/*op*/
-	LogicalAnd = 3101;
-	LogicalOr = 3102;
+	IntLogicalAnd = 3101;
+	RealLogicalAnd = 4231;
+	IntLogicalOr = 3102;
+	RealLogicalOr = 4232;
 	LogicalXor = 3103;
 	UnaryNotInt = 3104;
 	UnaryNotDecimal = 3105;
