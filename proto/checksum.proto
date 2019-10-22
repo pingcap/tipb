@@ -20,10 +20,16 @@ enum ChecksumAlgorithm {
     Crc64_Xor = 0;
 }
 
+message ChecksumRewriteRule {
+    optional bytes old_prefix = 1;
+    optional bytes new_prefix = 2;
+}
+
 message ChecksumRequest {
     optional uint64 start_ts = 1 [(gogoproto.nullable) = false];
     optional ChecksumScanOn scan_on = 2 [(gogoproto.nullable) = false];
     optional ChecksumAlgorithm algorithm = 3 [(gogoproto.nullable) = false];
+    optional ChecksumRewriteRule rule = 4;
 }
 
 message ChecksumResponse {
