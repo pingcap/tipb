@@ -25,6 +25,7 @@
 		CMSketchRow
 		CMSketchTopN
 		CMSketch
+		ChecksumRewriteRule
 		ChecksumRequest
 		ChecksumResponse
 		Executor
