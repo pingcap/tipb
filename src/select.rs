@@ -31,12 +31,6 @@ pub struct Row {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Row {
-    fn default() -> &'a Row {
-        <Row as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Row {
     pub fn new() -> Row {
         ::std::default::Default::default()
@@ -44,13 +38,6 @@ impl Row {
 
     // optional bytes handle = 1;
 
-
-    pub fn get_handle(&self) -> &[u8] {
-        match self.handle.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_handle(&mut self) {
         self.handle.clear();
     }
@@ -78,15 +65,15 @@ impl Row {
         self.handle.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
-    // optional bytes data = 2;
-
-
-    pub fn get_data(&self) -> &[u8] {
-        match self.data.as_ref() {
+    pub fn get_handle(&self) -> &[u8] {
+        match self.handle.as_ref() {
             Some(v) => &v,
             None => &[],
         }
     }
+
+    // optional bytes data = 2;
+
     pub fn clear_data(&mut self) {
         self.data.clear();
     }
@@ -112,6 +99,13 @@ impl Row {
     // Take field
     pub fn take_data(&mut self) -> ::std::vec::Vec<u8> {
         self.data.take().unwrap_or_else(|| ::std::vec::Vec::new())
+    }
+
+    pub fn get_data(&self) -> &[u8] {
+        match self.data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
     }
 }
 
@@ -234,8 +228,8 @@ impl ::protobuf::Message for Row {
 
 impl ::protobuf::Clear for Row {
     fn clear(&mut self) {
-        self.handle.clear();
-        self.data.clear();
+        self.clear_handle();
+        self.clear_data();
         self.unknown_fields.clear();
     }
 }
@@ -262,12 +256,6 @@ pub struct Error {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Error {
-    fn default() -> &'a Error {
-        <Error as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Error {
     pub fn new() -> Error {
         ::std::default::Default::default()
@@ -275,10 +263,6 @@ impl Error {
 
     // optional int32 code = 1;
 
-
-    pub fn get_code(&self) -> i32 {
-        self.code.unwrap_or(0)
-    }
     pub fn clear_code(&mut self) {
         self.code = ::std::option::Option::None;
     }
@@ -292,15 +276,12 @@ impl Error {
         self.code = ::std::option::Option::Some(v);
     }
 
+    pub fn get_code(&self) -> i32 {
+        self.code.unwrap_or(0)
+    }
+
     // optional string msg = 2;
 
-
-    pub fn get_msg(&self) -> &str {
-        match self.msg.as_ref() {
-            Some(v) => &v,
-            None => "",
-        }
-    }
     pub fn clear_msg(&mut self) {
         self.msg.clear();
     }
@@ -326,6 +307,13 @@ impl Error {
     // Take field
     pub fn take_msg(&mut self) -> ::std::string::String {
         self.msg.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_msg(&self) -> &str {
+        match self.msg.as_ref() {
+            Some(v) => &v,
+            None => "",
+        }
     }
 }
 
@@ -452,8 +440,8 @@ impl ::protobuf::Message for Error {
 
 impl ::protobuf::Clear for Error {
     fn clear(&mut self) {
-        self.code = ::std::option::Option::None;
-        self.msg.clear();
+        self.clear_code();
+        self.clear_msg();
         self.unknown_fields.clear();
     }
 }
@@ -486,12 +474,6 @@ pub struct SelectResponse {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a SelectResponse {
-    fn default() -> &'a SelectResponse {
-        <SelectResponse as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl SelectResponse {
     pub fn new() -> SelectResponse {
         ::std::default::Default::default()
@@ -499,10 +481,6 @@ impl SelectResponse {
 
     // optional .tipb.Error error = 1;
 
-
-    pub fn get_error(&self) -> &Error {
-        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
-    }
     pub fn clear_error(&mut self) {
         self.error.clear();
     }
@@ -530,12 +508,12 @@ impl SelectResponse {
         self.error.take().unwrap_or_else(|| Error::new())
     }
 
+    pub fn get_error(&self) -> &Error {
+        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
+    }
+
     // repeated .tipb.Row rows = 2;
 
-
-    pub fn get_rows(&self) -> &[Row] {
-        &self.rows
-    }
     pub fn clear_rows(&mut self) {
         self.rows.clear();
     }
@@ -555,12 +533,12 @@ impl SelectResponse {
         ::std::mem::replace(&mut self.rows, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_rows(&self) -> &[Row] {
+        &self.rows
+    }
+
     // repeated .tipb.Chunk chunks = 3;
 
-
-    pub fn get_chunks(&self) -> &[Chunk] {
-        &self.chunks
-    }
     pub fn clear_chunks(&mut self) {
         self.chunks.clear();
     }
@@ -580,12 +558,12 @@ impl SelectResponse {
         ::std::mem::replace(&mut self.chunks, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_chunks(&self) -> &[Chunk] {
+        &self.chunks
+    }
+
     // repeated .tipb.Error warnings = 4;
 
-
-    pub fn get_warnings(&self) -> &[Error] {
-        &self.warnings
-    }
     pub fn clear_warnings(&mut self) {
         self.warnings.clear();
     }
@@ -605,12 +583,12 @@ impl SelectResponse {
         ::std::mem::replace(&mut self.warnings, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_warnings(&self) -> &[Error] {
+        &self.warnings
+    }
+
     // repeated int64 output_counts = 5;
 
-
-    pub fn get_output_counts(&self) -> &[i64] {
-        &self.output_counts
-    }
     pub fn clear_output_counts(&mut self) {
         self.output_counts.clear();
     }
@@ -630,12 +608,12 @@ impl SelectResponse {
         ::std::mem::replace(&mut self.output_counts, ::std::vec::Vec::new())
     }
 
+    pub fn get_output_counts(&self) -> &[i64] {
+        &self.output_counts
+    }
+
     // optional int64 warning_count = 6;
 
-
-    pub fn get_warning_count(&self) -> i64 {
-        self.warning_count.unwrap_or(0)
-    }
     pub fn clear_warning_count(&mut self) {
         self.warning_count = ::std::option::Option::None;
     }
@@ -649,15 +627,12 @@ impl SelectResponse {
         self.warning_count = ::std::option::Option::Some(v);
     }
 
+    pub fn get_warning_count(&self) -> i64 {
+        self.warning_count.unwrap_or(0)
+    }
+
     // optional bytes row_batch_data = 7;
 
-
-    pub fn get_row_batch_data(&self) -> &[u8] {
-        match self.row_batch_data.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_row_batch_data(&mut self) {
         self.row_batch_data.clear();
     }
@@ -685,12 +660,15 @@ impl SelectResponse {
         self.row_batch_data.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_row_batch_data(&self) -> &[u8] {
+        match self.row_batch_data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
     // repeated .tipb.ExecutorExecutionSummary execution_summaries = 8;
 
-
-    pub fn get_execution_summaries(&self) -> &[super::executor::ExecutorExecutionSummary] {
-        &self.execution_summaries
-    }
     pub fn clear_execution_summaries(&mut self) {
         self.execution_summaries.clear();
     }
@@ -708,6 +686,10 @@ impl SelectResponse {
     // Take field
     pub fn take_execution_summaries(&mut self) -> ::protobuf::RepeatedField<super::executor::ExecutorExecutionSummary> {
         ::std::mem::replace(&mut self.execution_summaries, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_execution_summaries(&self) -> &[super::executor::ExecutorExecutionSummary] {
+        &self.execution_summaries
     }
 }
 
@@ -958,14 +940,14 @@ impl ::protobuf::Message for SelectResponse {
 
 impl ::protobuf::Clear for SelectResponse {
     fn clear(&mut self) {
-        self.error.clear();
-        self.rows.clear();
-        self.chunks.clear();
-        self.warnings.clear();
-        self.output_counts.clear();
-        self.warning_count = ::std::option::Option::None;
-        self.row_batch_data.clear();
-        self.execution_summaries.clear();
+        self.clear_error();
+        self.clear_rows();
+        self.clear_chunks();
+        self.clear_warnings();
+        self.clear_output_counts();
+        self.clear_warning_count();
+        self.clear_row_batch_data();
+        self.clear_execution_summaries();
         self.unknown_fields.clear();
     }
 }
@@ -992,12 +974,6 @@ pub struct Chunk {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Chunk {
-    fn default() -> &'a Chunk {
-        <Chunk as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Chunk {
     pub fn new() -> Chunk {
         ::std::default::Default::default()
@@ -1005,13 +981,6 @@ impl Chunk {
 
     // optional bytes rows_data = 3;
 
-
-    pub fn get_rows_data(&self) -> &[u8] {
-        match self.rows_data.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_rows_data(&mut self) {
         self.rows_data.clear();
     }
@@ -1039,12 +1008,15 @@ impl Chunk {
         self.rows_data.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_rows_data(&self) -> &[u8] {
+        match self.rows_data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
     // repeated .tipb.RowMeta rows_meta = 4;
 
-
-    pub fn get_rows_meta(&self) -> &[RowMeta] {
-        &self.rows_meta
-    }
     pub fn clear_rows_meta(&mut self) {
         self.rows_meta.clear();
     }
@@ -1062,6 +1034,10 @@ impl Chunk {
     // Take field
     pub fn take_rows_meta(&mut self) -> ::protobuf::RepeatedField<RowMeta> {
         ::std::mem::replace(&mut self.rows_meta, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_rows_meta(&self) -> &[RowMeta] {
+        &self.rows_meta
     }
 }
 
@@ -1192,8 +1168,8 @@ impl ::protobuf::Message for Chunk {
 
 impl ::protobuf::Clear for Chunk {
     fn clear(&mut self) {
-        self.rows_data.clear();
-        self.rows_meta.clear();
+        self.clear_rows_data();
+        self.clear_rows_meta();
         self.unknown_fields.clear();
     }
 }
@@ -1220,12 +1196,6 @@ pub struct RowMeta {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a RowMeta {
-    fn default() -> &'a RowMeta {
-        <RowMeta as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl RowMeta {
     pub fn new() -> RowMeta {
         ::std::default::Default::default()
@@ -1233,10 +1203,6 @@ impl RowMeta {
 
     // optional int64 handle = 1;
 
-
-    pub fn get_handle(&self) -> i64 {
-        self.handle.unwrap_or(0)
-    }
     pub fn clear_handle(&mut self) {
         self.handle = ::std::option::Option::None;
     }
@@ -1250,12 +1216,12 @@ impl RowMeta {
         self.handle = ::std::option::Option::Some(v);
     }
 
+    pub fn get_handle(&self) -> i64 {
+        self.handle.unwrap_or(0)
+    }
+
     // optional int64 length = 2;
 
-
-    pub fn get_length(&self) -> i64 {
-        self.length.unwrap_or(0)
-    }
     pub fn clear_length(&mut self) {
         self.length = ::std::option::Option::None;
     }
@@ -1267,6 +1233,10 @@ impl RowMeta {
     // Param is passed by value, moved
     pub fn set_length(&mut self, v: i64) {
         self.length = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_length(&self) -> i64 {
+        self.length.unwrap_or(0)
     }
 }
 
@@ -1397,8 +1367,8 @@ impl ::protobuf::Message for RowMeta {
 
 impl ::protobuf::Clear for RowMeta {
     fn clear(&mut self) {
-        self.handle = ::std::option::Option::None;
-        self.length = ::std::option::Option::None;
+        self.clear_handle();
+        self.clear_length();
         self.unknown_fields.clear();
     }
 }
@@ -1434,12 +1404,6 @@ pub struct DAGRequest {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a DAGRequest {
-    fn default() -> &'a DAGRequest {
-        <DAGRequest as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl DAGRequest {
     pub fn new() -> DAGRequest {
         ::std::default::Default::default()
@@ -1447,10 +1411,6 @@ impl DAGRequest {
 
     // optional uint64 start_ts = 1;
 
-
-    pub fn get_start_ts(&self) -> u64 {
-        self.start_ts.unwrap_or(0)
-    }
     pub fn clear_start_ts(&mut self) {
         self.start_ts = ::std::option::Option::None;
     }
@@ -1464,12 +1424,12 @@ impl DAGRequest {
         self.start_ts = ::std::option::Option::Some(v);
     }
 
+    pub fn get_start_ts(&self) -> u64 {
+        self.start_ts.unwrap_or(0)
+    }
+
     // repeated .tipb.Executor executors = 2;
 
-
-    pub fn get_executors(&self) -> &[super::executor::Executor] {
-        &self.executors
-    }
     pub fn clear_executors(&mut self) {
         self.executors.clear();
     }
@@ -1489,12 +1449,12 @@ impl DAGRequest {
         ::std::mem::replace(&mut self.executors, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_executors(&self) -> &[super::executor::Executor] {
+        &self.executors
+    }
+
     // optional int64 time_zone_offset = 3;
 
-
-    pub fn get_time_zone_offset(&self) -> i64 {
-        self.time_zone_offset.unwrap_or(0)
-    }
     pub fn clear_time_zone_offset(&mut self) {
         self.time_zone_offset = ::std::option::Option::None;
     }
@@ -1508,12 +1468,12 @@ impl DAGRequest {
         self.time_zone_offset = ::std::option::Option::Some(v);
     }
 
+    pub fn get_time_zone_offset(&self) -> i64 {
+        self.time_zone_offset.unwrap_or(0)
+    }
+
     // optional uint64 flags = 4;
 
-
-    pub fn get_flags(&self) -> u64 {
-        self.flags.unwrap_or(0)
-    }
     pub fn clear_flags(&mut self) {
         self.flags = ::std::option::Option::None;
     }
@@ -1527,12 +1487,12 @@ impl DAGRequest {
         self.flags = ::std::option::Option::Some(v);
     }
 
+    pub fn get_flags(&self) -> u64 {
+        self.flags.unwrap_or(0)
+    }
+
     // repeated uint32 output_offsets = 5;
 
-
-    pub fn get_output_offsets(&self) -> &[u32] {
-        &self.output_offsets
-    }
     pub fn clear_output_offsets(&mut self) {
         self.output_offsets.clear();
     }
@@ -1552,12 +1512,12 @@ impl DAGRequest {
         ::std::mem::replace(&mut self.output_offsets, ::std::vec::Vec::new())
     }
 
+    pub fn get_output_offsets(&self) -> &[u32] {
+        &self.output_offsets
+    }
+
     // optional bool collect_range_counts = 6;
 
-
-    pub fn get_collect_range_counts(&self) -> bool {
-        self.collect_range_counts.unwrap_or(false)
-    }
     pub fn clear_collect_range_counts(&mut self) {
         self.collect_range_counts = ::std::option::Option::None;
     }
@@ -1571,12 +1531,12 @@ impl DAGRequest {
         self.collect_range_counts = ::std::option::Option::Some(v);
     }
 
+    pub fn get_collect_range_counts(&self) -> bool {
+        self.collect_range_counts.unwrap_or(false)
+    }
+
     // optional uint64 max_warning_count = 7;
 
-
-    pub fn get_max_warning_count(&self) -> u64 {
-        self.max_warning_count.unwrap_or(0)
-    }
     pub fn clear_max_warning_count(&mut self) {
         self.max_warning_count = ::std::option::Option::None;
     }
@@ -1590,12 +1550,12 @@ impl DAGRequest {
         self.max_warning_count = ::std::option::Option::Some(v);
     }
 
+    pub fn get_max_warning_count(&self) -> u64 {
+        self.max_warning_count.unwrap_or(0)
+    }
+
     // optional .tipb.EncodeType encode_type = 8;
 
-
-    pub fn get_encode_type(&self) -> EncodeType {
-        self.encode_type.unwrap_or(EncodeType::TypeDefault)
-    }
     pub fn clear_encode_type(&mut self) {
         self.encode_type = ::std::option::Option::None;
     }
@@ -1609,12 +1569,12 @@ impl DAGRequest {
         self.encode_type = ::std::option::Option::Some(v);
     }
 
+    pub fn get_encode_type(&self) -> EncodeType {
+        self.encode_type.unwrap_or(EncodeType::TypeDefault)
+    }
+
     // optional uint64 sql_mode = 9;
 
-
-    pub fn get_sql_mode(&self) -> u64 {
-        self.sql_mode.unwrap_or(0)
-    }
     pub fn clear_sql_mode(&mut self) {
         self.sql_mode = ::std::option::Option::None;
     }
@@ -1628,15 +1588,12 @@ impl DAGRequest {
         self.sql_mode = ::std::option::Option::Some(v);
     }
 
+    pub fn get_sql_mode(&self) -> u64 {
+        self.sql_mode.unwrap_or(0)
+    }
+
     // optional string time_zone_name = 11;
 
-
-    pub fn get_time_zone_name(&self) -> &str {
-        match self.time_zone_name.as_ref() {
-            Some(v) => &v,
-            None => "",
-        }
-    }
     pub fn clear_time_zone_name(&mut self) {
         self.time_zone_name.clear();
     }
@@ -1664,12 +1621,15 @@ impl DAGRequest {
         self.time_zone_name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_time_zone_name(&self) -> &str {
+        match self.time_zone_name.as_ref() {
+            Some(v) => &v,
+            None => "",
+        }
+    }
+
     // optional bool collect_execution_summaries = 12;
 
-
-    pub fn get_collect_execution_summaries(&self) -> bool {
-        self.collect_execution_summaries.unwrap_or(false)
-    }
     pub fn clear_collect_execution_summaries(&mut self) {
         self.collect_execution_summaries = ::std::option::Option::None;
     }
@@ -1681,6 +1641,10 @@ impl DAGRequest {
     // Param is passed by value, moved
     pub fn set_collect_execution_summaries(&mut self, v: bool) {
         self.collect_execution_summaries = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_collect_execution_summaries(&self) -> bool {
+        self.collect_execution_summaries.unwrap_or(false)
     }
 }
 
@@ -1965,17 +1929,17 @@ impl ::protobuf::Message for DAGRequest {
 
 impl ::protobuf::Clear for DAGRequest {
     fn clear(&mut self) {
-        self.start_ts = ::std::option::Option::None;
-        self.executors.clear();
-        self.time_zone_offset = ::std::option::Option::None;
-        self.flags = ::std::option::Option::None;
-        self.output_offsets.clear();
-        self.collect_range_counts = ::std::option::Option::None;
-        self.max_warning_count = ::std::option::Option::None;
-        self.encode_type = ::std::option::Option::None;
-        self.sql_mode = ::std::option::Option::None;
-        self.time_zone_name.clear();
-        self.collect_execution_summaries = ::std::option::Option::None;
+        self.clear_start_ts();
+        self.clear_executors();
+        self.clear_time_zone_offset();
+        self.clear_flags();
+        self.clear_output_offsets();
+        self.clear_collect_range_counts();
+        self.clear_max_warning_count();
+        self.clear_encode_type();
+        self.clear_sql_mode();
+        self.clear_time_zone_name();
+        self.clear_collect_execution_summaries();
         self.unknown_fields.clear();
     }
 }
@@ -2005,12 +1969,6 @@ pub struct StreamResponse {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a StreamResponse {
-    fn default() -> &'a StreamResponse {
-        <StreamResponse as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl StreamResponse {
     pub fn new() -> StreamResponse {
         ::std::default::Default::default()
@@ -2018,10 +1976,6 @@ impl StreamResponse {
 
     // optional .tipb.Error error = 1;
 
-
-    pub fn get_error(&self) -> &Error {
-        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
-    }
     pub fn clear_error(&mut self) {
         self.error.clear();
     }
@@ -2049,15 +2003,12 @@ impl StreamResponse {
         self.error.take().unwrap_or_else(|| Error::new())
     }
 
+    pub fn get_error(&self) -> &Error {
+        self.error.as_ref().unwrap_or_else(|| Error::default_instance())
+    }
+
     // optional bytes data = 3;
 
-
-    pub fn get_data(&self) -> &[u8] {
-        match self.data.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_data(&mut self) {
         self.data.clear();
     }
@@ -2085,12 +2036,15 @@ impl StreamResponse {
         self.data.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_data(&self) -> &[u8] {
+        match self.data.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
     // repeated .tipb.Error warnings = 4;
 
-
-    pub fn get_warnings(&self) -> &[Error] {
-        &self.warnings
-    }
     pub fn clear_warnings(&mut self) {
         self.warnings.clear();
     }
@@ -2110,12 +2064,12 @@ impl StreamResponse {
         ::std::mem::replace(&mut self.warnings, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_warnings(&self) -> &[Error] {
+        &self.warnings
+    }
+
     // repeated int64 output_counts = 5;
 
-
-    pub fn get_output_counts(&self) -> &[i64] {
-        &self.output_counts
-    }
     pub fn clear_output_counts(&mut self) {
         self.output_counts.clear();
     }
@@ -2135,12 +2089,12 @@ impl StreamResponse {
         ::std::mem::replace(&mut self.output_counts, ::std::vec::Vec::new())
     }
 
+    pub fn get_output_counts(&self) -> &[i64] {
+        &self.output_counts
+    }
+
     // optional int64 warning_count = 6;
 
-
-    pub fn get_warning_count(&self) -> i64 {
-        self.warning_count.unwrap_or(0)
-    }
     pub fn clear_warning_count(&mut self) {
         self.warning_count = ::std::option::Option::None;
     }
@@ -2152,6 +2106,10 @@ impl StreamResponse {
     // Param is passed by value, moved
     pub fn set_warning_count(&mut self, v: i64) {
         self.warning_count = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_warning_count(&self) -> i64 {
+        self.warning_count.unwrap_or(0)
     }
 }
 
@@ -2336,11 +2294,11 @@ impl ::protobuf::Message for StreamResponse {
 
 impl ::protobuf::Clear for StreamResponse {
     fn clear(&mut self) {
-        self.error.clear();
-        self.data.clear();
-        self.warnings.clear();
-        self.output_counts.clear();
-        self.warning_count = ::std::option::Option::None;
+        self.clear_error();
+        self.clear_data();
+        self.clear_warnings();
+        self.clear_output_counts();
+        self.clear_warning_count();
         self.unknown_fields.clear();
     }
 }
@@ -2418,8 +2376,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12'\n\x08warnings\x18\x04\x20\x03(\x0b2\x0b.tipb.ErrorR\x08warnings\
     \x12#\n\routput_counts\x18\x05\x20\x03(\x03R\x0coutputCounts\x12#\n\rwar\
     ning_count\x18\x06\x20\x01(\x03R\x0cwarningCount\x12]\n\x0erow_batch_dat\
-    a\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xc8\xde\x1f\0\xda\xde\x1f/gith\
-    ub.com/pingcap/tipb/sharedbytes.SharedBytes\x12O\n\x13execution_summarie\
+    a\x18\x07\x20\x01(\x0cR\x0crowBatchDataB7\xda\xde\x1f/github.com/pingcap\
+    /tipb/sharedbytes.SharedBytes\xc8\xde\x1f\0\x12O\n\x13execution_summarie\
     s\x18\x08\x20\x03(\x0b2\x1e.tipb.ExecutorExecutionSummaryR\x12executionS\
     ummaries\"\x8f\x01\n\x05Chunk\x12T\n\trows_data\x18\x03\x20\x01(\x0cR\
     \x08rowsDataB7\xda\xde\x1f/github.com/pingcap/tipb/sharedbytes.SharedByt\
@@ -2440,13 +2398,13 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x04\xc8\xde\x1f\0\x12>\n\x1bcollect_execution_summaries\x18\x0c\x20\x01\
     (\x08R\x19collectExecutionSummaries\"\xf3\x01\n\x0eStreamResponse\x12!\n\
     \x05error\x18\x01\x20\x01(\x0b2\x0b.tipb.ErrorR\x05error\x12K\n\x04data\
-    \x18\x03\x20\x01(\x0cR\x04dataB7\xda\xde\x1f/github.com/pingcap/tipb/sha\
-    redbytes.SharedBytes\xc8\xde\x1f\0\x12'\n\x08warnings\x18\x04\x20\x03(\
+    \x18\x03\x20\x01(\x0cR\x04dataB7\xc8\xde\x1f\0\xda\xde\x1f/github.com/pi\
+    ngcap/tipb/sharedbytes.SharedBytes\x12'\n\x08warnings\x18\x04\x20\x03(\
     \x0b2\x0b.tipb.ErrorR\x08warnings\x12#\n\routput_counts\x18\x05\x20\x03(\
     \x03R\x0coutputCounts\x12#\n\rwarning_count\x18\x06\x20\x01(\x03R\x0cwar\
     ningCount*,\n\nEncodeType\x12\x0f\n\x0bTypeDefault\x10\0\x12\r\n\tTypeAr\
-    row\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xc8\xe2\
-    \x1e\x01\xe0\xe2\x1e\x01J\xc41\n\x06\x12\x04\0\0y\x01\n\x08\n\x01\x0c\
+    row\x10\x01B%\n\x15com.pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\
+    \x1e\x01\xd0\xe2\x1e\x01J\xc41\n\x06\x12\x04\0\0y\x01\n\x08\n\x01\x0c\
     \x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\
     \x03\x04\0\"\n\x0b\n\x04\x08\xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\
     \xe7\x07\0\x02\x12\x03\x04\x07\x1a\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\

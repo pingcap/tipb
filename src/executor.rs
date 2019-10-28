@@ -37,12 +37,6 @@ pub struct Executor {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Executor {
-    fn default() -> &'a Executor {
-        <Executor as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Executor {
     pub fn new() -> Executor {
         ::std::default::Default::default()
@@ -50,10 +44,6 @@ impl Executor {
 
     // optional .tipb.ExecType tp = 1;
 
-
-    pub fn get_tp(&self) -> ExecType {
-        self.tp.unwrap_or(ExecType::TypeTableScan)
-    }
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None;
     }
@@ -67,12 +57,12 @@ impl Executor {
         self.tp = ::std::option::Option::Some(v);
     }
 
+    pub fn get_tp(&self) -> ExecType {
+        self.tp.unwrap_or(ExecType::TypeTableScan)
+    }
+
     // optional .tipb.TableScan tbl_scan = 2;
 
-
-    pub fn get_tbl_scan(&self) -> &TableScan {
-        self.tbl_scan.as_ref().unwrap_or_else(|| TableScan::default_instance())
-    }
     pub fn clear_tbl_scan(&mut self) {
         self.tbl_scan.clear();
     }
@@ -100,12 +90,12 @@ impl Executor {
         self.tbl_scan.take().unwrap_or_else(|| TableScan::new())
     }
 
+    pub fn get_tbl_scan(&self) -> &TableScan {
+        self.tbl_scan.as_ref().unwrap_or_else(|| TableScan::default_instance())
+    }
+
     // optional .tipb.IndexScan idx_scan = 3;
 
-
-    pub fn get_idx_scan(&self) -> &IndexScan {
-        self.idx_scan.as_ref().unwrap_or_else(|| IndexScan::default_instance())
-    }
     pub fn clear_idx_scan(&mut self) {
         self.idx_scan.clear();
     }
@@ -133,12 +123,12 @@ impl Executor {
         self.idx_scan.take().unwrap_or_else(|| IndexScan::new())
     }
 
+    pub fn get_idx_scan(&self) -> &IndexScan {
+        self.idx_scan.as_ref().unwrap_or_else(|| IndexScan::default_instance())
+    }
+
     // optional .tipb.Selection selection = 4;
 
-
-    pub fn get_selection(&self) -> &Selection {
-        self.selection.as_ref().unwrap_or_else(|| Selection::default_instance())
-    }
     pub fn clear_selection(&mut self) {
         self.selection.clear();
     }
@@ -166,12 +156,12 @@ impl Executor {
         self.selection.take().unwrap_or_else(|| Selection::new())
     }
 
+    pub fn get_selection(&self) -> &Selection {
+        self.selection.as_ref().unwrap_or_else(|| Selection::default_instance())
+    }
+
     // optional .tipb.Aggregation aggregation = 5;
 
-
-    pub fn get_aggregation(&self) -> &Aggregation {
-        self.aggregation.as_ref().unwrap_or_else(|| Aggregation::default_instance())
-    }
     pub fn clear_aggregation(&mut self) {
         self.aggregation.clear();
     }
@@ -199,12 +189,12 @@ impl Executor {
         self.aggregation.take().unwrap_or_else(|| Aggregation::new())
     }
 
+    pub fn get_aggregation(&self) -> &Aggregation {
+        self.aggregation.as_ref().unwrap_or_else(|| Aggregation::default_instance())
+    }
+
     // optional .tipb.TopN topN = 6;
 
-
-    pub fn get_topN(&self) -> &TopN {
-        self.topN.as_ref().unwrap_or_else(|| TopN::default_instance())
-    }
     pub fn clear_topN(&mut self) {
         self.topN.clear();
     }
@@ -232,12 +222,12 @@ impl Executor {
         self.topN.take().unwrap_or_else(|| TopN::new())
     }
 
+    pub fn get_topN(&self) -> &TopN {
+        self.topN.as_ref().unwrap_or_else(|| TopN::default_instance())
+    }
+
     // optional .tipb.Limit limit = 7;
 
-
-    pub fn get_limit(&self) -> &Limit {
-        self.limit.as_ref().unwrap_or_else(|| Limit::default_instance())
-    }
     pub fn clear_limit(&mut self) {
         self.limit.clear();
     }
@@ -265,12 +255,12 @@ impl Executor {
         self.limit.take().unwrap_or_else(|| Limit::new())
     }
 
+    pub fn get_limit(&self) -> &Limit {
+        self.limit.as_ref().unwrap_or_else(|| Limit::default_instance())
+    }
+
     // optional .tipb.Aggregation stream_agg = 8;
 
-
-    pub fn get_stream_agg(&self) -> &Aggregation {
-        self.stream_agg.as_ref().unwrap_or_else(|| Aggregation::default_instance())
-    }
     pub fn clear_stream_agg(&mut self) {
         self.stream_agg.clear();
     }
@@ -296,6 +286,10 @@ impl Executor {
     // Take field
     pub fn take_stream_agg(&mut self) -> Aggregation {
         self.stream_agg.take().unwrap_or_else(|| Aggregation::new())
+    }
+
+    pub fn get_stream_agg(&self) -> &Aggregation {
+        self.stream_agg.as_ref().unwrap_or_else(|| Aggregation::default_instance())
     }
 }
 
@@ -558,14 +552,14 @@ impl ::protobuf::Message for Executor {
 
 impl ::protobuf::Clear for Executor {
     fn clear(&mut self) {
-        self.tp = ::std::option::Option::None;
-        self.tbl_scan.clear();
-        self.idx_scan.clear();
-        self.selection.clear();
-        self.aggregation.clear();
-        self.topN.clear();
-        self.limit.clear();
-        self.stream_agg.clear();
+        self.clear_tp();
+        self.clear_tbl_scan();
+        self.clear_idx_scan();
+        self.clear_selection();
+        self.clear_aggregation();
+        self.clear_topN();
+        self.clear_limit();
+        self.clear_stream_agg();
         self.unknown_fields.clear();
     }
 }
@@ -593,12 +587,6 @@ pub struct TableScan {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a TableScan {
-    fn default() -> &'a TableScan {
-        <TableScan as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl TableScan {
     pub fn new() -> TableScan {
         ::std::default::Default::default()
@@ -606,10 +594,6 @@ impl TableScan {
 
     // optional int64 table_id = 1;
 
-
-    pub fn get_table_id(&self) -> i64 {
-        self.table_id.unwrap_or(0)
-    }
     pub fn clear_table_id(&mut self) {
         self.table_id = ::std::option::Option::None;
     }
@@ -623,12 +607,12 @@ impl TableScan {
         self.table_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_table_id(&self) -> i64 {
+        self.table_id.unwrap_or(0)
+    }
+
     // repeated .tipb.ColumnInfo columns = 2;
 
-
-    pub fn get_columns(&self) -> &[super::schema::ColumnInfo] {
-        &self.columns
-    }
     pub fn clear_columns(&mut self) {
         self.columns.clear();
     }
@@ -648,12 +632,12 @@ impl TableScan {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_columns(&self) -> &[super::schema::ColumnInfo] {
+        &self.columns
+    }
+
     // optional bool desc = 3;
 
-
-    pub fn get_desc(&self) -> bool {
-        self.desc.unwrap_or(false)
-    }
     pub fn clear_desc(&mut self) {
         self.desc = ::std::option::Option::None;
     }
@@ -665,6 +649,10 @@ impl TableScan {
     // Param is passed by value, moved
     pub fn set_desc(&mut self, v: bool) {
         self.desc = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_desc(&self) -> bool {
+        self.desc.unwrap_or(false)
     }
 }
 
@@ -817,9 +805,9 @@ impl ::protobuf::Message for TableScan {
 
 impl ::protobuf::Clear for TableScan {
     fn clear(&mut self) {
-        self.table_id = ::std::option::Option::None;
-        self.columns.clear();
-        self.desc = ::std::option::Option::None;
+        self.clear_table_id();
+        self.clear_columns();
+        self.clear_desc();
         self.unknown_fields.clear();
     }
 }
@@ -849,12 +837,6 @@ pub struct IndexScan {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a IndexScan {
-    fn default() -> &'a IndexScan {
-        <IndexScan as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl IndexScan {
     pub fn new() -> IndexScan {
         ::std::default::Default::default()
@@ -862,10 +844,6 @@ impl IndexScan {
 
     // optional int64 table_id = 1;
 
-
-    pub fn get_table_id(&self) -> i64 {
-        self.table_id.unwrap_or(0)
-    }
     pub fn clear_table_id(&mut self) {
         self.table_id = ::std::option::Option::None;
     }
@@ -879,12 +857,12 @@ impl IndexScan {
         self.table_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_table_id(&self) -> i64 {
+        self.table_id.unwrap_or(0)
+    }
+
     // optional int64 index_id = 2;
 
-
-    pub fn get_index_id(&self) -> i64 {
-        self.index_id.unwrap_or(0)
-    }
     pub fn clear_index_id(&mut self) {
         self.index_id = ::std::option::Option::None;
     }
@@ -898,12 +876,12 @@ impl IndexScan {
         self.index_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_index_id(&self) -> i64 {
+        self.index_id.unwrap_or(0)
+    }
+
     // repeated .tipb.ColumnInfo columns = 3;
 
-
-    pub fn get_columns(&self) -> &[super::schema::ColumnInfo] {
-        &self.columns
-    }
     pub fn clear_columns(&mut self) {
         self.columns.clear();
     }
@@ -923,12 +901,12 @@ impl IndexScan {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_columns(&self) -> &[super::schema::ColumnInfo] {
+        &self.columns
+    }
+
     // optional bool desc = 4;
 
-
-    pub fn get_desc(&self) -> bool {
-        self.desc.unwrap_or(false)
-    }
     pub fn clear_desc(&mut self) {
         self.desc = ::std::option::Option::None;
     }
@@ -942,12 +920,12 @@ impl IndexScan {
         self.desc = ::std::option::Option::Some(v);
     }
 
+    pub fn get_desc(&self) -> bool {
+        self.desc.unwrap_or(false)
+    }
+
     // optional bool unique = 5;
 
-
-    pub fn get_unique(&self) -> bool {
-        self.unique.unwrap_or(false)
-    }
     pub fn clear_unique(&mut self) {
         self.unique = ::std::option::Option::None;
     }
@@ -959,6 +937,10 @@ impl IndexScan {
     // Param is passed by value, moved
     pub fn set_unique(&mut self, v: bool) {
         self.unique = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_unique(&self) -> bool {
+        self.unique.unwrap_or(false)
     }
 }
 
@@ -1147,11 +1129,11 @@ impl ::protobuf::Message for IndexScan {
 
 impl ::protobuf::Clear for IndexScan {
     fn clear(&mut self) {
-        self.table_id = ::std::option::Option::None;
-        self.index_id = ::std::option::Option::None;
-        self.columns.clear();
-        self.desc = ::std::option::Option::None;
-        self.unique = ::std::option::Option::None;
+        self.clear_table_id();
+        self.clear_index_id();
+        self.clear_columns();
+        self.clear_desc();
+        self.clear_unique();
         self.unknown_fields.clear();
     }
 }
@@ -1177,12 +1159,6 @@ pub struct Selection {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Selection {
-    fn default() -> &'a Selection {
-        <Selection as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Selection {
     pub fn new() -> Selection {
         ::std::default::Default::default()
@@ -1190,10 +1166,6 @@ impl Selection {
 
     // repeated .tipb.Expr conditions = 1;
 
-
-    pub fn get_conditions(&self) -> &[super::expression::Expr] {
-        &self.conditions
-    }
     pub fn clear_conditions(&mut self) {
         self.conditions.clear();
     }
@@ -1211,6 +1183,10 @@ impl Selection {
     // Take field
     pub fn take_conditions(&mut self) -> ::protobuf::RepeatedField<super::expression::Expr> {
         ::std::mem::replace(&mut self.conditions, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_conditions(&self) -> &[super::expression::Expr] {
+        &self.conditions
     }
 }
 
@@ -1327,7 +1303,7 @@ impl ::protobuf::Message for Selection {
 
 impl ::protobuf::Clear for Selection {
     fn clear(&mut self) {
-        self.conditions.clear();
+        self.clear_conditions();
         self.unknown_fields.clear();
     }
 }
@@ -1353,12 +1329,6 @@ pub struct Projection {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Projection {
-    fn default() -> &'a Projection {
-        <Projection as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Projection {
     pub fn new() -> Projection {
         ::std::default::Default::default()
@@ -1366,10 +1336,6 @@ impl Projection {
 
     // repeated .tipb.Expr exprs = 1;
 
-
-    pub fn get_exprs(&self) -> &[super::expression::Expr] {
-        &self.exprs
-    }
     pub fn clear_exprs(&mut self) {
         self.exprs.clear();
     }
@@ -1387,6 +1353,10 @@ impl Projection {
     // Take field
     pub fn take_exprs(&mut self) -> ::protobuf::RepeatedField<super::expression::Expr> {
         ::std::mem::replace(&mut self.exprs, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_exprs(&self) -> &[super::expression::Expr] {
+        &self.exprs
     }
 }
 
@@ -1503,7 +1473,7 @@ impl ::protobuf::Message for Projection {
 
 impl ::protobuf::Clear for Projection {
     fn clear(&mut self) {
-        self.exprs.clear();
+        self.clear_exprs();
         self.unknown_fields.clear();
     }
 }
@@ -1531,12 +1501,6 @@ pub struct Aggregation {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Aggregation {
-    fn default() -> &'a Aggregation {
-        <Aggregation as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Aggregation {
     pub fn new() -> Aggregation {
         ::std::default::Default::default()
@@ -1544,10 +1508,6 @@ impl Aggregation {
 
     // repeated .tipb.Expr group_by = 1;
 
-
-    pub fn get_group_by(&self) -> &[super::expression::Expr] {
-        &self.group_by
-    }
     pub fn clear_group_by(&mut self) {
         self.group_by.clear();
     }
@@ -1567,12 +1527,12 @@ impl Aggregation {
         ::std::mem::replace(&mut self.group_by, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_group_by(&self) -> &[super::expression::Expr] {
+        &self.group_by
+    }
+
     // repeated .tipb.Expr agg_func = 2;
 
-
-    pub fn get_agg_func(&self) -> &[super::expression::Expr] {
-        &self.agg_func
-    }
     pub fn clear_agg_func(&mut self) {
         self.agg_func.clear();
     }
@@ -1592,12 +1552,12 @@ impl Aggregation {
         ::std::mem::replace(&mut self.agg_func, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_agg_func(&self) -> &[super::expression::Expr] {
+        &self.agg_func
+    }
+
     // optional bool streamed = 3;
 
-
-    pub fn get_streamed(&self) -> bool {
-        self.streamed.unwrap_or(false)
-    }
     pub fn clear_streamed(&mut self) {
         self.streamed = ::std::option::Option::None;
     }
@@ -1609,6 +1569,10 @@ impl Aggregation {
     // Param is passed by value, moved
     pub fn set_streamed(&mut self, v: bool) {
         self.streamed = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_streamed(&self) -> bool {
+        self.streamed.unwrap_or(false)
     }
 }
 
@@ -1765,9 +1729,9 @@ impl ::protobuf::Message for Aggregation {
 
 impl ::protobuf::Clear for Aggregation {
     fn clear(&mut self) {
-        self.group_by.clear();
-        self.agg_func.clear();
-        self.streamed = ::std::option::Option::None;
+        self.clear_group_by();
+        self.clear_agg_func();
+        self.clear_streamed();
         self.unknown_fields.clear();
     }
 }
@@ -1794,12 +1758,6 @@ pub struct TopN {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a TopN {
-    fn default() -> &'a TopN {
-        <TopN as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl TopN {
     pub fn new() -> TopN {
         ::std::default::Default::default()
@@ -1807,10 +1765,6 @@ impl TopN {
 
     // repeated .tipb.ByItem order_by = 1;
 
-
-    pub fn get_order_by(&self) -> &[super::expression::ByItem] {
-        &self.order_by
-    }
     pub fn clear_order_by(&mut self) {
         self.order_by.clear();
     }
@@ -1830,12 +1784,12 @@ impl TopN {
         ::std::mem::replace(&mut self.order_by, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_order_by(&self) -> &[super::expression::ByItem] {
+        &self.order_by
+    }
+
     // optional uint64 limit = 2;
 
-
-    pub fn get_limit(&self) -> u64 {
-        self.limit.unwrap_or(0)
-    }
     pub fn clear_limit(&mut self) {
         self.limit = ::std::option::Option::None;
     }
@@ -1847,6 +1801,10 @@ impl TopN {
     // Param is passed by value, moved
     pub fn set_limit(&mut self, v: u64) {
         self.limit = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_limit(&self) -> u64 {
+        self.limit.unwrap_or(0)
     }
 }
 
@@ -1981,8 +1939,8 @@ impl ::protobuf::Message for TopN {
 
 impl ::protobuf::Clear for TopN {
     fn clear(&mut self) {
-        self.order_by.clear();
-        self.limit = ::std::option::Option::None;
+        self.clear_order_by();
+        self.clear_limit();
         self.unknown_fields.clear();
     }
 }
@@ -2008,12 +1966,6 @@ pub struct Limit {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Limit {
-    fn default() -> &'a Limit {
-        <Limit as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Limit {
     pub fn new() -> Limit {
         ::std::default::Default::default()
@@ -2021,10 +1973,6 @@ impl Limit {
 
     // optional uint64 limit = 1;
 
-
-    pub fn get_limit(&self) -> u64 {
-        self.limit.unwrap_or(0)
-    }
     pub fn clear_limit(&mut self) {
         self.limit = ::std::option::Option::None;
     }
@@ -2036,6 +1984,10 @@ impl Limit {
     // Param is passed by value, moved
     pub fn set_limit(&mut self, v: u64) {
         self.limit = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_limit(&self) -> u64 {
+        self.limit.unwrap_or(0)
     }
 }
 
@@ -2148,7 +2100,7 @@ impl ::protobuf::Message for Limit {
 
 impl ::protobuf::Clear for Limit {
     fn clear(&mut self) {
-        self.limit = ::std::option::Option::None;
+        self.clear_limit();
         self.unknown_fields.clear();
     }
 }
@@ -2176,12 +2128,6 @@ pub struct ExecutorExecutionSummary {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a ExecutorExecutionSummary {
-    fn default() -> &'a ExecutorExecutionSummary {
-        <ExecutorExecutionSummary as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl ExecutorExecutionSummary {
     pub fn new() -> ExecutorExecutionSummary {
         ::std::default::Default::default()
@@ -2189,10 +2135,6 @@ impl ExecutorExecutionSummary {
 
     // optional uint64 time_processed_ns = 1;
 
-
-    pub fn get_time_processed_ns(&self) -> u64 {
-        self.time_processed_ns.unwrap_or(0)
-    }
     pub fn clear_time_processed_ns(&mut self) {
         self.time_processed_ns = ::std::option::Option::None;
     }
@@ -2206,12 +2148,12 @@ impl ExecutorExecutionSummary {
         self.time_processed_ns = ::std::option::Option::Some(v);
     }
 
+    pub fn get_time_processed_ns(&self) -> u64 {
+        self.time_processed_ns.unwrap_or(0)
+    }
+
     // optional uint64 num_produced_rows = 2;
 
-
-    pub fn get_num_produced_rows(&self) -> u64 {
-        self.num_produced_rows.unwrap_or(0)
-    }
     pub fn clear_num_produced_rows(&mut self) {
         self.num_produced_rows = ::std::option::Option::None;
     }
@@ -2225,12 +2167,12 @@ impl ExecutorExecutionSummary {
         self.num_produced_rows = ::std::option::Option::Some(v);
     }
 
+    pub fn get_num_produced_rows(&self) -> u64 {
+        self.num_produced_rows.unwrap_or(0)
+    }
+
     // optional uint64 num_iterations = 3;
 
-
-    pub fn get_num_iterations(&self) -> u64 {
-        self.num_iterations.unwrap_or(0)
-    }
     pub fn clear_num_iterations(&mut self) {
         self.num_iterations = ::std::option::Option::None;
     }
@@ -2242,6 +2184,10 @@ impl ExecutorExecutionSummary {
     // Param is passed by value, moved
     pub fn set_num_iterations(&mut self, v: u64) {
         self.num_iterations = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_num_iterations(&self) -> u64 {
+        self.num_iterations.unwrap_or(0)
     }
 }
 
@@ -2390,9 +2336,9 @@ impl ::protobuf::Message for ExecutorExecutionSummary {
 
 impl ::protobuf::Clear for ExecutorExecutionSummary {
     fn clear(&mut self) {
-        self.time_processed_ns = ::std::option::Option::None;
-        self.num_produced_rows = ::std::option::Option::None;
-        self.num_iterations = ::std::option::Option::None;
+        self.clear_time_processed_ns();
+        self.clear_num_produced_rows();
+        self.clear_num_iterations();
         self.unknown_fields.clear();
     }
 }
@@ -2508,7 +2454,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     n\x10\0\x12\x11\n\rTypeIndexScan\x10\x01\x12\x11\n\rTypeSelection\x10\
     \x02\x12\x13\n\x0fTypeAggregation\x10\x03\x12\x0c\n\x08TypeTopN\x10\x04\
     \x12\r\n\tTypeLimit\x10\x05\x12\x11\n\rTypeStreamAgg\x10\x06B%\n\x15com.\
-    pingcap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01J\
+    pingcap.tidb.tipbP\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01J\
     \xe9!\n\x06\x12\x04\0\0Z\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\
     \x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\
     \xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\

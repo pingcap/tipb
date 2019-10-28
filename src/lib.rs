@@ -1,3 +1,4 @@
+#![allow(bare_trait_objects)]
 extern crate protobuf;
 #[cfg_attr(rustfmt, rustfmt_skip)]
 pub mod analyze;

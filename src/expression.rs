@@ -35,12 +35,6 @@ pub struct FieldType {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a FieldType {
-    fn default() -> &'a FieldType {
-        <FieldType as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl FieldType {
     pub fn new() -> FieldType {
         ::std::default::Default::default()
@@ -48,10 +42,6 @@ impl FieldType {
 
     // optional int32 tp = 1;
 
-
-    pub fn get_tp(&self) -> i32 {
-        self.tp.unwrap_or(0)
-    }
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None;
     }
@@ -65,12 +55,12 @@ impl FieldType {
         self.tp = ::std::option::Option::Some(v);
     }
 
+    pub fn get_tp(&self) -> i32 {
+        self.tp.unwrap_or(0)
+    }
+
     // optional uint32 flag = 2;
 
-
-    pub fn get_flag(&self) -> u32 {
-        self.flag.unwrap_or(0)
-    }
     pub fn clear_flag(&mut self) {
         self.flag = ::std::option::Option::None;
     }
@@ -84,12 +74,12 @@ impl FieldType {
         self.flag = ::std::option::Option::Some(v);
     }
 
+    pub fn get_flag(&self) -> u32 {
+        self.flag.unwrap_or(0)
+    }
+
     // optional int32 flen = 3;
 
-
-    pub fn get_flen(&self) -> i32 {
-        self.flen.unwrap_or(0)
-    }
     pub fn clear_flen(&mut self) {
         self.flen = ::std::option::Option::None;
     }
@@ -103,12 +93,12 @@ impl FieldType {
         self.flen = ::std::option::Option::Some(v);
     }
 
+    pub fn get_flen(&self) -> i32 {
+        self.flen.unwrap_or(0)
+    }
+
     // optional int32 decimal = 4;
 
-
-    pub fn get_decimal(&self) -> i32 {
-        self.decimal.unwrap_or(0)
-    }
     pub fn clear_decimal(&mut self) {
         self.decimal = ::std::option::Option::None;
     }
@@ -122,12 +112,12 @@ impl FieldType {
         self.decimal = ::std::option::Option::Some(v);
     }
 
+    pub fn get_decimal(&self) -> i32 {
+        self.decimal.unwrap_or(0)
+    }
+
     // optional int32 collate = 5;
 
-
-    pub fn get_collate(&self) -> i32 {
-        self.collate.unwrap_or(0)
-    }
     pub fn clear_collate(&mut self) {
         self.collate = ::std::option::Option::None;
     }
@@ -141,15 +131,12 @@ impl FieldType {
         self.collate = ::std::option::Option::Some(v);
     }
 
+    pub fn get_collate(&self) -> i32 {
+        self.collate.unwrap_or(0)
+    }
+
     // optional string charset = 6;
 
-
-    pub fn get_charset(&self) -> &str {
-        match self.charset.as_ref() {
-            Some(v) => &v,
-            None => "",
-        }
-    }
     pub fn clear_charset(&mut self) {
         self.charset.clear();
     }
@@ -175,6 +162,13 @@ impl FieldType {
     // Take field
     pub fn take_charset(&mut self) -> ::std::string::String {
         self.charset.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_charset(&self) -> &str {
+        match self.charset.as_ref() {
+            Some(v) => &v,
+            None => "",
+        }
     }
 }
 
@@ -373,12 +367,12 @@ impl ::protobuf::Message for FieldType {
 
 impl ::protobuf::Clear for FieldType {
     fn clear(&mut self) {
-        self.tp = ::std::option::Option::None;
-        self.flag = ::std::option::Option::None;
-        self.flen = ::std::option::Option::None;
-        self.decimal = ::std::option::Option::None;
-        self.collate = ::std::option::Option::None;
-        self.charset.clear();
+        self.clear_tp();
+        self.clear_flag();
+        self.clear_flen();
+        self.clear_decimal();
+        self.clear_collate();
+        self.clear_charset();
         self.unknown_fields.clear();
     }
 }
@@ -408,12 +402,6 @@ pub struct Expr {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Expr {
-    fn default() -> &'a Expr {
-        <Expr as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl Expr {
     pub fn new() -> Expr {
         ::std::default::Default::default()
@@ -421,10 +409,6 @@ impl Expr {
 
     // optional .tipb.ExprType tp = 1;
 
-
-    pub fn get_tp(&self) -> ExprType {
-        self.tp.unwrap_or(ExprType::Null)
-    }
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None;
     }
@@ -438,15 +422,12 @@ impl Expr {
         self.tp = ::std::option::Option::Some(v);
     }
 
+    pub fn get_tp(&self) -> ExprType {
+        self.tp.unwrap_or(ExprType::Null)
+    }
+
     // optional bytes val = 2;
 
-
-    pub fn get_val(&self) -> &[u8] {
-        match self.val.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_val(&mut self) {
         self.val.clear();
     }
@@ -474,12 +455,15 @@ impl Expr {
         self.val.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_val(&self) -> &[u8] {
+        match self.val.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
     // repeated .tipb.Expr children = 3;
 
-
-    pub fn get_children(&self) -> &[Expr] {
-        &self.children
-    }
     pub fn clear_children(&mut self) {
         self.children.clear();
     }
@@ -499,12 +483,12 @@ impl Expr {
         ::std::mem::replace(&mut self.children, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_children(&self) -> &[Expr] {
+        &self.children
+    }
+
     // optional .tipb.ScalarFuncSig sig = 4;
 
-
-    pub fn get_sig(&self) -> ScalarFuncSig {
-        self.sig.unwrap_or(ScalarFuncSig::CastIntAsInt)
-    }
     pub fn clear_sig(&mut self) {
         self.sig = ::std::option::Option::None;
     }
@@ -518,12 +502,12 @@ impl Expr {
         self.sig = ::std::option::Option::Some(v);
     }
 
+    pub fn get_sig(&self) -> ScalarFuncSig {
+        self.sig.unwrap_or(ScalarFuncSig::CastIntAsInt)
+    }
+
     // optional .tipb.FieldType field_type = 5;
 
-
-    pub fn get_field_type(&self) -> &FieldType {
-        self.field_type.as_ref().unwrap_or_else(|| FieldType::default_instance())
-    }
     pub fn clear_field_type(&mut self) {
         self.field_type.clear();
     }
@@ -549,6 +533,10 @@ impl Expr {
     // Take field
     pub fn take_field_type(&mut self) -> FieldType {
         self.field_type.take().unwrap_or_else(|| FieldType::new())
+    }
+
+    pub fn get_field_type(&self) -> &FieldType {
+        self.field_type.as_ref().unwrap_or_else(|| FieldType::default_instance())
     }
 }
 
@@ -729,11 +717,11 @@ impl ::protobuf::Message for Expr {
 
 impl ::protobuf::Clear for Expr {
     fn clear(&mut self) {
-        self.tp = ::std::option::Option::None;
-        self.val.clear();
-        self.children.clear();
-        self.sig = ::std::option::Option::None;
-        self.field_type.clear();
+        self.clear_tp();
+        self.clear_val();
+        self.clear_children();
+        self.clear_sig();
+        self.clear_field_type();
         self.unknown_fields.clear();
     }
 }
@@ -760,12 +748,6 @@ pub struct ByItem {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a ByItem {
-    fn default() -> &'a ByItem {
-        <ByItem as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl ByItem {
     pub fn new() -> ByItem {
         ::std::default::Default::default()
@@ -773,10 +755,6 @@ impl ByItem {
 
     // optional .tipb.Expr expr = 1;
 
-
-    pub fn get_expr(&self) -> &Expr {
-        self.expr.as_ref().unwrap_or_else(|| Expr::default_instance())
-    }
     pub fn clear_expr(&mut self) {
         self.expr.clear();
     }
@@ -804,12 +782,12 @@ impl ByItem {
         self.expr.take().unwrap_or_else(|| Expr::new())
     }
 
+    pub fn get_expr(&self) -> &Expr {
+        self.expr.as_ref().unwrap_or_else(|| Expr::default_instance())
+    }
+
     // optional bool desc = 2;
 
-
-    pub fn get_desc(&self) -> bool {
-        self.desc.unwrap_or(false)
-    }
     pub fn clear_desc(&mut self) {
         self.desc = ::std::option::Option::None;
     }
@@ -821,6 +799,10 @@ impl ByItem {
     // Param is passed by value, moved
     pub fn set_desc(&mut self, v: bool) {
         self.desc = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_desc(&self) -> bool {
+        self.desc.unwrap_or(false)
     }
 }
 
@@ -955,8 +937,8 @@ impl ::protobuf::Message for ByItem {
 
 impl ::protobuf::Clear for ByItem {
     fn clear(&mut self) {
-        self.expr.clear();
-        self.desc = ::std::option::Option::None;
+        self.clear_expr();
+        self.clear_desc();
         self.unknown_fields.clear();
     }
 }

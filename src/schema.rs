@@ -31,12 +31,6 @@ pub struct TableInfo {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a TableInfo {
-    fn default() -> &'a TableInfo {
-        <TableInfo as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl TableInfo {
     pub fn new() -> TableInfo {
         ::std::default::Default::default()
@@ -44,10 +38,6 @@ impl TableInfo {
 
     // optional int64 table_id = 1;
 
-
-    pub fn get_table_id(&self) -> i64 {
-        self.table_id.unwrap_or(0)
-    }
     pub fn clear_table_id(&mut self) {
         self.table_id = ::std::option::Option::None;
     }
@@ -61,12 +51,12 @@ impl TableInfo {
         self.table_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_table_id(&self) -> i64 {
+        self.table_id.unwrap_or(0)
+    }
+
     // repeated .tipb.ColumnInfo columns = 2;
 
-
-    pub fn get_columns(&self) -> &[ColumnInfo] {
-        &self.columns
-    }
     pub fn clear_columns(&mut self) {
         self.columns.clear();
     }
@@ -84,6 +74,10 @@ impl TableInfo {
     // Take field
     pub fn take_columns(&mut self) -> ::protobuf::RepeatedField<ColumnInfo> {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_columns(&self) -> &[ColumnInfo] {
+        &self.columns
     }
 }
 
@@ -218,8 +212,8 @@ impl ::protobuf::Message for TableInfo {
 
 impl ::protobuf::Clear for TableInfo {
     fn clear(&mut self) {
-        self.table_id = ::std::option::Option::None;
-        self.columns.clear();
+        self.clear_table_id();
+        self.clear_columns();
         self.unknown_fields.clear();
     }
 }
@@ -253,12 +247,6 @@ pub struct ColumnInfo {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a ColumnInfo {
-    fn default() -> &'a ColumnInfo {
-        <ColumnInfo as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl ColumnInfo {
     pub fn new() -> ColumnInfo {
         ::std::default::Default::default()
@@ -266,10 +254,6 @@ impl ColumnInfo {
 
     // optional int64 column_id = 1;
 
-
-    pub fn get_column_id(&self) -> i64 {
-        self.column_id.unwrap_or(0)
-    }
     pub fn clear_column_id(&mut self) {
         self.column_id = ::std::option::Option::None;
     }
@@ -283,12 +267,12 @@ impl ColumnInfo {
         self.column_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_column_id(&self) -> i64 {
+        self.column_id.unwrap_or(0)
+    }
+
     // optional int32 tp = 2;
 
-
-    pub fn get_tp(&self) -> i32 {
-        self.tp.unwrap_or(0)
-    }
     pub fn clear_tp(&mut self) {
         self.tp = ::std::option::Option::None;
     }
@@ -302,12 +286,12 @@ impl ColumnInfo {
         self.tp = ::std::option::Option::Some(v);
     }
 
+    pub fn get_tp(&self) -> i32 {
+        self.tp.unwrap_or(0)
+    }
+
     // optional int32 collation = 3;
 
-
-    pub fn get_collation(&self) -> i32 {
-        self.collation.unwrap_or(0)
-    }
     pub fn clear_collation(&mut self) {
         self.collation = ::std::option::Option::None;
     }
@@ -321,12 +305,12 @@ impl ColumnInfo {
         self.collation = ::std::option::Option::Some(v);
     }
 
+    pub fn get_collation(&self) -> i32 {
+        self.collation.unwrap_or(0)
+    }
+
     // optional int32 columnLen = 4;
 
-
-    pub fn get_columnLen(&self) -> i32 {
-        self.columnLen.unwrap_or(0)
-    }
     pub fn clear_columnLen(&mut self) {
         self.columnLen = ::std::option::Option::None;
     }
@@ -340,12 +324,12 @@ impl ColumnInfo {
         self.columnLen = ::std::option::Option::Some(v);
     }
 
+    pub fn get_columnLen(&self) -> i32 {
+        self.columnLen.unwrap_or(0)
+    }
+
     // optional int32 decimal = 5;
 
-
-    pub fn get_decimal(&self) -> i32 {
-        self.decimal.unwrap_or(0)
-    }
     pub fn clear_decimal(&mut self) {
         self.decimal = ::std::option::Option::None;
     }
@@ -359,12 +343,12 @@ impl ColumnInfo {
         self.decimal = ::std::option::Option::Some(v);
     }
 
+    pub fn get_decimal(&self) -> i32 {
+        self.decimal.unwrap_or(0)
+    }
+
     // optional int32 flag = 6;
 
-
-    pub fn get_flag(&self) -> i32 {
-        self.flag.unwrap_or(0)
-    }
     pub fn clear_flag(&mut self) {
         self.flag = ::std::option::Option::None;
     }
@@ -378,12 +362,12 @@ impl ColumnInfo {
         self.flag = ::std::option::Option::Some(v);
     }
 
+    pub fn get_flag(&self) -> i32 {
+        self.flag.unwrap_or(0)
+    }
+
     // repeated string elems = 7;
 
-
-    pub fn get_elems(&self) -> &[::std::string::String] {
-        &self.elems
-    }
     pub fn clear_elems(&mut self) {
         self.elems.clear();
     }
@@ -403,15 +387,12 @@ impl ColumnInfo {
         ::std::mem::replace(&mut self.elems, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_elems(&self) -> &[::std::string::String] {
+        &self.elems
+    }
+
     // optional bytes default_val = 8;
 
-
-    pub fn get_default_val(&self) -> &[u8] {
-        match self.default_val.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_default_val(&mut self) {
         self.default_val.clear();
     }
@@ -439,12 +420,15 @@ impl ColumnInfo {
         self.default_val.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_default_val(&self) -> &[u8] {
+        match self.default_val.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
+    }
+
     // optional bool pk_handle = 21;
 
-
-    pub fn get_pk_handle(&self) -> bool {
-        self.pk_handle.unwrap_or(false)
-    }
     pub fn clear_pk_handle(&mut self) {
         self.pk_handle = ::std::option::Option::None;
     }
@@ -456,6 +440,10 @@ impl ColumnInfo {
     // Param is passed by value, moved
     pub fn set_pk_handle(&mut self, v: bool) {
         self.pk_handle = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_pk_handle(&self) -> bool {
+        self.pk_handle.unwrap_or(false)
     }
 }
 
@@ -704,15 +692,15 @@ impl ::protobuf::Message for ColumnInfo {
 
 impl ::protobuf::Clear for ColumnInfo {
     fn clear(&mut self) {
-        self.column_id = ::std::option::Option::None;
-        self.tp = ::std::option::Option::None;
-        self.collation = ::std::option::Option::None;
-        self.columnLen = ::std::option::Option::None;
-        self.decimal = ::std::option::Option::None;
-        self.flag = ::std::option::Option::None;
-        self.elems.clear();
-        self.default_val.clear();
-        self.pk_handle = ::std::option::Option::None;
+        self.clear_column_id();
+        self.clear_tp();
+        self.clear_collation();
+        self.clear_columnLen();
+        self.clear_decimal();
+        self.clear_flag();
+        self.clear_elems();
+        self.clear_default_val();
+        self.clear_pk_handle();
         self.unknown_fields.clear();
     }
 }
@@ -741,12 +729,6 @@ pub struct IndexInfo {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a IndexInfo {
-    fn default() -> &'a IndexInfo {
-        <IndexInfo as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl IndexInfo {
     pub fn new() -> IndexInfo {
         ::std::default::Default::default()
@@ -754,10 +736,6 @@ impl IndexInfo {
 
     // optional int64 table_id = 1;
 
-
-    pub fn get_table_id(&self) -> i64 {
-        self.table_id.unwrap_or(0)
-    }
     pub fn clear_table_id(&mut self) {
         self.table_id = ::std::option::Option::None;
     }
@@ -771,12 +749,12 @@ impl IndexInfo {
         self.table_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_table_id(&self) -> i64 {
+        self.table_id.unwrap_or(0)
+    }
+
     // optional int64 index_id = 2;
 
-
-    pub fn get_index_id(&self) -> i64 {
-        self.index_id.unwrap_or(0)
-    }
     pub fn clear_index_id(&mut self) {
         self.index_id = ::std::option::Option::None;
     }
@@ -790,12 +768,12 @@ impl IndexInfo {
         self.index_id = ::std::option::Option::Some(v);
     }
 
+    pub fn get_index_id(&self) -> i64 {
+        self.index_id.unwrap_or(0)
+    }
+
     // repeated .tipb.ColumnInfo columns = 3;
 
-
-    pub fn get_columns(&self) -> &[ColumnInfo] {
-        &self.columns
-    }
     pub fn clear_columns(&mut self) {
         self.columns.clear();
     }
@@ -815,12 +793,12 @@ impl IndexInfo {
         ::std::mem::replace(&mut self.columns, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_columns(&self) -> &[ColumnInfo] {
+        &self.columns
+    }
+
     // optional bool unique = 4;
 
-
-    pub fn get_unique(&self) -> bool {
-        self.unique.unwrap_or(false)
-    }
     pub fn clear_unique(&mut self) {
         self.unique = ::std::option::Option::None;
     }
@@ -832,6 +810,10 @@ impl IndexInfo {
     // Param is passed by value, moved
     pub fn set_unique(&mut self, v: bool) {
         self.unique = ::std::option::Option::Some(v);
+    }
+
+    pub fn get_unique(&self) -> bool {
+        self.unique.unwrap_or(false)
     }
 }
 
@@ -1002,10 +984,10 @@ impl ::protobuf::Message for IndexInfo {
 
 impl ::protobuf::Clear for IndexInfo {
     fn clear(&mut self) {
-        self.table_id = ::std::option::Option::None;
-        self.index_id = ::std::option::Option::None;
-        self.columns.clear();
-        self.unique = ::std::option::Option::None;
+        self.clear_table_id();
+        self.clear_index_id();
+        self.clear_columns();
+        self.clear_unique();
         self.unknown_fields.clear();
     }
 }
@@ -1032,12 +1014,6 @@ pub struct KeyRange {
     cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a KeyRange {
-    fn default() -> &'a KeyRange {
-        <KeyRange as ::protobuf::Message>::default_instance()
-    }
-}
-
 impl KeyRange {
     pub fn new() -> KeyRange {
         ::std::default::Default::default()
@@ -1045,13 +1021,6 @@ impl KeyRange {
 
     // optional bytes low = 1;
 
-
-    pub fn get_low(&self) -> &[u8] {
-        match self.low.as_ref() {
-            Some(v) => &v,
-            None => &[],
-        }
-    }
     pub fn clear_low(&mut self) {
         self.low.clear();
     }
@@ -1079,15 +1048,15 @@ impl KeyRange {
         self.low.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
-    // optional bytes high = 2;
-
-
-    pub fn get_high(&self) -> &[u8] {
-        match self.high.as_ref() {
+    pub fn get_low(&self) -> &[u8] {
+        match self.low.as_ref() {
             Some(v) => &v,
             None => &[],
         }
     }
+
+    // optional bytes high = 2;
+
     pub fn clear_high(&mut self) {
         self.high.clear();
     }
@@ -1113,6 +1082,13 @@ impl KeyRange {
     // Take field
     pub fn take_high(&mut self) -> ::std::vec::Vec<u8> {
         self.high.take().unwrap_or_else(|| ::std::vec::Vec::new())
+    }
+
+    pub fn get_high(&self) -> &[u8] {
+        match self.high.as_ref() {
+            Some(v) => &v,
+            None => &[],
+        }
     }
 }
 
@@ -1235,8 +1211,8 @@ impl ::protobuf::Message for KeyRange {
 
 impl ::protobuf::Clear for KeyRange {
     fn clear(&mut self) {
-        self.low.clear();
-        self.high.clear();
+        self.clear_low();
+        self.clear_high();
         self.unknown_fields.clear();
     }
 }
@@ -1272,7 +1248,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     foR\x07columns\x12\x1c\n\x06unique\x18\x04\x20\x01(\x08R\x06uniqueB\x04\
     \xc8\xde\x1f\0\"0\n\x08KeyRange\x12\x10\n\x03low\x18\x01\x20\x01(\x0cR\
     \x03low\x12\x12\n\x04high\x18\x02\x20\x01(\x0cR\x04highB%\n\x15com.pingc\
-    ap.tidb.tipbP\x01\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xe9\
+    ap.tidb.tipbP\x01\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01J\xe9\
     \x17\n\x06\x12\x04\0\0)\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\
     \x02\x12\x03\x02\x08\x0c\n\x08\n\x01\x08\x12\x03\x04\0\"\n\x0b\n\x04\x08\
     \xe7\x07\0\x12\x03\x04\0\"\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\x04\x07\
