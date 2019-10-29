@@ -7,7 +7,7 @@ cp proto/*.proto proto-cpp/
 
 function sed_inplace()
 {
-    if sed --help  | grep GNU > /dev/null; then
+    if sed --help | grep GNU > /dev/null; then
         sed -i "$@"
     else
         sed -i '' "$@"
