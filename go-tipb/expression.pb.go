@@ -4,19 +4,25 @@
 package tipb
 
 import (
-	"fmt"
+	fmt "fmt"
+	_ "gogoproto"
+	io "io"
+	math "math"
+	math_bits "math/bits"
 
 	proto "github.com/golang/protobuf/proto"
-
-	math "math"
-
-	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type ExprType int32
 
@@ -105,6 +111,7 @@ var ExprType_name = map[int32]string{
 	3019:  "JsonObjectAgg",
 	10000: "ScalarFunc",
 }
+
 var ExprType_value = map[string]int32{
 	"Null":          0,
 	"Int64":         1,
@@ -150,9 +157,11 @@ func (x ExprType) Enum() *ExprType {
 	*p = x
 	return p
 }
+
 func (x ExprType) String() string {
 	return proto.EnumName(ExprType_name, int32(x))
 }
+
 func (x *ExprType) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(ExprType_value, data, "ExprType")
 	if err != nil {
@@ -161,7 +170,10 @@ func (x *ExprType) UnmarshalJSON(data []byte) error {
 	*x = ExprType(value)
 	return nil
 }
-func (ExprType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExpression, []int{0} }
+
+func (ExprType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fcc7550768b3bd34, []int{0}
+}
 
 type ScalarFuncSig int32
 
@@ -216,7 +228,7 @@ const (
 	ScalarFuncSig_CastJsonAsTime         ScalarFuncSig = 64
 	ScalarFuncSig_CastJsonAsDuration     ScalarFuncSig = 65
 	ScalarFuncSig_CastJsonAsJson         ScalarFuncSig = 66
-	// compare
+	//compare
 	ScalarFuncSig_CoalesceInt      ScalarFuncSig = 4201
 	ScalarFuncSig_CoalesceReal     ScalarFuncSig = 4202
 	ScalarFuncSig_CoalesceDecimal  ScalarFuncSig = 4203
@@ -286,7 +298,7 @@ const (
 	ScalarFuncSig_NullEQTime      ScalarFuncSig = 164
 	ScalarFuncSig_NullEQDuration  ScalarFuncSig = 165
 	ScalarFuncSig_NullEQJson      ScalarFuncSig = 166
-	// arithmetic
+	//arithmetic
 	ScalarFuncSig_PlusReal            ScalarFuncSig = 200
 	ScalarFuncSig_PlusDecimal         ScalarFuncSig = 201
 	ScalarFuncSig_PlusInt             ScalarFuncSig = 203
@@ -304,7 +316,7 @@ const (
 	ScalarFuncSig_ModDecimal          ScalarFuncSig = 216
 	ScalarFuncSig_ModInt              ScalarFuncSig = 217
 	ScalarFuncSig_MultiplyIntUnsigned ScalarFuncSig = 218
-	// math
+	//math
 	ScalarFuncSig_AbsInt            ScalarFuncSig = 2101
 	ScalarFuncSig_AbsUInt           ScalarFuncSig = 2102
 	ScalarFuncSig_AbsReal           ScalarFuncSig = 2103
@@ -351,7 +363,7 @@ const (
 	ScalarFuncSig_TruncateInt       ScalarFuncSig = 2154
 	ScalarFuncSig_TruncateReal      ScalarFuncSig = 2155
 	ScalarFuncSig_TruncateDecimal   ScalarFuncSig = 2156
-	// op
+	//op
 	ScalarFuncSig_LogicalAnd        ScalarFuncSig = 3101
 	ScalarFuncSig_LogicalOr         ScalarFuncSig = 3102
 	ScalarFuncSig_LogicalXor        ScalarFuncSig = 3103
@@ -379,7 +391,7 @@ const (
 	ScalarFuncSig_DecimalIsFalse ScalarFuncSig = 3127
 	ScalarFuncSig_LeftShift      ScalarFuncSig = 3129
 	ScalarFuncSig_RightShift     ScalarFuncSig = 3130
-	// other
+	//other
 	ScalarFuncSig_BitCount       ScalarFuncSig = 3128
 	ScalarFuncSig_GetParamString ScalarFuncSig = 3131
 	ScalarFuncSig_GetVar         ScalarFuncSig = 3132
@@ -399,7 +411,7 @@ const (
 	ScalarFuncSig_InTime         ScalarFuncSig = 4005
 	ScalarFuncSig_InDuration     ScalarFuncSig = 4006
 	ScalarFuncSig_InJson         ScalarFuncSig = 4007
-	// control
+	//control
 	ScalarFuncSig_IfNullInt        ScalarFuncSig = 4101
 	ScalarFuncSig_IfNullReal       ScalarFuncSig = 4102
 	ScalarFuncSig_IfNullDecimal    ScalarFuncSig = 4103
@@ -433,7 +445,7 @@ const (
 	ScalarFuncSig_SHA2               ScalarFuncSig = 4508
 	ScalarFuncSig_Uncompress         ScalarFuncSig = 4509
 	ScalarFuncSig_UncompressedLength ScalarFuncSig = 4510
-	// info
+	//info
 	ScalarFuncSig_Database           ScalarFuncSig = 4521
 	ScalarFuncSig_FoundRows          ScalarFuncSig = 4522
 	ScalarFuncSig_CurrentUser        ScalarFuncSig = 4523
@@ -444,7 +456,7 @@ const (
 	ScalarFuncSig_Version            ScalarFuncSig = 4528
 	ScalarFuncSig_TiDBVersion        ScalarFuncSig = 4529
 	ScalarFuncSig_RowCount           ScalarFuncSig = 4530
-	// miscellaneous
+	//miscellaneous
 	ScalarFuncSig_Sleep            ScalarFuncSig = 4551
 	ScalarFuncSig_Lock             ScalarFuncSig = 4552
 	ScalarFuncSig_ReleaseLock      ScalarFuncSig = 4553
@@ -464,11 +476,11 @@ const (
 	ScalarFuncSig_IsIPv4Mapped     ScalarFuncSig = 4567
 	ScalarFuncSig_IsIPv6           ScalarFuncSig = 4568
 	ScalarFuncSig_UUID             ScalarFuncSig = 4569
-	// like
+	//like
 	ScalarFuncSig_LikeSig         ScalarFuncSig = 4310
 	ScalarFuncSig_RegexpBinarySig ScalarFuncSig = 4311
 	ScalarFuncSig_RegexpSig       ScalarFuncSig = 4312
-	// json
+	//json
 	ScalarFuncSig_JsonExtractSig       ScalarFuncSig = 5001
 	ScalarFuncSig_JsonUnquoteSig       ScalarFuncSig = 5002
 	ScalarFuncSig_JsonTypeSig          ScalarFuncSig = 5003
@@ -495,7 +507,7 @@ const (
 	ScalarFuncSig_JsonLengthSig        ScalarFuncSig = 5024
 	ScalarFuncSig_JsonKeys2ArgsSig     ScalarFuncSig = 5025
 	ScalarFuncSig_JsonValidStringSig   ScalarFuncSig = 5026
-	// time
+	//time
 	ScalarFuncSig_DateFormatSig            ScalarFuncSig = 6001
 	ScalarFuncSig_DateLiteral              ScalarFuncSig = 6002
 	ScalarFuncSig_DateDiff                 ScalarFuncSig = 6003
@@ -1157,6 +1169,7 @@ var ScalarFuncSig_name = map[int32]string{
 	7062: "UnHex",
 	7063: "Upper",
 }
+
 var ScalarFuncSig_value = map[string]int32{
 	"CastIntAsInt":             0,
 	"CastIntAsReal":            1,
@@ -1650,9 +1663,11 @@ func (x ScalarFuncSig) Enum() *ScalarFuncSig {
 	*p = x
 	return p
 }
+
 func (x ScalarFuncSig) String() string {
 	return proto.EnumName(ScalarFuncSig_name, int32(x))
 }
+
 func (x *ScalarFuncSig) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(ScalarFuncSig_value, data, "ScalarFuncSig")
 	if err != nil {
@@ -1661,22 +1676,55 @@ func (x *ScalarFuncSig) UnmarshalJSON(data []byte) error {
 	*x = ScalarFuncSig(value)
 	return nil
 }
-func (ScalarFuncSig) EnumDescriptor() ([]byte, []int) { return fileDescriptorExpression, []int{1} }
 
-type FieldType struct {
-	Tp               int32  `protobuf:"varint,1,opt,name=tp" json:"tp"`
-	Flag             uint32 `protobuf:"varint,2,opt,name=flag" json:"flag"`
-	Flen             int32  `protobuf:"varint,3,opt,name=flen" json:"flen"`
-	Decimal          int32  `protobuf:"varint,4,opt,name=decimal" json:"decimal"`
-	Collate          int32  `protobuf:"varint,5,opt,name=collate" json:"collate"`
-	Charset          string `protobuf:"bytes,6,opt,name=charset" json:"charset"`
-	XXX_unrecognized []byte `json:"-"`
+func (ScalarFuncSig) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_fcc7550768b3bd34, []int{1}
 }
 
-func (m *FieldType) Reset()                    { *m = FieldType{} }
-func (m *FieldType) String() string            { return proto.CompactTextString(m) }
-func (*FieldType) ProtoMessage()               {}
-func (*FieldType) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{0} }
+type FieldType struct {
+	Tp                   int32    `protobuf:"varint,1,opt,name=tp" json:"tp"`
+	Flag                 uint32   `protobuf:"varint,2,opt,name=flag" json:"flag"`
+	Flen                 int32    `protobuf:"varint,3,opt,name=flen" json:"flen"`
+	Decimal              int32    `protobuf:"varint,4,opt,name=decimal" json:"decimal"`
+	Collate              int32    `protobuf:"varint,5,opt,name=collate" json:"collate"`
+	Charset              string   `protobuf:"bytes,6,opt,name=charset" json:"charset"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FieldType) Reset()         { *m = FieldType{} }
+func (m *FieldType) String() string { return proto.CompactTextString(m) }
+func (*FieldType) ProtoMessage()    {}
+func (*FieldType) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fcc7550768b3bd34, []int{0}
+}
+func (m *FieldType) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *FieldType) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_FieldType.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *FieldType) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FieldType.Merge(m, src)
+}
+func (m *FieldType) XXX_Size() int {
+	return m.Size()
+}
+func (m *FieldType) XXX_DiscardUnknown() {
+	xxx_messageInfo_FieldType.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FieldType proto.InternalMessageInfo
 
 func (m *FieldType) GetTp() int32 {
 	if m != nil {
@@ -1722,18 +1770,48 @@ func (m *FieldType) GetCharset() string {
 
 // Evaluators should implement evaluation functions for every expression type.
 type Expr struct {
-	Tp               ExprType      `protobuf:"varint,1,opt,name=tp,enum=tipb.ExprType" json:"tp"`
-	Val              []byte        `protobuf:"bytes,2,opt,name=val" json:"val,omitempty"`
-	Children         []*Expr       `protobuf:"bytes,3,rep,name=children" json:"children,omitempty"`
-	Sig              ScalarFuncSig `protobuf:"varint,4,opt,name=sig,enum=tipb.ScalarFuncSig" json:"sig"`
-	FieldType        *FieldType    `protobuf:"bytes,5,opt,name=field_type,json=fieldType" json:"field_type,omitempty"`
-	XXX_unrecognized []byte        `json:"-"`
+	Tp                   ExprType      `protobuf:"varint,1,opt,name=tp,enum=tipb.ExprType" json:"tp"`
+	Val                  []byte        `protobuf:"bytes,2,opt,name=val" json:"val,omitempty"`
+	Children             []*Expr       `protobuf:"bytes,3,rep,name=children" json:"children,omitempty"`
+	Sig                  ScalarFuncSig `protobuf:"varint,4,opt,name=sig,enum=tipb.ScalarFuncSig" json:"sig"`
+	FieldType            *FieldType    `protobuf:"bytes,5,opt,name=field_type,json=fieldType" json:"field_type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *Expr) Reset()                    { *m = Expr{} }
-func (m *Expr) String() string            { return proto.CompactTextString(m) }
-func (*Expr) ProtoMessage()               {}
-func (*Expr) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{1} }
+func (m *Expr) Reset()         { *m = Expr{} }
+func (m *Expr) String() string { return proto.CompactTextString(m) }
+func (*Expr) ProtoMessage()    {}
+func (*Expr) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fcc7550768b3bd34, []int{1}
+}
+func (m *Expr) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Expr) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Expr.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Expr) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Expr.Merge(m, src)
+}
+func (m *Expr) XXX_Size() int {
+	return m.Size()
+}
+func (m *Expr) XXX_DiscardUnknown() {
+	xxx_messageInfo_Expr.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Expr proto.InternalMessageInfo
 
 func (m *Expr) GetTp() ExprType {
 	if m != nil {
@@ -1772,15 +1850,45 @@ func (m *Expr) GetFieldType() *FieldType {
 
 // ByItem type for group by and order by.
 type ByItem struct {
-	Expr             *Expr  `protobuf:"bytes,1,opt,name=expr" json:"expr,omitempty"`
-	Desc             bool   `protobuf:"varint,2,opt,name=desc" json:"desc"`
-	XXX_unrecognized []byte `json:"-"`
+	Expr                 *Expr    `protobuf:"bytes,1,opt,name=expr" json:"expr,omitempty"`
+	Desc                 bool     `protobuf:"varint,2,opt,name=desc" json:"desc"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ByItem) Reset()                    { *m = ByItem{} }
-func (m *ByItem) String() string            { return proto.CompactTextString(m) }
-func (*ByItem) ProtoMessage()               {}
-func (*ByItem) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{2} }
+func (m *ByItem) Reset()         { *m = ByItem{} }
+func (m *ByItem) String() string { return proto.CompactTextString(m) }
+func (*ByItem) ProtoMessage()    {}
+func (*ByItem) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fcc7550768b3bd34, []int{2}
+}
+func (m *ByItem) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ByItem) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ByItem.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ByItem) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ByItem.Merge(m, src)
+}
+func (m *ByItem) XXX_Size() int {
+	return m.Size()
+}
+func (m *ByItem) XXX_DiscardUnknown() {
+	xxx_messageInfo_ByItem.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ByItem proto.InternalMessageInfo
 
 func (m *ByItem) GetExpr() *Expr {
 	if m != nil {
@@ -1797,794 +1905,16 @@ func (m *ByItem) GetDesc() bool {
 }
 
 func init() {
+	proto.RegisterEnum("tipb.ExprType", ExprType_name, ExprType_value)
+	proto.RegisterEnum("tipb.ScalarFuncSig", ScalarFuncSig_name, ScalarFuncSig_value)
 	proto.RegisterType((*FieldType)(nil), "tipb.FieldType")
 	proto.RegisterType((*Expr)(nil), "tipb.Expr")
 	proto.RegisterType((*ByItem)(nil), "tipb.ByItem")
-	proto.RegisterEnum("tipb.ExprType", ExprType_name, ExprType_value)
-	proto.RegisterEnum("tipb.ScalarFuncSig", ScalarFuncSig_name, ScalarFuncSig_value)
-}
-func (m *FieldType) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
 }
 
-func (m *FieldType) MarshalTo(dAtA []byte) (int, error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	dAtA[i] = 0x8
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Tp))
-	dAtA[i] = 0x10
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Flag))
-	dAtA[i] = 0x18
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Flen))
-	dAtA[i] = 0x20
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Decimal))
-	dAtA[i] = 0x28
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Collate))
-	dAtA[i] = 0x32
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(len(m.Charset)))
-	i += copy(dAtA[i:], m.Charset)
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
+func init() { proto.RegisterFile("expression.proto", fileDescriptor_fcc7550768b3bd34) }
 
-func (m *Expr) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *Expr) MarshalTo(dAtA []byte) (int, error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	dAtA[i] = 0x8
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Tp))
-	if m.Val != nil {
-		dAtA[i] = 0x12
-		i++
-		i = encodeVarintExpression(dAtA, i, uint64(len(m.Val)))
-		i += copy(dAtA[i:], m.Val)
-	}
-	if len(m.Children) > 0 {
-		for _, msg := range m.Children {
-			dAtA[i] = 0x1a
-			i++
-			i = encodeVarintExpression(dAtA, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	dAtA[i] = 0x20
-	i++
-	i = encodeVarintExpression(dAtA, i, uint64(m.Sig))
-	if m.FieldType != nil {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintExpression(dAtA, i, uint64(m.FieldType.Size()))
-		n1, err := m.FieldType.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n1
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-
-func (m *ByItem) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *ByItem) MarshalTo(dAtA []byte) (int, error) {
-	var i int
-	_ = i
-	var l int
-	_ = l
-	if m.Expr != nil {
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintExpression(dAtA, i, uint64(m.Expr.Size()))
-		n2, err := m.Expr.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
-		}
-		i += n2
-	}
-	dAtA[i] = 0x10
-	i++
-	if m.Desc {
-		dAtA[i] = 1
-	} else {
-		dAtA[i] = 0
-	}
-	i++
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
-}
-
-func encodeVarintExpression(dAtA []byte, offset int, v uint64) int {
-	for v >= 1<<7 {
-		dAtA[offset] = uint8(v&0x7f | 0x80)
-		v >>= 7
-		offset++
-	}
-	dAtA[offset] = uint8(v)
-	return offset + 1
-}
-func (m *FieldType) Size() (n int) {
-	var l int
-	_ = l
-	n += 1 + sovExpression(uint64(m.Tp))
-	n += 1 + sovExpression(uint64(m.Flag))
-	n += 1 + sovExpression(uint64(m.Flen))
-	n += 1 + sovExpression(uint64(m.Decimal))
-	n += 1 + sovExpression(uint64(m.Collate))
-	l = len(m.Charset)
-	n += 1 + l + sovExpression(uint64(l))
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *Expr) Size() (n int) {
-	var l int
-	_ = l
-	n += 1 + sovExpression(uint64(m.Tp))
-	if m.Val != nil {
-		l = len(m.Val)
-		n += 1 + l + sovExpression(uint64(l))
-	}
-	if len(m.Children) > 0 {
-		for _, e := range m.Children {
-			l = e.Size()
-			n += 1 + l + sovExpression(uint64(l))
-		}
-	}
-	n += 1 + sovExpression(uint64(m.Sig))
-	if m.FieldType != nil {
-		l = m.FieldType.Size()
-		n += 1 + l + sovExpression(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *ByItem) Size() (n int) {
-	var l int
-	_ = l
-	if m.Expr != nil {
-		l = m.Expr.Size()
-		n += 1 + l + sovExpression(uint64(l))
-	}
-	n += 2
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func sovExpression(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
-}
-func sozExpression(x uint64) (n int) {
-	return sovExpression(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func (m *FieldType) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowExpression
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: FieldType: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: FieldType: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Tp", wireType)
-			}
-			m.Tp = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Tp |= (int32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Flag", wireType)
-			}
-			m.Flag = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Flag |= (uint32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Flen", wireType)
-			}
-			m.Flen = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Flen |= (int32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Decimal", wireType)
-			}
-			m.Decimal = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Decimal |= (int32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Collate", wireType)
-			}
-			m.Collate = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Collate |= (int32(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Charset", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthExpression
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Charset = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipExpression(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthExpression
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Expr) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowExpression
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Expr: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Expr: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Tp", wireType)
-			}
-			m.Tp = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Tp |= (ExprType(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Val", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthExpression
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Val = append(m.Val[:0], dAtA[iNdEx:postIndex]...)
-			if m.Val == nil {
-				m.Val = []byte{}
-			}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Children", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthExpression
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Children = append(m.Children, &Expr{})
-			if err := m.Children[len(m.Children)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Sig", wireType)
-			}
-			m.Sig = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Sig |= (ScalarFuncSig(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field FieldType", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthExpression
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.FieldType == nil {
-				m.FieldType = &FieldType{}
-			}
-			if err := m.FieldType.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipExpression(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthExpression
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ByItem) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowExpression
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ByItem: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ByItem: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Expr", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthExpression
-			}
-			postIndex := iNdEx + msglen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Expr == nil {
-				m.Expr = &Expr{}
-			}
-			if err := m.Expr.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Desc", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Desc = bool(v != 0)
-		default:
-			iNdEx = preIndex
-			skippy, err := skipExpression(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthExpression
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func skipExpression(dAtA []byte) (n int, err error) {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return 0, ErrIntOverflowExpression
-			}
-			if iNdEx >= l {
-				return 0, io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		wireType := int(wire & 0x7)
-		switch wireType {
-		case 0:
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return 0, ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return 0, io.ErrUnexpectedEOF
-				}
-				iNdEx++
-				if dAtA[iNdEx-1] < 0x80 {
-					break
-				}
-			}
-			return iNdEx, nil
-		case 1:
-			iNdEx += 8
-			return iNdEx, nil
-		case 2:
-			var length int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return 0, ErrIntOverflowExpression
-				}
-				if iNdEx >= l {
-					return 0, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				length |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			iNdEx += length
-			if length < 0 {
-				return 0, ErrInvalidLengthExpression
-			}
-			return iNdEx, nil
-		case 3:
-			for {
-				var innerWire uint64
-				var start int = iNdEx
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return 0, ErrIntOverflowExpression
-					}
-					if iNdEx >= l {
-						return 0, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					innerWire |= (uint64(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				innerWireType := int(innerWire & 0x7)
-				if innerWireType == 4 {
-					break
-				}
-				next, err := skipExpression(dAtA[start:])
-				if err != nil {
-					return 0, err
-				}
-				iNdEx = start + next
-			}
-			return iNdEx, nil
-		case 4:
-			return iNdEx, nil
-		case 5:
-			iNdEx += 4
-			return iNdEx, nil
-		default:
-			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
-		}
-	}
-	panic("unreachable")
-}
-
-var (
-	ErrInvalidLengthExpression = fmt.Errorf("proto: negative length found during unmarshaling")
-	ErrIntOverflowExpression   = fmt.Errorf("proto: integer overflow")
-)
-
-func init() { proto.RegisterFile("expression.proto", fileDescriptorExpression) }
-
-var fileDescriptorExpression = []byte{
+var fileDescriptor_fcc7550768b3bd34 = []byte{
 	// 4312 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x5a, 0x67, 0x74, 0x1c, 0x55,
 	0x96, 0xa6, 0x6d, 0x19, 0xec, 0x72, 0xba, 0x14, 0x36, 0x6a, 0xd8, 0xb3, 0xb6, 0x8c, 0xe6, 0xac,
@@ -2857,3 +2187,816 @@ var fileDescriptorExpression = []byte{
 	0x6d, 0x97, 0x6e, 0x71, 0x04, 0xbf, 0x7e, 0x1a, 0x4c, 0xfc, 0x7f, 0x00, 0x00, 0x00, 0xff, 0xff,
 	0x9c, 0x1e, 0xa1, 0x4b, 0xcb, 0x26, 0x00, 0x00,
 }
+
+func (m *FieldType) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *FieldType) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *FieldType) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	i -= len(m.Charset)
+	copy(dAtA[i:], m.Charset)
+	i = encodeVarintExpression(dAtA, i, uint64(len(m.Charset)))
+	i--
+	dAtA[i] = 0x32
+	i = encodeVarintExpression(dAtA, i, uint64(m.Collate))
+	i--
+	dAtA[i] = 0x28
+	i = encodeVarintExpression(dAtA, i, uint64(m.Decimal))
+	i--
+	dAtA[i] = 0x20
+	i = encodeVarintExpression(dAtA, i, uint64(m.Flen))
+	i--
+	dAtA[i] = 0x18
+	i = encodeVarintExpression(dAtA, i, uint64(m.Flag))
+	i--
+	dAtA[i] = 0x10
+	i = encodeVarintExpression(dAtA, i, uint64(m.Tp))
+	i--
+	dAtA[i] = 0x8
+	return len(dAtA) - i, nil
+}
+
+func (m *Expr) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Expr) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Expr) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.FieldType != nil {
+		{
+			size, err := m.FieldType.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintExpression(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	i = encodeVarintExpression(dAtA, i, uint64(m.Sig))
+	i--
+	dAtA[i] = 0x20
+	if len(m.Children) > 0 {
+		for iNdEx := len(m.Children) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Children[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintExpression(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x1a
+		}
+	}
+	if m.Val != nil {
+		i -= len(m.Val)
+		copy(dAtA[i:], m.Val)
+		i = encodeVarintExpression(dAtA, i, uint64(len(m.Val)))
+		i--
+		dAtA[i] = 0x12
+	}
+	i = encodeVarintExpression(dAtA, i, uint64(m.Tp))
+	i--
+	dAtA[i] = 0x8
+	return len(dAtA) - i, nil
+}
+
+func (m *ByItem) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ByItem) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ByItem) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	i--
+	if m.Desc {
+		dAtA[i] = 1
+	} else {
+		dAtA[i] = 0
+	}
+	i--
+	dAtA[i] = 0x10
+	if m.Expr != nil {
+		{
+			size, err := m.Expr.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintExpression(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func encodeVarintExpression(dAtA []byte, offset int, v uint64) int {
+	offset -= sovExpression(v)
+	base := offset
+	for v >= 1<<7 {
+		dAtA[offset] = uint8(v&0x7f | 0x80)
+		v >>= 7
+		offset++
+	}
+	dAtA[offset] = uint8(v)
+	return base
+}
+func (m *FieldType) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	n += 1 + sovExpression(uint64(m.Tp))
+	n += 1 + sovExpression(uint64(m.Flag))
+	n += 1 + sovExpression(uint64(m.Flen))
+	n += 1 + sovExpression(uint64(m.Decimal))
+	n += 1 + sovExpression(uint64(m.Collate))
+	l = len(m.Charset)
+	n += 1 + l + sovExpression(uint64(l))
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Expr) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	n += 1 + sovExpression(uint64(m.Tp))
+	if m.Val != nil {
+		l = len(m.Val)
+		n += 1 + l + sovExpression(uint64(l))
+	}
+	if len(m.Children) > 0 {
+		for _, e := range m.Children {
+			l = e.Size()
+			n += 1 + l + sovExpression(uint64(l))
+		}
+	}
+	n += 1 + sovExpression(uint64(m.Sig))
+	if m.FieldType != nil {
+		l = m.FieldType.Size()
+		n += 1 + l + sovExpression(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ByItem) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Expr != nil {
+		l = m.Expr.Size()
+		n += 1 + l + sovExpression(uint64(l))
+	}
+	n += 2
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func sovExpression(x uint64) (n int) {
+	return (math_bits.Len64(x|1) + 6) / 7
+}
+func sozExpression(x uint64) (n int) {
+	return sovExpression(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *FieldType) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExpression
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: FieldType: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: FieldType: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Tp", wireType)
+			}
+			m.Tp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Tp |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Flag", wireType)
+			}
+			m.Flag = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Flag |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Flen", wireType)
+			}
+			m.Flen = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Flen |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Decimal", wireType)
+			}
+			m.Decimal = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Decimal |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Collate", wireType)
+			}
+			m.Collate = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Collate |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Charset", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthExpression
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Charset = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExpression(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Expr) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExpression
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Expr: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Expr: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Tp", wireType)
+			}
+			m.Tp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Tp |= ExprType(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Val", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthExpression
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Val = append(m.Val[:0], dAtA[iNdEx:postIndex]...)
+			if m.Val == nil {
+				m.Val = []byte{}
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Children", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExpression
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Children = append(m.Children, &Expr{})
+			if err := m.Children[len(m.Children)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Sig", wireType)
+			}
+			m.Sig = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Sig |= ScalarFuncSig(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldType", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExpression
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.FieldType == nil {
+				m.FieldType = &FieldType{}
+			}
+			if err := m.FieldType.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExpression(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ByItem) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExpression
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ByItem: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ByItem: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Expr", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExpression
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Expr == nil {
+				m.Expr = &Expr{}
+			}
+			if err := m.Expr.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Desc", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Desc = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExpression(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthExpression
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func skipExpression(dAtA []byte) (n int, err error) {
+	l := len(dAtA)
+	iNdEx := 0
+	depth := 0
+	for iNdEx < l {
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return 0, ErrIntOverflowExpression
+			}
+			if iNdEx >= l {
+				return 0, io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		wireType := int(wire & 0x7)
+		switch wireType {
+		case 0:
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				iNdEx++
+				if dAtA[iNdEx-1] < 0x80 {
+					break
+				}
+			}
+		case 1:
+			iNdEx += 8
+		case 2:
+			var length int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowExpression
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				length |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if length < 0 {
+				return 0, ErrInvalidLengthExpression
+			}
+			iNdEx += length
+		case 3:
+			depth++
+		case 4:
+			if depth == 0 {
+				return 0, ErrUnexpectedEndOfGroupExpression
+			}
+			depth--
+		case 5:
+			iNdEx += 4
+		default:
+			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
+		}
+		if iNdEx < 0 {
+			return 0, ErrInvalidLengthExpression
+		}
+		if depth == 0 {
+			return iNdEx, nil
+		}
+	}
+	return 0, io.ErrUnexpectedEOF
+}
+
+var (
+	ErrInvalidLengthExpression        = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowExpression          = fmt.Errorf("proto: integer overflow")
+	ErrUnexpectedEndOfGroupExpression = fmt.Errorf("proto: unexpected end of group")
+)

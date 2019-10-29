@@ -8,7 +8,14 @@ TiDB protobuf files
 
 We use `protoc` 3.5.1, to download: [protobuf/releases/tag/v3.5.1](https://github.com/google/protobuf/releases/tag/v3.5.1)
 
-### 2. Install [gogo/protobuf](https://github.com/gogo/protobuf)
+### 2. Install [protobuf-codegen](https://github.com/stepancheg/rust-protobuf/tree/master/protobuf-codegen)
+
+```sh
+cargo install protobuf-codegen --vers 2.0.2 --force
+export PATH="$HOME/.cargo/bin:$PATH"
+```
+
+### 3. Install [gogo/protobuf](https://github.com/gogo/protobuf)
 
 We use `protoc-gen-gofast` v0.5, to install:
 
