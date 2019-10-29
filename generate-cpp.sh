@@ -7,10 +7,10 @@ cp proto/*.proto proto-cpp/
 
 function sed_inplace()
 {
-    if [ `uname` == "Darwin" ]; then
-        sed -i '' "$@"
-    else
+    if sed --help  | grep GNU > /dev/null; then
         sed -i "$@"
+    else
+        sed -i '' "$@"
     fi
 }
 
