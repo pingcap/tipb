@@ -4,25 +4,19 @@
 package tipb
 
 import (
-	fmt "fmt"
-	_ "gogoproto"
-	io "io"
-	math "math"
-	math_bits "math/bits"
+	"fmt"
 
 	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
+	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type ChecksumScanOn int32
 
@@ -35,7 +29,6 @@ var ChecksumScanOn_name = map[int32]string{
 	0: "Table",
 	1: "Index",
 }
-
 var ChecksumScanOn_value = map[string]int32{
 	"Table": 0,
 	"Index": 1,
@@ -46,11 +39,9 @@ func (x ChecksumScanOn) Enum() *ChecksumScanOn {
 	*p = x
 	return p
 }
-
 func (x ChecksumScanOn) String() string {
 	return proto.EnumName(ChecksumScanOn_name, int32(x))
 }
-
 func (x *ChecksumScanOn) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(ChecksumScanOn_value, data, "ChecksumScanOn")
 	if err != nil {
@@ -59,10 +50,7 @@ func (x *ChecksumScanOn) UnmarshalJSON(data []byte) error {
 	*x = ChecksumScanOn(value)
 	return nil
 }
-
-func (ChecksumScanOn) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_843938c28b799986, []int{0}
-}
+func (ChecksumScanOn) EnumDescriptor() ([]byte, []int) { return fileDescriptorChecksum, []int{0} }
 
 type ChecksumAlgorithm int32
 
@@ -73,7 +61,6 @@ const (
 var ChecksumAlgorithm_name = map[int32]string{
 	0: "Crc64_Xor",
 }
-
 var ChecksumAlgorithm_value = map[string]int32{
 	"Crc64_Xor": 0,
 }
@@ -83,11 +70,9 @@ func (x ChecksumAlgorithm) Enum() *ChecksumAlgorithm {
 	*p = x
 	return p
 }
-
 func (x ChecksumAlgorithm) String() string {
 	return proto.EnumName(ChecksumAlgorithm_name, int32(x))
 }
-
 func (x *ChecksumAlgorithm) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(ChecksumAlgorithm_value, data, "ChecksumAlgorithm")
 	if err != nil {
@@ -96,52 +81,19 @@ func (x *ChecksumAlgorithm) UnmarshalJSON(data []byte) error {
 	*x = ChecksumAlgorithm(value)
 	return nil
 }
-
-func (ChecksumAlgorithm) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_843938c28b799986, []int{1}
-}
+func (ChecksumAlgorithm) EnumDescriptor() ([]byte, []int) { return fileDescriptorChecksum, []int{1} }
 
 type ChecksumRequest struct {
-	StartTs              uint64            `protobuf:"varint,1,opt,name=start_ts,json=startTs" json:"start_ts"`
-	ScanOn               ChecksumScanOn    `protobuf:"varint,2,opt,name=scan_on,json=scanOn,enum=tipb.ChecksumScanOn" json:"scan_on"`
-	Algorithm            ChecksumAlgorithm `protobuf:"varint,3,opt,name=algorithm,enum=tipb.ChecksumAlgorithm" json:"algorithm"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	StartTs          uint64            `protobuf:"varint,1,opt,name=start_ts,json=startTs" json:"start_ts"`
+	ScanOn           ChecksumScanOn    `protobuf:"varint,2,opt,name=scan_on,json=scanOn,enum=tipb.ChecksumScanOn" json:"scan_on"`
+	Algorithm        ChecksumAlgorithm `protobuf:"varint,3,opt,name=algorithm,enum=tipb.ChecksumAlgorithm" json:"algorithm"`
+	XXX_unrecognized []byte            `json:"-"`
 }
 
-func (m *ChecksumRequest) Reset()         { *m = ChecksumRequest{} }
-func (m *ChecksumRequest) String() string { return proto.CompactTextString(m) }
-func (*ChecksumRequest) ProtoMessage()    {}
-func (*ChecksumRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_843938c28b799986, []int{0}
-}
-func (m *ChecksumRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ChecksumRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ChecksumRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ChecksumRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ChecksumRequest.Merge(m, src)
-}
-func (m *ChecksumRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *ChecksumRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ChecksumRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ChecksumRequest proto.InternalMessageInfo
+func (m *ChecksumRequest) Reset()                    { *m = ChecksumRequest{} }
+func (m *ChecksumRequest) String() string            { return proto.CompactTextString(m) }
+func (*ChecksumRequest) ProtoMessage()               {}
+func (*ChecksumRequest) Descriptor() ([]byte, []int) { return fileDescriptorChecksum, []int{0} }
 
 func (m *ChecksumRequest) GetStartTs() uint64 {
 	if m != nil {
@@ -165,46 +117,16 @@ func (m *ChecksumRequest) GetAlgorithm() ChecksumAlgorithm {
 }
 
 type ChecksumResponse struct {
-	Checksum             uint64   `protobuf:"varint,1,opt,name=checksum" json:"checksum"`
-	TotalKvs             uint64   `protobuf:"varint,2,opt,name=total_kvs,json=totalKvs" json:"total_kvs"`
-	TotalBytes           uint64   `protobuf:"varint,3,opt,name=total_bytes,json=totalBytes" json:"total_bytes"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Checksum         uint64 `protobuf:"varint,1,opt,name=checksum" json:"checksum"`
+	TotalKvs         uint64 `protobuf:"varint,2,opt,name=total_kvs,json=totalKvs" json:"total_kvs"`
+	TotalBytes       uint64 `protobuf:"varint,3,opt,name=total_bytes,json=totalBytes" json:"total_bytes"`
+	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *ChecksumResponse) Reset()         { *m = ChecksumResponse{} }
-func (m *ChecksumResponse) String() string { return proto.CompactTextString(m) }
-func (*ChecksumResponse) ProtoMessage()    {}
-func (*ChecksumResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_843938c28b799986, []int{1}
-}
-func (m *ChecksumResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ChecksumResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ChecksumResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ChecksumResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ChecksumResponse.Merge(m, src)
-}
-func (m *ChecksumResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *ChecksumResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ChecksumResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ChecksumResponse proto.InternalMessageInfo
+func (m *ChecksumResponse) Reset()                    { *m = ChecksumResponse{} }
+func (m *ChecksumResponse) String() string            { return proto.CompactTextString(m) }
+func (*ChecksumResponse) ProtoMessage()               {}
+func (*ChecksumResponse) Descriptor() ([]byte, []int) { return fileDescriptorChecksum, []int{1} }
 
 func (m *ChecksumResponse) GetChecksum() uint64 {
 	if m != nil {
@@ -228,43 +150,15 @@ func (m *ChecksumResponse) GetTotalBytes() uint64 {
 }
 
 func init() {
-	proto.RegisterEnum("tipb.ChecksumScanOn", ChecksumScanOn_name, ChecksumScanOn_value)
-	proto.RegisterEnum("tipb.ChecksumAlgorithm", ChecksumAlgorithm_name, ChecksumAlgorithm_value)
 	proto.RegisterType((*ChecksumRequest)(nil), "tipb.ChecksumRequest")
 	proto.RegisterType((*ChecksumResponse)(nil), "tipb.ChecksumResponse")
+	proto.RegisterEnum("tipb.ChecksumScanOn", ChecksumScanOn_name, ChecksumScanOn_value)
+	proto.RegisterEnum("tipb.ChecksumAlgorithm", ChecksumAlgorithm_name, ChecksumAlgorithm_value)
 }
-
-func init() { proto.RegisterFile("checksum.proto", fileDescriptor_843938c28b799986) }
-
-var fileDescriptor_843938c28b799986 = []byte{
-	// 321 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x41, 0x4e, 0xc2, 0x40,
-	0x14, 0x86, 0x3b, 0x8a, 0x42, 0x9f, 0x11, 0xeb, 0x04, 0x23, 0x71, 0x51, 0x90, 0x44, 0x83, 0x2c,
-	0x6a, 0xa2, 0xc6, 0x8d, 0x2b, 0x61, 0x65, 0x5c, 0x68, 0x90, 0x85, 0xbb, 0x66, 0x3a, 0x4c, 0x4a,
-	0x03, 0xcc, 0xd4, 0xbe, 0x81, 0xe8, 0xc6, 0x73, 0x78, 0x00, 0x0f, 0xc3, 0xd2, 0x13, 0x18, 0x83,
-	0x17, 0x31, 0x1d, 0x28, 0xa4, 0x71, 0xf7, 0xe6, 0x7f, 0xdf, 0x3f, 0xf3, 0xff, 0x03, 0x65, 0x3e,
-	0x10, 0x7c, 0x88, 0x93, 0xb1, 0x17, 0x27, 0x4a, 0x2b, 0x5a, 0xd0, 0x51, 0x1c, 0x1c, 0x55, 0x42,
-	0x15, 0x2a, 0x23, 0x9c, 0xa7, 0xd3, 0x62, 0xd7, 0xf8, 0x24, 0xb0, 0xd7, 0x59, 0xe2, 0x5d, 0xf1,
-	0x32, 0x11, 0xa8, 0x69, 0x0d, 0x4a, 0xa8, 0x59, 0xa2, 0x7d, 0x8d, 0x55, 0x52, 0x27, 0xcd, 0x42,
-	0xbb, 0x30, 0xfb, 0xae, 0x59, 0xdd, 0xa2, 0x51, 0x7b, 0x48, 0x2f, 0xa1, 0x88, 0x9c, 0x49, 0x5f,
-	0xc9, 0xea, 0x46, 0x9d, 0x34, 0xcb, 0x17, 0x15, 0x2f, 0x7d, 0xc2, 0xcb, 0x2e, 0x7a, 0xe2, 0x4c,
-	0x3e, 0xc8, 0xa5, 0x6b, 0x1b, 0xcd, 0x89, 0xde, 0x80, 0xcd, 0x46, 0xa1, 0x4a, 0x22, 0x3d, 0x18,
-	0x57, 0x37, 0x8d, 0xed, 0x30, 0x6f, 0xbb, 0xcd, 0xd6, 0x4b, 0xe7, 0x9a, 0x6f, 0xbc, 0x83, 0xb3,
-	0x4e, 0x89, 0xb1, 0x92, 0x28, 0x68, 0x1d, 0x4a, 0x59, 0xd1, 0x5c, 0xcc, 0x95, 0x4a, 0x8f, 0xc1,
-	0xd6, 0x4a, 0xb3, 0x91, 0x3f, 0x9c, 0xa2, 0x49, 0xba, 0x42, 0x8c, 0x7c, 0x3f, 0x45, 0x7a, 0x02,
-	0x3b, 0x0b, 0x24, 0x78, 0xd3, 0x02, 0x4d, 0xae, 0x0c, 0x02, 0xb3, 0x68, 0xa7, 0x7a, 0xeb, 0x14,
-	0xca, 0xf9, 0x72, 0xd4, 0x86, 0xad, 0x1e, 0x0b, 0x46, 0xc2, 0xb1, 0xd2, 0xf1, 0x4e, 0xf6, 0xc5,
-	0xab, 0x43, 0x5a, 0x0d, 0xd8, 0xff, 0xd7, 0x86, 0xee, 0x82, 0xdd, 0x49, 0xf8, 0xf5, 0x95, 0xff,
-	0xac, 0x12, 0xc7, 0x6a, 0x9f, 0xcd, 0xe6, 0x2e, 0xf9, 0x9a, 0xbb, 0xe4, 0x67, 0xee, 0x92, 0x8f,
-	0x5f, 0xd7, 0x82, 0x03, 0xae, 0xc6, 0x5e, 0x1c, 0xc9, 0x90, 0xb3, 0xd8, 0xd3, 0x51, 0x3f, 0x30,
-	0xff, 0xf2, 0x48, 0xfe, 0x02, 0x00, 0x00, 0xff, 0xff, 0x40, 0x2d, 0x34, 0x0d, 0xca, 0x01, 0x00,
-	0x00,
-}
-
 func (m *ChecksumRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
@@ -272,35 +166,29 @@ func (m *ChecksumRequest) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *ChecksumRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ChecksumRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
+	var i int
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	i = encodeVarintChecksum(dAtA, i, uint64(m.Algorithm))
-	i--
-	dAtA[i] = 0x18
-	i = encodeVarintChecksum(dAtA, i, uint64(m.ScanOn))
-	i--
-	dAtA[i] = 0x10
-	i = encodeVarintChecksum(dAtA, i, uint64(m.StartTs))
-	i--
 	dAtA[i] = 0x8
-	return len(dAtA) - i, nil
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.StartTs))
+	dAtA[i] = 0x10
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.ScanOn))
+	dAtA[i] = 0x18
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.Algorithm))
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
 }
 
 func (m *ChecksumResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
@@ -308,46 +196,35 @@ func (m *ChecksumResponse) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *ChecksumResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ChecksumResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
+	var i int
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	i = encodeVarintChecksum(dAtA, i, uint64(m.TotalBytes))
-	i--
-	dAtA[i] = 0x18
-	i = encodeVarintChecksum(dAtA, i, uint64(m.TotalKvs))
-	i--
-	dAtA[i] = 0x10
-	i = encodeVarintChecksum(dAtA, i, uint64(m.Checksum))
-	i--
 	dAtA[i] = 0x8
-	return len(dAtA) - i, nil
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.Checksum))
+	dAtA[i] = 0x10
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.TotalKvs))
+	dAtA[i] = 0x18
+	i++
+	i = encodeVarintChecksum(dAtA, i, uint64(m.TotalBytes))
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
 }
 
 func encodeVarintChecksum(dAtA []byte, offset int, v uint64) int {
-	offset -= sovChecksum(v)
-	base := offset
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
 	dAtA[offset] = uint8(v)
-	return base
+	return offset + 1
 }
 func (m *ChecksumRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovChecksum(uint64(m.StartTs))
@@ -360,9 +237,6 @@ func (m *ChecksumRequest) Size() (n int) {
 }
 
 func (m *ChecksumResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovChecksum(uint64(m.Checksum))
@@ -375,7 +249,14 @@ func (m *ChecksumResponse) Size() (n int) {
 }
 
 func sovChecksum(x uint64) (n int) {
-	return (math_bits.Len64(x|1) + 6) / 7
+	for {
+		n++
+		x >>= 7
+		if x == 0 {
+			break
+		}
+	}
+	return n
 }
 func sozChecksum(x uint64) (n int) {
 	return sovChecksum(uint64((x << 1) ^ uint64((int64(x) >> 63))))
@@ -395,7 +276,7 @@ func (m *ChecksumRequest) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= uint64(b&0x7F) << shift
+			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -423,7 +304,7 @@ func (m *ChecksumRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.StartTs |= uint64(b&0x7F) << shift
+				m.StartTs |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -442,7 +323,7 @@ func (m *ChecksumRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.ScanOn |= ChecksumScanOn(b&0x7F) << shift
+				m.ScanOn |= (ChecksumScanOn(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -461,7 +342,7 @@ func (m *ChecksumRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Algorithm |= ChecksumAlgorithm(b&0x7F) << shift
+				m.Algorithm |= (ChecksumAlgorithm(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -473,9 +354,6 @@ func (m *ChecksumRequest) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
-				return ErrInvalidLengthChecksum
-			}
-			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthChecksum
 			}
 			if (iNdEx + skippy) > l {
@@ -506,7 +384,7 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= uint64(b&0x7F) << shift
+			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -534,7 +412,7 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Checksum |= uint64(b&0x7F) << shift
+				m.Checksum |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -553,7 +431,7 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.TotalKvs |= uint64(b&0x7F) << shift
+				m.TotalKvs |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -572,7 +450,7 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.TotalBytes |= uint64(b&0x7F) << shift
+				m.TotalBytes |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -584,9 +462,6 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
-				return ErrInvalidLengthChecksum
-			}
-			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthChecksum
 			}
 			if (iNdEx + skippy) > l {
@@ -605,7 +480,6 @@ func (m *ChecksumResponse) Unmarshal(dAtA []byte) error {
 func skipChecksum(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
-	depth := 0
 	for iNdEx < l {
 		var wire uint64
 		for shift := uint(0); ; shift += 7 {
@@ -637,8 +511,10 @@ func skipChecksum(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
+			return iNdEx, nil
 		case 1:
 			iNdEx += 8
+			return iNdEx, nil
 		case 2:
 			var length int
 			for shift := uint(0); ; shift += 7 {
@@ -655,34 +531,80 @@ func skipChecksum(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
+			iNdEx += length
 			if length < 0 {
 				return 0, ErrInvalidLengthChecksum
 			}
-			iNdEx += length
+			return iNdEx, nil
 		case 3:
-			depth++
-		case 4:
-			if depth == 0 {
-				return 0, ErrUnexpectedEndOfGroupChecksum
+			for {
+				var innerWire uint64
+				var start int = iNdEx
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return 0, ErrIntOverflowChecksum
+					}
+					if iNdEx >= l {
+						return 0, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					innerWire |= (uint64(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				innerWireType := int(innerWire & 0x7)
+				if innerWireType == 4 {
+					break
+				}
+				next, err := skipChecksum(dAtA[start:])
+				if err != nil {
+					return 0, err
+				}
+				iNdEx = start + next
 			}
-			depth--
+			return iNdEx, nil
+		case 4:
+			return iNdEx, nil
 		case 5:
 			iNdEx += 4
+			return iNdEx, nil
 		default:
 			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
 		}
-		if iNdEx < 0 {
-			return 0, ErrInvalidLengthChecksum
-		}
-		if depth == 0 {
-			return iNdEx, nil
-		}
 	}
-	return 0, io.ErrUnexpectedEOF
+	panic("unreachable")
 }
 
 var (
-	ErrInvalidLengthChecksum        = fmt.Errorf("proto: negative length found during unmarshaling")
-	ErrIntOverflowChecksum          = fmt.Errorf("proto: integer overflow")
-	ErrUnexpectedEndOfGroupChecksum = fmt.Errorf("proto: unexpected end of group")
+	ErrInvalidLengthChecksum = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowChecksum   = fmt.Errorf("proto: integer overflow")
 )
+
+func init() { proto.RegisterFile("checksum.proto", fileDescriptorChecksum) }
+
+var fileDescriptorChecksum = []byte{
+	// 321 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x41, 0x4e, 0xc2, 0x40,
+	0x14, 0x86, 0x3b, 0x8a, 0x42, 0x9f, 0x11, 0xeb, 0x04, 0x23, 0x71, 0x51, 0x90, 0x44, 0x83, 0x2c,
+	0x6a, 0xa2, 0xc6, 0x8d, 0x2b, 0x61, 0x65, 0x5c, 0x68, 0x90, 0x85, 0xbb, 0x66, 0x3a, 0x4c, 0x4a,
+	0x03, 0xcc, 0xd4, 0xbe, 0x81, 0xe8, 0xc6, 0x73, 0x78, 0x00, 0x0f, 0xc3, 0xd2, 0x13, 0x18, 0x83,
+	0x17, 0x31, 0x1d, 0x28, 0xa4, 0x71, 0xf7, 0xe6, 0x7f, 0xdf, 0x3f, 0xf3, 0xff, 0x03, 0x65, 0x3e,
+	0x10, 0x7c, 0x88, 0x93, 0xb1, 0x17, 0x27, 0x4a, 0x2b, 0x5a, 0xd0, 0x51, 0x1c, 0x1c, 0x55, 0x42,
+	0x15, 0x2a, 0x23, 0x9c, 0xa7, 0xd3, 0x62, 0xd7, 0xf8, 0x24, 0xb0, 0xd7, 0x59, 0xe2, 0x5d, 0xf1,
+	0x32, 0x11, 0xa8, 0x69, 0x0d, 0x4a, 0xa8, 0x59, 0xa2, 0x7d, 0x8d, 0x55, 0x52, 0x27, 0xcd, 0x42,
+	0xbb, 0x30, 0xfb, 0xae, 0x59, 0xdd, 0xa2, 0x51, 0x7b, 0x48, 0x2f, 0xa1, 0x88, 0x9c, 0x49, 0x5f,
+	0xc9, 0xea, 0x46, 0x9d, 0x34, 0xcb, 0x17, 0x15, 0x2f, 0x7d, 0xc2, 0xcb, 0x2e, 0x7a, 0xe2, 0x4c,
+	0x3e, 0xc8, 0xa5, 0x6b, 0x1b, 0xcd, 0x89, 0xde, 0x80, 0xcd, 0x46, 0xa1, 0x4a, 0x22, 0x3d, 0x18,
+	0x57, 0x37, 0x8d, 0xed, 0x30, 0x6f, 0xbb, 0xcd, 0xd6, 0x4b, 0xe7, 0x9a, 0x6f, 0xbc, 0x83, 0xb3,
+	0x4e, 0x89, 0xb1, 0x92, 0x28, 0x68, 0x1d, 0x4a, 0x59, 0xd1, 0x5c, 0xcc, 0x95, 0x4a, 0x8f, 0xc1,
+	0xd6, 0x4a, 0xb3, 0x91, 0x3f, 0x9c, 0xa2, 0x49, 0xba, 0x42, 0x8c, 0x7c, 0x3f, 0x45, 0x7a, 0x02,
+	0x3b, 0x0b, 0x24, 0x78, 0xd3, 0x02, 0x4d, 0xae, 0x0c, 0x02, 0xb3, 0x68, 0xa7, 0x7a, 0xeb, 0x14,
+	0xca, 0xf9, 0x72, 0xd4, 0x86, 0xad, 0x1e, 0x0b, 0x46, 0xc2, 0xb1, 0xd2, 0xf1, 0x4e, 0xf6, 0xc5,
+	0xab, 0x43, 0x5a, 0x0d, 0xd8, 0xff, 0xd7, 0x86, 0xee, 0x82, 0xdd, 0x49, 0xf8, 0xf5, 0x95, 0xff,
+	0xac, 0x12, 0xc7, 0x6a, 0x9f, 0xcd, 0xe6, 0x2e, 0xf9, 0x9a, 0xbb, 0xe4, 0x67, 0xee, 0x92, 0x8f,
+	0x5f, 0xd7, 0x82, 0x03, 0xae, 0xc6, 0x5e, 0x1c, 0xc9, 0x90, 0xb3, 0xd8, 0xd3, 0x51, 0x3f, 0x30,
+	0xff, 0xf2, 0x48, 0xfe, 0x02, 0x00, 0x00, 0xff, 0xff, 0x40, 0x2d, 0x34, 0x0d, 0xca, 0x01, 0x00,
+	0x00,
+}
