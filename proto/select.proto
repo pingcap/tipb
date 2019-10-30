@@ -36,11 +36,11 @@ message SelectResponse {
 	repeated Error warnings = 4;
 	repeated int64 output_counts = 5;
 	optional int64 warning_count = 6;
-	// It indicates the encode type of response.
-	optional EncodeType encode_type = 7 [(gogoproto.nullable) = false];
 
 	// The execution summary of each executor, in the order in request.
 	repeated ExecutorExecutionSummary execution_summaries = 8;
+	// It indicates the encode type of response.
+	optional EncodeType encode_type = 9 [(gogoproto.nullable) = false];
 }
 
 // Chunk contains multiple rows data and rows meta.
