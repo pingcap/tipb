@@ -4,7 +4,7 @@ go:
 	./generate-go.sh
 
 rust:
-	cargo build --features gen
+	./generate-rust.sh
 
 binlog:
 	./generate-binlog.sh
