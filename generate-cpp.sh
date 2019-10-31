@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 rm -rf proto-cpp && mkdir -p proto-cpp
 rm -rf cpp/tipb && mkdir cpp/tipb
@@ -7,10 +8,10 @@ cp proto/*.proto proto-cpp/
 
 function sed_inplace()
 {
-    if [ `uname` == "Darwin" ]; then
-        sed -i '' "$@"
-    else
+    if sed --help 2>/dev/null | grep GNU > /dev/null; then
         sed -i "$@"
+    else
+        sed -i '' "$@"
     fi
 }
 
