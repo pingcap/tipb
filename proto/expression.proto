@@ -77,13 +77,13 @@ enum ScalarFuncSig {
 	Unspecified = 0;
 
 	/* Casting */
-	CastIntAsInt = 7;
-	CastIntAsReal = 1;
-	CastIntAsString = 2;
-	CastIntAsDecimal = 3;
-	CastIntAsTime = 4;
-	CastIntAsDuration = 5;
-	CastIntAsJson = 6;
+	CastIntAsInt = 1;
+	CastIntAsReal = 2;
+	CastIntAsString = 3;
+	CastIntAsDecimal = 4;
+	CastIntAsTime = 5;
+	CastIntAsDuration = 6;
+	CastIntAsJson = 7;
 
 	CastRealAsInt = 10;
 	CastRealAsReal = 11;
