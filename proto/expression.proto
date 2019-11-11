@@ -74,14 +74,16 @@ enum ExprType {
 }
 
 enum ScalarFuncSig {
+	Unspecified = 0;
+
 	/* Casting */
-	CastIntAsInt = 0;
-	CastIntAsReal = 1;
-	CastIntAsString = 2;
-	CastIntAsDecimal = 3;
-	CastIntAsTime = 4;
-	CastIntAsDuration = 5;
-	CastIntAsJson = 6;
+	CastIntAsInt = 1;
+	CastIntAsReal = 2;
+	CastIntAsString = 3;
+	CastIntAsDecimal = 4;
+	CastIntAsTime = 5;
+	CastIntAsDuration = 6;
+	CastIntAsJson = 7;
 
 	CastRealAsInt = 10;
 	CastRealAsReal = 11;
@@ -201,7 +203,7 @@ enum ScalarFuncSig {
 	NullEQTime = 164;
 	NullEQDuration = 165;
 	NullEQJson = 166;
-    
+
 	/*arithmetic*/
 	PlusReal = 200;
 	PlusDecimal = 201;
@@ -220,7 +222,7 @@ enum ScalarFuncSig {
 	ModDecimal = 216;
 	ModInt = 217;
 	MultiplyIntUnsigned = 218;
-	
+
 	/*math*/
 	AbsInt = 2101;
 	AbsUInt = 2102;
@@ -268,7 +270,7 @@ enum ScalarFuncSig {
 	TruncateInt = 2154;
 	TruncateReal = 2155;
 	TruncateDecimal = 2156;
-	
+
 	/*op*/
 	LogicalAnd = 3101;
 	LogicalOr = 3102;
@@ -299,7 +301,7 @@ enum ScalarFuncSig {
 	DecimalIsFalse = 3127;
 	LeftShift = 3129;
 	RightShift = 3130;
-	
+
 	/*other*/
 	BitCount = 3128;
 	GetParamString = 3131;
@@ -320,7 +322,7 @@ enum ScalarFuncSig {
 	InTime = 4005;
 	InDuration = 4006;
 	InJson = 4007;
-    
+
 	/*control*/
 	IfNullInt = 4101;
 	IfNullReal = 4102;
@@ -394,7 +396,7 @@ enum ScalarFuncSig {
 	LikeSig = 4310;
 	RegexpBinarySig = 4311;
 	RegexpSig = 4312;
-    
+
 	/*json*/
 	JsonExtractSig = 5001;
 	JsonUnquoteSig = 5002;
@@ -423,7 +425,7 @@ enum ScalarFuncSig {
 	JsonKeys2ArgsSig = 5025;
 	JsonValidStringSig = 5026;
 	JsonValidOthersSig = 5027;
-	
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
