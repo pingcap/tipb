@@ -270,6 +270,7 @@ enum ScalarFuncSig {
 	TruncateInt = 2154;
 	TruncateReal = 2155;
 	TruncateDecimal = 2156;
+	TruncateUint = 2157;
 
 	/*op*/
 	LogicalAnd = 3101;
@@ -358,6 +359,10 @@ enum ScalarFuncSig {
 	SHA2 = 4508;
 	Uncompress = 4509;
 	UncompressedLength = 4510;
+	AesDecryptIV = 4511;
+	AesEncryptIV = 4512;
+	Encode = 4513;
+	Decode = 4514;
 
 	/*info*/
 	Database = 4521;
@@ -535,6 +540,24 @@ enum ScalarFuncSig {
 	FromDays = 6106;
 	TimeFormat = 6107;
 	TimestampDiff = 6108;
+	SubDateStringReal = 6109;
+	SubDateIntReal = 6110;
+	SubDateIntDecimal = 6111;
+	SubDateDatetimeReal = 6112;
+	SubDateDatetimeDecimal = 6113;
+	SubDateDurationString = 6114;
+	SubDateDurationInt = 6115;
+	SubDateDurationReal = 6116;
+	SubDateDurationDecimal = 6117;
+	AddDateStringReal = 6118;
+	AddDateIntReal = 6119;
+	AddDateIntDecimal = 6120;
+	AddDateDatetimeReal = 6121;
+	AddDateDatetimeDecimal = 6122;
+	AddDateDurationString = 6123;
+	AddDateDurationInt = 6124;
+	AddDateDurationReal = 6125;
+	AddDateDurationDecimal = 6126;
 
 	/* String functions */
 	BitLength = 7001;
@@ -600,6 +623,7 @@ enum ScalarFuncSig {
 	Trim3Args = 7061;
 	UnHex = 7062;
 	Upper = 7063;
+	CharLengthBinary = 7064;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
