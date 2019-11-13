@@ -112,7 +112,7 @@ message DAGRequest {
 
 enum EncodeType {
 	TypeDefault = 0;
-	TypeArrow = 1;
+	TypeChunk = 1;
 }
 
 message StreamResponse {
