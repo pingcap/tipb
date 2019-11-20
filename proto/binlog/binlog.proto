@@ -79,4 +79,7 @@ message Binlog {
     // ddl_job_id is used for DDL Binlog.
     // If ddl_job_id is setted, this is a DDL Binlog and ddl_query contains the DDL query, we can query the informations about this job from TiKV.
     optional int64         ddl_job_id     = 7 [(gogoproto.nullable) = false];
+
+	// ddl_schema_state is used for DDL Binlog.
+    optional int32         ddl_schema_state = 8 [(gogoproto.nullable) = false];
 }
