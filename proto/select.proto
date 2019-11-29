@@ -37,6 +37,9 @@ message SelectResponse {
 	repeated int64 output_counts = 5;
 	optional int64 warning_count = 6;
 
+	// Not used any more
+	// optional bytes row_batch_data = 7 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+
 	// The execution summary of each executor, in the order in request.
 	repeated ExecutorExecutionSummary execution_summaries = 8;
 	// It indicates the encode type of response.
@@ -61,7 +64,8 @@ message RowMeta {
 // DAGRequest represents the request that will be handled with DAG mode.
 message DAGRequest {
 	// Transaction start timestamp.
-	optional uint64 start_ts = 1 [(gogoproto.nullable) = false];
+	// Deprecated. Start Ts has been moved to coprocessor.Request.
+	optional uint64 start_ts_fallback = 1;
 
 	// It represents push down Executors.
 	repeated Executor executors = 2;
