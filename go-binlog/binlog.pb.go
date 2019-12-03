@@ -239,7 +239,7 @@ type Binlog struct {
 	// ddl_job_id is used for PreDDL and PostDDL binlog type.
 	// If PreDDL has matching PostDDL with the same job_id, we can execute the DDL right away, otherwise,
 	// we can use the job_id to check if the ddl statement has been successfully added to DDL job list.
-	DdlJobId         int64  `protobuf:"varint,7,opt,name=ddl_job_id,json=ddlJobId" json:"ddl_job_id"`
+	DdlJobId int64 `protobuf:"varint,7,opt,name=ddl_job_id,json=ddlJobId" json:"ddl_job_id"`
 	// ddl_schema_state is used for DDL Binlog.
 	DdlSchemaState   int32  `protobuf:"varint,8,opt,name=ddl_schema_state,json=ddlSchemaState" json:"ddl_schema_state"`
 	XXX_unrecognized []byte `json:"-"`
