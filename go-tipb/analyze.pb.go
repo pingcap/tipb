@@ -57,7 +57,7 @@ func (x *AnalyzeType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (AnalyzeType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{0}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{0}
 }
 
 type AnalyzeReq struct {
@@ -77,7 +77,7 @@ func (m *AnalyzeReq) Reset()         { *m = AnalyzeReq{} }
 func (m *AnalyzeReq) String() string { return proto.CompactTextString(m) }
 func (*AnalyzeReq) ProtoMessage()    {}
 func (*AnalyzeReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{0}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{0}
 }
 func (m *AnalyzeReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -164,7 +164,7 @@ func (m *AnalyzeIndexReq) Reset()         { *m = AnalyzeIndexReq{} }
 func (m *AnalyzeIndexReq) String() string { return proto.CompactTextString(m) }
 func (*AnalyzeIndexReq) ProtoMessage()    {}
 func (*AnalyzeIndexReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{1}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{1}
 }
 func (m *AnalyzeIndexReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -242,7 +242,7 @@ func (m *AnalyzeColumnsReq) Reset()         { *m = AnalyzeColumnsReq{} }
 func (m *AnalyzeColumnsReq) String() string { return proto.CompactTextString(m) }
 func (*AnalyzeColumnsReq) ProtoMessage()    {}
 func (*AnalyzeColumnsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{2}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{2}
 }
 func (m *AnalyzeColumnsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -327,7 +327,7 @@ func (m *AnalyzeColumnsResp) Reset()         { *m = AnalyzeColumnsResp{} }
 func (m *AnalyzeColumnsResp) String() string { return proto.CompactTextString(m) }
 func (*AnalyzeColumnsResp) ProtoMessage()    {}
 func (*AnalyzeColumnsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{3}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{3}
 }
 func (m *AnalyzeColumnsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -382,7 +382,7 @@ func (m *AnalyzeIndexResp) Reset()         { *m = AnalyzeIndexResp{} }
 func (m *AnalyzeIndexResp) String() string { return proto.CompactTextString(m) }
 func (*AnalyzeIndexResp) ProtoMessage()    {}
 func (*AnalyzeIndexResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{4}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{4}
 }
 func (m *AnalyzeIndexResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -440,7 +440,7 @@ func (m *Bucket) Reset()         { *m = Bucket{} }
 func (m *Bucket) String() string { return proto.CompactTextString(m) }
 func (*Bucket) ProtoMessage()    {}
 func (*Bucket) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{5}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{5}
 }
 func (m *Bucket) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -511,7 +511,7 @@ func (m *Histogram) Reset()         { *m = Histogram{} }
 func (m *Histogram) String() string { return proto.CompactTextString(m) }
 func (*Histogram) ProtoMessage()    {}
 func (*Histogram) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{6}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{6}
 }
 func (m *Histogram) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -567,7 +567,7 @@ func (m *FMSketch) Reset()         { *m = FMSketch{} }
 func (m *FMSketch) String() string { return proto.CompactTextString(m) }
 func (*FMSketch) ProtoMessage()    {}
 func (*FMSketch) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{7}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{7}
 }
 func (m *FMSketch) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -627,7 +627,7 @@ func (m *SampleCollector) Reset()         { *m = SampleCollector{} }
 func (m *SampleCollector) String() string { return proto.CompactTextString(m) }
 func (*SampleCollector) ProtoMessage()    {}
 func (*SampleCollector) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{8}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{8}
 }
 func (m *SampleCollector) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -709,7 +709,7 @@ func (m *CMSketchRow) Reset()         { *m = CMSketchRow{} }
 func (m *CMSketchRow) String() string { return proto.CompactTextString(m) }
 func (*CMSketchRow) ProtoMessage()    {}
 func (*CMSketchRow) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{9}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{9}
 }
 func (m *CMSketchRow) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -757,7 +757,7 @@ func (m *CMSketchTopN) Reset()         { *m = CMSketchTopN{} }
 func (m *CMSketchTopN) String() string { return proto.CompactTextString(m) }
 func (*CMSketchTopN) ProtoMessage()    {}
 func (*CMSketchTopN) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{10}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{10}
 }
 func (m *CMSketchTopN) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -813,7 +813,7 @@ func (m *CMSketch) Reset()         { *m = CMSketch{} }
 func (m *CMSketch) String() string { return proto.CompactTextString(m) }
 func (*CMSketch) ProtoMessage()    {}
 func (*CMSketch) Descriptor() ([]byte, []int) {
-	return fileDescriptor_analyze_769e917cb3d272e7, []int{11}
+	return fileDescriptor_analyze_71effda33320cd3f, []int{11}
 }
 func (m *CMSketch) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -3459,9 +3459,9 @@ var (
 	ErrIntOverflowAnalyze   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("analyze.proto", fileDescriptor_analyze_769e917cb3d272e7) }
+func init() { proto.RegisterFile("analyze.proto", fileDescriptor_analyze_71effda33320cd3f) }
 
-var fileDescriptor_analyze_769e917cb3d272e7 = []byte{
+var fileDescriptor_analyze_71effda33320cd3f = []byte{
 	// 888 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x55, 0x4d, 0x8f, 0xe3, 0x44,
 	0x13, 0x1e, 0x27, 0xce, 0x57, 0xe5, 0x63, 0x32, 0xad, 0x77, 0x5f, 0xac, 0x91, 0xc8, 0x46, 0x5e,

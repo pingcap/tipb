@@ -72,7 +72,7 @@ func (x *ExecType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (ExecType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{0}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{0}
 }
 
 // It represents a Executor.
@@ -94,7 +94,7 @@ func (m *Executor) Reset()         { *m = Executor{} }
 func (m *Executor) String() string { return proto.CompactTextString(m) }
 func (*Executor) ProtoMessage()    {}
 func (*Executor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{0}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{0}
 }
 func (m *Executor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -192,7 +192,7 @@ func (m *TableScan) Reset()         { *m = TableScan{} }
 func (m *TableScan) String() string { return proto.CompactTextString(m) }
 func (*TableScan) ProtoMessage()    {}
 func (*TableScan) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{1}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{1}
 }
 func (m *TableScan) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -257,7 +257,7 @@ func (m *IndexScan) Reset()         { *m = IndexScan{} }
 func (m *IndexScan) String() string { return proto.CompactTextString(m) }
 func (*IndexScan) ProtoMessage()    {}
 func (*IndexScan) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{2}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{2}
 }
 func (m *IndexScan) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -333,7 +333,7 @@ func (m *Selection) Reset()         { *m = Selection{} }
 func (m *Selection) String() string { return proto.CompactTextString(m) }
 func (*Selection) ProtoMessage()    {}
 func (*Selection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{3}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{3}
 }
 func (m *Selection) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -381,7 +381,7 @@ func (m *Projection) Reset()         { *m = Projection{} }
 func (m *Projection) String() string { return proto.CompactTextString(m) }
 func (*Projection) ProtoMessage()    {}
 func (*Projection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{4}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{4}
 }
 func (m *Projection) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -433,7 +433,7 @@ func (m *Aggregation) Reset()         { *m = Aggregation{} }
 func (m *Aggregation) String() string { return proto.CompactTextString(m) }
 func (*Aggregation) ProtoMessage()    {}
 func (*Aggregation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{5}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{5}
 }
 func (m *Aggregation) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -496,7 +496,7 @@ func (m *TopN) Reset()         { *m = TopN{} }
 func (m *TopN) String() string { return proto.CompactTextString(m) }
 func (*TopN) ProtoMessage()    {}
 func (*TopN) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{6}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{6}
 }
 func (m *TopN) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -551,7 +551,7 @@ func (m *Limit) Reset()         { *m = Limit{} }
 func (m *Limit) String() string { return proto.CompactTextString(m) }
 func (*Limit) ProtoMessage()    {}
 func (*Limit) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{7}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{7}
 }
 func (m *Limit) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -603,7 +603,7 @@ func (m *ExecutorExecutionSummary) Reset()         { *m = ExecutorExecutionSumma
 func (m *ExecutorExecutionSummary) String() string { return proto.CompactTextString(m) }
 func (*ExecutorExecutionSummary) ProtoMessage()    {}
 func (*ExecutorExecutionSummary) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_6617e0c3f0b45e27, []int{8}
+	return fileDescriptor_executor_dad106b27ebd5f71, []int{8}
 }
 func (m *ExecutorExecutionSummary) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2563,9 +2563,9 @@ var (
 	ErrIntOverflowExecutor   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("executor.proto", fileDescriptor_executor_6617e0c3f0b45e27) }
+func init() { proto.RegisterFile("executor.proto", fileDescriptor_executor_dad106b27ebd5f71) }
 
-var fileDescriptor_executor_6617e0c3f0b45e27 = []byte{
+var fileDescriptor_executor_dad106b27ebd5f71 = []byte{
 	// 718 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x94, 0xcf, 0x6e, 0xdb, 0x38,
 	0x10, 0xc6, 0x23, 0x5b, 0x8e, 0xe5, 0x71, 0x62, 0x2b, 0xdc, 0x3f, 0x10, 0x72, 0x70, 0xbc, 0xda,

@@ -36,7 +36,7 @@ func (m *TableInfo) Reset()         { *m = TableInfo{} }
 func (m *TableInfo) String() string { return proto.CompactTextString(m) }
 func (*TableInfo) ProtoMessage()    {}
 func (*TableInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_schema_47de21c8bf6b0116, []int{0}
+	return fileDescriptor_schema_82adf4d916a72e58, []int{0}
 }
 func (m *TableInfo) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -98,7 +98,7 @@ func (m *ColumnInfo) Reset()         { *m = ColumnInfo{} }
 func (m *ColumnInfo) String() string { return proto.CompactTextString(m) }
 func (*ColumnInfo) ProtoMessage()    {}
 func (*ColumnInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_schema_47de21c8bf6b0116, []int{1}
+	return fileDescriptor_schema_82adf4d916a72e58, []int{1}
 }
 func (m *ColumnInfo) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -204,7 +204,7 @@ func (m *IndexInfo) Reset()         { *m = IndexInfo{} }
 func (m *IndexInfo) String() string { return proto.CompactTextString(m) }
 func (*IndexInfo) ProtoMessage()    {}
 func (*IndexInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_schema_47de21c8bf6b0116, []int{2}
+	return fileDescriptor_schema_82adf4d916a72e58, []int{2}
 }
 func (m *IndexInfo) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -274,7 +274,7 @@ func (m *KeyRange) Reset()         { *m = KeyRange{} }
 func (m *KeyRange) String() string { return proto.CompactTextString(m) }
 func (*KeyRange) ProtoMessage()    {}
 func (*KeyRange) Descriptor() ([]byte, []int) {
-	return fileDescriptor_schema_47de21c8bf6b0116, []int{3}
+	return fileDescriptor_schema_82adf4d916a72e58, []int{3}
 }
 func (m *KeyRange) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1324,9 +1324,9 @@ var (
 	ErrIntOverflowSchema   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("schema.proto", fileDescriptor_schema_47de21c8bf6b0116) }
+func init() { proto.RegisterFile("schema.proto", fileDescriptor_schema_82adf4d916a72e58) }
 
-var fileDescriptor_schema_47de21c8bf6b0116 = []byte{
+var fileDescriptor_schema_82adf4d916a72e58 = []byte{
 	// 398 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x91, 0xcf, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xd7, 0x49, 0xba, 0x4d, 0x67, 0x7b, 0x58, 0x59, 0x5d, 0xc9, 0x42, 0x28, 0x0d, 0x39,

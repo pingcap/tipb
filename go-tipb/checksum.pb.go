@@ -57,7 +57,7 @@ func (x *ChecksumScanOn) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (ChecksumScanOn) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_checksum_a39da69a50d5489b, []int{0}
+	return fileDescriptor_checksum_ec1eb16df2ae110f, []int{0}
 }
 
 type ChecksumAlgorithm int32
@@ -90,7 +90,7 @@ func (x *ChecksumAlgorithm) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (ChecksumAlgorithm) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_checksum_a39da69a50d5489b, []int{1}
+	return fileDescriptor_checksum_ec1eb16df2ae110f, []int{1}
 }
 
 type ChecksumRewriteRule struct {
@@ -105,7 +105,7 @@ func (m *ChecksumRewriteRule) Reset()         { *m = ChecksumRewriteRule{} }
 func (m *ChecksumRewriteRule) String() string { return proto.CompactTextString(m) }
 func (*ChecksumRewriteRule) ProtoMessage()    {}
 func (*ChecksumRewriteRule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_checksum_a39da69a50d5489b, []int{0}
+	return fileDescriptor_checksum_ec1eb16df2ae110f, []int{0}
 }
 func (m *ChecksumRewriteRule) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -163,7 +163,7 @@ func (m *ChecksumRequest) Reset()         { *m = ChecksumRequest{} }
 func (m *ChecksumRequest) String() string { return proto.CompactTextString(m) }
 func (*ChecksumRequest) ProtoMessage()    {}
 func (*ChecksumRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_checksum_a39da69a50d5489b, []int{1}
+	return fileDescriptor_checksum_ec1eb16df2ae110f, []int{1}
 }
 func (m *ChecksumRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -233,7 +233,7 @@ func (m *ChecksumResponse) Reset()         { *m = ChecksumResponse{} }
 func (m *ChecksumResponse) String() string { return proto.CompactTextString(m) }
 func (*ChecksumResponse) ProtoMessage()    {}
 func (*ChecksumResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_checksum_a39da69a50d5489b, []int{2}
+	return fileDescriptor_checksum_ec1eb16df2ae110f, []int{2}
 }
 func (m *ChecksumResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -941,9 +941,9 @@ var (
 	ErrIntOverflowChecksum   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("checksum.proto", fileDescriptor_checksum_a39da69a50d5489b) }
+func init() { proto.RegisterFile("checksum.proto", fileDescriptor_checksum_ec1eb16df2ae110f) }
 
-var fileDescriptor_checksum_a39da69a50d5489b = []byte{
+var fileDescriptor_checksum_ec1eb16df2ae110f = []byte{
 	// 395 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0xcf, 0x8e, 0xd3, 0x30,
 	0x18, 0xc4, 0x63, 0x08, 0x7f, 0xf2, 0x2d, 0x74, 0xb3, 0x66, 0x11, 0x05, 0x89, 0x50, 0x22, 0x81,

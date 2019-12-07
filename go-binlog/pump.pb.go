@@ -43,7 +43,7 @@ func (m *WriteBinlogReq) Reset()         { *m = WriteBinlogReq{} }
 func (m *WriteBinlogReq) String() string { return proto.CompactTextString(m) }
 func (*WriteBinlogReq) ProtoMessage()    {}
 func (*WriteBinlogReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{0}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{0}
 }
 func (m *WriteBinlogReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -99,7 +99,7 @@ func (m *WriteBinlogResp) Reset()         { *m = WriteBinlogResp{} }
 func (m *WriteBinlogResp) String() string { return proto.CompactTextString(m) }
 func (*WriteBinlogResp) ProtoMessage()    {}
 func (*WriteBinlogResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{1}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{1}
 }
 func (m *WriteBinlogResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -149,7 +149,7 @@ func (m *PullBinlogReq) Reset()         { *m = PullBinlogReq{} }
 func (m *PullBinlogReq) String() string { return proto.CompactTextString(m) }
 func (*PullBinlogReq) ProtoMessage()    {}
 func (*PullBinlogReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{2}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{2}
 }
 func (m *PullBinlogReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -204,7 +204,7 @@ func (m *PullBinlogResp) Reset()         { *m = PullBinlogResp{} }
 func (m *PullBinlogResp) String() string { return proto.CompactTextString(m) }
 func (*PullBinlogResp) ProtoMessage()    {}
 func (*PullBinlogResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{3}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{3}
 }
 func (m *PullBinlogResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -256,7 +256,7 @@ func (m *Pos) Reset()         { *m = Pos{} }
 func (m *Pos) String() string { return proto.CompactTextString(m) }
 func (*Pos) ProtoMessage()    {}
 func (*Pos) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{4}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{4}
 }
 func (m *Pos) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -314,7 +314,7 @@ func (m *Meta) Reset()         { *m = Meta{} }
 func (m *Meta) String() string { return proto.CompactTextString(m) }
 func (*Meta) ProtoMessage()    {}
 func (*Meta) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{5}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{5}
 }
 func (m *Meta) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -375,7 +375,7 @@ func (m *Entity) Reset()         { *m = Entity{} }
 func (m *Entity) String() string { return proto.CompactTextString(m) }
 func (*Entity) ProtoMessage()    {}
 func (*Entity) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pump_624d78afb555da6e, []int{6}
+	return fileDescriptor_pump_8e2db1540747fb8f, []int{6}
 }
 func (m *Entity) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1780,9 +1780,9 @@ var (
 	ErrIntOverflowPump   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("pump.proto", fileDescriptor_pump_624d78afb555da6e) }
+func init() { proto.RegisterFile("pump.proto", fileDescriptor_pump_8e2db1540747fb8f) }
 
-var fileDescriptor_pump_624d78afb555da6e = []byte{
+var fileDescriptor_pump_8e2db1540747fb8f = []byte{
 	// 405 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x52, 0xdd, 0x8a, 0xd3, 0x40,
 	0x14, 0xee, 0x98, 0x10, 0xed, 0x49, 0xad, 0x32, 0x68, 0x0d, 0x41, 0x62, 0x19, 0x41, 0x2a, 0x48,

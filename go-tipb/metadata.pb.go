@@ -37,7 +37,7 @@ func (m *InUnionMetadata) Reset()         { *m = InUnionMetadata{} }
 func (m *InUnionMetadata) String() string { return proto.CompactTextString(m) }
 func (*InUnionMetadata) ProtoMessage()    {}
 func (*InUnionMetadata) Descriptor() ([]byte, []int) {
-	return fileDescriptor_metadata_4bba10324d7d295b, []int{0}
+	return fileDescriptor_metadata_7e7191f69bd88135, []int{0}
 }
 func (m *InUnionMetadata) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -328,9 +328,9 @@ var (
 	ErrIntOverflowMetadata   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("metadata.proto", fileDescriptor_metadata_4bba10324d7d295b) }
+func init() { proto.RegisterFile("metadata.proto", fileDescriptor_metadata_7e7191f69bd88135) }
 
-var fileDescriptor_metadata_4bba10324d7d295b = []byte{
+var fileDescriptor_metadata_7e7191f69bd88135 = []byte{
 	// 136 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcb, 0x4d, 0x2d, 0x49,
 	0x4c, 0x49, 0x2c, 0x49, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0xc9, 0x2c, 0x48,

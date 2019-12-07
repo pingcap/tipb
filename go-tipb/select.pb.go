@@ -59,7 +59,7 @@ func (x *EncodeType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (EncodeType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{0}
+	return fileDescriptor_select_437392e40ef70f1f, []int{0}
 }
 
 type Endian int32
@@ -95,7 +95,7 @@ func (x *Endian) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (Endian) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{1}
+	return fileDescriptor_select_437392e40ef70f1f, []int{1}
 }
 
 // values are all in text format.
@@ -111,7 +111,7 @@ func (m *Row) Reset()         { *m = Row{} }
 func (m *Row) String() string { return proto.CompactTextString(m) }
 func (*Row) ProtoMessage()    {}
 func (*Row) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{0}
+	return fileDescriptor_select_437392e40ef70f1f, []int{0}
 }
 func (m *Row) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -166,7 +166,7 @@ func (m *Error) Reset()         { *m = Error{} }
 func (m *Error) String() string { return proto.CompactTextString(m) }
 func (*Error) ProtoMessage()    {}
 func (*Error) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{1}
+	return fileDescriptor_select_437392e40ef70f1f, []int{1}
 }
 func (m *Error) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -233,7 +233,7 @@ func (m *SelectResponse) Reset()         { *m = SelectResponse{} }
 func (m *SelectResponse) String() string { return proto.CompactTextString(m) }
 func (*SelectResponse) ProtoMessage()    {}
 func (*SelectResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{2}
+	return fileDescriptor_select_437392e40ef70f1f, []int{2}
 }
 func (m *SelectResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -333,7 +333,7 @@ func (m *Chunk) Reset()         { *m = Chunk{} }
 func (m *Chunk) String() string { return proto.CompactTextString(m) }
 func (*Chunk) ProtoMessage()    {}
 func (*Chunk) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{3}
+	return fileDescriptor_select_437392e40ef70f1f, []int{3}
 }
 func (m *Chunk) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -382,7 +382,7 @@ func (m *RowMeta) Reset()         { *m = RowMeta{} }
 func (m *RowMeta) String() string { return proto.CompactTextString(m) }
 func (*RowMeta) ProtoMessage()    {}
 func (*RowMeta) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{4}
+	return fileDescriptor_select_437392e40ef70f1f, []int{4}
 }
 func (m *RowMeta) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -472,7 +472,7 @@ func (m *DAGRequest) Reset()         { *m = DAGRequest{} }
 func (m *DAGRequest) String() string { return proto.CompactTextString(m) }
 func (*DAGRequest) ProtoMessage()    {}
 func (*DAGRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{5}
+	return fileDescriptor_select_437392e40ef70f1f, []int{5}
 }
 func (m *DAGRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -604,7 +604,7 @@ func (m *ChunkMemoryLayout) Reset()         { *m = ChunkMemoryLayout{} }
 func (m *ChunkMemoryLayout) String() string { return proto.CompactTextString(m) }
 func (*ChunkMemoryLayout) ProtoMessage()    {}
 func (*ChunkMemoryLayout) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{6}
+	return fileDescriptor_select_437392e40ef70f1f, []int{6}
 }
 func (m *ChunkMemoryLayout) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -657,7 +657,7 @@ func (m *StreamResponse) Reset()         { *m = StreamResponse{} }
 func (m *StreamResponse) String() string { return proto.CompactTextString(m) }
 func (*StreamResponse) ProtoMessage()    {}
 func (*StreamResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_select_4b4c9a2854f154c6, []int{7}
+	return fileDescriptor_select_437392e40ef70f1f, []int{7}
 }
 func (m *StreamResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -2916,9 +2916,9 @@ var (
 	ErrIntOverflowSelect   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("select.proto", fileDescriptor_select_4b4c9a2854f154c6) }
+func init() { proto.RegisterFile("select.proto", fileDescriptor_select_437392e40ef70f1f) }
 
-var fileDescriptor_select_4b4c9a2854f154c6 = []byte{
+var fileDescriptor_select_437392e40ef70f1f = []byte{
 	// 882 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xcf, 0x6f, 0x1b, 0x45,
 	0x14, 0xce, 0xc6, 0x3f, 0x62, 0x3f, 0x3b, 0x5b, 0x67, 0x5a, 0xca, 0x36, 0x14, 0xd7, 0x18, 0x21,

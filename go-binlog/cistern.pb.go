@@ -42,7 +42,7 @@ func (m *DumpBinlogReq) Reset()         { *m = DumpBinlogReq{} }
 func (m *DumpBinlogReq) String() string { return proto.CompactTextString(m) }
 func (*DumpBinlogReq) ProtoMessage()    {}
 func (*DumpBinlogReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{0}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{0}
 }
 func (m *DumpBinlogReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -94,7 +94,7 @@ func (m *DumpBinlogResp) Reset()         { *m = DumpBinlogResp{} }
 func (m *DumpBinlogResp) String() string { return proto.CompactTextString(m) }
 func (*DumpBinlogResp) ProtoMessage()    {}
 func (*DumpBinlogResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{1}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{1}
 }
 func (m *DumpBinlogResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -158,7 +158,7 @@ func (m *DumpDDLJobsReq) Reset()         { *m = DumpDDLJobsReq{} }
 func (m *DumpDDLJobsReq) String() string { return proto.CompactTextString(m) }
 func (*DumpDDLJobsReq) ProtoMessage()    {}
 func (*DumpDDLJobsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{2}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{2}
 }
 func (m *DumpDDLJobsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -206,7 +206,7 @@ func (m *DumpDDLJobsResp) Reset()         { *m = DumpDDLJobsResp{} }
 func (m *DumpDDLJobsResp) String() string { return proto.CompactTextString(m) }
 func (*DumpDDLJobsResp) ProtoMessage()    {}
 func (*DumpDDLJobsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{3}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{3}
 }
 func (m *DumpDDLJobsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -252,7 +252,7 @@ func (m *NotifyReq) Reset()         { *m = NotifyReq{} }
 func (m *NotifyReq) String() string { return proto.CompactTextString(m) }
 func (*NotifyReq) ProtoMessage()    {}
 func (*NotifyReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{4}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{4}
 }
 func (m *NotifyReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -291,7 +291,7 @@ func (m *NotifyResp) Reset()         { *m = NotifyResp{} }
 func (m *NotifyResp) String() string { return proto.CompactTextString(m) }
 func (*NotifyResp) ProtoMessage()    {}
 func (*NotifyResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cistern_caf1ef2bd6a2060a, []int{5}
+	return fileDescriptor_cistern_afc0975c553850e4, []int{5}
 }
 func (m *NotifyResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1340,9 +1340,9 @@ var (
 	ErrIntOverflowCistern   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("cistern.proto", fileDescriptor_cistern_caf1ef2bd6a2060a) }
+func init() { proto.RegisterFile("cistern.proto", fileDescriptor_cistern_afc0975c553850e4) }
 
-var fileDescriptor_cistern_caf1ef2bd6a2060a = []byte{
+var fileDescriptor_cistern_afc0975c553850e4 = []byte{
 	// 301 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4d, 0xce, 0x2c, 0x2e,
 	0x49, 0x2d, 0xca, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4b, 0xca, 0xcc, 0xcb, 0xc9,

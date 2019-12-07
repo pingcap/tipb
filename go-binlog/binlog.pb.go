@@ -66,7 +66,7 @@ func (x *MutationType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (MutationType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_binlog_d7798f43b51f77cf, []int{0}
+	return fileDescriptor_binlog_1922b62bb9d10441, []int{0}
 }
 
 type BinlogType int32
@@ -111,7 +111,7 @@ func (x *BinlogType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 func (BinlogType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_binlog_d7798f43b51f77cf, []int{1}
+	return fileDescriptor_binlog_1922b62bb9d10441, []int{1}
 }
 
 // TableMutation contains mutations in a table.
@@ -138,7 +138,7 @@ func (m *TableMutation) Reset()         { *m = TableMutation{} }
 func (m *TableMutation) String() string { return proto.CompactTextString(m) }
 func (*TableMutation) ProtoMessage()    {}
 func (*TableMutation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_binlog_d7798f43b51f77cf, []int{0}
+	return fileDescriptor_binlog_1922b62bb9d10441, []int{0}
 }
 func (m *TableMutation) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -228,7 +228,7 @@ func (m *PrewriteValue) Reset()         { *m = PrewriteValue{} }
 func (m *PrewriteValue) String() string { return proto.CompactTextString(m) }
 func (*PrewriteValue) ProtoMessage()    {}
 func (*PrewriteValue) Descriptor() ([]byte, []int) {
-	return fileDescriptor_binlog_d7798f43b51f77cf, []int{1}
+	return fileDescriptor_binlog_1922b62bb9d10441, []int{1}
 }
 func (m *PrewriteValue) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -303,7 +303,7 @@ func (m *Binlog) Reset()         { *m = Binlog{} }
 func (m *Binlog) String() string { return proto.CompactTextString(m) }
 func (*Binlog) ProtoMessage()    {}
 func (*Binlog) Descriptor() ([]byte, []int) {
-	return fileDescriptor_binlog_d7798f43b51f77cf, []int{2}
+	return fileDescriptor_binlog_1922b62bb9d10441, []int{2}
 }
 func (m *Binlog) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1442,9 +1442,9 @@ var (
 	ErrIntOverflowBinlog   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("binlog.proto", fileDescriptor_binlog_d7798f43b51f77cf) }
+func init() { proto.RegisterFile("binlog.proto", fileDescriptor_binlog_1922b62bb9d10441) }
 
-var fileDescriptor_binlog_d7798f43b51f77cf = []byte{
+var fileDescriptor_binlog_1922b62bb9d10441 = []byte{
 	// 541 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x54, 0x92, 0xdd, 0x8e, 0xd2, 0x40,
 	0x14, 0xc7, 0x69, 0xcb, 0x47, 0x39, 0xb4, 0xa4, 0x99, 0xac, 0x49, 0xa3, 0x09, 0x54, 0x8c, 0x49,
