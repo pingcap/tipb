@@ -20,51 +20,15 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
 type InUnionMetadata struct {
-	InUnion              *bool    `protobuf:"varint,1,req,name=in_union,json=inUnion" json:"in_union,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	InUnion          *bool  `protobuf:"varint,1,req,name=in_union,json=inUnion" json:"in_union,omitempty"`
+	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *InUnionMetadata) Reset()         { *m = InUnionMetadata{} }
-func (m *InUnionMetadata) String() string { return proto.CompactTextString(m) }
-func (*InUnionMetadata) ProtoMessage()    {}
-func (*InUnionMetadata) Descriptor() ([]byte, []int) {
-	return fileDescriptor_metadata_7e7191f69bd88135, []int{0}
-}
-func (m *InUnionMetadata) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *InUnionMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_InUnionMetadata.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *InUnionMetadata) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InUnionMetadata.Merge(dst, src)
-}
-func (m *InUnionMetadata) XXX_Size() int {
-	return m.Size()
-}
-func (m *InUnionMetadata) XXX_DiscardUnknown() {
-	xxx_messageInfo_InUnionMetadata.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_InUnionMetadata proto.InternalMessageInfo
+func (m *InUnionMetadata) Reset()                    { *m = InUnionMetadata{} }
+func (m *InUnionMetadata) String() string            { return proto.CompactTextString(m) }
+func (*InUnionMetadata) ProtoMessage()               {}
+func (*InUnionMetadata) Descriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{0} }
 
 func (m *InUnionMetadata) GetInUnion() bool {
 	if m != nil && m.InUnion != nil {
@@ -119,9 +83,6 @@ func encodeVarintMetadata(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *InUnionMetadata) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.InUnion != nil {
@@ -328,9 +289,9 @@ var (
 	ErrIntOverflowMetadata   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("metadata.proto", fileDescriptor_metadata_7e7191f69bd88135) }
+func init() { proto.RegisterFile("metadata.proto", fileDescriptorMetadata) }
 
-var fileDescriptor_metadata_7e7191f69bd88135 = []byte{
+var fileDescriptorMetadata = []byte{
 	// 136 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcb, 0x4d, 0x2d, 0x49,
 	0x4c, 0x49, 0x2c, 0x49, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0xc9, 0x2c, 0x48,

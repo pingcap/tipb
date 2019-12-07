@@ -18,12 +18,6 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
 type ExecType int32
 
 const (
@@ -71,57 +65,25 @@ func (x *ExecType) UnmarshalJSON(data []byte) error {
 	*x = ExecType(value)
 	return nil
 }
-func (ExecType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{0}
-}
+func (ExecType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{0} }
 
 // It represents a Executor.
 type Executor struct {
-	Tp                   ExecType     `protobuf:"varint,1,opt,name=tp,enum=tipb.ExecType" json:"tp"`
-	TblScan              *TableScan   `protobuf:"bytes,2,opt,name=tbl_scan,json=tblScan" json:"tbl_scan,omitempty"`
-	IdxScan              *IndexScan   `protobuf:"bytes,3,opt,name=idx_scan,json=idxScan" json:"idx_scan,omitempty"`
-	Selection            *Selection   `protobuf:"bytes,4,opt,name=selection" json:"selection,omitempty"`
-	Aggregation          *Aggregation `protobuf:"bytes,5,opt,name=aggregation" json:"aggregation,omitempty"`
-	TopN                 *TopN        `protobuf:"bytes,6,opt,name=topN" json:"topN,omitempty"`
-	Limit                *Limit       `protobuf:"bytes,7,opt,name=limit" json:"limit,omitempty"`
-	StreamAgg            *Aggregation `protobuf:"bytes,8,opt,name=stream_agg,json=streamAgg" json:"stream_agg,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
+	Tp               ExecType     `protobuf:"varint,1,opt,name=tp,enum=tipb.ExecType" json:"tp"`
+	TblScan          *TableScan   `protobuf:"bytes,2,opt,name=tbl_scan,json=tblScan" json:"tbl_scan,omitempty"`
+	IdxScan          *IndexScan   `protobuf:"bytes,3,opt,name=idx_scan,json=idxScan" json:"idx_scan,omitempty"`
+	Selection        *Selection   `protobuf:"bytes,4,opt,name=selection" json:"selection,omitempty"`
+	Aggregation      *Aggregation `protobuf:"bytes,5,opt,name=aggregation" json:"aggregation,omitempty"`
+	TopN             *TopN        `protobuf:"bytes,6,opt,name=topN" json:"topN,omitempty"`
+	Limit            *Limit       `protobuf:"bytes,7,opt,name=limit" json:"limit,omitempty"`
+	StreamAgg        *Aggregation `protobuf:"bytes,8,opt,name=stream_agg,json=streamAgg" json:"stream_agg,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *Executor) Reset()         { *m = Executor{} }
-func (m *Executor) String() string { return proto.CompactTextString(m) }
-func (*Executor) ProtoMessage()    {}
-func (*Executor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{0}
-}
-func (m *Executor) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Executor) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Executor.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *Executor) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Executor.Merge(dst, src)
-}
-func (m *Executor) XXX_Size() int {
-	return m.Size()
-}
-func (m *Executor) XXX_DiscardUnknown() {
-	xxx_messageInfo_Executor.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Executor proto.InternalMessageInfo
+func (m *Executor) Reset()                    { *m = Executor{} }
+func (m *Executor) String() string            { return proto.CompactTextString(m) }
+func (*Executor) ProtoMessage()               {}
+func (*Executor) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{0} }
 
 func (m *Executor) GetTp() ExecType {
 	if m != nil {
@@ -180,46 +142,16 @@ func (m *Executor) GetStreamAgg() *Aggregation {
 }
 
 type TableScan struct {
-	TableId              int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
-	Columns              []*ColumnInfo `protobuf:"bytes,2,rep,name=columns" json:"columns,omitempty"`
-	Desc                 bool          `protobuf:"varint,3,opt,name=desc" json:"desc"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	TableId          int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
+	Columns          []*ColumnInfo `protobuf:"bytes,2,rep,name=columns" json:"columns,omitempty"`
+	Desc             bool          `protobuf:"varint,3,opt,name=desc" json:"desc"`
+	XXX_unrecognized []byte        `json:"-"`
 }
 
-func (m *TableScan) Reset()         { *m = TableScan{} }
-func (m *TableScan) String() string { return proto.CompactTextString(m) }
-func (*TableScan) ProtoMessage()    {}
-func (*TableScan) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{1}
-}
-func (m *TableScan) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *TableScan) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_TableScan.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *TableScan) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TableScan.Merge(dst, src)
-}
-func (m *TableScan) XXX_Size() int {
-	return m.Size()
-}
-func (m *TableScan) XXX_DiscardUnknown() {
-	xxx_messageInfo_TableScan.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TableScan proto.InternalMessageInfo
+func (m *TableScan) Reset()                    { *m = TableScan{} }
+func (m *TableScan) String() string            { return proto.CompactTextString(m) }
+func (*TableScan) ProtoMessage()               {}
+func (*TableScan) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{1} }
 
 func (m *TableScan) GetTableId() int64 {
 	if m != nil {
@@ -243,48 +175,18 @@ func (m *TableScan) GetDesc() bool {
 }
 
 type IndexScan struct {
-	TableId              int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
-	IndexId              int64         `protobuf:"varint,2,opt,name=index_id,json=indexId" json:"index_id"`
-	Columns              []*ColumnInfo `protobuf:"bytes,3,rep,name=columns" json:"columns,omitempty"`
-	Desc                 bool          `protobuf:"varint,4,opt,name=desc" json:"desc"`
-	Unique               *bool         `protobuf:"varint,5,opt,name=unique" json:"unique,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	TableId          int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
+	IndexId          int64         `protobuf:"varint,2,opt,name=index_id,json=indexId" json:"index_id"`
+	Columns          []*ColumnInfo `protobuf:"bytes,3,rep,name=columns" json:"columns,omitempty"`
+	Desc             bool          `protobuf:"varint,4,opt,name=desc" json:"desc"`
+	Unique           *bool         `protobuf:"varint,5,opt,name=unique" json:"unique,omitempty"`
+	XXX_unrecognized []byte        `json:"-"`
 }
 
-func (m *IndexScan) Reset()         { *m = IndexScan{} }
-func (m *IndexScan) String() string { return proto.CompactTextString(m) }
-func (*IndexScan) ProtoMessage()    {}
-func (*IndexScan) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{2}
-}
-func (m *IndexScan) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *IndexScan) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_IndexScan.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *IndexScan) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IndexScan.Merge(dst, src)
-}
-func (m *IndexScan) XXX_Size() int {
-	return m.Size()
-}
-func (m *IndexScan) XXX_DiscardUnknown() {
-	xxx_messageInfo_IndexScan.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_IndexScan proto.InternalMessageInfo
+func (m *IndexScan) Reset()                    { *m = IndexScan{} }
+func (m *IndexScan) String() string            { return proto.CompactTextString(m) }
+func (*IndexScan) ProtoMessage()               {}
+func (*IndexScan) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{2} }
 
 func (m *IndexScan) GetTableId() int64 {
 	if m != nil {
@@ -323,44 +225,14 @@ func (m *IndexScan) GetUnique() bool {
 
 type Selection struct {
 	// Where conditions.
-	Conditions           []*Expr  `protobuf:"bytes,1,rep,name=conditions" json:"conditions,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Conditions       []*Expr `protobuf:"bytes,1,rep,name=conditions" json:"conditions,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *Selection) Reset()         { *m = Selection{} }
-func (m *Selection) String() string { return proto.CompactTextString(m) }
-func (*Selection) ProtoMessage()    {}
-func (*Selection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{3}
-}
-func (m *Selection) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Selection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Selection.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *Selection) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Selection.Merge(dst, src)
-}
-func (m *Selection) XXX_Size() int {
-	return m.Size()
-}
-func (m *Selection) XXX_DiscardUnknown() {
-	xxx_messageInfo_Selection.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Selection proto.InternalMessageInfo
+func (m *Selection) Reset()                    { *m = Selection{} }
+func (m *Selection) String() string            { return proto.CompactTextString(m) }
+func (*Selection) ProtoMessage()               {}
+func (*Selection) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{3} }
 
 func (m *Selection) GetConditions() []*Expr {
 	if m != nil {
@@ -371,44 +243,14 @@ func (m *Selection) GetConditions() []*Expr {
 
 type Projection struct {
 	// Projection expressions.
-	Exprs                []*Expr  `protobuf:"bytes,1,rep,name=exprs" json:"exprs,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Exprs            []*Expr `protobuf:"bytes,1,rep,name=exprs" json:"exprs,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *Projection) Reset()         { *m = Projection{} }
-func (m *Projection) String() string { return proto.CompactTextString(m) }
-func (*Projection) ProtoMessage()    {}
-func (*Projection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{4}
-}
-func (m *Projection) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Projection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Projection.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *Projection) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Projection.Merge(dst, src)
-}
-func (m *Projection) XXX_Size() int {
-	return m.Size()
-}
-func (m *Projection) XXX_DiscardUnknown() {
-	xxx_messageInfo_Projection.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Projection proto.InternalMessageInfo
+func (m *Projection) Reset()                    { *m = Projection{} }
+func (m *Projection) String() string            { return proto.CompactTextString(m) }
+func (*Projection) ProtoMessage()               {}
+func (*Projection) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{4} }
 
 func (m *Projection) GetExprs() []*Expr {
 	if m != nil {
@@ -423,44 +265,14 @@ type Aggregation struct {
 	// Aggregate functions.
 	AggFunc []*Expr `protobuf:"bytes,2,rep,name=agg_func,json=aggFunc" json:"agg_func,omitempty"`
 	// If it is a stream aggregation.
-	Streamed             bool     `protobuf:"varint,3,opt,name=streamed" json:"streamed"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Streamed         bool   `protobuf:"varint,3,opt,name=streamed" json:"streamed"`
+	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *Aggregation) Reset()         { *m = Aggregation{} }
-func (m *Aggregation) String() string { return proto.CompactTextString(m) }
-func (*Aggregation) ProtoMessage()    {}
-func (*Aggregation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{5}
-}
-func (m *Aggregation) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Aggregation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Aggregation.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *Aggregation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Aggregation.Merge(dst, src)
-}
-func (m *Aggregation) XXX_Size() int {
-	return m.Size()
-}
-func (m *Aggregation) XXX_DiscardUnknown() {
-	xxx_messageInfo_Aggregation.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Aggregation proto.InternalMessageInfo
+func (m *Aggregation) Reset()                    { *m = Aggregation{} }
+func (m *Aggregation) String() string            { return proto.CompactTextString(m) }
+func (*Aggregation) ProtoMessage()               {}
+func (*Aggregation) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{5} }
 
 func (m *Aggregation) GetGroupBy() []*Expr {
 	if m != nil {
@@ -485,45 +297,15 @@ func (m *Aggregation) GetStreamed() bool {
 
 type TopN struct {
 	// Order by clause.
-	OrderBy              []*ByItem `protobuf:"bytes,1,rep,name=order_by,json=orderBy" json:"order_by,omitempty"`
-	Limit                uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+	OrderBy          []*ByItem `protobuf:"bytes,1,rep,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Limit            uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
+	XXX_unrecognized []byte    `json:"-"`
 }
 
-func (m *TopN) Reset()         { *m = TopN{} }
-func (m *TopN) String() string { return proto.CompactTextString(m) }
-func (*TopN) ProtoMessage()    {}
-func (*TopN) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{6}
-}
-func (m *TopN) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *TopN) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_TopN.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *TopN) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TopN.Merge(dst, src)
-}
-func (m *TopN) XXX_Size() int {
-	return m.Size()
-}
-func (m *TopN) XXX_DiscardUnknown() {
-	xxx_messageInfo_TopN.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TopN proto.InternalMessageInfo
+func (m *TopN) Reset()                    { *m = TopN{} }
+func (m *TopN) String() string            { return proto.CompactTextString(m) }
+func (*TopN) ProtoMessage()               {}
+func (*TopN) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{6} }
 
 func (m *TopN) GetOrderBy() []*ByItem {
 	if m != nil {
@@ -541,44 +323,14 @@ func (m *TopN) GetLimit() uint64 {
 
 type Limit struct {
 	// Limit the result to be returned.
-	Limit                uint64   `protobuf:"varint,1,opt,name=limit" json:"limit"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Limit            uint64 `protobuf:"varint,1,opt,name=limit" json:"limit"`
+	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *Limit) Reset()         { *m = Limit{} }
-func (m *Limit) String() string { return proto.CompactTextString(m) }
-func (*Limit) ProtoMessage()    {}
-func (*Limit) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{7}
-}
-func (m *Limit) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Limit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Limit.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *Limit) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Limit.Merge(dst, src)
-}
-func (m *Limit) XXX_Size() int {
-	return m.Size()
-}
-func (m *Limit) XXX_DiscardUnknown() {
-	xxx_messageInfo_Limit.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Limit proto.InternalMessageInfo
+func (m *Limit) Reset()                    { *m = Limit{} }
+func (m *Limit) String() string            { return proto.CompactTextString(m) }
+func (*Limit) ProtoMessage()               {}
+func (*Limit) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{7} }
 
 func (m *Limit) GetLimit() uint64 {
 	if m != nil {
@@ -593,44 +345,14 @@ type ExecutorExecutionSummary struct {
 	// How many rows this executor produced totally.
 	NumProducedRows *uint64 `protobuf:"varint,2,opt,name=num_produced_rows,json=numProducedRows" json:"num_produced_rows,omitempty"`
 	// How many times executor's `next()` is called.
-	NumIterations        *uint64  `protobuf:"varint,3,opt,name=num_iterations,json=numIterations" json:"num_iterations,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	NumIterations    *uint64 `protobuf:"varint,3,opt,name=num_iterations,json=numIterations" json:"num_iterations,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *ExecutorExecutionSummary) Reset()         { *m = ExecutorExecutionSummary{} }
-func (m *ExecutorExecutionSummary) String() string { return proto.CompactTextString(m) }
-func (*ExecutorExecutionSummary) ProtoMessage()    {}
-func (*ExecutorExecutionSummary) Descriptor() ([]byte, []int) {
-	return fileDescriptor_executor_dad106b27ebd5f71, []int{8}
-}
-func (m *ExecutorExecutionSummary) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ExecutorExecutionSummary) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ExecutorExecutionSummary.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (dst *ExecutorExecutionSummary) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ExecutorExecutionSummary.Merge(dst, src)
-}
-func (m *ExecutorExecutionSummary) XXX_Size() int {
-	return m.Size()
-}
-func (m *ExecutorExecutionSummary) XXX_DiscardUnknown() {
-	xxx_messageInfo_ExecutorExecutionSummary.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ExecutorExecutionSummary proto.InternalMessageInfo
+func (m *ExecutorExecutionSummary) Reset()                    { *m = ExecutorExecutionSummary{} }
+func (m *ExecutorExecutionSummary) String() string            { return proto.CompactTextString(m) }
+func (*ExecutorExecutionSummary) ProtoMessage()               {}
+func (*ExecutorExecutionSummary) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{8} }
 
 func (m *ExecutorExecutionSummary) GetTimeProcessedNs() uint64 {
 	if m != nil && m.TimeProcessedNs != nil {
@@ -1085,9 +807,6 @@ func encodeVarintExecutor(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *Executor) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovExecutor(uint64(m.Tp))
@@ -1126,9 +845,6 @@ func (m *Executor) Size() (n int) {
 }
 
 func (m *TableScan) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovExecutor(uint64(m.TableId))
@@ -1146,9 +862,6 @@ func (m *TableScan) Size() (n int) {
 }
 
 func (m *IndexScan) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovExecutor(uint64(m.TableId))
@@ -1170,9 +883,6 @@ func (m *IndexScan) Size() (n int) {
 }
 
 func (m *Selection) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Conditions) > 0 {
@@ -1188,9 +898,6 @@ func (m *Selection) Size() (n int) {
 }
 
 func (m *Projection) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Exprs) > 0 {
@@ -1206,9 +913,6 @@ func (m *Projection) Size() (n int) {
 }
 
 func (m *Aggregation) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.GroupBy) > 0 {
@@ -1231,9 +935,6 @@ func (m *Aggregation) Size() (n int) {
 }
 
 func (m *TopN) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.OrderBy) > 0 {
@@ -1250,9 +951,6 @@ func (m *TopN) Size() (n int) {
 }
 
 func (m *Limit) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	n += 1 + sovExecutor(uint64(m.Limit))
@@ -1263,9 +961,6 @@ func (m *Limit) Size() (n int) {
 }
 
 func (m *ExecutorExecutionSummary) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.TimeProcessedNs != nil {
@@ -2563,9 +2258,9 @@ var (
 	ErrIntOverflowExecutor   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("executor.proto", fileDescriptor_executor_dad106b27ebd5f71) }
+func init() { proto.RegisterFile("executor.proto", fileDescriptorExecutor) }
 
-var fileDescriptor_executor_dad106b27ebd5f71 = []byte{
+var fileDescriptorExecutor = []byte{
 	// 718 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x94, 0xcf, 0x6e, 0xdb, 0x38,
 	0x10, 0xc6, 0x23, 0x5b, 0x8e, 0xe5, 0x71, 0x62, 0x2b, 0xdc, 0x3f, 0x10, 0x72, 0x70, 0xbc, 0xda,
