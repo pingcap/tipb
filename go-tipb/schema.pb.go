@@ -18,16 +18,52 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type TableInfo struct {
-	TableId          int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
-	Columns          []*ColumnInfo `protobuf:"bytes,2,rep,name=columns" json:"columns,omitempty"`
-	XXX_unrecognized []byte        `json:"-"`
+	TableId              int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
+	Columns              []*ColumnInfo `protobuf:"bytes,2,rep,name=columns" json:"columns,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *TableInfo) Reset()                    { *m = TableInfo{} }
-func (m *TableInfo) String() string            { return proto.CompactTextString(m) }
-func (*TableInfo) ProtoMessage()               {}
-func (*TableInfo) Descriptor() ([]byte, []int) { return fileDescriptorSchema, []int{0} }
+func (m *TableInfo) Reset()         { *m = TableInfo{} }
+func (m *TableInfo) String() string { return proto.CompactTextString(m) }
+func (*TableInfo) ProtoMessage()    {}
+func (*TableInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_schema_47de21c8bf6b0116, []int{0}
+}
+func (m *TableInfo) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *TableInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_TableInfo.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *TableInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TableInfo.Merge(dst, src)
+}
+func (m *TableInfo) XXX_Size() int {
+	return m.Size()
+}
+func (m *TableInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_TableInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TableInfo proto.InternalMessageInfo
 
 func (m *TableInfo) GetTableId() int64 {
 	if m != nil {
@@ -44,22 +80,52 @@ func (m *TableInfo) GetColumns() []*ColumnInfo {
 }
 
 type ColumnInfo struct {
-	ColumnId         int64    `protobuf:"varint,1,opt,name=column_id,json=columnId" json:"column_id"`
-	Tp               int32    `protobuf:"varint,2,opt,name=tp" json:"tp"`
-	Collation        int32    `protobuf:"varint,3,opt,name=collation" json:"collation"`
-	ColumnLen        int32    `protobuf:"varint,4,opt,name=columnLen" json:"columnLen"`
-	Decimal          int32    `protobuf:"varint,5,opt,name=decimal" json:"decimal"`
-	Flag             int32    `protobuf:"varint,6,opt,name=flag" json:"flag"`
-	Elems            []string `protobuf:"bytes,7,rep,name=elems" json:"elems,omitempty"`
-	DefaultVal       []byte   `protobuf:"bytes,8,opt,name=default_val,json=defaultVal" json:"default_val,omitempty"`
-	PkHandle         bool     `protobuf:"varint,21,opt,name=pk_handle,json=pkHandle" json:"pk_handle"`
-	XXX_unrecognized []byte   `json:"-"`
+	ColumnId             int64    `protobuf:"varint,1,opt,name=column_id,json=columnId" json:"column_id"`
+	Tp                   int32    `protobuf:"varint,2,opt,name=tp" json:"tp"`
+	Collation            int32    `protobuf:"varint,3,opt,name=collation" json:"collation"`
+	ColumnLen            int32    `protobuf:"varint,4,opt,name=columnLen" json:"columnLen"`
+	Decimal              int32    `protobuf:"varint,5,opt,name=decimal" json:"decimal"`
+	Flag                 int32    `protobuf:"varint,6,opt,name=flag" json:"flag"`
+	Elems                []string `protobuf:"bytes,7,rep,name=elems" json:"elems,omitempty"`
+	DefaultVal           []byte   `protobuf:"bytes,8,opt,name=default_val,json=defaultVal" json:"default_val,omitempty"`
+	PkHandle             bool     `protobuf:"varint,21,opt,name=pk_handle,json=pkHandle" json:"pk_handle"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ColumnInfo) Reset()                    { *m = ColumnInfo{} }
-func (m *ColumnInfo) String() string            { return proto.CompactTextString(m) }
-func (*ColumnInfo) ProtoMessage()               {}
-func (*ColumnInfo) Descriptor() ([]byte, []int) { return fileDescriptorSchema, []int{1} }
+func (m *ColumnInfo) Reset()         { *m = ColumnInfo{} }
+func (m *ColumnInfo) String() string { return proto.CompactTextString(m) }
+func (*ColumnInfo) ProtoMessage()    {}
+func (*ColumnInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_schema_47de21c8bf6b0116, []int{1}
+}
+func (m *ColumnInfo) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ColumnInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ColumnInfo.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *ColumnInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ColumnInfo.Merge(dst, src)
+}
+func (m *ColumnInfo) XXX_Size() int {
+	return m.Size()
+}
+func (m *ColumnInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_ColumnInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ColumnInfo proto.InternalMessageInfo
 
 func (m *ColumnInfo) GetColumnId() int64 {
 	if m != nil {
@@ -125,17 +191,47 @@ func (m *ColumnInfo) GetPkHandle() bool {
 }
 
 type IndexInfo struct {
-	TableId          int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
-	IndexId          int64         `protobuf:"varint,2,opt,name=index_id,json=indexId" json:"index_id"`
-	Columns          []*ColumnInfo `protobuf:"bytes,3,rep,name=columns" json:"columns,omitempty"`
-	Unique           bool          `protobuf:"varint,4,opt,name=unique" json:"unique"`
-	XXX_unrecognized []byte        `json:"-"`
+	TableId              int64         `protobuf:"varint,1,opt,name=table_id,json=tableId" json:"table_id"`
+	IndexId              int64         `protobuf:"varint,2,opt,name=index_id,json=indexId" json:"index_id"`
+	Columns              []*ColumnInfo `protobuf:"bytes,3,rep,name=columns" json:"columns,omitempty"`
+	Unique               bool          `protobuf:"varint,4,opt,name=unique" json:"unique"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *IndexInfo) Reset()                    { *m = IndexInfo{} }
-func (m *IndexInfo) String() string            { return proto.CompactTextString(m) }
-func (*IndexInfo) ProtoMessage()               {}
-func (*IndexInfo) Descriptor() ([]byte, []int) { return fileDescriptorSchema, []int{2} }
+func (m *IndexInfo) Reset()         { *m = IndexInfo{} }
+func (m *IndexInfo) String() string { return proto.CompactTextString(m) }
+func (*IndexInfo) ProtoMessage()    {}
+func (*IndexInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_schema_47de21c8bf6b0116, []int{2}
+}
+func (m *IndexInfo) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *IndexInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_IndexInfo.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *IndexInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IndexInfo.Merge(dst, src)
+}
+func (m *IndexInfo) XXX_Size() int {
+	return m.Size()
+}
+func (m *IndexInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_IndexInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_IndexInfo proto.InternalMessageInfo
 
 func (m *IndexInfo) GetTableId() int64 {
 	if m != nil {
@@ -167,15 +263,45 @@ func (m *IndexInfo) GetUnique() bool {
 
 // KeyRange is the encoded index key range, low is closed, high is open. (low <= x < high)
 type KeyRange struct {
-	Low              []byte `protobuf:"bytes,1,opt,name=low" json:"low,omitempty"`
-	High             []byte `protobuf:"bytes,2,opt,name=high" json:"high,omitempty"`
-	XXX_unrecognized []byte `json:"-"`
+	Low                  []byte   `protobuf:"bytes,1,opt,name=low" json:"low,omitempty"`
+	High                 []byte   `protobuf:"bytes,2,opt,name=high" json:"high,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *KeyRange) Reset()                    { *m = KeyRange{} }
-func (m *KeyRange) String() string            { return proto.CompactTextString(m) }
-func (*KeyRange) ProtoMessage()               {}
-func (*KeyRange) Descriptor() ([]byte, []int) { return fileDescriptorSchema, []int{3} }
+func (m *KeyRange) Reset()         { *m = KeyRange{} }
+func (m *KeyRange) String() string { return proto.CompactTextString(m) }
+func (*KeyRange) ProtoMessage()    {}
+func (*KeyRange) Descriptor() ([]byte, []int) {
+	return fileDescriptor_schema_47de21c8bf6b0116, []int{3}
+}
+func (m *KeyRange) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *KeyRange) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_KeyRange.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *KeyRange) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_KeyRange.Merge(dst, src)
+}
+func (m *KeyRange) XXX_Size() int {
+	return m.Size()
+}
+func (m *KeyRange) XXX_DiscardUnknown() {
+	xxx_messageInfo_KeyRange.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_KeyRange proto.InternalMessageInfo
 
 func (m *KeyRange) GetLow() []byte {
 	if m != nil {
@@ -393,6 +519,9 @@ func encodeVarintSchema(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *TableInfo) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSchema(uint64(m.TableId))
@@ -409,6 +538,9 @@ func (m *TableInfo) Size() (n int) {
 }
 
 func (m *ColumnInfo) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSchema(uint64(m.ColumnId))
@@ -435,6 +567,9 @@ func (m *ColumnInfo) Size() (n int) {
 }
 
 func (m *IndexInfo) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSchema(uint64(m.TableId))
@@ -453,6 +588,9 @@ func (m *IndexInfo) Size() (n int) {
 }
 
 func (m *KeyRange) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Low != nil {
@@ -1186,9 +1324,9 @@ var (
 	ErrIntOverflowSchema   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("schema.proto", fileDescriptorSchema) }
+func init() { proto.RegisterFile("schema.proto", fileDescriptor_schema_47de21c8bf6b0116) }
 
-var fileDescriptorSchema = []byte{
+var fileDescriptor_schema_47de21c8bf6b0116 = []byte{
 	// 398 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x91, 0xcf, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xd7, 0x49, 0xba, 0x4d, 0x67, 0x7b, 0x58, 0x59, 0x5d, 0xc9, 0x42, 0x28, 0x0d, 0x39,

@@ -20,6 +20,12 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type EncodeType int32
 
 const (
@@ -52,7 +58,9 @@ func (x *EncodeType) UnmarshalJSON(data []byte) error {
 	*x = EncodeType(value)
 	return nil
 }
-func (EncodeType) EnumDescriptor() ([]byte, []int) { return fileDescriptorSelect, []int{0} }
+func (EncodeType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{0}
+}
 
 type Endian int32
 
@@ -86,19 +94,51 @@ func (x *Endian) UnmarshalJSON(data []byte) error {
 	*x = Endian(value)
 	return nil
 }
-func (Endian) EnumDescriptor() ([]byte, []int) { return fileDescriptorSelect, []int{1} }
+func (Endian) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{1}
+}
 
 // values are all in text format.
 type Row struct {
-	Handle           []byte `protobuf:"bytes,1,opt,name=handle" json:"handle,omitempty"`
-	Data             []byte `protobuf:"bytes,2,opt,name=data" json:"data,omitempty"`
-	XXX_unrecognized []byte `json:"-"`
+	Handle               []byte   `protobuf:"bytes,1,opt,name=handle" json:"handle,omitempty"`
+	Data                 []byte   `protobuf:"bytes,2,opt,name=data" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Row) Reset()                    { *m = Row{} }
-func (m *Row) String() string            { return proto.CompactTextString(m) }
-func (*Row) ProtoMessage()               {}
-func (*Row) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{0} }
+func (m *Row) Reset()         { *m = Row{} }
+func (m *Row) String() string { return proto.CompactTextString(m) }
+func (*Row) ProtoMessage()    {}
+func (*Row) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{0}
+}
+func (m *Row) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Row) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Row.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *Row) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Row.Merge(dst, src)
+}
+func (m *Row) XXX_Size() int {
+	return m.Size()
+}
+func (m *Row) XXX_DiscardUnknown() {
+	xxx_messageInfo_Row.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Row proto.InternalMessageInfo
 
 func (m *Row) GetHandle() []byte {
 	if m != nil {
@@ -115,15 +155,45 @@ func (m *Row) GetData() []byte {
 }
 
 type Error struct {
-	Code             int32  `protobuf:"varint,1,opt,name=code" json:"code"`
-	Msg              string `protobuf:"bytes,2,opt,name=msg" json:"msg"`
-	XXX_unrecognized []byte `json:"-"`
+	Code                 int32    `protobuf:"varint,1,opt,name=code" json:"code"`
+	Msg                  string   `protobuf:"bytes,2,opt,name=msg" json:"msg"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Error) Reset()                    { *m = Error{} }
-func (m *Error) String() string            { return proto.CompactTextString(m) }
-func (*Error) ProtoMessage()               {}
-func (*Error) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{1} }
+func (m *Error) Reset()         { *m = Error{} }
+func (m *Error) String() string { return proto.CompactTextString(m) }
+func (*Error) ProtoMessage()    {}
+func (*Error) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{1}
+}
+func (m *Error) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Error) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Error.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *Error) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Error.Merge(dst, src)
+}
+func (m *Error) XXX_Size() int {
+	return m.Size()
+}
+func (m *Error) XXX_DiscardUnknown() {
+	xxx_messageInfo_Error.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Error proto.InternalMessageInfo
 
 func (m *Error) GetCode() int32 {
 	if m != nil {
@@ -153,14 +223,44 @@ type SelectResponse struct {
 	// The execution summary of each executor, in the order in request.
 	ExecutionSummaries []*ExecutorExecutionSummary `protobuf:"bytes,8,rep,name=execution_summaries,json=executionSummaries" json:"execution_summaries,omitempty"`
 	// It indicates the encode type of response.
-	EncodeType       EncodeType `protobuf:"varint,9,opt,name=encode_type,json=encodeType,enum=tipb.EncodeType" json:"encode_type"`
-	XXX_unrecognized []byte     `json:"-"`
+	EncodeType           EncodeType `protobuf:"varint,9,opt,name=encode_type,json=encodeType,enum=tipb.EncodeType" json:"encode_type"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
 }
 
-func (m *SelectResponse) Reset()                    { *m = SelectResponse{} }
-func (m *SelectResponse) String() string            { return proto.CompactTextString(m) }
-func (*SelectResponse) ProtoMessage()               {}
-func (*SelectResponse) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{2} }
+func (m *SelectResponse) Reset()         { *m = SelectResponse{} }
+func (m *SelectResponse) String() string { return proto.CompactTextString(m) }
+func (*SelectResponse) ProtoMessage()    {}
+func (*SelectResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{2}
+}
+func (m *SelectResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SelectResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SelectResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *SelectResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SelectResponse.Merge(dst, src)
+}
+func (m *SelectResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SelectResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SelectResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SelectResponse proto.InternalMessageInfo
 
 func (m *SelectResponse) GetError() *Error {
 	if m != nil {
@@ -223,14 +323,44 @@ type Chunk struct {
 	// Data for all rows in the chunk.
 	RowsData github_com_pingcap_tipb_sharedbytes.SharedBytes `protobuf:"bytes,3,opt,name=rows_data,json=rowsData,customtype=github.com/pingcap/tipb/sharedbytes.SharedBytes" json:"rows_data"`
 	// Meta data for every row.
-	RowsMeta         []RowMeta `protobuf:"bytes,4,rep,name=rows_meta,json=rowsMeta" json:"rows_meta"`
-	XXX_unrecognized []byte    `json:"-"`
+	RowsMeta             []RowMeta `protobuf:"bytes,4,rep,name=rows_meta,json=rowsMeta" json:"rows_meta"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *Chunk) Reset()                    { *m = Chunk{} }
-func (m *Chunk) String() string            { return proto.CompactTextString(m) }
-func (*Chunk) ProtoMessage()               {}
-func (*Chunk) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{3} }
+func (m *Chunk) Reset()         { *m = Chunk{} }
+func (m *Chunk) String() string { return proto.CompactTextString(m) }
+func (*Chunk) ProtoMessage()    {}
+func (*Chunk) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{3}
+}
+func (m *Chunk) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Chunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Chunk.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *Chunk) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Chunk.Merge(dst, src)
+}
+func (m *Chunk) XXX_Size() int {
+	return m.Size()
+}
+func (m *Chunk) XXX_DiscardUnknown() {
+	xxx_messageInfo_Chunk.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Chunk proto.InternalMessageInfo
 
 func (m *Chunk) GetRowsMeta() []RowMeta {
 	if m != nil {
@@ -241,15 +371,45 @@ func (m *Chunk) GetRowsMeta() []RowMeta {
 
 // RowMeta contains row handle and length of a row.
 type RowMeta struct {
-	Handle           int64  `protobuf:"varint,1,opt,name=handle" json:"handle"`
-	Length           int64  `protobuf:"varint,2,opt,name=length" json:"length"`
-	XXX_unrecognized []byte `json:"-"`
+	Handle               int64    `protobuf:"varint,1,opt,name=handle" json:"handle"`
+	Length               int64    `protobuf:"varint,2,opt,name=length" json:"length"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RowMeta) Reset()                    { *m = RowMeta{} }
-func (m *RowMeta) String() string            { return proto.CompactTextString(m) }
-func (*RowMeta) ProtoMessage()               {}
-func (*RowMeta) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{4} }
+func (m *RowMeta) Reset()         { *m = RowMeta{} }
+func (m *RowMeta) String() string { return proto.CompactTextString(m) }
+func (*RowMeta) ProtoMessage()    {}
+func (*RowMeta) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{4}
+}
+func (m *RowMeta) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *RowMeta) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_RowMeta.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *RowMeta) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RowMeta.Merge(dst, src)
+}
+func (m *RowMeta) XXX_Size() int {
+	return m.Size()
+}
+func (m *RowMeta) XXX_DiscardUnknown() {
+	xxx_messageInfo_RowMeta.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RowMeta proto.InternalMessageInfo
 
 func (m *RowMeta) GetHandle() int64 {
 	if m != nil {
@@ -302,14 +462,44 @@ type DAGRequest struct {
 	// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
 	MaxAllowedPacket *uint64 `protobuf:"varint,13,opt,name=max_allowed_packet,json=maxAllowedPacket" json:"max_allowed_packet,omitempty"`
 	// Represents the chunk memory layout.
-	ChunkMemoryLayout *ChunkMemoryLayout `protobuf:"bytes,14,opt,name=chunk_memory_layout,json=chunkMemoryLayout" json:"chunk_memory_layout,omitempty"`
-	XXX_unrecognized  []byte             `json:"-"`
+	ChunkMemoryLayout    *ChunkMemoryLayout `protobuf:"bytes,14,opt,name=chunk_memory_layout,json=chunkMemoryLayout" json:"chunk_memory_layout,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
-func (m *DAGRequest) Reset()                    { *m = DAGRequest{} }
-func (m *DAGRequest) String() string            { return proto.CompactTextString(m) }
-func (*DAGRequest) ProtoMessage()               {}
-func (*DAGRequest) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{5} }
+func (m *DAGRequest) Reset()         { *m = DAGRequest{} }
+func (m *DAGRequest) String() string { return proto.CompactTextString(m) }
+func (*DAGRequest) ProtoMessage()    {}
+func (*DAGRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{5}
+}
+func (m *DAGRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DAGRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DAGRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *DAGRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DAGRequest.Merge(dst, src)
+}
+func (m *DAGRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *DAGRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DAGRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DAGRequest proto.InternalMessageInfo
 
 func (m *DAGRequest) GetStartTsFallback() uint64 {
 	if m != nil && m.StartTsFallback != nil {
@@ -404,14 +594,44 @@ func (m *DAGRequest) GetChunkMemoryLayout() *ChunkMemoryLayout {
 
 type ChunkMemoryLayout struct {
 	// Represents the endian.
-	Endian           Endian `protobuf:"varint,1,opt,name=endian,enum=tipb.Endian" json:"endian"`
-	XXX_unrecognized []byte `json:"-"`
+	Endian               Endian   `protobuf:"varint,1,opt,name=endian,enum=tipb.Endian" json:"endian"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ChunkMemoryLayout) Reset()                    { *m = ChunkMemoryLayout{} }
-func (m *ChunkMemoryLayout) String() string            { return proto.CompactTextString(m) }
-func (*ChunkMemoryLayout) ProtoMessage()               {}
-func (*ChunkMemoryLayout) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{6} }
+func (m *ChunkMemoryLayout) Reset()         { *m = ChunkMemoryLayout{} }
+func (m *ChunkMemoryLayout) String() string { return proto.CompactTextString(m) }
+func (*ChunkMemoryLayout) ProtoMessage()    {}
+func (*ChunkMemoryLayout) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{6}
+}
+func (m *ChunkMemoryLayout) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ChunkMemoryLayout) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ChunkMemoryLayout.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *ChunkMemoryLayout) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChunkMemoryLayout.Merge(dst, src)
+}
+func (m *ChunkMemoryLayout) XXX_Size() int {
+	return m.Size()
+}
+func (m *ChunkMemoryLayout) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChunkMemoryLayout.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChunkMemoryLayout proto.InternalMessageInfo
 
 func (m *ChunkMemoryLayout) GetEndian() Endian {
 	if m != nil {
@@ -426,15 +646,45 @@ type StreamResponse struct {
 	Data     github_com_pingcap_tipb_sharedbytes.SharedBytes `protobuf:"bytes,3,opt,name=data,customtype=github.com/pingcap/tipb/sharedbytes.SharedBytes" json:"data"`
 	Warnings []*Error                                        `protobuf:"bytes,4,rep,name=warnings" json:"warnings,omitempty"`
 	// output row count for each executor
-	OutputCounts     []int64 `protobuf:"varint,5,rep,name=output_counts,json=outputCounts" json:"output_counts,omitempty"`
-	WarningCount     *int64  `protobuf:"varint,6,opt,name=warning_count,json=warningCount" json:"warning_count,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	OutputCounts         []int64  `protobuf:"varint,5,rep,name=output_counts,json=outputCounts" json:"output_counts,omitempty"`
+	WarningCount         *int64   `protobuf:"varint,6,opt,name=warning_count,json=warningCount" json:"warning_count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *StreamResponse) Reset()                    { *m = StreamResponse{} }
-func (m *StreamResponse) String() string            { return proto.CompactTextString(m) }
-func (*StreamResponse) ProtoMessage()               {}
-func (*StreamResponse) Descriptor() ([]byte, []int) { return fileDescriptorSelect, []int{7} }
+func (m *StreamResponse) Reset()         { *m = StreamResponse{} }
+func (m *StreamResponse) String() string { return proto.CompactTextString(m) }
+func (*StreamResponse) ProtoMessage()    {}
+func (*StreamResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_select_4b4c9a2854f154c6, []int{7}
+}
+func (m *StreamResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StreamResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *StreamResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StreamResponse.Merge(dst, src)
+}
+func (m *StreamResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *StreamResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StreamResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StreamResponse proto.InternalMessageInfo
 
 func (m *StreamResponse) GetError() *Error {
 	if m != nil {
@@ -899,6 +1149,9 @@ func encodeVarintSelect(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *Row) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Handle != nil {
@@ -916,6 +1169,9 @@ func (m *Row) Size() (n int) {
 }
 
 func (m *Error) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSelect(uint64(m.Code))
@@ -928,6 +1184,9 @@ func (m *Error) Size() (n int) {
 }
 
 func (m *SelectResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Error != nil {
@@ -974,6 +1233,9 @@ func (m *SelectResponse) Size() (n int) {
 }
 
 func (m *Chunk) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	l = m.RowsData.Size()
@@ -991,6 +1253,9 @@ func (m *Chunk) Size() (n int) {
 }
 
 func (m *RowMeta) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSelect(uint64(m.Handle))
@@ -1002,6 +1267,9 @@ func (m *RowMeta) Size() (n int) {
 }
 
 func (m *DAGRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.StartTsFallback != nil {
@@ -1049,6 +1317,9 @@ func (m *DAGRequest) Size() (n int) {
 }
 
 func (m *ChunkMemoryLayout) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovSelect(uint64(m.Endian))
@@ -1059,6 +1330,9 @@ func (m *ChunkMemoryLayout) Size() (n int) {
 }
 
 func (m *StreamResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Error != nil {
@@ -1507,6 +1781,17 @@ func (m *SelectResponse) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.OutputCounts) == 0 {
+					m.OutputCounts = make([]int64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int64
@@ -1981,6 +2266,17 @@ func (m *DAGRequest) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.OutputOffsets) == 0 {
+					m.OutputOffsets = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -2441,6 +2737,17 @@ func (m *StreamResponse) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.OutputCounts) == 0 {
+					m.OutputCounts = make([]int64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int64
 					for shift := uint(0); ; shift += 7 {
@@ -2609,9 +2916,9 @@ var (
 	ErrIntOverflowSelect   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("select.proto", fileDescriptorSelect) }
+func init() { proto.RegisterFile("select.proto", fileDescriptor_select_4b4c9a2854f154c6) }
 
-var fileDescriptorSelect = []byte{
+var fileDescriptor_select_4b4c9a2854f154c6 = []byte{
 	// 882 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xcf, 0x6f, 0x1b, 0x45,
 	0x14, 0xce, 0xc6, 0x3f, 0x62, 0x3f, 0x3b, 0x5b, 0x67, 0x5a, 0xca, 0x36, 0x14, 0xd7, 0x18, 0x21,

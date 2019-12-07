@@ -18,6 +18,12 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type ExprType int32
 
 const (
@@ -161,7 +167,9 @@ func (x *ExprType) UnmarshalJSON(data []byte) error {
 	*x = ExprType(value)
 	return nil
 }
-func (ExprType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExpression, []int{0} }
+func (ExprType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_expression_2759c1c6ac82e149, []int{0}
+}
 
 type ScalarFuncSig int32
 
@@ -1745,22 +1753,54 @@ func (x *ScalarFuncSig) UnmarshalJSON(data []byte) error {
 	*x = ScalarFuncSig(value)
 	return nil
 }
-func (ScalarFuncSig) EnumDescriptor() ([]byte, []int) { return fileDescriptorExpression, []int{1} }
-
-type FieldType struct {
-	Tp               int32  `protobuf:"varint,1,opt,name=tp" json:"tp"`
-	Flag             uint32 `protobuf:"varint,2,opt,name=flag" json:"flag"`
-	Flen             int32  `protobuf:"varint,3,opt,name=flen" json:"flen"`
-	Decimal          int32  `protobuf:"varint,4,opt,name=decimal" json:"decimal"`
-	Collate          int32  `protobuf:"varint,5,opt,name=collate" json:"collate"`
-	Charset          string `protobuf:"bytes,6,opt,name=charset" json:"charset"`
-	XXX_unrecognized []byte `json:"-"`
+func (ScalarFuncSig) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_expression_2759c1c6ac82e149, []int{1}
 }
 
-func (m *FieldType) Reset()                    { *m = FieldType{} }
-func (m *FieldType) String() string            { return proto.CompactTextString(m) }
-func (*FieldType) ProtoMessage()               {}
-func (*FieldType) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{0} }
+type FieldType struct {
+	Tp                   int32    `protobuf:"varint,1,opt,name=tp" json:"tp"`
+	Flag                 uint32   `protobuf:"varint,2,opt,name=flag" json:"flag"`
+	Flen                 int32    `protobuf:"varint,3,opt,name=flen" json:"flen"`
+	Decimal              int32    `protobuf:"varint,4,opt,name=decimal" json:"decimal"`
+	Collate              int32    `protobuf:"varint,5,opt,name=collate" json:"collate"`
+	Charset              string   `protobuf:"bytes,6,opt,name=charset" json:"charset"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FieldType) Reset()         { *m = FieldType{} }
+func (m *FieldType) String() string { return proto.CompactTextString(m) }
+func (*FieldType) ProtoMessage()    {}
+func (*FieldType) Descriptor() ([]byte, []int) {
+	return fileDescriptor_expression_2759c1c6ac82e149, []int{0}
+}
+func (m *FieldType) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *FieldType) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_FieldType.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *FieldType) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FieldType.Merge(dst, src)
+}
+func (m *FieldType) XXX_Size() int {
+	return m.Size()
+}
+func (m *FieldType) XXX_DiscardUnknown() {
+	xxx_messageInfo_FieldType.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FieldType proto.InternalMessageInfo
 
 func (m *FieldType) GetTp() int32 {
 	if m != nil {
@@ -1806,18 +1846,48 @@ func (m *FieldType) GetCharset() string {
 
 // Evaluators should implement evaluation functions for every expression type.
 type Expr struct {
-	Tp               ExprType      `protobuf:"varint,1,opt,name=tp,enum=tipb.ExprType" json:"tp"`
-	Val              []byte        `protobuf:"bytes,2,opt,name=val" json:"val,omitempty"`
-	Children         []*Expr       `protobuf:"bytes,3,rep,name=children" json:"children,omitempty"`
-	Sig              ScalarFuncSig `protobuf:"varint,4,opt,name=sig,enum=tipb.ScalarFuncSig" json:"sig"`
-	FieldType        *FieldType    `protobuf:"bytes,5,opt,name=field_type,json=fieldType" json:"field_type,omitempty"`
-	XXX_unrecognized []byte        `json:"-"`
+	Tp                   ExprType      `protobuf:"varint,1,opt,name=tp,enum=tipb.ExprType" json:"tp"`
+	Val                  []byte        `protobuf:"bytes,2,opt,name=val" json:"val,omitempty"`
+	Children             []*Expr       `protobuf:"bytes,3,rep,name=children" json:"children,omitempty"`
+	Sig                  ScalarFuncSig `protobuf:"varint,4,opt,name=sig,enum=tipb.ScalarFuncSig" json:"sig"`
+	FieldType            *FieldType    `protobuf:"bytes,5,opt,name=field_type,json=fieldType" json:"field_type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *Expr) Reset()                    { *m = Expr{} }
-func (m *Expr) String() string            { return proto.CompactTextString(m) }
-func (*Expr) ProtoMessage()               {}
-func (*Expr) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{1} }
+func (m *Expr) Reset()         { *m = Expr{} }
+func (m *Expr) String() string { return proto.CompactTextString(m) }
+func (*Expr) ProtoMessage()    {}
+func (*Expr) Descriptor() ([]byte, []int) {
+	return fileDescriptor_expression_2759c1c6ac82e149, []int{1}
+}
+func (m *Expr) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Expr) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Expr.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *Expr) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Expr.Merge(dst, src)
+}
+func (m *Expr) XXX_Size() int {
+	return m.Size()
+}
+func (m *Expr) XXX_DiscardUnknown() {
+	xxx_messageInfo_Expr.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Expr proto.InternalMessageInfo
 
 func (m *Expr) GetTp() ExprType {
 	if m != nil {
@@ -1856,15 +1926,45 @@ func (m *Expr) GetFieldType() *FieldType {
 
 // ByItem type for group by and order by.
 type ByItem struct {
-	Expr             *Expr  `protobuf:"bytes,1,opt,name=expr" json:"expr,omitempty"`
-	Desc             bool   `protobuf:"varint,2,opt,name=desc" json:"desc"`
-	XXX_unrecognized []byte `json:"-"`
+	Expr                 *Expr    `protobuf:"bytes,1,opt,name=expr" json:"expr,omitempty"`
+	Desc                 bool     `protobuf:"varint,2,opt,name=desc" json:"desc"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ByItem) Reset()                    { *m = ByItem{} }
-func (m *ByItem) String() string            { return proto.CompactTextString(m) }
-func (*ByItem) ProtoMessage()               {}
-func (*ByItem) Descriptor() ([]byte, []int) { return fileDescriptorExpression, []int{2} }
+func (m *ByItem) Reset()         { *m = ByItem{} }
+func (m *ByItem) String() string { return proto.CompactTextString(m) }
+func (*ByItem) ProtoMessage()    {}
+func (*ByItem) Descriptor() ([]byte, []int) {
+	return fileDescriptor_expression_2759c1c6ac82e149, []int{2}
+}
+func (m *ByItem) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ByItem) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ByItem.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (dst *ByItem) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ByItem.Merge(dst, src)
+}
+func (m *ByItem) XXX_Size() int {
+	return m.Size()
+}
+func (m *ByItem) XXX_DiscardUnknown() {
+	xxx_messageInfo_ByItem.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ByItem proto.InternalMessageInfo
 
 func (m *ByItem) GetExpr() *Expr {
 	if m != nil {
@@ -2031,6 +2131,9 @@ func encodeVarintExpression(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *FieldType) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovExpression(uint64(m.Tp))
@@ -2047,6 +2150,9 @@ func (m *FieldType) Size() (n int) {
 }
 
 func (m *Expr) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 1 + sovExpression(uint64(m.Tp))
@@ -2072,6 +2178,9 @@ func (m *Expr) Size() (n int) {
 }
 
 func (m *ByItem) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Expr != nil {
@@ -2666,9 +2775,9 @@ var (
 	ErrIntOverflowExpression   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("expression.proto", fileDescriptorExpression) }
+func init() { proto.RegisterFile("expression.proto", fileDescriptor_expression_2759c1c6ac82e149) }
 
-var fileDescriptorExpression = []byte{
+var fileDescriptor_expression_2759c1c6ac82e149 = []byte{
 	// 4505 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x5a, 0x67, 0x74, 0x1c, 0x55,
 	0x96, 0xa6, 0x6d, 0x19, 0xec, 0x72, 0xba, 0x14, 0x36, 0x6a, 0xd8, 0xb3, 0xb6, 0x4c, 0xcf, 0x59,
