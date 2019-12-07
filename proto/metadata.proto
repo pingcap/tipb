@@ -12,5 +12,5 @@ option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 
 message InUnionMetadata {
-    required bool in_union = 1;
+    required bool in_union = 1 [(gogoproto.nullable) = false];
 }
