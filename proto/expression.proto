@@ -399,8 +399,8 @@ enum ScalarFuncSig {
 
 	/*like*/
 	LikeSig = 4310;
-	RegexpBinarySig = 4311;
-	RegexpSig = 4312;
+	RegexpSig = 4311;
+	RegexpUTF8Sig = 4312;
 
 	/*json*/
 	JsonExtractSig = 5001;
@@ -564,7 +564,7 @@ enum ScalarFuncSig {
 	Bin = 7002;
 	ASCII = 7003;
 	Char = 7004;
-	CharLength = 7005;
+	CharLengthUTF8 = 7005;
 	Concat = 7006;
 	ConcatWS = 7007;
 	Convert = 7008;
@@ -581,21 +581,21 @@ enum ScalarFuncSig {
 	FromBase64 = 7019;
 	HexIntArg = 7020;
 	HexStrArg = 7021;
-	Insert = 7022;
-	InsertBinary = 7023;
-	Instr = 7024;
-	InstrBinary = 7025;
+	InsertUTF8 = 7022;
+	Insert = 7023;
+	InstrUTF8 = 7024;
+	Instr = 7025;
 	LTrim = 7026;
-	Left = 7027;
-	LeftBinary = 7028;
+	LeftUTF8 = 7027;
+	Left = 7028;
 	Length = 7029;
-	Locate2Args = 7030;
-	Locate3Args = 7031;
-	LocateBinary2Args = 7032;
-	LocateBinary3Args = 7033;
+	Locate2ArgsUTF8 = 7030;
+	Locate3ArgsUTF8 = 7031;
+	Locate2Args = 7032;
+	Locate3Args = 7033;
 	Lower = 7034;
-	Lpad = 7035;
-	LpadBinary = 7036;
+	LpadUTF8 = 7035;
+	Lpad = 7036;
 	MakeSet = 7037;
 	OctInt = 7038;
 	OctString = 7039;
@@ -604,18 +604,18 @@ enum ScalarFuncSig {
 	RTrim = 7042;
 	Repeat = 7043;
 	Replace = 7044;
-	Reverse = 7045;
-	ReverseBinary = 7046;
-	Right = 7047;
-	RightBinary = 7048;
-	Rpad = 7049;
-	RpadBinary = 7050;
+	ReverseUTF8 = 7045;
+	Reverse = 7046;
+	RightUTF8 = 7047;
+	Right = 7048;
+	RpadUTF8 = 7049;
+	Rpad = 7050;
 	Space = 7051;
 	Strcmp = 7052;
-	Substring2Args = 7053;
-	Substring3Args = 7054;
-	SubstringBinary2Args = 7055;
-	SubstringBinary3Args = 7056;
+	Substring2ArgsUTF8 = 7053;
+	Substring3ArgsUTF8 = 7054;
+	Substring2Args = 7055;
+	Substring3Args = 7056;
 	SubstringIndex = 7057;
 	ToBase64 = 7058;
 	Trim1Arg = 7059;
@@ -623,7 +623,7 @@ enum ScalarFuncSig {
 	Trim3Args = 7061;
 	UnHex = 7062;
 	Upper = 7063;
-	CharLengthBinary = 7064;
+	CharLength = 7064;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
