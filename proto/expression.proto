@@ -249,7 +249,7 @@ enum ScalarFuncSig {
 	Log2 = 2133;
 	Log10 = 2134;
 	Rand = 2135;
-	RandWithSeed = 2136;
+	RandWithSeedFirstGen = 2136;
 	Pow = 2137;
 	Conv = 2138;
 	CRC32 = 2139;
