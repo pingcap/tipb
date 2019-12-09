@@ -9,6 +9,7 @@
 		checksum.proto
 		executor.proto
 		expression.proto
+		metadata.proto
 		schema.proto
 		select.proto
 
@@ -40,6 +41,7 @@
 		FieldType
 		Expr
 		ByItem
+		InUnionMetadata
 		TableInfo
 		ColumnInfo
 		IndexInfo
