@@ -622,8 +622,9 @@ enum ScalarFuncSig {
 	Trim2Args = 7060;
 	Trim3Args = 7061;
 	UnHex = 7062;
-	Upper = 7063;
-	CharLength = 7064;
+	UpperUTF8 = 7063;
+	Upper = 7064;
+	CharLength = 7065;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
