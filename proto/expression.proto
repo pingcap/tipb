@@ -635,8 +635,16 @@ message Expr {
 	optional FieldType field_type = 5;
 }
 
+// Expression organized in RPN form.
+// https://en.wikipedia.org/wiki/Reverse_Polish_notation
+message RpnExpr {
+	// All children fields in exprs should be empty.
+	repeated Expr exprs = 1;
+}
+
 // ByItem type for group by and order by.
 message ByItem {
 	optional Expr expr = 1;
+	optional RpnExpr rpn_expr = 3;
 	optional bool desc = 2 [(gogoproto.nullable) = false];
 }

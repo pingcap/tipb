@@ -115,6 +115,9 @@ message DAGRequest {
 
 	// Represents the chunk memory layout.
 	optional ChunkMemoryLayout chunk_memory_layout = 14;
+
+	// Represents whether the expression use RPN form.
+	optional bool is_rpn_expr = 15;
 }
 
 enum EncodeType {
