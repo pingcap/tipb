@@ -631,6 +631,7 @@ message Expr {
 	optional ExprType tp = 1 [(gogoproto.nullable) = false];
 	optional bytes val = 2;
 	repeated Expr children = 3;
+	optional uint32 rpn_args_len = 6;
 	optional ScalarFuncSig sig = 4 [(gogoproto.nullable) = false];
 	optional FieldType field_type = 5;
 }
