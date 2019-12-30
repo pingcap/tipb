@@ -52,18 +52,22 @@ message IndexScan {
 message Selection {
 	// Where conditions.
 	repeated Expr conditions = 1;
+	repeated RpnExpr rpn_conditions = 2;
 }
 
 message Projection {
 	// Projection expressions.
 	repeated Expr exprs = 1;
+	repeated RpnExpr rpn_exprs = 2;
 }
 
 message Aggregation {
 	// Group by clause.
 	repeated Expr group_by = 1;
+	repeated RpnExpr rpn_group_by = 4;
 	// Aggregate functions.
 	repeated Expr agg_func = 2;
+	repeated RpnExpr rpn_agg_func = 5;
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 }

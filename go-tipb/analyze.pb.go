@@ -40,6 +40,7 @@
 		ExecutorExecutionSummary
 		FieldType
 		Expr
+		RpnExpr
 		ByItem
 		InUnionMetadata
 		TableInfo
