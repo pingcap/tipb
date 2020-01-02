@@ -222,7 +222,12 @@ enum ScalarFuncSig {
 	ModDecimal = 216;
 	ModInt = 217;
 	MultiplyIntUnsigned = 218;
+	PlusIntUnsignedUnsigned = 219;
+	PlusIntUnsignedSigned = 220;
+	PlusIntSignedUnsigned = 221;
+	PlusIntSignedSigned = 222;
 
+	
 	/*math*/
 	AbsInt = 2101;
 	AbsUInt = 2102;
