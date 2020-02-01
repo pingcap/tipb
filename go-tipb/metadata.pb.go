@@ -10,9 +10,9 @@ import (
 
 	math "math"
 
-	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
-
 	io "io"
+
+	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -38,8 +38,9 @@ func (m *InUnionMetadata) GetInUnion() bool {
 }
 
 type CompareInMetadata struct {
-	HasNull          bool   `protobuf:"varint,1,req,name=has_null,json=hasNull" json:"has_null"`
-	Datums           []byte `protobuf:"bytes,2,req,name=datums" json:"datums,omitempty"`
+	HasNull bool `protobuf:"varint,1,req,name=has_null,json=hasNull" json:"has_null"`
+	// consts represents all non-null const args in repeated Datum format.
+	Consts           []byte `protobuf:"bytes,2,opt,name=consts" json:"consts,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
@@ -55,9 +56,9 @@ func (m *CompareInMetadata) GetHasNull() bool {
 	return false
 }
 
-func (m *CompareInMetadata) GetDatums() []byte {
+func (m *CompareInMetadata) GetConsts() []byte {
 	if m != nil {
-		return m.Datums
+		return m.Consts
 	}
 	return nil
 }
@@ -118,13 +119,11 @@ func (m *CompareInMetadata) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0
 	}
 	i++
-	if m.Datums == nil {
-		return 0, new(github_com_golang_protobuf_proto.RequiredNotSetError)
-	} else {
+	if m.Consts != nil {
 		dAtA[i] = 0x12
 		i++
-		i = encodeVarintMetadata(dAtA, i, uint64(len(m.Datums)))
-		i += copy(dAtA[i:], m.Datums)
+		i = encodeVarintMetadata(dAtA, i, uint64(len(m.Consts)))
+		i += copy(dAtA[i:], m.Consts)
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -155,8 +154,8 @@ func (m *CompareInMetadata) Size() (n int) {
 	var l int
 	_ = l
 	n += 2
-	if m.Datums != nil {
-		l = len(m.Datums)
+	if m.Consts != nil {
+		l = len(m.Consts)
 		n += 1 + l + sovMetadata(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
@@ -307,7 +306,7 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 			hasFields[0] |= uint64(0x00000001)
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Datums", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Consts", wireType)
 			}
 			var byteLen int
 			for shift := uint(0); ; shift += 7 {
@@ -331,12 +330,11 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Datums = append(m.Datums[:0], dAtA[iNdEx:postIndex]...)
-			if m.Datums == nil {
-				m.Datums = []byte{}
+			m.Consts = append(m.Consts[:0], dAtA[iNdEx:postIndex]...)
+			if m.Consts == nil {
+				m.Consts = []byte{}
 			}
 			iNdEx = postIndex
-			hasFields[0] |= uint64(0x00000002)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipMetadata(dAtA[iNdEx:])
@@ -354,9 +352,6 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 		}
 	}
 	if hasFields[0]&uint64(0x00000001) == 0 {
-		return new(github_com_golang_protobuf_proto.RequiredNotSetError)
-	}
-	if hasFields[0]&uint64(0x00000002) == 0 {
 		return new(github_com_golang_protobuf_proto.RequiredNotSetError)
 	}
 
@@ -481,9 +476,9 @@ var fileDescriptorMetadata = []byte{
 	0xbc, 0xf8, 0x52, 0x90, 0x98, 0x04, 0xa3, 0x02, 0x93, 0x06, 0x87, 0x13, 0xcb, 0x89, 0x7b, 0xf2,
 	0x0c, 0x41, 0xec, 0x99, 0x10, 0x85, 0x4a, 0x3e, 0x5c, 0x82, 0xce, 0xf9, 0xb9, 0x05, 0x89, 0x45,
 	0xa9, 0x9e, 0x28, 0xba, 0x32, 0x12, 0x8b, 0xe3, 0xf3, 0x4a, 0x73, 0x72, 0x50, 0x75, 0x65, 0x24,
-	0x16, 0xfb, 0x95, 0xe6, 0xe4, 0x08, 0x89, 0x71, 0xb1, 0xa5, 0x24, 0x96, 0x94, 0xe6, 0x16, 0x4b,
-	0x30, 0x29, 0x30, 0x69, 0xf0, 0x04, 0x41, 0x79, 0x4e, 0x9a, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78,
+	0x16, 0xfb, 0x95, 0xe6, 0xe4, 0x08, 0x89, 0x71, 0xb1, 0x25, 0xe7, 0xe7, 0x15, 0x97, 0x14, 0x4b,
+	0x30, 0x29, 0x30, 0x6a, 0xf0, 0x04, 0x41, 0x79, 0x4e, 0x9a, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78,
 	0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x8c, 0xc7, 0x72, 0x0c, 0x5c, 0xa2, 0xc9, 0xf9, 0xb9,
 	0x7a, 0x05, 0x99, 0x79, 0xe9, 0xc9, 0x89, 0x05, 0x7a, 0x25, 0x99, 0x29, 0x49, 0x7a, 0x20, 0x0f,
-	0x04, 0x30, 0x02, 0x02, 0x00, 0x00, 0xff, 0xff, 0x7f, 0x0f, 0x93, 0xca, 0xd9, 0x00, 0x00, 0x00,
+	0x04, 0x30, 0x02, 0x02, 0x00, 0x00, 0xff, 0xff, 0xc3, 0x62, 0x50, 0x96, 0xd9, 0x00, 0x00, 0x00,
 }
