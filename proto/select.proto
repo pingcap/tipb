@@ -118,6 +118,9 @@ message DAGRequest {
 
 	// Represents whether the expression use RPN form.
 	optional bool is_rpn_expr = 15;
+
+	// UserIdentity uses to do privilege check. It is only used in TiDB cluster memory table.
+	optional UserIdentity user = 16;
 }
 
 enum EncodeType {
@@ -135,6 +138,11 @@ message ChunkMemoryLayout {
 enum Endian {
 	LittleEndian = 0;
 	BigEndian = 1;
+}
+
+message UserIdentity {
+	optional string user_name = 1 [(gogoproto.nullable) = false];
+	optional string user_host = 2 [(gogoproto.nullable) = false];
 }
 
 message StreamResponse {

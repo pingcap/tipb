@@ -54,6 +54,7 @@
 		RowMeta
 		DAGRequest
 		ChunkMemoryLayout
+		UserIdentity
 		StreamResponse
 */
 package tipb
