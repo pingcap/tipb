@@ -14,3 +14,9 @@ option (gogoproto.unmarshaler_all) = true;
 message InUnionMetadata {
     required bool in_union = 1 [(gogoproto.nullable) = false];
 }
+
+message CompareInMetadata {
+    required bool has_null = 1 [(gogoproto.nullable) = false];
+    // consts represents all non-null const args in repeated Datum format.
+    optional bytes consts = 2;
+}

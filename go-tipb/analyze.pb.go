@@ -43,6 +43,7 @@
 		RpnExpr
 		ByItem
 		InUnionMetadata
+		CompareInMetadata
 		TableInfo
 		ColumnInfo
 		IndexInfo
