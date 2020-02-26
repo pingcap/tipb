@@ -31,6 +31,7 @@
 		ChecksumResponse
 		Executor
 		TableScan
+		Join
 		IndexScan
 		Selection
 		Projection
