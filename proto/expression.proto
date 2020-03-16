@@ -271,7 +271,9 @@ enum ScalarFuncSig {
 	LogicalAnd = 3101;
 	LogicalOr = 3102;
 	LogicalXor = 3103;
-	UnaryNot = 3104;
+	UnaryNotInt = 3104;
+	UnaryNotDecimal = 3105;
+	UnaryNotReal = 3106;
 	UnaryMinusInt = 3108;
 	UnaryMinusReal = 3109;
 	UnaryMinusDecimal = 3110;
