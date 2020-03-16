@@ -2,7 +2,7 @@ version: 2
 jobs:
   go:
     docker:
-      - image: circleci/golang:stretch
+      - image: circleci/golang:1.13-stretch
     environment:
       PROTOC_VERSION: "3.5.1"
     working_directory: /go/src/github.com/pingcap/tipb
