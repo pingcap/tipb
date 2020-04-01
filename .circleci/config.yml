@@ -34,7 +34,7 @@ jobs:
     environment:
       RUST_TEST_THREADS: "1"
       RUST_BACKTRACE: "1"
-      RUSTFLAGS: "-Dwarnings"
+      RUSTFLAGS: "-Dwarnings -A bare-trait-objects"
     steps:
       - checkout
       # TODO: Run make rust and check whether it generates different contents.
