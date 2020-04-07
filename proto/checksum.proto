@@ -26,7 +26,8 @@ message ChecksumRewriteRule {
 }
 
 message ChecksumRequest {
-    optional uint64 start_ts = 1 [(gogoproto.nullable) = false];
+    // Deprecated. Start Ts has been moved to coprocessor.Request.
+    optional uint64 start_ts_fallback = 1;
     optional ChecksumScanOn scan_on = 2 [(gogoproto.nullable) = false];
     optional ChecksumAlgorithm algorithm = 3 [(gogoproto.nullable) = false];
     optional ChecksumRewriteRule rule = 4;

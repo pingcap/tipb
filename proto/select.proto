@@ -36,11 +36,14 @@ message SelectResponse {
 	repeated Error warnings = 4;
 	repeated int64 output_counts = 5;
 	optional int64 warning_count = 6;
-	// It indicates the encode type of response.
-	optional EncodeType encode_type = 7 [(gogoproto.nullable) = false];
+
+	// Not used any more
+	// optional bytes row_batch_data = 7 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
 
 	// The execution summary of each executor, in the order in request.
 	repeated ExecutorExecutionSummary execution_summaries = 8;
+	// It indicates the encode type of response.
+	optional EncodeType encode_type = 9 [(gogoproto.nullable) = false];
 }
 
 // Chunk contains multiple rows data and rows meta.
@@ -61,7 +64,8 @@ message RowMeta {
 // DAGRequest represents the request that will be handled with DAG mode.
 message DAGRequest {
 	// Transaction start timestamp.
-	optional uint64 start_ts = 1 [(gogoproto.nullable) = false];
+	// Deprecated. Start Ts has been moved to coprocessor.Request.
+	optional uint64 start_ts_fallback = 1;
 
 	// It represents push down Executors.
 	repeated Executor executors = 2;
@@ -108,11 +112,37 @@ message DAGRequest {
 
 	// Represents the maximum size of one packet, any generated string, or any parameter sent as long data.
 	optional uint64 max_allowed_packet = 13;
+
+	// Represents the chunk memory layout.
+	optional ChunkMemoryLayout chunk_memory_layout = 14;
+
+	// Represents whether the expression use RPN form.
+	optional bool is_rpn_expr = 15;
+
+	// UserIdentity uses to do privilege check. It is only used in TiDB cluster memory table.
+	optional UserIdentity user = 16;
 }
 
 enum EncodeType {
 	TypeDefault = 0;
-	TypeArrow = 1;
+	TypeChunk = 1;
+	// TypeCHBlock is used by TiSpark and TiFlash, in this encode mode, TiFlash will encode the data using native ch block format
+	TypeCHBlock = 2;
+}
+
+message ChunkMemoryLayout {
+	// Represents the endian.
+	optional Endian endian = 1 [(gogoproto.nullable) = false];
+}
+
+enum Endian {
+	LittleEndian = 0;
+	BigEndian = 1;
+}
+
+message UserIdentity {
+	optional string user_name = 1 [(gogoproto.nullable) = false];
+	optional string user_host = 2 [(gogoproto.nullable) = false];
 }
 
 message StreamResponse {
