@@ -44,6 +44,7 @@
 		ByItem
 		InUnionMetadata
 		CompareInMetadata
+		KeepNullMetadata
 		TableInfo
 		ColumnInfo
 		IndexInfo
