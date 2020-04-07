@@ -226,6 +226,10 @@ enum ScalarFuncSig {
 	PlusIntUnsignedSigned = 220;
 	PlusIntSignedUnsigned = 221;
 	PlusIntSignedSigned = 222;
+	ModIntUnsignedUnsigned = 223;
+	ModIntUnsignedSigned = 224;
+	ModIntSignedUnsigned = 225;
+	ModIntSignedSigned = 226;
 
 	
 	/*math*/
