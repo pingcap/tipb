@@ -21,6 +21,6 @@ message CompareInMetadata {
     optional bytes consts = 2;
 }
 
-message KeepNullMetadata {
+message IsTrueOrFalseMetadata {
     required bool keep_null = 1 [(gogoproto.nullable) = false];
 }
