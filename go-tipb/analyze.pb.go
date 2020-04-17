@@ -45,7 +45,6 @@
 		ByItem
 		InUnionMetadata
 		CompareInMetadata
-		IsTrueOrFalseMetadata
 		TableInfo
 		ColumnInfo
 		IndexInfo

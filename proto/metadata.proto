@@ -20,7 +20,3 @@ message CompareInMetadata {
     // consts represents all non-null const args in repeated Datum format.
     optional bytes consts = 2;
 }
-
-message IsTrueOrFalseMetadata {
-    required bool keep_null = 1 [(gogoproto.nullable) = false];
-}
