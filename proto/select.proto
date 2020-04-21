@@ -121,6 +121,9 @@ message DAGRequest {
 
 	// UserIdentity uses to do privilege check. It is only used in TiDB cluster memory table.
 	optional UserIdentity user = 16;
+	
+	// Represents tree struct based executors, if this field is set, should ignore the executors field, currently only used in TiFlash
+	optional Executor root_executor = 17;
 }
 
 enum EncodeType {

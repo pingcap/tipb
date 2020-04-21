@@ -35,6 +35,7 @@ message Executor {
 	optional Limit limit = 7;
 	optional Aggregation stream_agg= 8;
 	optional Join join = 9;
+	optional string executor_id = 10;
 }
 
 enum EngineType {
@@ -126,4 +127,7 @@ message ExecutorExecutionSummary {
 
 	// How many times executor's `next()` is called.
 	optional uint64 num_iterations = 3;
+
+	// Coresponding executor id
+	optional string executor_id = 4;
 }
