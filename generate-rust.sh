@@ -8,7 +8,9 @@ GOGO_ROOT=${GOPATH}/src/github.com/gogo/protobuf
 protoc -I.:${GOGO_ROOT}:${GOGO_ROOT}/protobuf --rust_out ../src *.proto || ret=$?
 
 
-echo "extern crate protobuf;" > ../src/lib.rs
+echo "#![allow(unknown_lints)]" > ../src/lib.rs
+echo "#![allow(bare_trait_objects)]" >> ../src/lib.rs
+echo "extern crate protobuf;" >> ../src/lib.rs
 for file in `ls *.proto`
     do
     base_name=$(basename $file ".proto")

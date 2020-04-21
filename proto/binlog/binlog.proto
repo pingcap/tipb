@@ -80,4 +80,7 @@ message Binlog {
     // If PreDDL has matching PostDDL with the same job_id, we can execute the DDL right away, otherwise,
     // we can use the job_id to check if the ddl statement has been successfully added to DDL job list.
     optional int64         ddl_job_id     = 7 [(gogoproto.nullable) = false];
+
+	// ddl_schema_state is used for DDL Binlog.
+    optional int32         ddl_schema_state = 8 [(gogoproto.nullable) = false];
 }
