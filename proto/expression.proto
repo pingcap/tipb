@@ -68,6 +68,7 @@ enum ExprType {
 	Variance = 3017;
 	JsonArrayAgg = 3018;
 	JsonObjectAgg = 3019;
+	ApproxCountDistinct = 3020;
 
 	/* Scalar Function */
 	ScalarFunc = 10000;
