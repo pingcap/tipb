@@ -43,25 +43,26 @@ const (
 	// Column reference. value is int64 column ID.
 	ExprType_ColumnRef ExprType = 201
 	// Aggregate functions.
-	ExprType_Count         ExprType = 3001
-	ExprType_Sum           ExprType = 3002
-	ExprType_Avg           ExprType = 3003
-	ExprType_Min           ExprType = 3004
-	ExprType_Max           ExprType = 3005
-	ExprType_First         ExprType = 3006
-	ExprType_GroupConcat   ExprType = 3007
-	ExprType_Agg_BitAnd    ExprType = 3008
-	ExprType_Agg_BitOr     ExprType = 3009
-	ExprType_Agg_BitXor    ExprType = 3010
-	ExprType_Std           ExprType = 3011
-	ExprType_Stddev        ExprType = 3012
-	ExprType_StddevPop     ExprType = 3013
-	ExprType_StddevSamp    ExprType = 3014
-	ExprType_VarPop        ExprType = 3015
-	ExprType_VarSamp       ExprType = 3016
-	ExprType_Variance      ExprType = 3017
-	ExprType_JsonArrayAgg  ExprType = 3018
-	ExprType_JsonObjectAgg ExprType = 3019
+	ExprType_Count               ExprType = 3001
+	ExprType_Sum                 ExprType = 3002
+	ExprType_Avg                 ExprType = 3003
+	ExprType_Min                 ExprType = 3004
+	ExprType_Max                 ExprType = 3005
+	ExprType_First               ExprType = 3006
+	ExprType_GroupConcat         ExprType = 3007
+	ExprType_Agg_BitAnd          ExprType = 3008
+	ExprType_Agg_BitOr           ExprType = 3009
+	ExprType_Agg_BitXor          ExprType = 3010
+	ExprType_Std                 ExprType = 3011
+	ExprType_Stddev              ExprType = 3012
+	ExprType_StddevPop           ExprType = 3013
+	ExprType_StddevSamp          ExprType = 3014
+	ExprType_VarPop              ExprType = 3015
+	ExprType_VarSamp             ExprType = 3016
+	ExprType_Variance            ExprType = 3017
+	ExprType_JsonArrayAgg        ExprType = 3018
+	ExprType_JsonObjectAgg       ExprType = 3019
+	ExprType_ApproxCountDistinct ExprType = 3020
 	// Scalar Function
 	ExprType_ScalarFunc ExprType = 10000
 )
@@ -103,46 +104,48 @@ var ExprType_name = map[int32]string{
 	3017:  "Variance",
 	3018:  "JsonArrayAgg",
 	3019:  "JsonObjectAgg",
+	3020:  "ApproxCountDistinct",
 	10000: "ScalarFunc",
 }
 var ExprType_value = map[string]int32{
-	"Null":          0,
-	"Int64":         1,
-	"Uint64":        2,
-	"Float32":       3,
-	"Float64":       4,
-	"String":        5,
-	"Bytes":         6,
-	"MysqlBit":      101,
-	"MysqlDecimal":  102,
-	"MysqlDuration": 103,
-	"MysqlEnum":     104,
-	"MysqlHex":      105,
-	"MysqlSet":      106,
-	"MysqlTime":     107,
-	"MysqlJson":     108,
-	"ValueList":     151,
-	"ColumnRef":     201,
-	"Count":         3001,
-	"Sum":           3002,
-	"Avg":           3003,
-	"Min":           3004,
-	"Max":           3005,
-	"First":         3006,
-	"GroupConcat":   3007,
-	"Agg_BitAnd":    3008,
-	"Agg_BitOr":     3009,
-	"Agg_BitXor":    3010,
-	"Std":           3011,
-	"Stddev":        3012,
-	"StddevPop":     3013,
-	"StddevSamp":    3014,
-	"VarPop":        3015,
-	"VarSamp":       3016,
-	"Variance":      3017,
-	"JsonArrayAgg":  3018,
-	"JsonObjectAgg": 3019,
-	"ScalarFunc":    10000,
+	"Null":                0,
+	"Int64":               1,
+	"Uint64":              2,
+	"Float32":             3,
+	"Float64":             4,
+	"String":              5,
+	"Bytes":               6,
+	"MysqlBit":            101,
+	"MysqlDecimal":        102,
+	"MysqlDuration":       103,
+	"MysqlEnum":           104,
+	"MysqlHex":            105,
+	"MysqlSet":            106,
+	"MysqlTime":           107,
+	"MysqlJson":           108,
+	"ValueList":           151,
+	"ColumnRef":           201,
+	"Count":               3001,
+	"Sum":                 3002,
+	"Avg":                 3003,
+	"Min":                 3004,
+	"Max":                 3005,
+	"First":               3006,
+	"GroupConcat":         3007,
+	"Agg_BitAnd":          3008,
+	"Agg_BitOr":           3009,
+	"Agg_BitXor":          3010,
+	"Std":                 3011,
+	"Stddev":              3012,
+	"StddevPop":           3013,
+	"StddevSamp":          3014,
+	"VarPop":              3015,
+	"VarSamp":             3016,
+	"Variance":            3017,
+	"JsonArrayAgg":        3018,
+	"JsonObjectAgg":       3019,
+	"ApproxCountDistinct": 3020,
+	"ScalarFunc":          10000,
 }
 
 func (x ExprType) Enum() *ExprType {
@@ -3251,4 +3254,5 @@ var fileDescriptorExpression = []byte{
 	0xd6, 0xa2, 0x92, 0x3f, 0xda, 0x56, 0x73, 0xbd, 0x4a, 0xc9, 0xa9, 0xb5, 0x49, 0xb7, 0xbc, 0x0e,
 	0xff, 0xf0, 0x38, 0x90, 0xfa, 0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0x4b, 0x83, 0xba, 0xd2, 0x4b,
 	0x2b, 0x00, 0x00,
+
 }
