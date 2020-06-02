@@ -12,6 +12,7 @@
 		metadata.proto
 		schema.proto
 		select.proto
+		trace.proto
 
 	It has these top-level messages:
 		AnalyzeReq
