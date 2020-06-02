@@ -13,14 +13,10 @@ option (gogoproto.unmarshaler_all) = true;
 
 enum Event {
 	Unknown = 0;
-	TiKVCoprGetRequest = 1;
-	TiKVCoprScheduleTask = 2;
-	TiKVCoprGetSnapshot = 3;
-	TiKVCoprHandleRequest = 4;
-	TiKVCoprHandleUnaryFixture = 5;
-	TiKVCoprHandleChecksum = 6;
-	TiKVCoprExecuteDAGRunner = 7;
-	TiKVCoprExecuteBatchDAGRunner = 8;
-	TiKVCoprHandleAnalyze = 9;
-	TiKVCoprHandleCached = 10;
+	TiKVCoprGetRequest = 2;
+	TiKVCoprHandleRequest = 3;
+	TiKVCoprScheduleTask = 4;
+	TiKVCoprGetSnapshot = 5;
+	TiKVCoprExecuteDAGRunner = 6;
+	TiKVCoprExecuteBatchDAGRunner = 7;
 };
