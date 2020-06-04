@@ -39,6 +39,7 @@ message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
+	repeated int64 primary_column_ids = 4;
 }
 
 message IndexScan {
