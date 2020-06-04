@@ -39,6 +39,7 @@ message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
+	repeated int64 primary_column_ids = 4;
 }
 
 message IndexScan {
@@ -47,6 +48,7 @@ message IndexScan {
 	repeated ColumnInfo columns = 3;
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
+	repeated int64 primary_column_ids = 6;
 }
 
 message Selection {
