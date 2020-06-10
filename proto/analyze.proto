@@ -15,6 +15,7 @@ option (gogoproto.unmarshaler_all) = true;
 enum AnalyzeType {
     TypeIndex = 0;
     TypeColumn = 1;
+    TypeCommonHandle = 2;
 }
 
 message AnalyzeReq {
