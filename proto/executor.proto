@@ -48,8 +48,9 @@ message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
-	optional EngineType next_read_engine = 4 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
-    repeated KeyRange ranges = 5 [(gogoproto.nullable) = false];
+	repeated int64 primary_column_ids = 4;
+	optional EngineType next_read_engine = 5 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
+    repeated KeyRange ranges = 6 [(gogoproto.nullable) = false];
 }
 
 enum JoinType {
@@ -77,6 +78,7 @@ message IndexScan {
 	repeated ColumnInfo columns = 3;
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
+	repeated int64 primary_column_ids = 6;
 }
 
 message Selection {
