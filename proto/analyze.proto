@@ -57,6 +57,8 @@ message AnalyzeColumnsReq {
     optional int32 cmsketch_depth = 5;
 
     optional int32 cmsketch_width = 6;
+
+    repeated int64 primary_column_ids = 7;
 }
 
 message AnalyzeColumnsResp {
