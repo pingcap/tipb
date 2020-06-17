@@ -70,6 +70,9 @@ message Join {
 	optional int64 inner_idx = 4 [(gogoproto.nullable) = false]; // 0 or 1
 	repeated Expr left_join_keys = 5;
 	repeated Expr right_join_keys = 6;
+	// used by TiFlash join when new collation is enabled.
+	repeated FieldType probe_types = 7;
+	repeated FieldType build_types = 8;
 }
 
 message IndexScan {
