@@ -50,7 +50,7 @@ message TableScan {
 	optional bool desc = 3 [(gogoproto.nullable) = false];
 	repeated int64 primary_column_ids = 4;
 	optional EngineType next_read_engine = 5 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
-	repeated KeyRange ranges = 6 [(gogoproto.nullable) = false];
+	repeated KeyRange ranges = 6 [(gogoproto.nullable) = false]; // For global read in join, we must point out the key ranges when we don't have the region info.
 }
 
 enum JoinType {
