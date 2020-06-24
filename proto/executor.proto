@@ -127,7 +127,7 @@ message Limit {
 
 message Kill {
 	optional uint64 connID = 1 [(gogoproto.nullable) = false];
-	optional bool query = 2;
+	optional bool query = 2 [(gogoproto.nullable) = false];
 }
 
 message ExecutorExecutionSummary {
