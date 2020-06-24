@@ -39,6 +39,7 @@
 		Aggregation
 		TopN
 		Limit
+		Kill
 		ExecutorExecutionSummary
 		FieldType
 		Expr
