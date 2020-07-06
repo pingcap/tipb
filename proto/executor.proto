@@ -22,6 +22,7 @@ enum ExecType {
 	TypeLimit = 5;
 	TypeStreamAgg = 6;
 	TypeJoin = 7;
+	TypeExchanger = 8;
 }
 
 // It represents a Executor.
@@ -36,6 +37,24 @@ message Executor {
 	optional Aggregation stream_agg= 8;
 	optional Join join = 9;
 	optional string executor_id = 10;
+	optional Exchanger exchanger = 11;
+	optional ExchangeClient exchange_client = 12;
+}
+
+enum ExchangeType {
+        Hash = 0;
+	Broadcast = 1;
+}
+
+message Exchanger {
+	optional ExchangeType tp = 1;
+	repeated string encoded_task_meta = 2;
+	repeated Expr partition_keys = 3; 
+}
+
+message ExchangeClient {
+	repeated string encoded_task_meta = 1;
+	repeated int64 partition_id = 2;
 }
 
 enum EngineType {
