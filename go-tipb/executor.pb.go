@@ -664,9 +664,7 @@ type ExecutorExecutionSummary struct {
 func (m *ExecutorExecutionSummary) Reset()         { *m = ExecutorExecutionSummary{} }
 func (m *ExecutorExecutionSummary) String() string { return proto.CompactTextString(m) }
 func (*ExecutorExecutionSummary) ProtoMessage()    {}
-func (*ExecutorExecutionSummary) Descriptor() ([]byte, []int) {
-	return fileDescriptorExecutor, []int{9}
-}
+(*ExecutorExecutionSummary) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{9} }
 
 func (m *ExecutorExecutionSummary) GetTimeProcessedNs() uint64 {
 	if m != nil && m.TimeProcessedNs != nil {
