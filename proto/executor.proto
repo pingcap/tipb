@@ -105,7 +105,7 @@ message Aggregation {
 	// Aggregate functions.
 	repeated Expr agg_func = 2;
 	repeated RpnExpr rpn_agg_func = 5;
-	optional Expr root_operator = 7;
+	optional Expr rpn_root_operator = 7;
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
