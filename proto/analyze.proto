@@ -16,6 +16,7 @@ enum AnalyzeType {
     TypeIndex = 0;
     TypeColumn = 1;
     TypeCommonHandle = 2;
+    TypeSampleIndex = 3;
 }
 
 message AnalyzeReq {
