@@ -42,6 +42,7 @@ message AnalyzeIndexReq {
 
     optional int64 sample_size = 5 [(gogoproto.nullable) = false];
 
+
     optional int64 sketch_size = 6 [(gogoproto.nullable) = false];
 }
 
