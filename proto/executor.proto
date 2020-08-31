@@ -23,6 +23,7 @@ enum ExecType {
 	TypeStreamAgg = 6;
 	TypeJoin = 7;
 	TypeExchanger = 8;
+	TypeExchangerClient = 9;
 }
 
 // It represents a Executor.
@@ -34,16 +35,16 @@ message Executor {
 	optional Aggregation aggregation = 5;
 	optional TopN topN = 6;
 	optional Limit limit = 7;
-	optional Aggregation stream_agg= 8;
+	optional Exchanger exchanger = 8;
 	optional Join join = 9;
 	optional string executor_id = 10;
-	optional Exchanger exchanger = 11;
-	optional ExchangeClient exchange_client = 12;
+	optional ExchangerClient exchanger_client = 11;
 }
 
 enum ExchangeType {
-        Hash = 0;
+	PassThrough = 0;
 	Broadcast = 1;
+        Hash = 2;
 }
 
 message Exchanger {
@@ -52,7 +53,7 @@ message Exchanger {
 	repeated Expr partition_keys = 3; 
 }
 
-message ExchangeClient {
+message ExchangerClient {
 	repeated string encoded_task_meta = 1;
 	repeated int64 partition_id = 2;
 }
