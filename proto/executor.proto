@@ -49,7 +49,7 @@ enum ExchangeType {
 
 message Exchanger {
 	optional ExchangeType tp = 1;
-	repeated string encoded_task_meta = 2;
+	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
 }
 
