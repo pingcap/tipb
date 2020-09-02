@@ -54,8 +54,7 @@ message Exchanger {
 }
 
 message ExchangerClient {
-	repeated string encoded_task_meta = 1;
-	repeated int64 partition_id = 2;
+	repeated bytes encoded_task_meta = 1;
 }
 
 enum EngineType {
