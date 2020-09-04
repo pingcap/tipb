@@ -51,6 +51,7 @@ message Exchanger {
 	optional ExchangeType tp = 1;
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
+	optional Executor child = 4;
 }
 
 message ExchangerClient {
