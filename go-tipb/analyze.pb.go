@@ -31,8 +31,8 @@
 		ChecksumRequest
 		ChecksumResponse
 		Executor
-		Exchanger
-		ExchangerClient
+		ExchangeServer
+		ExchangeClient
 		TableScan
 		Join
 		IndexScan

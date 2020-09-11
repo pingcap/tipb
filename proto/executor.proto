@@ -22,8 +22,8 @@ enum ExecType {
 	TypeLimit = 5;
 	TypeStreamAgg = 6;
 	TypeJoin = 7;
-	TypeExchanger = 8;
-	TypeExchangerClient = 9;
+	TypeExchangeServer = 8;
+	TypeExchangeClient = 9;
 }
 
 // It represents a Executor.
@@ -35,10 +35,10 @@ message Executor {
 	optional Aggregation aggregation = 5;
 	optional TopN topN = 6;
 	optional Limit limit = 7;
-	optional Exchanger exchanger = 8;
+	optional ExchangeServer exchange_server = 8;
 	optional Join join = 9;
 	optional string executor_id = 10;
-	optional ExchangerClient exchanger_client = 11;
+	optional ExchangeClient exchange_client = 11;
 }
 
 enum ExchangeType {
@@ -47,15 +47,16 @@ enum ExchangeType {
         Hash = 2;
 }
 
-message Exchanger {
-	optional ExchangeType tp = 1;
+message ExchangeServer {
+	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
 	optional Executor child = 4;
 }
 
-message ExchangerClient {
+message ExchangeClient {
 	repeated bytes encoded_task_meta = 1;
+	repeated ColumnInfo columns = 2;
 }
 
 enum EngineType {
