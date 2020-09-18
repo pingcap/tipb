@@ -56,7 +56,7 @@ message ExchangeServer {
 
 message ExchangeClient {
 	repeated bytes encoded_task_meta = 1;
-	repeated ColumnInfo columns = 2;
+	repeated FieldType field_types = 2;
 }
 
 enum EngineType {
