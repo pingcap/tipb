@@ -31,8 +31,8 @@
 		ChecksumRequest
 		ChecksumResponse
 		Executor
-		ExchangeReceiver
 		ExchangeSender
+		ExchangeReceiver
 		TableScan
 		Join
 		IndexScan

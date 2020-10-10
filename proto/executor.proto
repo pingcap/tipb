@@ -47,16 +47,16 @@ enum ExchangeType {
         Hash = 2;
 }
 
-// ExchangeReceiver accept connection and receiver data from ExchangeSender.
-message ExchangeReceiver {
+// ExchangeSender will build connection with ExchangeReceiver.
+message ExchangeSender {
 	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
 	optional Executor child = 4;
 }
 
-// ExchangeSender will build connection with ExchangeReceiver.
-message ExchangeSender {
+// ExchangeReceiver accept connection and receiver data from ExchangeSender.
+message ExchangeReceiver {
 	repeated bytes encoded_task_meta = 1;
 	repeated FieldType field_types = 2;
 }
