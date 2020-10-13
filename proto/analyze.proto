@@ -86,6 +86,7 @@ message Bucket {
     optional bytes lower_bound = 2;
     optional bytes upper_bound = 3;
     optional int64 repeats = 4 [(gogoproto.nullable) = false];
+    optional int64 ndv = 5;
 }
 
 message Histogram {
