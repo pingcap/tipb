@@ -59,6 +59,10 @@ enum JoinType {
 	TypeInnerJoin = 0;
 	TypeLeftOuterJoin = 1;
 	TypeRightOuterJoin = 2;
+	TypeSemiJoin = 3;
+	TypeAntiSemiJoin = 4;
+	TypeLeftOuterSemiJoin = 5;
+	TypeAntiLeftOuterSemiJoin = 6;
 }
 
 enum JoinExecType {
@@ -75,6 +79,9 @@ message Join {
 	// used by TiFlash join when new collation is enabled.
 	repeated FieldType probe_types = 7;
 	repeated FieldType build_types = 8;
+	repeated Expr left_conditions = 9;
+	repeated Expr right_conditions = 10;
+	repeated Expr other_conditions = 11;
 }
 
 message IndexScan {
