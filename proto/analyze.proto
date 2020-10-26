@@ -17,6 +17,7 @@ enum AnalyzeType {
     TypeColumn = 1;
     TypeCommonHandle = 2;
     TypeSampleIndex = 3;
+    TypeMixed = 4;
 }
 
 message AnalyzeReq {
@@ -64,8 +65,6 @@ message AnalyzeColumnsReq {
     optional int32 cmsketch_width = 6;
 
     repeated int64 primary_column_ids = 7;
-
-    repeated AnalyzeIndexReq idx_req = 8;
 }
 
 message AnalyzeColumnsResp {
@@ -74,8 +73,6 @@ message AnalyzeColumnsResp {
 
     // pk_hist is the histogram for primary key when it is the handle.
     optional Histogram pk_hist = 2;
-
-    repeated AnalyzeIndexResp idx_resp = 8;
 }
 
 message AnalyzeIndexResp {
