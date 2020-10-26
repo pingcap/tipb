@@ -69,6 +69,12 @@ message AnalyzeColumnsReq {
     repeated int64 primary_column_ids = 7;
 }
 
+message AnalyzeResp {
+    repeated AnalyzeColumnsResp columns_resp = 1;
+
+    repeated AnalyzeIndexResp index_resp = 2;
+}
+
 message AnalyzeColumnsResp {
     // collectors is the sample collectors for columns.
     repeated SampleCollector collectors = 1;
