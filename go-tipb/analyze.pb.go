@@ -31,6 +31,8 @@
 		ChecksumRequest
 		ChecksumResponse
 		Executor
+		ExchangeSender
+		ExchangeReceiver
 		TableScan
 		Join
 		IndexScan
@@ -39,6 +41,7 @@
 		Aggregation
 		TopN
 		Limit
+		Kill
 		ExecutorExecutionSummary
 		FieldType
 		Expr
