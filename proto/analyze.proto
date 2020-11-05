@@ -16,6 +16,7 @@ enum AnalyzeType {
     TypeIndex = 0;
     TypeColumn = 1;
     TypeCommonHandle = 2;
+    TypeSampleIndex = 3;
 }
 
 message AnalyzeReq {
@@ -39,7 +40,11 @@ message AnalyzeIndexReq {
 
     optional int32 cmsketch_width = 4;
 
-    optional int32 top_n_size = 5;
+    optional int64 sample_size = 5 [(gogoproto.nullable) = false];
+
+    optional int64 sketch_size = 6 [(gogoproto.nullable) = false];
+
+    optional int32 top_n_size = 7;
 }
 
 message AnalyzeColumnsReq {
@@ -74,6 +79,7 @@ message AnalyzeColumnsResp {
 message AnalyzeIndexResp {
     optional Histogram hist = 1;
     optional CMSketch cms = 2;
+    optional SampleCollector collector = 3;
 }
 
 // Bucket is an element of histogram.

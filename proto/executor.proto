@@ -22,6 +22,9 @@ enum ExecType {
 	TypeLimit = 5;
 	TypeStreamAgg = 6;
 	TypeJoin = 7;
+	TypeKill = 8;
+	TypeExchangeSender = 9;
+	TypeExchangeReceiver = 10;
 }
 
 // It represents a Executor.
@@ -33,9 +36,31 @@ message Executor {
 	optional Aggregation aggregation = 5;
 	optional TopN topN = 6;
 	optional Limit limit = 7;
-	optional Aggregation stream_agg= 8;
+	optional ExchangeReceiver exchange_receiver = 8;
 	optional Join join = 9;
 	optional string executor_id = 10;
+	optional Kill kill = 11;
+	optional ExchangeSender exchange_sender = 12;
+}
+
+enum ExchangeType {
+	PassThrough = 0;
+	Broadcast = 1;
+        Hash = 2;
+}
+
+// ExchangeSender will build connection with ExchangeReceiver.
+message ExchangeSender {
+	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
+	repeated bytes encoded_task_meta = 2;
+	repeated Expr partition_keys = 3; 
+	optional Executor child = 4;
+}
+
+// ExchangeReceiver accept connection and receiver data from ExchangeSender.
+message ExchangeReceiver {
+	repeated bytes encoded_task_meta = 1;
+	repeated FieldType field_types = 2;
 }
 
 enum EngineType {
@@ -57,6 +82,10 @@ enum JoinType {
 	TypeInnerJoin = 0;
 	TypeLeftOuterJoin = 1;
 	TypeRightOuterJoin = 2;
+	TypeSemiJoin = 3;
+	TypeAntiSemiJoin = 4;
+	TypeLeftOuterSemiJoin = 5;
+	TypeAntiLeftOuterSemiJoin = 6;
 }
 
 enum JoinExecType {
@@ -73,6 +102,9 @@ message Join {
 	// used by TiFlash join when new collation is enabled.
 	repeated FieldType probe_types = 7;
 	repeated FieldType build_types = 8;
+	repeated Expr left_conditions = 9;
+	repeated Expr right_conditions = 10;
+	repeated Expr other_conditions = 11;
 }
 
 message IndexScan {
@@ -121,6 +153,16 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
+}
+
+message Kill {
+	optional uint64 connID = 1 [(gogoproto.nullable) = false];
+
+	// Query indicates whether terminate a single query on this connection or the whole connection.
+	//   If Query is true, terminates the statement the connection is currently executing, but leaves the connection itself intact.
+	//   If Query is false, terminates the connection associated with the given ConnectionID, after terminating any statement the connection is executing.
+	//   See https://dev.mysql.com/doc/refman/8.0/en/kill.html.
+	optional bool query = 2 [(gogoproto.nullable) = false];
 }
 
 message ExecutorExecutionSummary {
