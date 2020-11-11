@@ -423,6 +423,7 @@ enum ScalarFuncSig {
 	IsIPv4Mapped = 4567;
 	IsIPv6 = 4568;
 	UUID = 4569;
+	VitessHash = 4570;
 
 	/*like*/
 	LikeSig = 4310;
