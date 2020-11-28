@@ -25,6 +25,7 @@ enum ExecType {
 	TypeKill = 8;
 	TypeExchangeSender = 9;
 	TypeExchangeReceiver = 10;
+	TypeProjection = 11;
 }
 
 // It represents a Executor.
@@ -41,6 +42,7 @@ message Executor {
 	optional string executor_id = 10;
 	optional Kill kill = 11;
 	optional ExchangeSender exchange_sender = 12;
+	optional Projection Projection = 13;
 }
 
 enum ExchangeType {
