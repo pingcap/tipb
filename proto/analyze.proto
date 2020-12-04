@@ -46,6 +46,8 @@ message AnalyzeIndexReq {
     optional int64 sketch_size = 6 [(gogoproto.nullable) = false];
 
     optional int32 top_n_size = 7;
+
+    optional int32 version = 8;
 }
 
 message AnalyzeColumnsReq {
@@ -67,6 +69,8 @@ message AnalyzeColumnsReq {
     optional int32 cmsketch_width = 6;
 
     repeated int64 primary_column_ids = 7;
+
+    optional int32 version = 8;
 }
 
 message AnalyzeMixedResp {
