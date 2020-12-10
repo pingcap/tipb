@@ -17,6 +17,7 @@ enum AnalyzeType {
     TypeColumn = 1;
     TypeCommonHandle = 2;
     TypeSampleIndex = 3;
+    TypeMixed = 4;
 }
 
 message AnalyzeReq {
@@ -43,6 +44,10 @@ message AnalyzeIndexReq {
     optional int64 sample_size = 5 [(gogoproto.nullable) = false];
 
     optional int64 sketch_size = 6 [(gogoproto.nullable) = false];
+
+    optional int32 top_n_size = 7;
+
+    optional int32 version = 8;
 }
 
 message AnalyzeColumnsReq {
@@ -64,6 +69,14 @@ message AnalyzeColumnsReq {
     optional int32 cmsketch_width = 6;
 
     repeated int64 primary_column_ids = 7;
+
+    optional int32 version = 8;
+}
+
+message AnalyzeMixedResp {
+    optional AnalyzeColumnsResp columns_resp = 1;
+
+    optional AnalyzeIndexResp index_resp = 2;
 }
 
 message AnalyzeColumnsResp {
