@@ -44,6 +44,8 @@ message SelectResponse {
 	repeated ExecutorExecutionSummary execution_summaries = 8;
 	// It indicates the encode type of response.
 	optional EncodeType encode_type = 9 [(gogoproto.nullable) = false];
+	// ndvs collects the number of distinct value information per range. It will be used to serve as execution feedback information.
+	// Helping us improve the table's statistics information.
 	repeated int64 ndvs = 10;
 }
 

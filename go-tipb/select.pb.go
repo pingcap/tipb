@@ -157,9 +157,11 @@ type SelectResponse struct {
 	// The execution summary of each executor, in the order in request.
 	ExecutionSummaries []*ExecutorExecutionSummary `protobuf:"bytes,8,rep,name=execution_summaries,json=executionSummaries" json:"execution_summaries,omitempty"`
 	// It indicates the encode type of response.
-	EncodeType       EncodeType `protobuf:"varint,9,opt,name=encode_type,json=encodeType,enum=tipb.EncodeType" json:"encode_type"`
-	Ndvs             []int64    `protobuf:"varint,10,rep,name=ndvs" json:"ndvs,omitempty"`
-	XXX_unrecognized []byte     `json:"-"`
+	EncodeType EncodeType `protobuf:"varint,9,opt,name=encode_type,json=encodeType,enum=tipb.EncodeType" json:"encode_type"`
+	// ndvs collects the number of distinct value information per range. It will be used to serve as execution feedback information.
+	// Helping us improve the table's statistics information.
+	Ndvs             []int64 `protobuf:"varint,10,rep,name=ndvs" json:"ndvs,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
 func (m *SelectResponse) Reset()                    { *m = SelectResponse{} }
