@@ -47,6 +47,7 @@ enum ExchangeType {
 	PassThrough = 0;
 	Broadcast = 1;
         Hash = 2;
+        Merge = 3;
 }
 
 // ExchangeSender will build connection with ExchangeReceiver.
