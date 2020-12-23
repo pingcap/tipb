@@ -142,6 +142,8 @@ message Aggregation {
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
+	// If it is a final aggregation.
+	optional bool final = 7 [(gogoproto.nullable) = false];
 }
 
 message TopN {
@@ -179,7 +181,4 @@ message ExecutorExecutionSummary {
 
 	// Coresponding executor id
 	optional string executor_id = 4;
-
-	// The execution concurrency for this executor
-	optional uint64 concurrency = 5;
 }
