@@ -151,7 +151,7 @@ message Aggregation {
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
 	// aggregation function mode.
-	optional AggFunctionMode mode = 7;
+	optional AggFunctionMode mode = 7 [(gogoproto.nullable) = false];
 }
 
 message TopN {
