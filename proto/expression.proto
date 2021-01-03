@@ -231,7 +231,17 @@ enum ScalarFuncSig {
 	ModIntUnsignedSigned = 224;
 	ModIntSignedUnsigned = 225;
 	ModIntSignedSigned = 226;
-
+	MinusIntUnsignedUnsigned = 227;
+	MinusIntUnsignedSigned = 228;
+	MinusIntSignedUnsigned = 229;
+	MinusIntSignedSigned = 230;
+	MinusIntForcedUnsignedUnsigned = 231;
+	MinusIntForcedUnsignedSigned = 232;
+	MinusIntForcedSignedUnsigned = 233;
+	IntDivideIntUnsignedUnsigned = 234;
+	IntDivideIntUnsignedSigned = 235;
+	IntDivideIntSignedSigned = 236;
+	IntDivideIntSignedUnsigned = 237;
 	
 	/*math*/
 	AbsInt = 2101;
