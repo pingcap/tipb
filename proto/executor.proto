@@ -189,4 +189,7 @@ message ExecutorExecutionSummary {
 
 	// Coresponding executor id
 	optional string executor_id = 4;
+
+	// The execution concurrency for this executor
+	optional uint64 concurrency = 5;
 }
