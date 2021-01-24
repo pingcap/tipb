@@ -725,6 +725,7 @@ const (
 	ScalarFuncSig_UpperUTF8          ScalarFuncSig = 7063
 	ScalarFuncSig_Upper              ScalarFuncSig = 7064
 	ScalarFuncSig_CharLength         ScalarFuncSig = 7065
+	ScalarFuncSig_Soundex            ScalarFuncSig = 7066
 )
 
 var ScalarFuncSig_name = map[int32]string{
