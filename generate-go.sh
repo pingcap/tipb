@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 cd proto
 echo "generate go code..."
 go install github.com/gogo/protobuf/protoc-gen-gofast

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 cd proto/binlog
 
 echo "generate binlog code..."
