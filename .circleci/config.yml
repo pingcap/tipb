@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  goodbye:
+    docker:
+      - image: alpine:3.13
+    steps:
+      - run:
+          name: Say goodbye
+          command: echo "tipb has been migrated to github actions. Keep this CI running for compatibility reasons."
+
+workflows:
+  version: 2
+  goodbye:
+      jobs:
+        - goodbye
