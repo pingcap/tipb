@@ -584,6 +584,7 @@ enum ScalarFuncSig {
 	AddDateDurationInt = 6124;
 	AddDateDurationReal = 6125;
 	AddDateDurationDecimal = 6126;
+	ExtractDatetimeFromString = 6127;
 
 	/* String functions */
 	BitLength = 7001;
