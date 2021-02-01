@@ -2,7 +2,7 @@ version: 2
 jobs:
   goodbye:
     docker:
-      - image: alpine:3.7
+      - image: alpine:3.13
     steps:
       - run:
           name: Say goodbye
