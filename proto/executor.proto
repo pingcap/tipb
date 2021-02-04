@@ -94,6 +94,14 @@ enum JoinExecType {
 	TypeHashJoin = 0;
 }
 
+enum AggFunctionMode {
+		CompleteMode = 0;
+		FinalMode = 1;
+		Partial1Mode = 2;
+		Partial2Mode = 3;
+		DedupMode = 4;
+}
+
 message Join {
 	optional JoinType join_type = 1 [(gogoproto.nullable) = false];
 	optional JoinExecType join_exec_type = 2 [(gogoproto.nullable) = false];
@@ -142,6 +150,8 @@ message Aggregation {
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
+	// aggregation function mode.
+	optional AggFunctionMode mode = 7 [(gogoproto.nullable) = false];
 }
 
 message TopN {
