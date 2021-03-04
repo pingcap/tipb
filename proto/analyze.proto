@@ -71,6 +71,8 @@ message AnalyzeColumnsReq {
     repeated int64 primary_column_ids = 7;
 
     optional int32 version = 8;
+
+    repeated int64 primary_prefix_column_ids = 9;
 }
 
 message AnalyzeMixedResp {
