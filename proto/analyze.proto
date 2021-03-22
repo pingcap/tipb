@@ -134,7 +134,7 @@ message SampleCollector {
     optional FMSketch fm_sketch = 4;
     optional CMSketch cm_sketch = 5;
     optional int64 total_size = 6;
-    repeated uint64 sample_weights = 7;
+    repeated int64 sample_weights = 7;
 }
 
 message RowSampleCollector {
