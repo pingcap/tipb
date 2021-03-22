@@ -73,6 +73,8 @@ message AnalyzeColumnsReq {
     optional int32 version = 8;
 
     repeated int64 primary_prefix_column_ids = 9;
+
+    repeated AnalyzeColumnGroup column_groups = 10;
 }
 
 message AnalyzeMixedResp {
@@ -81,12 +83,18 @@ message AnalyzeMixedResp {
     optional AnalyzeIndexResp index_resp = 2;
 }
 
+message AnalyzeColumnGroup {
+    repeated int64 column_offsets = 1;
+}
+
 message AnalyzeColumnsResp {
     // collectors is the sample collectors for columns.
     repeated SampleCollector collectors = 1;
 
     // pk_hist is the histogram for primary key when it is the handle.
     optional Histogram pk_hist = 2;
+
+    optional RowSampleCollector row_collector = 3;
 }
 
 message AnalyzeIndexResp {
@@ -126,6 +134,16 @@ message SampleCollector {
     optional FMSketch fm_sketch = 4;
     optional CMSketch cm_sketch = 5;
     optional int64 total_size = 6;
+    repeated uint64 sample_weights = 7;
+}
+
+message RowSampleCollector {
+    repeated bytes samples = 1;
+    optional int64 null_count = 2 [(gogoproto.nullable) = false];
+    optional int64 count = 3;
+    repeated FMSketch fm_sketch = 4;
+    repeated int64 total_size = 5;
+    repeated uint64 sample_weights = 6;
 }
 
 message CMSketchRow {
