@@ -18,6 +18,7 @@ enum AnalyzeType {
     TypeCommonHandle = 2;
     TypeSampleIndex = 3;
     TypeMixed = 4;
+    TypeFullSampling = 5;
 }
 
 message AnalyzeReq {
