@@ -139,12 +139,16 @@ message SampleCollector {
 }
 
 message RowSampleCollector {
-    repeated bytes samples = 1;
-    optional int64 null_count = 2 [(gogoproto.nullable) = false];
-    optional int64 count = 3;
+    repeated RowSample samples = 1;
+    repeated int64 null_counts = 2 [(gogoproto.nullable) = false];
+    optional int64 count = 3 [(gogoproto.nullable) = false];
     repeated FMSketch fm_sketch = 4;
     repeated int64 total_size = 5;
-    repeated uint64 sample_weights = 6;
+}
+
+message RowSample {
+    repeated bytes row = 1;
+    optional int64 weight = 2 [(gogoproto.nullable) = false];
 }
 
 message CMSketchRow {
