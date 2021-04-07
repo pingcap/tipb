@@ -86,6 +86,7 @@ enum ScalarFuncSig {
 	CastIntAsTime = 5;
 	CastIntAsDuration = 6;
 	CastIntAsJson = 7;
+	CastIntAsTimeAllowYear = 8;
 
 	CastRealAsInt = 10;
 	CastRealAsReal = 11;
