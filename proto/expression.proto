@@ -429,6 +429,14 @@ enum ScalarFuncSig {
 	LikeSig = 4310;
 	RegexpSig = 4311;
 	RegexpUTF8Sig = 4312;
+	RegexpLikeSig = 4313;
+	RegexpLikeUTF8Sig = 4314;
+	RegexpInStrSig = 4315;
+	RegexpInStrUTF8Sig = 4316;
+	RegexpReplaceSig = 4317;
+	RegexpReplaceUTF8Sig = 4318;
+	RegexpSubstrSig = 4319;
+	RegexpSubstrUTF8Sig = 4320;
 
 	/*json*/
 	JsonExtractSig = 5001;
