@@ -86,7 +86,7 @@ message AnalyzeMixedResp {
 
 message AnalyzeColumnGroup {
     repeated int64 column_offsets = 1;
-    repeated int64 column_lengths = 2;
+    repeated int64 prefix_lengths = 2;
 }
 
 message AnalyzeColumnsResp {
