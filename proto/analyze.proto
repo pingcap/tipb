@@ -86,6 +86,7 @@ message AnalyzeMixedResp {
 
 message AnalyzeColumnGroup {
     repeated int64 column_offsets = 1;
+    repeated int64 column_lengths = 2;
 }
 
 message AnalyzeColumnsResp {
@@ -135,7 +136,6 @@ message SampleCollector {
     optional FMSketch fm_sketch = 4;
     optional CMSketch cm_sketch = 5;
     optional int64 total_size = 6;
-    repeated int64 sample_weights = 7;
 }
 
 message RowSampleCollector {
