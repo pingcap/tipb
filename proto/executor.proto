@@ -57,6 +57,7 @@ message ExchangeSender {
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
 	optional Executor child = 4;
+	repeated FieldType types = 5;
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
