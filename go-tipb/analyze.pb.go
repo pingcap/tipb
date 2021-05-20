@@ -66,6 +66,7 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
+		ResourceGroupTag
 */
 package tipb
 

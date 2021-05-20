@@ -20,3 +20,8 @@ enum Event {
 	TiKvCoprExecuteDagRunner = 1004;
 	TiKvCoprExecuteBatchDagRunner = 1005;
 };
+
+message ResourceGroupTag {
+	optional bytes sql_digest = 2;
+	optional bytes plan_digest = 3;
+}
