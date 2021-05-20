@@ -673,6 +673,7 @@ message Expr {
 	optional ScalarFuncSig sig = 4 [(gogoproto.nullable) = false];
 	optional FieldType field_type = 5;
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
+	repeated ByItem order_by = 8;
 }
 
 // Expression organized in RPN form.
