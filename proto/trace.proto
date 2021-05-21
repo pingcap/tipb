@@ -22,6 +22,6 @@ enum Event {
 };
 
 message ResourceGroupTag {
-	optional bytes sql_digest = 2;
-	optional bytes plan_digest = 3;
+	optional bytes sql_digest = 1;
+	optional bytes plan_digest = 2;
 }
