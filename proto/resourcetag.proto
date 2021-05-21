@@ -11,12 +11,7 @@ option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 
-enum Event {
-	Unknown = 0;
-	TiKvCoprGetRequest = 1000;
-	TiKvCoprHandleRequest = 1001;
-	TiKvCoprScheduleTask = 1002;
-	TiKvCoprGetSnapshot = 1003;
-	TiKvCoprExecuteDagRunner = 1004;
-	TiKvCoprExecuteBatchDagRunner = 1005;
-};
+message ResourceGroupTag {
+  optional bytes sql_digest = 1;
+  optional bytes plan_digest = 2;
+}

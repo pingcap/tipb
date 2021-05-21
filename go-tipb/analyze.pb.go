@@ -10,6 +10,7 @@
 		executor.proto
 		expression.proto
 		metadata.proto
+		resourcetag.proto
 		schema.proto
 		select.proto
 		trace.proto
@@ -53,6 +54,7 @@
 		ByItem
 		InUnionMetadata
 		CompareInMetadata
+		ResourceGroupTag
 		TableInfo
 		ColumnInfo
 		IndexInfo
@@ -66,7 +68,6 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
-		ResourceGroupTag
 */
 package tipb
 
