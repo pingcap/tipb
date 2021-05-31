@@ -10,6 +10,10 @@ import (
 
 	math "math"
 
+	context "golang.org/x/net/context"
+
+	grpc "google.golang.org/grpc"
+
 	io "io"
 )
 
@@ -130,6 +134,176 @@ func init() {
 	proto.RegisterType((*CPUTimeRequestTiDB)(nil), "tipb.CPUTimeRequestTiDB")
 	proto.RegisterType((*CPUTimeRequestTiKV)(nil), "tipb.CPUTimeRequestTiKV")
 }
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// Client API for TopSQLAgent service
+
+type TopSQLAgentClient interface {
+	CollectTiDB(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_CollectTiDBClient, error)
+	CollectTiKV(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_CollectTiKVClient, error)
+}
+
+type topSQLAgentClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewTopSQLAgentClient(cc *grpc.ClientConn) TopSQLAgentClient {
+	return &topSQLAgentClient{cc}
+}
+
+func (c *topSQLAgentClient) CollectTiDB(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_CollectTiDBClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_TopSQLAgent_serviceDesc.Streams[0], c.cc, "/tipb.TopSQLAgent/CollectTiDB", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &topSQLAgentCollectTiDBClient{stream}
+	return x, nil
+}
+
+type TopSQLAgent_CollectTiDBClient interface {
+	Send(*CPUTimeRequestTiDB) error
+	Recv() (*Empty, error)
+	grpc.ClientStream
+}
+
+type topSQLAgentCollectTiDBClient struct {
+	grpc.ClientStream
+}
+
+func (x *topSQLAgentCollectTiDBClient) Send(m *CPUTimeRequestTiDB) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *topSQLAgentCollectTiDBClient) Recv() (*Empty, error) {
+	m := new(Empty)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *topSQLAgentClient) CollectTiKV(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_CollectTiKVClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_TopSQLAgent_serviceDesc.Streams[1], c.cc, "/tipb.TopSQLAgent/CollectTiKV", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &topSQLAgentCollectTiKVClient{stream}
+	return x, nil
+}
+
+type TopSQLAgent_CollectTiKVClient interface {
+	Send(*CPUTimeRequestTiKV) error
+	Recv() (*Empty, error)
+	grpc.ClientStream
+}
+
+type topSQLAgentCollectTiKVClient struct {
+	grpc.ClientStream
+}
+
+func (x *topSQLAgentCollectTiKVClient) Send(m *CPUTimeRequestTiKV) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *topSQLAgentCollectTiKVClient) Recv() (*Empty, error) {
+	m := new(Empty)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// Server API for TopSQLAgent service
+
+type TopSQLAgentServer interface {
+	CollectTiDB(TopSQLAgent_CollectTiDBServer) error
+	CollectTiKV(TopSQLAgent_CollectTiKVServer) error
+}
+
+func RegisterTopSQLAgentServer(s *grpc.Server, srv TopSQLAgentServer) {
+	s.RegisterService(&_TopSQLAgent_serviceDesc, srv)
+}
+
+func _TopSQLAgent_CollectTiDB_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TopSQLAgentServer).CollectTiDB(&topSQLAgentCollectTiDBServer{stream})
+}
+
+type TopSQLAgent_CollectTiDBServer interface {
+	Send(*Empty) error
+	Recv() (*CPUTimeRequestTiDB, error)
+	grpc.ServerStream
+}
+
+type topSQLAgentCollectTiDBServer struct {
+	grpc.ServerStream
+}
+
+func (x *topSQLAgentCollectTiDBServer) Send(m *Empty) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *topSQLAgentCollectTiDBServer) Recv() (*CPUTimeRequestTiDB, error) {
+	m := new(CPUTimeRequestTiDB)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _TopSQLAgent_CollectTiKV_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TopSQLAgentServer).CollectTiKV(&topSQLAgentCollectTiKVServer{stream})
+}
+
+type TopSQLAgent_CollectTiKVServer interface {
+	Send(*Empty) error
+	Recv() (*CPUTimeRequestTiKV, error)
+	grpc.ServerStream
+}
+
+type topSQLAgentCollectTiKVServer struct {
+	grpc.ServerStream
+}
+
+func (x *topSQLAgentCollectTiKVServer) Send(m *Empty) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *topSQLAgentCollectTiKVServer) Recv() (*CPUTimeRequestTiKV, error) {
+	m := new(CPUTimeRequestTiKV)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+var _TopSQLAgent_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "tipb.TopSQLAgent",
+	HandlerType: (*TopSQLAgentServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "CollectTiDB",
+			Handler:       _TopSQLAgent_CollectTiDB_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "CollectTiKV",
+			Handler:       _TopSQLAgent_CollectTiKV_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
+	Metadata: "topsql_agent.proto",
+}
+
 func (m *Empty) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)

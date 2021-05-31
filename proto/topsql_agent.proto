@@ -12,8 +12,8 @@ option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 
 service TopSQLAgent {
-  rpc CollectTiDB (stream CPUTimeRequestTiDB) returns (stream Empty) {}
-  rpc CollectTiKV (stream CPUTimeRequestTiKV) returns (stream Empty) {}
+  rpc CollectTiDB(stream CPUTimeRequestTiDB) returns (stream Empty) {}
+  rpc CollectTiKV(stream CPUTimeRequestTiKV) returns (stream Empty) {}
 }
 
 message Empty {}
