@@ -10,7 +10,7 @@ import (
 
 	math "math"
 
-	google_protobuf1 "google.golang.org/protobuf/types/known/emptypb"
+	google_protobuf1 "github.com/gogo/protobuf/types"
 
 	context "golang.org/x/net/context"
 
