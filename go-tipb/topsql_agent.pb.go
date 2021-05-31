@@ -95,6 +95,7 @@ const _ = grpc.SupportPackageIsVersion4
 // Client API for TopSQLAgent service
 
 type TopSQLAgentClient interface {
+	// CollectTiDB is called periodically (e.g. per minute) to save the in-memory TopSQL records
 	CollectTiDB(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_CollectTiDBClient, error)
 }
 
@@ -143,6 +144,7 @@ func (x *topSQLAgentCollectTiDBClient) CloseAndRecv() (*google_protobuf1.Empty, 
 // Server API for TopSQLAgent service
 
 type TopSQLAgentServer interface {
+	// CollectTiDB is called periodically (e.g. per minute) to save the in-memory TopSQL records
 	CollectTiDB(TopSQLAgent_CollectTiDBServer) error
 }
 
