@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+package tipb;
+
+option java_multiple_files = true;
+option java_package = "com.pingcap.tidb.tipb";
+
+import "gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+service TopSQLAgent {
+  rpc CollectTiDB (stream CPUTimeRequestTiDB) returns (stream Empty) {}
+  rpc CollectTiKV (stream CPUTimeRequestTiKV) returns (stream Empty) {}
+}
+
+message Empty {}
+
+message CPUTimeRequestTiDB {
+  repeated uint64 timestamp_list = 1;  // timestamp in second
+  repeated uint32 cpu_time_ms_list = 2;  // range is [0, 1000]
+  optional string sql_digest = 3;
+  optional string normalized_sql = 4;  // SQL string with sensitive fields trimmed, potentially > 1M
+  optional string plan_digest = 5;
+  optional string normalized_plan = 6;  // potentially > 1M
+}
+
+message CPUTimeRequestTiKV {
+  repeated uint64 timestamp_list = 1;  // timestamp in second
+  repeated uint32 cpu_time_ms_list = 2;  // range [0, 1000]
+  optional string sql_digest = 3;
+  optional string plan_digest = 4;
+}

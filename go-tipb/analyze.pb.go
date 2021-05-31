@@ -13,6 +13,7 @@
 		resourcetag.proto
 		schema.proto
 		select.proto
+		topsql_agent.proto
 		trace.proto
 
 	It has these top-level messages:
@@ -68,6 +69,9 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
+		Empty
+		CPUTimeRequestTiDB
+		CPUTimeRequestTiKV
 */
 package tipb
 
