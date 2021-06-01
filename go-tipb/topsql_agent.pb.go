@@ -31,12 +31,10 @@ type CollectCPUTimeRequest struct {
 	NormalizedPlan string   `protobuf:"bytes,21,opt,name=normalized_plan,json=normalizedPlan,proto3" json:"normalized_plan,omitempty"`
 }
 
-func (m *CollectCPUTimeRequest) Reset()         { *m = CollectCPUTimeRequest{} }
-func (m *CollectCPUTimeRequest) String() string { return proto.CompactTextString(m) }
-func (*CollectCPUTimeRequest) ProtoMessage()    {}
-func (*CollectCPUTimeRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptorTopsqlAgent, []int{0}
-}
+func (m *CollectCPUTimeRequest) Reset()                    { *m = CollectCPUTimeRequest{} }
+func (m *CollectCPUTimeRequest) String() string            { return proto.CompactTextString(m) }
+func (*CollectCPUTimeRequest) ProtoMessage()               {}
+func (*CollectCPUTimeRequest) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{0} }
 
 func (m *CollectCPUTimeRequest) GetSqlDigest() string {
 	if m != nil {
