@@ -32,10 +32,12 @@ type CollectCPUTimeRequest struct {
 	IsInternalSql  bool     `protobuf:"varint,22,opt,name=is_internal_sql,json=isInternalSql,proto3" json:"is_internal_sql,omitempty"`
 }
 
-func (m *CollectCPUTimeRequest) Reset()                    { *m = CollectCPUTimeRequest{} }
-func (m *CollectCPUTimeRequest) String() string            { return proto.CompactTextString(m) }
-func (*CollectCPUTimeRequest) ProtoMessage()               {}
-func (*CollectCPUTimeRequest) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{0} }
+func (m *CollectCPUTimeRequest) Reset()         { *m = CollectCPUTimeRequest{} }
+func (m *CollectCPUTimeRequest) String() string { return proto.CompactTextString(m) }
+func (*CollectCPUTimeRequest) ProtoMessage()    {}
+func (*CollectCPUTimeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptorTopsqlAgent, []int{0}
+}
 
 func (m *CollectCPUTimeRequest) GetSqlDigest() string {
 	if m != nil {
