@@ -69,7 +69,8 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
-		CPUTimeRequestTiDB
+		CollectCPUTimeRequest
+		CollectCPUTimeResponse
 */
 package tipb
 

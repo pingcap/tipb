@@ -10,8 +10,6 @@ import (
 
 	math "math"
 
-	google_protobuf1 "github.com/gogo/protobuf/types"
-
 	context "golang.org/x/net/context"
 
 	grpc "google.golang.org/grpc"
@@ -24,64 +22,77 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-type CPUTimeRequestTiDB struct {
-	TimestampList  []uint64 `protobuf:"varint,1,rep,packed,name=timestamp_list,json=timestampList" json:"timestamp_list,omitempty"`
-	CpuTimeMsList  []uint32 `protobuf:"varint,2,rep,packed,name=cpu_time_ms_list,json=cpuTimeMsList" json:"cpu_time_ms_list,omitempty"`
-	SqlDigest      string   `protobuf:"bytes,3,opt,name=sql_digest,json=sqlDigest,proto3" json:"sql_digest,omitempty"`
-	NormalizedSql  string   `protobuf:"bytes,4,opt,name=normalized_sql,json=normalizedSql,proto3" json:"normalized_sql,omitempty"`
-	PlanDigest     string   `protobuf:"bytes,5,opt,name=plan_digest,json=planDigest,proto3" json:"plan_digest,omitempty"`
-	NormalizedPlan string   `protobuf:"bytes,6,opt,name=normalized_plan,json=normalizedPlan,proto3" json:"normalized_plan,omitempty"`
+type CollectCPUTimeRequest struct {
+	SqlDigest      string   `protobuf:"bytes,1,opt,name=sql_digest,json=sqlDigest,proto3" json:"sql_digest,omitempty"`
+	PlanDigest     string   `protobuf:"bytes,2,opt,name=plan_digest,json=planDigest,proto3" json:"plan_digest,omitempty"`
+	TimestampList  []uint64 `protobuf:"varint,10,rep,packed,name=timestamp_list,json=timestampList" json:"timestamp_list,omitempty"`
+	CpuTimeMsList  []uint32 `protobuf:"varint,11,rep,packed,name=cpu_time_ms_list,json=cpuTimeMsList" json:"cpu_time_ms_list,omitempty"`
+	NormalizedSql  string   `protobuf:"bytes,20,opt,name=normalized_sql,json=normalizedSql,proto3" json:"normalized_sql,omitempty"`
+	NormalizedPlan string   `protobuf:"bytes,21,opt,name=normalized_plan,json=normalizedPlan,proto3" json:"normalized_plan,omitempty"`
 }
 
-func (m *CPUTimeRequestTiDB) Reset()                    { *m = CPUTimeRequestTiDB{} }
-func (m *CPUTimeRequestTiDB) String() string            { return proto.CompactTextString(m) }
-func (*CPUTimeRequestTiDB) ProtoMessage()               {}
-func (*CPUTimeRequestTiDB) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{0} }
-
-func (m *CPUTimeRequestTiDB) GetTimestampList() []uint64 {
-	if m != nil {
-		return m.TimestampList
-	}
-	return nil
+func (m *CollectCPUTimeRequest) Reset()         { *m = CollectCPUTimeRequest{} }
+func (m *CollectCPUTimeRequest) String() string { return proto.CompactTextString(m) }
+func (*CollectCPUTimeRequest) ProtoMessage()    {}
+func (*CollectCPUTimeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptorTopsqlAgent, []int{0}
 }
 
-func (m *CPUTimeRequestTiDB) GetCpuTimeMsList() []uint32 {
-	if m != nil {
-		return m.CpuTimeMsList
-	}
-	return nil
-}
-
-func (m *CPUTimeRequestTiDB) GetSqlDigest() string {
+func (m *CollectCPUTimeRequest) GetSqlDigest() string {
 	if m != nil {
 		return m.SqlDigest
 	}
 	return ""
 }
 
-func (m *CPUTimeRequestTiDB) GetNormalizedSql() string {
-	if m != nil {
-		return m.NormalizedSql
-	}
-	return ""
-}
-
-func (m *CPUTimeRequestTiDB) GetPlanDigest() string {
+func (m *CollectCPUTimeRequest) GetPlanDigest() string {
 	if m != nil {
 		return m.PlanDigest
 	}
 	return ""
 }
 
-func (m *CPUTimeRequestTiDB) GetNormalizedPlan() string {
+func (m *CollectCPUTimeRequest) GetTimestampList() []uint64 {
+	if m != nil {
+		return m.TimestampList
+	}
+	return nil
+}
+
+func (m *CollectCPUTimeRequest) GetCpuTimeMsList() []uint32 {
+	if m != nil {
+		return m.CpuTimeMsList
+	}
+	return nil
+}
+
+func (m *CollectCPUTimeRequest) GetNormalizedSql() string {
+	if m != nil {
+		return m.NormalizedSql
+	}
+	return ""
+}
+
+func (m *CollectCPUTimeRequest) GetNormalizedPlan() string {
 	if m != nil {
 		return m.NormalizedPlan
 	}
 	return ""
 }
 
+type CollectCPUTimeResponse struct {
+}
+
+func (m *CollectCPUTimeResponse) Reset()         { *m = CollectCPUTimeResponse{} }
+func (m *CollectCPUTimeResponse) String() string { return proto.CompactTextString(m) }
+func (*CollectCPUTimeResponse) ProtoMessage()    {}
+func (*CollectCPUTimeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptorTopsqlAgent, []int{1}
+}
+
 func init() {
-	proto.RegisterType((*CPUTimeRequestTiDB)(nil), "tipb.CPUTimeRequestTiDB")
+	proto.RegisterType((*CollectCPUTimeRequest)(nil), "tipb.CollectCPUTimeRequest")
+	proto.RegisterType((*CollectCPUTimeResponse)(nil), "tipb.CollectCPUTimeResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -117,8 +128,8 @@ func (c *topSQLAgentClient) CollectCPUTime(ctx context.Context, opts ...grpc.Cal
 }
 
 type TopSQLAgent_CollectCPUTimeClient interface {
-	Send(*CPUTimeRequestTiDB) error
-	CloseAndRecv() (*google_protobuf1.Empty, error)
+	Send(*CollectCPUTimeRequest) error
+	CloseAndRecv() (*CollectCPUTimeResponse, error)
 	grpc.ClientStream
 }
 
@@ -126,15 +137,15 @@ type topSQLAgentCollectCPUTimeClient struct {
 	grpc.ClientStream
 }
 
-func (x *topSQLAgentCollectCPUTimeClient) Send(m *CPUTimeRequestTiDB) error {
+func (x *topSQLAgentCollectCPUTimeClient) Send(m *CollectCPUTimeRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *topSQLAgentCollectCPUTimeClient) CloseAndRecv() (*google_protobuf1.Empty, error) {
+func (x *topSQLAgentCollectCPUTimeClient) CloseAndRecv() (*CollectCPUTimeResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(google_protobuf1.Empty)
+	m := new(CollectCPUTimeResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -157,8 +168,8 @@ func _TopSQLAgent_CollectCPUTime_Handler(srv interface{}, stream grpc.ServerStre
 }
 
 type TopSQLAgent_CollectCPUTimeServer interface {
-	SendAndClose(*google_protobuf1.Empty) error
-	Recv() (*CPUTimeRequestTiDB, error)
+	SendAndClose(*CollectCPUTimeResponse) error
+	Recv() (*CollectCPUTimeRequest, error)
 	grpc.ServerStream
 }
 
@@ -166,12 +177,12 @@ type topSQLAgentCollectCPUTimeServer struct {
 	grpc.ServerStream
 }
 
-func (x *topSQLAgentCollectCPUTimeServer) SendAndClose(m *google_protobuf1.Empty) error {
+func (x *topSQLAgentCollectCPUTimeServer) SendAndClose(m *CollectCPUTimeResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *topSQLAgentCollectCPUTimeServer) Recv() (*CPUTimeRequestTiDB, error) {
-	m := new(CPUTimeRequestTiDB)
+func (x *topSQLAgentCollectCPUTimeServer) Recv() (*CollectCPUTimeRequest, error) {
+	m := new(CollectCPUTimeRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -192,7 +203,7 @@ var _TopSQLAgent_serviceDesc = grpc.ServiceDesc{
 	Metadata: "topsql_agent.proto",
 }
 
-func (m *CPUTimeRequestTiDB) Marshal() (dAtA []byte, err error) {
+func (m *CollectCPUTimeRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalTo(dAtA)
@@ -202,11 +213,23 @@ func (m *CPUTimeRequestTiDB) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CPUTimeRequestTiDB) MarshalTo(dAtA []byte) (int, error) {
+func (m *CollectCPUTimeRequest) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
+	if len(m.SqlDigest) > 0 {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.SqlDigest)))
+		i += copy(dAtA[i:], m.SqlDigest)
+	}
+	if len(m.PlanDigest) > 0 {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.PlanDigest)))
+		i += copy(dAtA[i:], m.PlanDigest)
+	}
 	if len(m.TimestampList) > 0 {
 		dAtA2 := make([]byte, len(m.TimestampList)*10)
 		var j1 int
@@ -219,7 +242,7 @@ func (m *CPUTimeRequestTiDB) MarshalTo(dAtA []byte) (int, error) {
 			dAtA2[j1] = uint8(num)
 			j1++
 		}
-		dAtA[i] = 0xa
+		dAtA[i] = 0x52
 		i++
 		i = encodeVarintTopsqlAgent(dAtA, i, uint64(j1))
 		i += copy(dAtA[i:], dAtA2[:j1])
@@ -236,35 +259,45 @@ func (m *CPUTimeRequestTiDB) MarshalTo(dAtA []byte) (int, error) {
 			dAtA4[j3] = uint8(num)
 			j3++
 		}
-		dAtA[i] = 0x12
+		dAtA[i] = 0x5a
 		i++
 		i = encodeVarintTopsqlAgent(dAtA, i, uint64(j3))
 		i += copy(dAtA[i:], dAtA4[:j3])
 	}
-	if len(m.SqlDigest) > 0 {
-		dAtA[i] = 0x1a
-		i++
-		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.SqlDigest)))
-		i += copy(dAtA[i:], m.SqlDigest)
-	}
 	if len(m.NormalizedSql) > 0 {
-		dAtA[i] = 0x22
+		dAtA[i] = 0xa2
+		i++
+		dAtA[i] = 0x1
 		i++
 		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.NormalizedSql)))
 		i += copy(dAtA[i:], m.NormalizedSql)
 	}
-	if len(m.PlanDigest) > 0 {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.PlanDigest)))
-		i += copy(dAtA[i:], m.PlanDigest)
-	}
 	if len(m.NormalizedPlan) > 0 {
-		dAtA[i] = 0x32
+		dAtA[i] = 0xaa
+		i++
+		dAtA[i] = 0x1
 		i++
 		i = encodeVarintTopsqlAgent(dAtA, i, uint64(len(m.NormalizedPlan)))
 		i += copy(dAtA[i:], m.NormalizedPlan)
 	}
+	return i, nil
+}
+
+func (m *CollectCPUTimeResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CollectCPUTimeResponse) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
 	return i, nil
 }
 
@@ -277,9 +310,17 @@ func encodeVarintTopsqlAgent(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return offset + 1
 }
-func (m *CPUTimeRequestTiDB) Size() (n int) {
+func (m *CollectCPUTimeRequest) Size() (n int) {
 	var l int
 	_ = l
+	l = len(m.SqlDigest)
+	if l > 0 {
+		n += 1 + l + sovTopsqlAgent(uint64(l))
+	}
+	l = len(m.PlanDigest)
+	if l > 0 {
+		n += 1 + l + sovTopsqlAgent(uint64(l))
+	}
 	if len(m.TimestampList) > 0 {
 		l = 0
 		for _, e := range m.TimestampList {
@@ -294,22 +335,20 @@ func (m *CPUTimeRequestTiDB) Size() (n int) {
 		}
 		n += 1 + sovTopsqlAgent(uint64(l)) + l
 	}
-	l = len(m.SqlDigest)
-	if l > 0 {
-		n += 1 + l + sovTopsqlAgent(uint64(l))
-	}
 	l = len(m.NormalizedSql)
 	if l > 0 {
-		n += 1 + l + sovTopsqlAgent(uint64(l))
-	}
-	l = len(m.PlanDigest)
-	if l > 0 {
-		n += 1 + l + sovTopsqlAgent(uint64(l))
+		n += 2 + l + sovTopsqlAgent(uint64(l))
 	}
 	l = len(m.NormalizedPlan)
 	if l > 0 {
-		n += 1 + l + sovTopsqlAgent(uint64(l))
+		n += 2 + l + sovTopsqlAgent(uint64(l))
 	}
+	return n
+}
+
+func (m *CollectCPUTimeResponse) Size() (n int) {
+	var l int
+	_ = l
 	return n
 }
 
@@ -326,7 +365,7 @@ func sovTopsqlAgent(x uint64) (n int) {
 func sozTopsqlAgent(x uint64) (n int) {
 	return sovTopsqlAgent(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
+func (m *CollectCPUTimeRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -349,13 +388,71 @@ func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CPUTimeRequestTiDB: wiretype end group for non-group")
+			return fmt.Errorf("proto: CollectCPUTimeRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CPUTimeRequestTiDB: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CollectCPUTimeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SqlDigest", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTopsqlAgent
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SqlDigest = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PlanDigest", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTopsqlAgent
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PlanDigest = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
 			if wireType == 0 {
 				var v uint64
 				for shift := uint(0); ; shift += 7 {
@@ -417,7 +514,7 @@ func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
 			} else {
 				return fmt.Errorf("proto: wrong wireType = %d for field TimestampList", wireType)
 			}
-		case 2:
+		case 11:
 			if wireType == 0 {
 				var v uint32
 				for shift := uint(0); ; shift += 7 {
@@ -479,36 +576,7 @@ func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
 			} else {
 				return fmt.Errorf("proto: wrong wireType = %d for field CpuTimeMsList", wireType)
 			}
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SqlDigest", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTopsqlAgent
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTopsqlAgent
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.SqlDigest = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
+		case 20:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field NormalizedSql", wireType)
 			}
@@ -537,36 +605,7 @@ func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
 			}
 			m.NormalizedSql = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PlanDigest", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTopsqlAgent
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTopsqlAgent
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PlanDigest = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 6:
+		case 21:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field NormalizedPlan", wireType)
 			}
@@ -595,6 +634,56 @@ func (m *CPUTimeRequestTiDB) Unmarshal(dAtA []byte) error {
 			}
 			m.NormalizedPlan = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTopsqlAgent(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CollectCPUTimeResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTopsqlAgent
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CollectCPUTimeResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CollectCPUTimeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTopsqlAgent(dAtA[iNdEx:])
@@ -724,26 +813,26 @@ var (
 func init() { proto.RegisterFile("topsql_agent.proto", fileDescriptorTopsqlAgent) }
 
 var fileDescriptorTopsqlAgent = []byte{
-	// 336 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x51, 0x4e, 0xc2, 0x30,
-	0x00, 0x86, 0xa9, 0x20, 0x09, 0x25, 0x43, 0xd3, 0xa8, 0x59, 0x30, 0x4e, 0x42, 0x62, 0x98, 0x2f,
-	0x25, 0xd1, 0x13, 0x08, 0xe8, 0x13, 0x26, 0x38, 0xe0, 0x79, 0xd9, 0x46, 0x6d, 0x9a, 0xb4, 0x6b,
-	0x47, 0xbb, 0x07, 0x3d, 0x89, 0x47, 0xf2, 0xd1, 0x23, 0x18, 0xbc, 0x82, 0x07, 0x30, 0xed, 0x40,
-	0x49, 0x7c, 0xdb, 0xfe, 0xff, 0xef, 0xd7, 0xe6, 0x83, 0xc8, 0x48, 0xa5, 0x0b, 0x1e, 0x27, 0x94,
-	0xe4, 0x06, 0xab, 0xb5, 0x34, 0x12, 0x35, 0x0c, 0x53, 0x69, 0xf7, 0x84, 0x4a, 0x2a, 0x5d, 0x30,
-	0xb4, 0x5f, 0x55, 0xd7, 0x3d, 0xa7, 0x52, 0x52, 0x4e, 0x86, 0xee, 0x2f, 0x2d, 0x9f, 0x87, 0x44,
-	0x28, 0xf3, 0x52, 0x95, 0xfd, 0x6f, 0x00, 0xd1, 0x78, 0xb6, 0x5c, 0x30, 0x41, 0x22, 0x52, 0x94,
-	0x44, 0x9b, 0x05, 0x9b, 0x8c, 0xd0, 0x15, 0xec, 0x18, 0x26, 0x88, 0x36, 0x89, 0x50, 0x31, 0x67,
-	0xda, 0xf8, 0xa0, 0x57, 0x0f, 0x1b, 0x91, 0xf7, 0x9b, 0x4e, 0x99, 0x36, 0x68, 0x00, 0x8f, 0x33,
-	0x55, 0xc6, 0x36, 0x8c, 0x85, 0xae, 0x86, 0x07, 0xbd, 0x7a, 0xe8, 0x45, 0x5e, 0xa6, 0x4a, 0x0b,
-	0x7d, 0xd4, 0x6e, 0x78, 0x01, 0xa1, 0x7d, 0xf2, 0x8a, 0x51, 0xa2, 0x8d, 0x5f, 0xef, 0x81, 0xb0,
-	0x15, 0xb5, 0x74, 0xc1, 0x27, 0x2e, 0xb0, 0xd7, 0xe5, 0x72, 0x2d, 0x12, 0xce, 0x5e, 0xc9, 0x2a,
-	0xd6, 0x05, 0xf7, 0x1b, 0x6e, 0xe2, 0xfd, 0xa5, 0xf3, 0x82, 0xa3, 0x4b, 0xd8, 0x56, 0x3c, 0xc9,
-	0x77, 0x98, 0x43, 0xb7, 0x81, 0x36, 0xda, 0x72, 0x06, 0xf0, 0x68, 0x8f, 0x63, 0x0b, 0xbf, 0xe9,
-	0x46, 0x7b, 0xf8, 0x19, 0x4f, 0xf2, 0x9b, 0x25, 0x6c, 0x2f, 0xa4, 0x9a, 0x3f, 0x4d, 0xef, 0xac,
-	0x44, 0xf4, 0x00, 0x3b, 0x63, 0xc9, 0x39, 0xc9, 0xcc, 0xd6, 0x05, 0xf2, 0xb1, 0x35, 0x8a, 0xff,
-	0xab, 0xe9, 0x9e, 0xe1, 0xca, 0x27, 0xde, 0xf9, 0xc4, 0xf7, 0xd6, 0x67, 0xbf, 0x16, 0x82, 0xd1,
-	0xf5, 0xfb, 0x26, 0x00, 0x1f, 0x9b, 0x00, 0x7c, 0x6e, 0x02, 0xf0, 0xf6, 0x15, 0xd4, 0xe0, 0x69,
-	0x26, 0x05, 0x56, 0x2c, 0xa7, 0x59, 0xa2, 0xb0, 0x61, 0xab, 0xd4, 0x71, 0x67, 0x20, 0x6d, 0xba,
-	0xe3, 0xb7, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x04, 0xe4, 0xa4, 0x1f, 0xce, 0x01, 0x00, 0x00,
+	// 325 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x91, 0xdf, 0x4e, 0xfa, 0x30,
+	0x14, 0xc7, 0xe9, 0x0f, 0xf2, 0x4b, 0x38, 0x64, 0x68, 0x1a, 0x30, 0x0b, 0xea, 0x24, 0x24, 0x84,
+	0x79, 0x33, 0x13, 0x7d, 0x02, 0xc5, 0x4b, 0x8c, 0x38, 0xf0, 0xd6, 0x65, 0x8c, 0x66, 0x69, 0xd2,
+	0xb5, 0x1d, 0x3d, 0xdc, 0xf8, 0x24, 0x3e, 0x92, 0x97, 0x3e, 0x82, 0xc1, 0x87, 0xf0, 0xd6, 0xb4,
+	0xf3, 0x0f, 0x1a, 0xee, 0x96, 0xcf, 0xf7, 0xb3, 0xd3, 0xd3, 0x6f, 0x81, 0xa2, 0xd2, 0xa6, 0x14,
+	0x49, 0x9a, 0x33, 0x89, 0x91, 0x5e, 0x29, 0x54, 0xb4, 0x81, 0x5c, 0x2f, 0x7a, 0x9d, 0x5c, 0xe5,
+	0xca, 0x81, 0x33, 0xfb, 0x55, 0x65, 0x83, 0x77, 0x02, 0xdd, 0xb1, 0x12, 0x82, 0x65, 0x38, 0x9e,
+	0xde, 0xcf, 0x79, 0xc1, 0x62, 0x56, 0xae, 0x99, 0x41, 0x7a, 0x0c, 0x60, 0x07, 0x2d, 0x79, 0xce,
+	0x0c, 0xfa, 0xa4, 0x4f, 0xc2, 0x66, 0xdc, 0x34, 0xa5, 0xb8, 0x76, 0x80, 0x9e, 0x40, 0x4b, 0x8b,
+	0x54, 0x7e, 0xe5, 0xff, 0x5c, 0x0e, 0x16, 0x7d, 0x0a, 0x43, 0x68, 0x23, 0x2f, 0x98, 0xc1, 0xb4,
+	0xd0, 0x89, 0xe0, 0x06, 0x7d, 0xe8, 0xd7, 0xc3, 0x46, 0xec, 0x7d, 0xd3, 0x09, 0x37, 0x48, 0x47,
+	0xb0, 0x9f, 0xe9, 0x75, 0x62, 0x61, 0x52, 0x98, 0x4a, 0x6c, 0xf5, 0xeb, 0xa1, 0x17, 0x7b, 0x99,
+	0x5e, 0xdb, 0x85, 0x6e, 0x8c, 0x13, 0x87, 0xd0, 0x96, 0x6a, 0x55, 0xa4, 0x82, 0x3f, 0xb2, 0x65,
+	0x62, 0x4a, 0xe1, 0x77, 0xdc, 0x99, 0xde, 0x0f, 0x9d, 0x95, 0x82, 0x8e, 0x60, 0x6f, 0x4b, 0xb3,
+	0xfb, 0xf8, 0x5d, 0xe7, 0x6d, 0xfd, 0x3d, 0x15, 0xa9, 0x1c, 0xf8, 0x70, 0xf0, 0xf7, 0xe2, 0x46,
+	0x2b, 0x69, 0xd8, 0xf9, 0x03, 0xb4, 0xe6, 0x4a, 0xcf, 0xee, 0x26, 0x97, 0xb6, 0x44, 0x7a, 0x0b,
+	0xed, 0xdf, 0x22, 0x3d, 0x8c, 0x6c, 0xa3, 0xd1, 0xce, 0xde, 0x7a, 0x47, 0xbb, 0xc3, 0x6a, 0xf6,
+	0xa0, 0x16, 0x92, 0xab, 0xd3, 0xe7, 0x4d, 0x40, 0x5e, 0x36, 0x01, 0x79, 0xdd, 0x04, 0xe4, 0xe9,
+	0x2d, 0xa8, 0x41, 0x37, 0x53, 0x45, 0xa4, 0xb9, 0xcc, 0xb3, 0x54, 0x47, 0xc8, 0x97, 0x0b, 0x37,
+	0x63, 0x4a, 0x16, 0xff, 0xdd, 0x2b, 0x5d, 0x7c, 0x04, 0x00, 0x00, 0xff, 0xff, 0xb6, 0xa9, 0xaf,
+	0x37, 0xd7, 0x01, 0x00, 0x00,
 }

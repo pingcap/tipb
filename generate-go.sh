@@ -6,9 +6,7 @@ cd proto
 echo "generate go code..."
 go install github.com/gogo/protobuf/protoc-gen-gofast
 protoc -I.:${GOGO_PROTOBUF} \
-    --gofast_out=\
-Mgoogle/protobuf/empty.proto=github.com/gogo/protobuf/types,\
-plugins=grpc:../go-tipb *.proto
+    --gofast_out=plugins=grpc:../go-tipb *.proto
 
 cd ../go-tipb
 sed -i.bak -E 's/import _ \"gogoproto\"//g' *.pb.go
