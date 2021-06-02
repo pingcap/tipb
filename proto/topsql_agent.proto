@@ -18,8 +18,8 @@ service TopSQLAgent {
 }
 
 message CollectCPUTimeRequest {
-    string sql_digest = 1;
-    string plan_digest = 2;
+    bytes sql_digest = 1;
+    bytes plan_digest = 2;
     repeated uint64 timestamp_list = 10;  // timestamp in second
     repeated uint32 cpu_time_ms_list = 11;  // this can be greater than 1000 when counting concurrent running SQL queries
     string normalized_sql = 20;  // SQL string with sensitive fields trimmed, potentially > 1M
