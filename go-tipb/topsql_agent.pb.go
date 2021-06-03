@@ -146,7 +146,11 @@ const _ = grpc.SupportPackageIsVersion4
 type TopSQLAgentClient interface {
 	// ReportCPUTimeRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
 	ReportCPUTimeRecords(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_ReportCPUTimeRecordsClient, error)
+	// ReportSQLMeta reports SQL meta to the agent.
+	// The agent should ensure that the SQL meta exists before sending the SQL CPU time records to the remote database.
 	ReportSQLMeta(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_ReportSQLMetaClient, error)
+	// ReportPlanMeta reports plan meta to the agent.
+	// The agent should deal with plan meta similarly to SQL meta.
 	ReportPlanMeta(ctx context.Context, opts ...grpc.CallOption) (TopSQLAgent_ReportPlanMetaClient, error)
 }
 
@@ -265,7 +269,11 @@ func (x *topSQLAgentReportPlanMetaClient) CloseAndRecv() (*EmptyResponse, error)
 type TopSQLAgentServer interface {
 	// ReportCPUTimeRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
 	ReportCPUTimeRecords(TopSQLAgent_ReportCPUTimeRecordsServer) error
+	// ReportSQLMeta reports SQL meta to the agent.
+	// The agent should ensure that the SQL meta exists before sending the SQL CPU time records to the remote database.
 	ReportSQLMeta(TopSQLAgent_ReportSQLMetaServer) error
+	// ReportPlanMeta reports plan meta to the agent.
+	// The agent should deal with plan meta similarly to SQL meta.
 	ReportPlanMeta(TopSQLAgent_ReportPlanMetaServer) error
 }
 

@@ -15,7 +15,11 @@ option (gogoproto.unmarshaler_all) = true;
 service TopSQLAgent {
     // ReportCPUTimeRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
     rpc ReportCPUTimeRecords(stream CPUTimeRecord) returns (EmptyResponse) {}
+    // ReportSQLMeta reports SQL meta to the agent.
+    // The agent should ensure that the SQL meta exists before sending the SQL CPU time records to the remote database.
     rpc ReportSQLMeta(stream SQLMeta) returns (EmptyResponse) {}
+    // ReportPlanMeta reports plan meta to the agent.
+    // The agent should deal with plan meta similarly to SQL meta.
     rpc ReportPlanMeta(stream PlanMeta) returns (EmptyResponse) {}
 }
 
