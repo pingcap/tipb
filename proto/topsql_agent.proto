@@ -32,13 +32,13 @@ message CPUTimeRecord {
 }
 
 message SQLMeta {
-    bytes sql_digest = 1; // SQL string with sensitive fields trimmed, potentially > 1M
-    string normalized_sql = 2;
+    bytes sql_digest = 1;
+    string normalized_sql = 2;  // SQL string with sensitive fields trimmed, potentially > 1M
 }
 
 message PlanMeta {
-    bytes plan_digest = 1;  // potentially > 1M
-    string normalized_plan = 2;
+    bytes plan_digest = 1;
+    string normalized_plan = 2;  // potentially > 1M
 }
 
 message EmptyResponse {}
