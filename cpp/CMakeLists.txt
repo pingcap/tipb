@@ -49,7 +49,7 @@ foreach (F ${PROTO_DEFS})
         VERBATIM)
 endforeach()
 # Grab all clean .proto files as a target
-add_custom_target (__clean_proto_defs
+add_custom_target (__clean_tipb_defs
     DEPENDS ${CLEAN_PROTO_DEFS}
     VERBATIM)
 
@@ -62,7 +62,7 @@ foreach (F ${PROTO_DEFS})
     list (APPEND PROTO_SRCS "${PROTO_OUTPUT_DIR}/${FIL_WE}.pb.cc")
     list (APPEND PROTO_HDRS "${PROTO_OUTPUT_DIR}/${FIL_WE}.pb.h")
     # Create the generated cpp files for .proto file.
-    # Add dependency on the original .proto file and `__clean_proto_defs`
+    # Add dependency on the original .proto file and `__clean_tipb_defs`
     # so that it can re-generate source files if .proto changed.
     add_custom_command(
         OUTPUT "${PROTO_OUTPUT_DIR}/${FIL_WE}.pb.cc"
@@ -70,7 +70,7 @@ foreach (F ${PROTO_DEFS})
         WORKING_DIRECTORY ${PROTO_DEF_TMP_DIR}
         COMMAND protobuf::protoc
         ARGS --cpp_out=${PROTO_OUTPUT_DIR} ${PROTO_DEF_TMP_DIR}/${FIL_WE}.proto -I ${PROTO_DEF_TMP_DIR}
-        DEPENDS ${ABS_FIL} protobuf::protoc __clean_proto_defs
+        DEPENDS ${ABS_FIL} protobuf::protoc __clean_tipb_defs
         COMMENT "Running C++ protocol buffer compiler on ${ABS_FIL}"
         VERBATIM)
 endforeach()
