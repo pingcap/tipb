@@ -1,6 +1,6 @@
 module github.com/pingcap/tipb
 
-go 1.15
+go 1.16
 
 require (
 	github.com/gogo/protobuf v0.0.0-20171007142547-342cbe0a0415

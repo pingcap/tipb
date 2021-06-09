@@ -10,8 +10,10 @@
 		executor.proto
 		expression.proto
 		metadata.proto
+		resourcetag.proto
 		schema.proto
 		select.proto
+		topsql_agent.proto
 		trace.proto
 
 	It has these top-level messages:
@@ -53,6 +55,7 @@
 		ByItem
 		InUnionMetadata
 		CompareInMetadata
+		ResourceGroupTag
 		TableInfo
 		ColumnInfo
 		IndexInfo
@@ -66,6 +69,10 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
+		CPUTimeRecord
+		SQLMeta
+		PlanMeta
+		EmptyResponse
 */
 package tipb
 
