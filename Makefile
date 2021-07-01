@@ -18,3 +18,6 @@ binlog: dependence
 
 c++: dependence
 	./generate-cpp.sh
+
+tipb.a:
+	mkdir -p cpp/build && cd cpp/build && cmake -DCMAKE_BUILD_TYPE=Release .. && make tipb
