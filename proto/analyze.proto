@@ -18,6 +18,7 @@ enum AnalyzeType {
     TypeCommonHandle = 2;
     TypeSampleIndex = 3;
     TypeMixed = 4;
+    TypeFullSampling = 5;
 }
 
 message AnalyzeReq {
@@ -73,6 +74,8 @@ message AnalyzeColumnsReq {
     optional int32 version = 8;
 
     repeated int64 primary_prefix_column_ids = 9;
+
+    repeated AnalyzeColumnGroup column_groups = 10;
 }
 
 message AnalyzeMixedResp {
@@ -81,12 +84,19 @@ message AnalyzeMixedResp {
     optional AnalyzeIndexResp index_resp = 2;
 }
 
+message AnalyzeColumnGroup {
+    repeated int64 column_offsets = 1;
+    repeated int64 prefix_lengths = 2;
+}
+
 message AnalyzeColumnsResp {
     // collectors is the sample collectors for columns.
     repeated SampleCollector collectors = 1;
 
     // pk_hist is the histogram for primary key when it is the handle.
     optional Histogram pk_hist = 2;
+
+    optional RowSampleCollector row_collector = 3;
 }
 
 message AnalyzeIndexResp {
@@ -126,6 +136,19 @@ message SampleCollector {
     optional FMSketch fm_sketch = 4;
     optional CMSketch cm_sketch = 5;
     optional int64 total_size = 6;
+}
+
+message RowSampleCollector {
+    repeated RowSample samples = 1;
+    repeated int64 null_counts = 2 [(gogoproto.nullable) = false];
+    optional int64 count = 3 [(gogoproto.nullable) = false];
+    repeated FMSketch fm_sketch = 4;
+    repeated int64 total_size = 5;
+}
+
+message RowSample {
+    repeated bytes row = 1;
+    optional int64 weight = 2 [(gogoproto.nullable) = false];
 }
 
 message CMSketchRow {

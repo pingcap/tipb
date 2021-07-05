@@ -18,6 +18,7 @@ message FieldType {
 	optional int32 decimal = 4 [(gogoproto.nullable) = false];
 	optional int32 collate = 5 [(gogoproto.nullable) = false];
 	optional string charset = 6 [(gogoproto.nullable) = false];
+	repeated string elems = 7 [(gogoproto.nullable) = false];
 }
 
 enum ExprType {
@@ -422,11 +423,20 @@ enum ScalarFuncSig {
 	IsIPv4Mapped = 4567;
 	IsIPv6 = 4568;
 	UUID = 4569;
+	VitessHash = 4570;
 
 	/*like*/
 	LikeSig = 4310;
 	RegexpSig = 4311;
 	RegexpUTF8Sig = 4312;
+	RegexpLikeSig = 4313;
+	RegexpLikeUTF8Sig = 4314;
+	RegexpInStrSig = 4315;
+	RegexpInStrUTF8Sig = 4316;
+	RegexpReplaceSig = 4317;
+	RegexpReplaceUTF8Sig = 4318;
+	RegexpSubstrSig = 4319;
+	RegexpSubstrUTF8Sig = 4320;
 
 	/*json*/
 	JsonExtractSig = 5001;
@@ -663,6 +673,7 @@ message Expr {
 	optional uint32 rpn_args_len = 6;
 	optional ScalarFuncSig sig = 4 [(gogoproto.nullable) = false];
 	optional FieldType field_type = 5;
+	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 }
 
 // Expression organized in RPN form.
