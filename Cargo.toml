@@ -5,17 +5,28 @@ edition = "2018"
 
 [features]
 default = ["protobuf-codec"]
-protobuf-codec = ["protobuf-build/protobuf-codec"]
-prost-codec = ["prost", "prost-derive", "lazy_static", "protobuf-build/prost-codec"]
+protobuf-codec = ["protobuf-build/protobuf-codec", "grpcio/protobuf-codec"]
+prost-codec = ["prost", "prost-derive", "lazy_static", "protobuf-build/prost-codec", "grpcio/prost-codec"]
 
 [lib]
 name = "tipb"
 
 [dependencies]
-protobuf = "2"
+protobuf = "=2.8.0"
 prost = { version = "0.7", optional = true }
 prost-derive = { version = "0.7", optional = true }
 lazy_static = { version = "1.3", optional = true }
+futures = "0.3.5"
+grpcio = { version = "0.9.0", default-features = false, features = ["secure"] }
+
+[target.'cfg(any(not(linux), not(any(target_arch = "x86_64", target_arch = "aarch64"))))'.dependencies.grpcio]
+version = "0.9.0"
+default-features = false
+features = ["secure", "use-bindgen"]
 
 [build-dependencies]
 protobuf-build = { version = "0.12", default-features = false }
+
+[patch.crates-io]
+protobuf-codegen = { git = "https://github.com/pingcap/rust-protobuf", rev="82b49fea7e696fd647b5aca0a6c6ec944eab3189" }
+protobuf = { git = "https://github.com/pingcap/rust-protobuf", rev="82b49fea7e696fd647b5aca0a6c6ec944eab3189" }

@@ -48,7 +48,7 @@ message Executor {
 enum ExchangeType {
 	PassThrough = 0;
 	Broadcast = 1;
-        Hash = 2;
+	Hash = 2;
 }
 
 // ExchangeSender will build connection with ExchangeReceiver.
