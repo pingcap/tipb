@@ -73,6 +73,7 @@
 		SQLMeta
 		PlanMeta
 		EmptyResponse
+		Request
 */
 package tipb
 

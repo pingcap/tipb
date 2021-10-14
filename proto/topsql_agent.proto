@@ -43,3 +43,12 @@ message PlanMeta {
 }
 
 message EmptyResponse {}
+
+message Request {}
+
+service TopSQLPubSub {
+    rpc SubCPUTimeRecord(Request) returns (stream CPUTimeRecord) {}
+    rpc SubSQLMeta(Request) returns (stream SQLMeta) {}
+    rpc SubPlanMeta(Request) returns (stream PlanMeta) {}
+}
+ 
