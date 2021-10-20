@@ -46,9 +46,14 @@ message EmptyResponse {}
 
 message Request {}
 
-service TopSQLPubSub {
-    rpc SubCPUTimeRecord(Request) returns (stream CPUTimeRecord) {}
-    rpc SubSQLMeta(Request) returns (stream SQLMeta) {}
-    rpc SubPlanMeta(Request) returns (stream PlanMeta) {}
+message Response {
+    oneof resp_oneof {
+        CPUTimeRecord record = 1;
+        SQLMeta sql_meta = 2;
+        PlanMeta plan_meta = 3;
+    }
 }
- 
+
+service TopSQLPubSub {
+    rpc Subscribe(Request) returns (stream Response) {}
+}
