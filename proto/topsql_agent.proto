@@ -44,9 +44,9 @@ message PlanMeta {
 
 message EmptyResponse {}
 
-message Request {}
+message TopSQLSubRequest {}
 
-message Response {
+message TopSQLSubResponse {
     oneof resp_oneof {
         CPUTimeRecord record = 1;
         SQLMeta sql_meta = 2;
@@ -55,5 +55,5 @@ message Response {
 }
 
 service TopSQLPubSub {
-    rpc Subscribe(Request) returns (stream Response) {}
+    rpc Subscribe(TopSQLSubRequest) returns (stream TopSQLSubResponse) {}
 }
