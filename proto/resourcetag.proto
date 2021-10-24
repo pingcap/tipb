@@ -21,7 +21,7 @@ message ResourceGroupTag {
 }
 
 enum ResourceGroupTagLabel {
-  Unknown = 0;
-  ScanRows = 1;
-  ScanIndexes = 2;
+  ResourceGroupTagLabelUnknown = 0;
+  ResourceGroupTagLabelRow = 1;
+  ResourceGroupTagLabelIndex = 2;
 }
