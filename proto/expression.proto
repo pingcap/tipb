@@ -662,6 +662,7 @@ enum ScalarFuncSig {
 	UpperUTF8 = 7063;
 	Upper = 7064;
 	CharLength = 7065;
+	LowerUTF8 = 7066;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
