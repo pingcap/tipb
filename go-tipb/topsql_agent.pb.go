@@ -551,6 +551,8 @@ var _TopSQLAgent_serviceDesc = grpc.ServiceDesc{
 // Client API for TopSQLPubSub service
 
 type TopSQLPubSubClient interface {
+	// Clients subscribe to TopSQL data through this RPC, and TiDB periodically (e.g. per minute)
+	// publishes TopSQL data to clients via gRPC stream.
 	Subscribe(ctx context.Context, in *TopSQLSubRequest, opts ...grpc.CallOption) (TopSQLPubSub_SubscribeClient, error)
 }
 
@@ -597,6 +599,8 @@ func (x *topSQLPubSubSubscribeClient) Recv() (*TopSQLSubResponse, error) {
 // Server API for TopSQLPubSub service
 
 type TopSQLPubSubServer interface {
+	// Clients subscribe to TopSQL data through this RPC, and TiDB periodically (e.g. per minute)
+	// publishes TopSQL data to clients via gRPC stream.
 	Subscribe(*TopSQLSubRequest, TopSQLPubSub_SubscribeServer) error
 }
 
