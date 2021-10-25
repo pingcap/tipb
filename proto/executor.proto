@@ -57,7 +57,7 @@ message ExchangeSender {
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3; 
 	optional Executor child = 4;
-	repeated FieldType partition_key_types = 5;
+	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
 }
 
