@@ -73,6 +73,8 @@
 		SQLMeta
 		PlanMeta
 		EmptyResponse
+		TopSQLSubRequest
+		TopSQLSubResponse
 */
 package tipb
 

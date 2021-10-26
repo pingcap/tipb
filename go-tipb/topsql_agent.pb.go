@@ -127,11 +127,175 @@ func (m *EmptyResponse) String() string            { return proto.CompactTextStr
 func (*EmptyResponse) ProtoMessage()               {}
 func (*EmptyResponse) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{3} }
 
+type TopSQLSubRequest struct {
+}
+
+func (m *TopSQLSubRequest) Reset()                    { *m = TopSQLSubRequest{} }
+func (m *TopSQLSubRequest) String() string            { return proto.CompactTextString(m) }
+func (*TopSQLSubRequest) ProtoMessage()               {}
+func (*TopSQLSubRequest) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{4} }
+
+type TopSQLSubResponse struct {
+	// Types that are valid to be assigned to RespOneof:
+	//	*TopSQLSubResponse_Record
+	//	*TopSQLSubResponse_SqlMeta
+	//	*TopSQLSubResponse_PlanMeta
+	RespOneof isTopSQLSubResponse_RespOneof `protobuf_oneof:"resp_oneof"`
+}
+
+func (m *TopSQLSubResponse) Reset()                    { *m = TopSQLSubResponse{} }
+func (m *TopSQLSubResponse) String() string            { return proto.CompactTextString(m) }
+func (*TopSQLSubResponse) ProtoMessage()               {}
+func (*TopSQLSubResponse) Descriptor() ([]byte, []int) { return fileDescriptorTopsqlAgent, []int{5} }
+
+type isTopSQLSubResponse_RespOneof interface {
+	isTopSQLSubResponse_RespOneof()
+	MarshalTo([]byte) (int, error)
+	Size() int
+}
+
+type TopSQLSubResponse_Record struct {
+	Record *CPUTimeRecord `protobuf:"bytes,1,opt,name=record,oneof"`
+}
+type TopSQLSubResponse_SqlMeta struct {
+	SqlMeta *SQLMeta `protobuf:"bytes,2,opt,name=sql_meta,json=sqlMeta,oneof"`
+}
+type TopSQLSubResponse_PlanMeta struct {
+	PlanMeta *PlanMeta `protobuf:"bytes,3,opt,name=plan_meta,json=planMeta,oneof"`
+}
+
+func (*TopSQLSubResponse_Record) isTopSQLSubResponse_RespOneof()   {}
+func (*TopSQLSubResponse_SqlMeta) isTopSQLSubResponse_RespOneof()  {}
+func (*TopSQLSubResponse_PlanMeta) isTopSQLSubResponse_RespOneof() {}
+
+func (m *TopSQLSubResponse) GetRespOneof() isTopSQLSubResponse_RespOneof {
+	if m != nil {
+		return m.RespOneof
+	}
+	return nil
+}
+
+func (m *TopSQLSubResponse) GetRecord() *CPUTimeRecord {
+	if x, ok := m.GetRespOneof().(*TopSQLSubResponse_Record); ok {
+		return x.Record
+	}
+	return nil
+}
+
+func (m *TopSQLSubResponse) GetSqlMeta() *SQLMeta {
+	if x, ok := m.GetRespOneof().(*TopSQLSubResponse_SqlMeta); ok {
+		return x.SqlMeta
+	}
+	return nil
+}
+
+func (m *TopSQLSubResponse) GetPlanMeta() *PlanMeta {
+	if x, ok := m.GetRespOneof().(*TopSQLSubResponse_PlanMeta); ok {
+		return x.PlanMeta
+	}
+	return nil
+}
+
+// XXX_OneofFuncs is for the internal use of the proto package.
+func (*TopSQLSubResponse) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
+	return _TopSQLSubResponse_OneofMarshaler, _TopSQLSubResponse_OneofUnmarshaler, _TopSQLSubResponse_OneofSizer, []interface{}{
+		(*TopSQLSubResponse_Record)(nil),
+		(*TopSQLSubResponse_SqlMeta)(nil),
+		(*TopSQLSubResponse_PlanMeta)(nil),
+	}
+}
+
+func _TopSQLSubResponse_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
+	m := msg.(*TopSQLSubResponse)
+	// resp_oneof
+	switch x := m.RespOneof.(type) {
+	case *TopSQLSubResponse_Record:
+		_ = b.EncodeVarint(1<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Record); err != nil {
+			return err
+		}
+	case *TopSQLSubResponse_SqlMeta:
+		_ = b.EncodeVarint(2<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.SqlMeta); err != nil {
+			return err
+		}
+	case *TopSQLSubResponse_PlanMeta:
+		_ = b.EncodeVarint(3<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.PlanMeta); err != nil {
+			return err
+		}
+	case nil:
+	default:
+		return fmt.Errorf("TopSQLSubResponse.RespOneof has unexpected type %T", x)
+	}
+	return nil
+}
+
+func _TopSQLSubResponse_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
+	m := msg.(*TopSQLSubResponse)
+	switch tag {
+	case 1: // resp_oneof.record
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(CPUTimeRecord)
+		err := b.DecodeMessage(msg)
+		m.RespOneof = &TopSQLSubResponse_Record{msg}
+		return true, err
+	case 2: // resp_oneof.sql_meta
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(SQLMeta)
+		err := b.DecodeMessage(msg)
+		m.RespOneof = &TopSQLSubResponse_SqlMeta{msg}
+		return true, err
+	case 3: // resp_oneof.plan_meta
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(PlanMeta)
+		err := b.DecodeMessage(msg)
+		m.RespOneof = &TopSQLSubResponse_PlanMeta{msg}
+		return true, err
+	default:
+		return false, nil
+	}
+}
+
+func _TopSQLSubResponse_OneofSizer(msg proto.Message) (n int) {
+	m := msg.(*TopSQLSubResponse)
+	// resp_oneof
+	switch x := m.RespOneof.(type) {
+	case *TopSQLSubResponse_Record:
+		s := proto.Size(x.Record)
+		n += proto.SizeVarint(1<<3 | proto.WireBytes)
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TopSQLSubResponse_SqlMeta:
+		s := proto.Size(x.SqlMeta)
+		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TopSQLSubResponse_PlanMeta:
+		s := proto.Size(x.PlanMeta)
+		n += proto.SizeVarint(3<<3 | proto.WireBytes)
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case nil:
+	default:
+		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
+	}
+	return n
+}
+
 func init() {
 	proto.RegisterType((*CPUTimeRecord)(nil), "tipb.CPUTimeRecord")
 	proto.RegisterType((*SQLMeta)(nil), "tipb.SQLMeta")
 	proto.RegisterType((*PlanMeta)(nil), "tipb.PlanMeta")
 	proto.RegisterType((*EmptyResponse)(nil), "tipb.EmptyResponse")
+	proto.RegisterType((*TopSQLSubRequest)(nil), "tipb.TopSQLSubRequest")
+	proto.RegisterType((*TopSQLSubResponse)(nil), "tipb.TopSQLSubResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -384,6 +548,101 @@ var _TopSQLAgent_serviceDesc = grpc.ServiceDesc{
 	Metadata: "topsql_agent.proto",
 }
 
+// Client API for TopSQLPubSub service
+
+type TopSQLPubSubClient interface {
+	// Clients subscribe to TopSQL data through this RPC, and TiDB periodically (e.g. per minute)
+	// publishes TopSQL data to clients via gRPC stream.
+	Subscribe(ctx context.Context, in *TopSQLSubRequest, opts ...grpc.CallOption) (TopSQLPubSub_SubscribeClient, error)
+}
+
+type topSQLPubSubClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewTopSQLPubSubClient(cc *grpc.ClientConn) TopSQLPubSubClient {
+	return &topSQLPubSubClient{cc}
+}
+
+func (c *topSQLPubSubClient) Subscribe(ctx context.Context, in *TopSQLSubRequest, opts ...grpc.CallOption) (TopSQLPubSub_SubscribeClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_TopSQLPubSub_serviceDesc.Streams[0], c.cc, "/tipb.TopSQLPubSub/Subscribe", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &topSQLPubSubSubscribeClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type TopSQLPubSub_SubscribeClient interface {
+	Recv() (*TopSQLSubResponse, error)
+	grpc.ClientStream
+}
+
+type topSQLPubSubSubscribeClient struct {
+	grpc.ClientStream
+}
+
+func (x *topSQLPubSubSubscribeClient) Recv() (*TopSQLSubResponse, error) {
+	m := new(TopSQLSubResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// Server API for TopSQLPubSub service
+
+type TopSQLPubSubServer interface {
+	// Clients subscribe to TopSQL data through this RPC, and TiDB periodically (e.g. per minute)
+	// publishes TopSQL data to clients via gRPC stream.
+	Subscribe(*TopSQLSubRequest, TopSQLPubSub_SubscribeServer) error
+}
+
+func RegisterTopSQLPubSubServer(s *grpc.Server, srv TopSQLPubSubServer) {
+	s.RegisterService(&_TopSQLPubSub_serviceDesc, srv)
+}
+
+func _TopSQLPubSub_Subscribe_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TopSQLSubRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(TopSQLPubSubServer).Subscribe(m, &topSQLPubSubSubscribeServer{stream})
+}
+
+type TopSQLPubSub_SubscribeServer interface {
+	Send(*TopSQLSubResponse) error
+	grpc.ServerStream
+}
+
+type topSQLPubSubSubscribeServer struct {
+	grpc.ServerStream
+}
+
+func (x *topSQLPubSubSubscribeServer) Send(m *TopSQLSubResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+var _TopSQLPubSub_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "tipb.TopSQLPubSub",
+	HandlerType: (*TopSQLPubSubServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Subscribe",
+			Handler:       _TopSQLPubSub_Subscribe_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "topsql_agent.proto",
+}
+
 func (m *CPUTimeRecord) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -536,6 +795,91 @@ func (m *EmptyResponse) MarshalTo(dAtA []byte) (int, error) {
 	return i, nil
 }
 
+func (m *TopSQLSubRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *TopSQLSubRequest) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	return i, nil
+}
+
+func (m *TopSQLSubResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *TopSQLSubResponse) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.RespOneof != nil {
+		nn5, err := m.RespOneof.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += nn5
+	}
+	return i, nil
+}
+
+func (m *TopSQLSubResponse_Record) MarshalTo(dAtA []byte) (int, error) {
+	i := 0
+	if m.Record != nil {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintTopsqlAgent(dAtA, i, uint64(m.Record.Size()))
+		n6, err := m.Record.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n6
+	}
+	return i, nil
+}
+func (m *TopSQLSubResponse_SqlMeta) MarshalTo(dAtA []byte) (int, error) {
+	i := 0
+	if m.SqlMeta != nil {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintTopsqlAgent(dAtA, i, uint64(m.SqlMeta.Size()))
+		n7, err := m.SqlMeta.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n7
+	}
+	return i, nil
+}
+func (m *TopSQLSubResponse_PlanMeta) MarshalTo(dAtA []byte) (int, error) {
+	i := 0
+	if m.PlanMeta != nil {
+		dAtA[i] = 0x1a
+		i++
+		i = encodeVarintTopsqlAgent(dAtA, i, uint64(m.PlanMeta.Size()))
+		n8, err := m.PlanMeta.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n8
+	}
+	return i, nil
+}
 func encodeVarintTopsqlAgent(dAtA []byte, offset int, v uint64) int {
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
@@ -607,6 +951,49 @@ func (m *PlanMeta) Size() (n int) {
 func (m *EmptyResponse) Size() (n int) {
 	var l int
 	_ = l
+	return n
+}
+
+func (m *TopSQLSubRequest) Size() (n int) {
+	var l int
+	_ = l
+	return n
+}
+
+func (m *TopSQLSubResponse) Size() (n int) {
+	var l int
+	_ = l
+	if m.RespOneof != nil {
+		n += m.RespOneof.Size()
+	}
+	return n
+}
+
+func (m *TopSQLSubResponse_Record) Size() (n int) {
+	var l int
+	_ = l
+	if m.Record != nil {
+		l = m.Record.Size()
+		n += 1 + l + sovTopsqlAgent(uint64(l))
+	}
+	return n
+}
+func (m *TopSQLSubResponse_SqlMeta) Size() (n int) {
+	var l int
+	_ = l
+	if m.SqlMeta != nil {
+		l = m.SqlMeta.Size()
+		n += 1 + l + sovTopsqlAgent(uint64(l))
+	}
+	return n
+}
+func (m *TopSQLSubResponse_PlanMeta) Size() (n int) {
+	var l int
+	_ = l
+	if m.PlanMeta != nil {
+		l = m.PlanMeta.Size()
+		n += 1 + l + sovTopsqlAgent(uint64(l))
+	}
 	return n
 }
 
@@ -1149,6 +1536,202 @@ func (m *EmptyResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *TopSQLSubRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTopsqlAgent
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: TopSQLSubRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: TopSQLSubRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTopsqlAgent(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *TopSQLSubResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTopsqlAgent
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: TopSQLSubResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: TopSQLSubResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Record", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTopsqlAgent
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &CPUTimeRecord{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.RespOneof = &TopSQLSubResponse_Record{v}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SqlMeta", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTopsqlAgent
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &SQLMeta{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.RespOneof = &TopSQLSubResponse_SqlMeta{v}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PlanMeta", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTopsqlAgent
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &PlanMeta{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.RespOneof = &TopSQLSubResponse_PlanMeta{v}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTopsqlAgent(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTopsqlAgent
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func skipTopsqlAgent(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1257,32 +1840,39 @@ var (
 func init() { proto.RegisterFile("topsql_agent.proto", fileDescriptorTopsqlAgent) }
 
 var fileDescriptorTopsqlAgent = []byte{
-	// 417 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x52, 0x4f, 0x6b, 0xd4, 0x40,
-	0x14, 0xef, 0xb8, 0x45, 0xdb, 0xb7, 0x66, 0x17, 0xa6, 0x55, 0xd7, 0x82, 0x6b, 0x08, 0xa8, 0xf1,
-	0x12, 0x41, 0x05, 0xe9, 0x51, 0x5b, 0x0f, 0xc2, 0x16, 0xb6, 0x93, 0x78, 0x0e, 0xb3, 0xc9, 0x10,
-	0x06, 0x26, 0x33, 0x93, 0xcc, 0x14, 0xd1, 0x4f, 0xe2, 0xc7, 0xf1, 0xa6, 0x47, 0x3f, 0x82, 0xac,
-	0x5f, 0x44, 0x66, 0x92, 0xd8, 0x5d, 0x65, 0xe9, 0x2d, 0xef, 0xf7, 0xef, 0xbd, 0xbc, 0x37, 0x80,
-	0xad, 0xd2, 0xa6, 0x11, 0x39, 0xad, 0x98, 0xb4, 0x89, 0x6e, 0x95, 0x55, 0x78, 0xdf, 0x72, 0xbd,
-	0x3a, 0x39, 0xae, 0x54, 0xa5, 0x3c, 0xf0, 0xc2, 0x7d, 0x75, 0x5c, 0xf4, 0x0d, 0x41, 0x70, 0xb6,
-	0xfc, 0x98, 0xf1, 0x9a, 0x11, 0x56, 0xa8, 0xb6, 0xc4, 0x8f, 0x00, 0x5c, 0x40, 0xc9, 0x2b, 0x66,
-	0xec, 0x0c, 0x85, 0x28, 0xbe, 0x4b, 0x0e, 0x4d, 0x23, 0xce, 0x3d, 0x80, 0x1f, 0xc3, 0x58, 0x0b,
-	0x2a, 0x07, 0xfe, 0x96, 0xe7, 0xc1, 0x41, 0xbd, 0xe0, 0x14, 0x1e, 0xb6, 0x3e, 0x29, 0x17, 0xdc,
-	0xd8, 0xdc, 0xf2, 0x9a, 0x19, 0x4b, 0x6b, 0x9d, 0x1b, 0x56, 0xcc, 0x20, 0x1c, 0xc5, 0xfb, 0xe4,
-	0x7e, 0x27, 0x58, 0x70, 0x63, 0xb3, 0x81, 0x4e, 0x59, 0x81, 0x5f, 0xc3, 0x83, 0x4d, 0x6b, 0xa1,
-	0xaf, 0xbc, 0x3d, 0xaf, 0xcd, 0x6c, 0x1c, 0x8e, 0xe2, 0x80, 0x1c, 0x5d, 0x1b, 0xcf, 0xf4, 0x95,
-	0xf3, 0x5e, 0x98, 0xe8, 0x13, 0xdc, 0x49, 0x2f, 0x17, 0x17, 0xcc, 0xd2, 0x9b, 0x66, 0x7f, 0x02,
-	0x13, 0xa9, 0xda, 0x9a, 0x0a, 0xfe, 0x85, 0x95, 0xb9, 0x69, 0x84, 0x1f, 0xff, 0x90, 0x04, 0xd7,
-	0x68, 0xda, 0x08, 0xfc, 0x14, 0xa6, 0xdc, 0xe4, 0x5c, 0x5a, 0xd6, 0x4a, 0x2a, 0xbc, 0x6e, 0x14,
-	0xa2, 0xf8, 0x80, 0x04, 0xdc, 0x7c, 0xe8, 0xd1, 0xb4, 0x11, 0x51, 0x06, 0x07, 0x4b, 0x41, 0xa5,
-	0xef, 0xfc, 0xcf, 0x5a, 0xd0, 0x7f, 0x6b, 0x79, 0x06, 0xd3, 0x8d, 0xde, 0x8e, 0xe8, 0x9b, 0x6f,
-	0x8c, 0xe4, 0xd2, 0xa2, 0x29, 0x04, 0xef, 0x6b, 0x6d, 0x3f, 0x13, 0x66, 0xb4, 0x92, 0x86, 0xbd,
-	0xfc, 0x8e, 0x60, 0x9c, 0x29, 0x9d, 0x5e, 0x2e, 0xde, 0xba, 0xa3, 0xe2, 0x73, 0x38, 0x26, 0x4c,
-	0xab, 0xd6, 0x6e, 0xdd, 0xcd, 0xe0, 0xa3, 0xc4, 0xdd, 0x39, 0xd9, 0x42, 0x4f, 0x7a, 0x70, 0x2b,
-	0x31, 0xda, 0x8b, 0x11, 0x7e, 0x03, 0x41, 0x97, 0x32, 0xec, 0x2e, 0xe8, 0x94, 0x7d, 0xb9, 0xdb,
-	0x78, 0x0a, 0x93, 0xce, 0xf8, 0xf7, 0xdf, 0x27, 0x9d, 0x74, 0xa8, 0x77, 0x5a, 0xdf, 0x3d, 0xff,
-	0xb1, 0x9e, 0xa3, 0x9f, 0xeb, 0x39, 0xfa, 0xb5, 0x9e, 0xa3, 0xaf, 0xbf, 0xe7, 0x7b, 0x70, 0xaf,
-	0x50, 0x75, 0xa2, 0xb9, 0xac, 0x0a, 0xaa, 0x13, 0xcb, 0xcb, 0x95, 0xb7, 0x2e, 0xd1, 0xea, 0xb6,
-	0x7f, 0x9e, 0xaf, 0xfe, 0x04, 0x00, 0x00, 0xff, 0xff, 0x64, 0xba, 0x12, 0xb7, 0xd0, 0x02, 0x00,
-	0x00,
+	// 539 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x53, 0xd1, 0x6e, 0xd3, 0x30,
+	0x14, 0xad, 0xe9, 0xb4, 0xb5, 0xb7, 0x4d, 0x0b, 0xde, 0xd8, 0x4a, 0x25, 0x4a, 0x15, 0x09, 0x28,
+	0x48, 0x2b, 0xa8, 0x20, 0xa1, 0xbd, 0xc1, 0x36, 0xa4, 0x22, 0x75, 0x52, 0xe7, 0x94, 0xe7, 0x28,
+	0x49, 0x4d, 0x65, 0xc9, 0x89, 0x9d, 0xd8, 0x11, 0x82, 0x2f, 0xe1, 0x1f, 0xf8, 0x09, 0xde, 0xe0,
+	0x91, 0x4f, 0x40, 0xe5, 0x47, 0x50, 0xec, 0x94, 0xb5, 0x1d, 0x13, 0x6f, 0xd6, 0xb9, 0xe7, 0xdc,
+	0x7b, 0xee, 0xb9, 0x09, 0x60, 0x2d, 0xa4, 0x4a, 0xb9, 0x1f, 0x2c, 0x68, 0xa2, 0x87, 0x32, 0x13,
+	0x5a, 0xe0, 0x1d, 0xcd, 0x64, 0xd8, 0x3d, 0x58, 0x88, 0x85, 0x30, 0xc0, 0xb3, 0xe2, 0x65, 0x6b,
+	0xee, 0x37, 0x04, 0xce, 0xd9, 0xf4, 0xfd, 0x8c, 0xc5, 0x94, 0xd0, 0x48, 0x64, 0x73, 0x7c, 0x1f,
+	0xa0, 0x68, 0x30, 0x67, 0x0b, 0xaa, 0x74, 0x07, 0xf5, 0xd1, 0xa0, 0x49, 0xea, 0x2a, 0xe5, 0xe7,
+	0x06, 0xc0, 0x0f, 0xa0, 0x21, 0x79, 0x90, 0xac, 0xea, 0xb7, 0x4c, 0x1d, 0x0a, 0xa8, 0x24, 0x9c,
+	0xc0, 0xbd, 0xcc, 0x74, 0xf2, 0x39, 0x53, 0xda, 0xd7, 0x2c, 0xa6, 0x4a, 0x07, 0xb1, 0xf4, 0x15,
+	0x8d, 0x3a, 0xd0, 0xaf, 0x0e, 0x76, 0xc8, 0xa1, 0x25, 0x4c, 0x98, 0xd2, 0xb3, 0x55, 0xd9, 0xa3,
+	0x11, 0x7e, 0x09, 0x47, 0xeb, 0xd2, 0x48, 0xe6, 0x46, 0xee, 0xc7, 0xaa, 0xd3, 0xe8, 0x57, 0x07,
+	0x0e, 0xd9, 0xbf, 0x12, 0x9e, 0xc9, 0xbc, 0xd0, 0x5e, 0x28, 0xf7, 0x23, 0xec, 0x79, 0x97, 0x93,
+	0x0b, 0xaa, 0x83, 0xff, 0x79, 0x7f, 0x08, 0xad, 0x44, 0x64, 0x71, 0xc0, 0xd9, 0x67, 0x3a, 0xf7,
+	0x55, 0xca, 0x8d, 0xfd, 0x3a, 0x71, 0xae, 0x50, 0x2f, 0xe5, 0xf8, 0x11, 0xb4, 0x99, 0xf2, 0x59,
+	0xa2, 0x69, 0x96, 0x04, 0xdc, 0xf0, 0xaa, 0x7d, 0x34, 0xa8, 0x11, 0x87, 0xa9, 0x77, 0x25, 0xea,
+	0xa5, 0xdc, 0x9d, 0x41, 0x6d, 0xca, 0x83, 0xc4, 0x4c, 0xde, 0x8a, 0x05, 0x5d, 0x8b, 0xe5, 0x31,
+	0xb4, 0xd7, 0x66, 0x17, 0x85, 0x72, 0xf8, 0x9a, 0xa5, 0xa2, 0x9b, 0xdb, 0x06, 0xe7, 0x6d, 0x2c,
+	0xf5, 0x27, 0x42, 0x95, 0x14, 0x89, 0xa2, 0x2e, 0x86, 0xdb, 0x33, 0x21, 0xbd, 0xcb, 0x89, 0x97,
+	0x87, 0x84, 0xa6, 0x39, 0x55, 0xda, 0xfd, 0x8a, 0xe0, 0xce, 0x1a, 0x68, 0x99, 0xf8, 0x18, 0x76,
+	0x6d, 0x40, 0x66, 0x7e, 0x63, 0xb4, 0x3f, 0x2c, 0x2e, 0x3f, 0xdc, 0xb8, 0xef, 0xb8, 0x42, 0x4a,
+	0x12, 0x7e, 0x0a, 0xb5, 0x22, 0xad, 0x98, 0xea, 0xc0, 0x78, 0x69, 0x8c, 0x1c, 0x2b, 0x28, 0xe3,
+	0x1c, 0x57, 0xc8, 0x9e, 0x4a, 0xb9, 0xd9, 0xef, 0x18, 0xea, 0x66, 0x3f, 0x43, 0xae, 0x1a, 0x72,
+	0xcb, 0x92, 0x57, 0x11, 0x8c, 0x2b, 0xa4, 0x26, 0xcb, 0xf7, 0x69, 0x13, 0x20, 0xa3, 0x4a, 0xfa,
+	0x22, 0xa1, 0xe2, 0xc3, 0xe8, 0x3b, 0x82, 0x86, 0x75, 0xfb, 0xa6, 0xf8, 0x2c, 0xf1, 0x39, 0x1c,
+	0x10, 0x2a, 0x45, 0xa6, 0x37, 0x9c, 0x29, 0xfc, 0x2f, 0xbf, 0xdd, 0x12, 0xdc, 0xcc, 0xa4, 0x32,
+	0x40, 0xf8, 0x15, 0x38, 0xb6, 0xcb, 0xea, 0xfa, 0x9b, 0xee, 0x6f, 0x16, 0x9e, 0x40, 0xcb, 0x0a,
+	0xff, 0x5e, 0x6f, 0x6b, 0x95, 0x1b, 0xa5, 0xa3, 0x29, 0x34, 0xed, 0x22, 0xd3, 0x3c, 0xf4, 0xf2,
+	0x10, 0xbf, 0x86, 0xba, 0x97, 0x87, 0x2a, 0xca, 0x58, 0x48, 0xf1, 0xa1, 0x55, 0x6d, 0x1f, 0xab,
+	0x7b, 0x74, 0x0d, 0x5f, 0x75, 0x7c, 0x8e, 0x4e, 0x9f, 0xfc, 0x58, 0xf6, 0xd0, 0xcf, 0x65, 0x0f,
+	0xfd, 0x5a, 0xf6, 0xd0, 0x97, 0xdf, 0xbd, 0x0a, 0xdc, 0x8d, 0x44, 0x3c, 0x94, 0x2c, 0x59, 0x44,
+	0x81, 0x1c, 0x6a, 0x36, 0x0f, 0x8d, 0x7c, 0x8a, 0xc2, 0x5d, 0xf3, 0xcb, 0xbe, 0xf8, 0x13, 0x00,
+	0x00, 0xff, 0xff, 0x50, 0x35, 0xb8, 0x68, 0xe4, 0x03, 0x00, 0x00,
 }
