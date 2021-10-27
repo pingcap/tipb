@@ -76,6 +76,9 @@ message AnalyzeColumnsReq {
     repeated int64 primary_prefix_column_ids = 9;
 
     repeated AnalyzeColumnGroup column_groups = 10;
+    // sample_rate is the sampling rate that how many samples will collected.
+    // There must be one non-zero value in sample_rate and sample_size.
+    optional double sample_rate = 11;
 }
 
 message AnalyzeMixedResp {

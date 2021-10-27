@@ -43,3 +43,20 @@ message PlanMeta {
 }
 
 message EmptyResponse {}
+
+// TiDB implements TopSQLPubSub service for clients to subscribe to TopSQL data.
+service TopSQLPubSub {
+    // Clients subscribe to TopSQL data through this RPC, and TiDB periodically (e.g. per minute)
+    // publishes TopSQL data to clients via gRPC stream.
+    rpc Subscribe(TopSQLSubRequest) returns (stream TopSQLSubResponse) {}
+}
+
+message TopSQLSubRequest {}
+
+message TopSQLSubResponse {
+    oneof resp_oneof {
+        CPUTimeRecord record = 1;
+        SQLMeta sql_meta = 2;
+        PlanMeta plan_meta = 3;
+    }
+}
