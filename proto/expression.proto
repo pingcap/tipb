@@ -663,6 +663,10 @@ enum ScalarFuncSig {
 	Upper = 7064;
 	CharLength = 7065;
 	LowerUTF8 = 7066;
+	GreatestDuration = 7067;
+	GreatestCmpStringAsTime = 7068;
+	LeastDuration = 7069;
+	LeastCmpStringAsTime = 7070;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
