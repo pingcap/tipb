@@ -425,6 +425,7 @@ enum ScalarFuncSig {
 	UUID = 4569;
 	VitessHash = 4570;
 	IsUUID = 4571;
+	TidbShard = 4572;
 
 	/*like*/
 	LikeSig = 4310;
