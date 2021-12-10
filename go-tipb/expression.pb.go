@@ -502,6 +502,7 @@ const (
 	ScalarFuncSig_UUID             ScalarFuncSig = 4569
 	ScalarFuncSig_VitessHash       ScalarFuncSig = 4570
 	ScalarFuncSig_IsUUID           ScalarFuncSig = 4571
+	ScalarFuncSig_TidbShard        ScalarFuncSig = 4572
 	// like
 	ScalarFuncSig_LikeSig              ScalarFuncSig = 4310
 	ScalarFuncSig_RegexpSig            ScalarFuncSig = 4311
@@ -1066,6 +1067,7 @@ var ScalarFuncSig_name = map[int32]string{
 	4569: "UUID",
 	4570: "VitessHash",
 	4571: "IsUUID",
+	4572: "TidbShard",
 	4310: "LikeSig",
 	4311: "RegexpSig",
 	4312: "RegexpUTF8Sig",
