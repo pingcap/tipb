@@ -40,6 +40,7 @@
 		ExchangeSender
 		ExchangeReceiver
 		TableScan
+		PartitionTableScan
 		Join
 		IndexScan
 		Selection
