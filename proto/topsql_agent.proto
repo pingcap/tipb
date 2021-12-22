@@ -13,8 +13,11 @@ option (gogoproto.unmarshaler_all) = true;
 
 // TopSQLAgent is the persistent agent service for TopSQL records
 service TopSQLAgent {
+    // DEPRECATED: use ReportTopSQLRecords instead.
     // ReportCPUTimeRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
     rpc ReportCPUTimeRecords(stream CPUTimeRecord) returns (EmptyResponse) {}
+    // ReportTopSQLRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
+    rpc ReportTopSQLRecords(stream TopSQLRecord) returns (EmptyResponse) {}
     // ReportSQLMeta reports SQL meta to the agent.
     // The agent should ensure that the SQL meta exists before sending the SQL CPU time records to the remote database.
     rpc ReportSQLMeta(stream SQLMeta) returns (EmptyResponse) {}
@@ -23,12 +26,28 @@ service TopSQLAgent {
     rpc ReportPlanMeta(stream PlanMeta) returns (EmptyResponse) {}
 }
 
+// DEPRECATED: use TopSQLRecord instead
 message CPUTimeRecord {
     bytes sql_digest = 1;
     bytes plan_digest = 2;
     // The following 2 repeated zipped together represents a List<(UnixTimestamp, CPUTime)>
     repeated uint64 record_list_timestamp_sec = 10;  // timestamp in second
     repeated uint32 record_list_cpu_time_ms = 11;  // this value can be greater than 1000 when counting concurrent running SQL queries
+}
+
+message TopSQLRecord {
+    bytes sql_digest = 1;
+    bytes plan_digest = 2;
+    // The following repeated zipped together represents a List<(UnixTimestamp, CPUTime, StmtExecCount, StmtDurationSum)>
+    repeated uint64 record_list_timestamp_sec = 10;  // timestamp in second
+    repeated uint32 record_list_cpu_time_ms = 11;  // this value can be greater than 1000 when counting concurrent running SQL queries
+    repeated uint64 record_list_stmt_exec_count = 12;
+    repeated TopSQLStmtKvExecCount record_list_stmt_kv_exec_count = 13;
+    repeated uint64 record_list_stmt_duration_sum_ns = 14;
+}
+
+message TopSQLStmtKvExecCount {
+    map<string, uint64> exec_count = 1; // target => count
 }
 
 message SQLMeta {
@@ -55,8 +74,9 @@ message TopSQLSubRequest {}
 
 message TopSQLSubResponse {
     oneof resp_oneof {
-        CPUTimeRecord record = 1;
+        CPUTimeRecord record = 1; // DEPRECATED: use TopSQLRecord instead
         SQLMeta sql_meta = 2;
         PlanMeta plan_meta = 3;
+        TopSQLRecord data_record = 4; // TODO(mornyx): Rename to `record` when CPUTimeRecord removed.
     }
 }

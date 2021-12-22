@@ -70,6 +70,8 @@
 		UserIdentity
 		StreamResponse
 		CPUTimeRecord
+		TopSQLRecord
+		TopSQLStmtKvExecCount
 		SQLMeta
 		PlanMeta
 		EmptyResponse
