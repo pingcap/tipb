@@ -671,6 +671,8 @@ enum ScalarFuncSig {
 	LeastCmpStringAsTime = 7070;
 	ToBinary = 7071;
 	FromBinary = 7072;
+	GreatestCmpStringAsDate = 7073;
+	LeastCmpStringAsDate = 7074;
 }
 
 // Evaluators should implement evaluation functions for every expression type.
