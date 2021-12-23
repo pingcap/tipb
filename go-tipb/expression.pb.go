@@ -744,6 +744,8 @@ const (
 	ScalarFuncSig_LeastCmpStringAsTime    ScalarFuncSig = 7070
 	ScalarFuncSig_ToBinary                ScalarFuncSig = 7071
 	ScalarFuncSig_FromBinary              ScalarFuncSig = 7072
+	ScalarFuncSig_GreatestCmpStringAsDate ScalarFuncSig = 7073
+	ScalarFuncSig_LeastCmpStringAsDate    ScalarFuncSig = 7074
 )
 
 var ScalarFuncSig_name = map[int32]string{
@@ -1305,6 +1307,8 @@ var ScalarFuncSig_name = map[int32]string{
 	7070: "LeastCmpStringAsTime",
 	7071: "ToBinary",
 	7072: "FromBinary",
+	7073: "GreatestCmpStringAsDate",
+	7074: "LeastCmpStringAsDate",
 }
 var ScalarFuncSig_value = map[string]int32{
 	"Unspecified":                    0,
@@ -1865,6 +1869,8 @@ var ScalarFuncSig_value = map[string]int32{
 	"LeastCmpStringAsTime":           7070,
 	"ToBinary":                       7071,
 	"FromBinary":                     7072,
+	"GreatestCmpStringAsDate":        7073,
+	"LeastCmpStringAsDate":           7074,
 }
 
 func (x ScalarFuncSig) Enum() *ScalarFuncSig {
