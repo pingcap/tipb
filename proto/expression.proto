@@ -673,8 +673,7 @@ enum ScalarFuncSig {
 	FromBinary = 7072;
 	GreatestCmpStringAsDate = 7073;
 	LeastCmpStringAsDate = 7074;
-	//Greatest,Least functions will return Date Type value when all the parameters are Date types
-	GreatestDate = 7075;
+	GreatestDate = 7075; //Greatest,Least functions will return Date Type value when all the parameters are Date types
 	LeastDate = 7076;
 }
 
