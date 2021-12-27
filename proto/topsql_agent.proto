@@ -13,9 +13,6 @@ option (gogoproto.unmarshaler_all) = true;
 
 // TopSQLAgent is the persistent agent service for TopSQL records
 service TopSQLAgent {
-    // DEPRECATED: use ReportTopSQLRecords instead.
-    // ReportCPUTimeRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
-    rpc ReportCPUTimeRecords(stream CPUTimeRecord) returns (EmptyResponse) {}
     // ReportTopSQLRecords is called periodically (e.g. per minute) to save the in-memory TopSQL records
     rpc ReportTopSQLRecords(stream TopSQLRecord) returns (EmptyResponse) {}
     // ReportSQLMeta reports SQL meta to the agent.
@@ -24,15 +21,6 @@ service TopSQLAgent {
     // ReportPlanMeta reports plan meta to the agent.
     // The agent should deal with plan meta similarly to SQL meta.
     rpc ReportPlanMeta(stream PlanMeta) returns (EmptyResponse) {}
-}
-
-// DEPRECATED: use TopSQLRecord instead
-message CPUTimeRecord {
-    bytes sql_digest = 1;
-    bytes plan_digest = 2;
-    // The following 2 repeated zipped together represents a List<(UnixTimestamp, CPUTime)>
-    repeated uint64 record_list_timestamp_sec = 10;  // timestamp in second
-    repeated uint32 record_list_cpu_time_ms = 11;  // this value can be greater than 1000 when counting concurrent running SQL queries
 }
 
 message TopSQLRecord {
@@ -73,9 +61,8 @@ message TopSQLSubRequest {}
 
 message TopSQLSubResponse {
     oneof resp_oneof {
-        CPUTimeRecord record = 1; // DEPRECATED: use TopSQLRecord instead
+        TopSQLRecord record = 1;
         SQLMeta sql_meta = 2;
         PlanMeta plan_meta = 3;
-        TopSQLRecord data_record = 4; // TODO(mornyx): Rename to `record` when CPUTimeRecord removed.
     }
 }
