@@ -38,16 +38,15 @@ message CPUTimeRecord {
 message TopSQLRecord {
     bytes sql_digest = 1;
     bytes plan_digest = 2;
-    // The following repeated zipped together represents a List<(UnixTimestamp, CPUTime, StmtExecCount, StmtDurationSum)>
-    repeated uint64 record_list_timestamp_sec = 10;  // timestamp in second
-    repeated uint32 record_list_cpu_time_ms = 11;  // this value can be greater than 1000 when counting concurrent running SQL queries
-    repeated uint64 record_list_stmt_exec_count = 12;
-    repeated TopSQLStmtKvExecCount record_list_stmt_kv_exec_count = 13;
-    repeated uint64 record_list_stmt_duration_sum_ns = 14;
+    repeated TopSQLRecordItem items = 3;
 }
 
-message TopSQLStmtKvExecCount {
-    map<string, uint64> exec_count = 1; // target => count
+message TopSQLRecordItem {
+    uint64 timestamp_sec = 1; // timestamp in second
+    uint32 cpu_time_ms = 2; // this value can be greater than 1000 when counting concurrent running SQL queries
+    uint64 stmt_exec_count = 3;
+    map<string, uint64> stmt_kv_exec_count = 4; // target => count
+    uint64 stmt_duration_sum_ns = 5;
 }
 
 message SQLMeta {

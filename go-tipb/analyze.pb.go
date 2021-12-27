@@ -71,7 +71,7 @@
 		StreamResponse
 		CPUTimeRecord
 		TopSQLRecord
-		TopSQLStmtKvExecCount
+		TopSQLRecordItem
 		SQLMeta
 		PlanMeta
 		EmptyResponse
