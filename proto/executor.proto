@@ -79,8 +79,7 @@ message TableScan {
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
 	repeated int64 primary_column_ids = 4;
-	repeated KeyRange ranges = 5 [(gogoproto.nullable) = false]; // For global read in join, we must point out the key ranges when we don't have the region info.
-	repeated int64 primary_prefix_column_ids = 6;
+	repeated int64 primary_prefix_column_ids = 5;
 }
 
 enum JoinType {
