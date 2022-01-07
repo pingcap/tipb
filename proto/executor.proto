@@ -68,12 +68,6 @@ message ExchangeReceiver {
 	optional ExchangeType tp = 3;
 }
 
-enum EngineType {
-	Local = 0;
-	TiKV = 1;
-	TiFlash = 2;
-}
-
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
