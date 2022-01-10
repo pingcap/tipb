@@ -687,6 +687,7 @@ message Expr {
 	optional FieldType field_type = 5;
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 	repeated ByItem order_by = 8;
+	optional AggFunctionMode aggFuncMode = 9;
 }
 
 // Expression organized in RPN form.
@@ -701,4 +702,12 @@ message ByItem {
 	optional Expr expr = 1;
 	optional RpnExpr rpn_expr = 3;
 	optional bool desc = 2 [(gogoproto.nullable) = false];
+}
+
+enum AggFunctionMode {
+	CompleteMode = 0;
+	FinalMode = 1;
+	Partial1Mode = 2;
+	Partial2Mode = 3;
+	DedupMode = 4;
 }
