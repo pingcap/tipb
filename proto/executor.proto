@@ -26,7 +26,25 @@ enum ExecType {
 	TypeExchangeSender = 9;
 	TypeExchangeReceiver = 10;
 	TypeProjection = 11;
+	TypeWindow = 12;
 }
+
+message Window {
+	repeated Expr group_by = 1;
+	repeated Expr order_by = 2;
+	repeated Expr agg_func = 3;
+	repeated Expr window_func = 4;
+	optional int64 preceding = 5;
+	optional int64 following = 6;
+	optional WindowFrameMode window_frame_mode = 7;
+	optional Executor child = 8;
+}
+
+enum WindowFrameMode {
+	range = 0;
+	rows = 1;
+}
+
 
 // It represents a Executor.
 message Executor {
@@ -43,6 +61,7 @@ message Executor {
 	optional Kill kill = 11;
 	optional ExchangeSender exchange_sender = 12;
 	optional Projection Projection = 13;
+	optional Window window = 14;
 }
 
 enum ExchangeType {

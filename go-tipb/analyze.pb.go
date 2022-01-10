@@ -36,6 +36,7 @@
 		ChecksumRewriteRule
 		ChecksumRequest
 		ChecksumResponse
+		Window
 		Executor
 		ExchangeSender
 		ExchangeReceiver

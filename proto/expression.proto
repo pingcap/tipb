@@ -71,6 +71,9 @@ enum ExprType {
 	JsonObjectAgg = 3019;
 	ApproxCountDistinct = 3020;
 
+	/* Window Function */
+	row_number  = 3021;
+
 	/* Scalar Function */
 	ScalarFunc = 10000;
 }
