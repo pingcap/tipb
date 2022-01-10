@@ -35,6 +35,7 @@ message TopSQLRecordItem {
     uint64 stmt_exec_count = 3;
     map<string, uint64> stmt_kv_exec_count = 4; // target => count
     uint64 stmt_duration_sum_ns = 5;
+    uint64 stmt_duration_count = 6;
 }
 
 message SQLMeta {
