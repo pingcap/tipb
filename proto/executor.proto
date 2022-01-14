@@ -30,7 +30,7 @@ enum ExecType {
 }
 
 message Window {
-	repeated Expr group_by = 1;
+	repeated Expr partition_by = 1;
 	repeated Expr order_by = 2;
 	repeated Expr agg_func = 3;
 	repeated Expr window_func = 4;
