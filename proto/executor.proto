@@ -78,6 +78,7 @@ message WindowSort {
 	repeated string partition_by = 1;
 	repeated string order_by = 2;
 	optional SortOrder sort_order = 3;
+	optional Executor child = 4;
 }
 
 // It represents a Executor.
@@ -96,6 +97,7 @@ message Executor {
 	optional ExchangeSender exchange_sender = 12;
 	optional Projection Projection = 13;
 	optional Window window = 14;
+	optional WindowSort window_sort = 15;
 }
 
 enum ExchangeType {
