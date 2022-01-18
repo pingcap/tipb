@@ -69,16 +69,10 @@ message WindowFrame {
 
 }
 
-enum SortOrder {
-	Asc = 0;
-	Desc = 1;
-}
-
 message WindowSort {
-	repeated Expr partition_by = 1;
-	repeated Expr order_by = 2;
-	optional SortOrder sort_order = 3;
-	optional Executor child = 4;
+	repeated ByItem order_by = 1;
+	optional SortOrder sort_order = 2;
+	optional Executor child = 3;
 }
 
 // It represents a Executor.
