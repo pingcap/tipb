@@ -71,8 +71,7 @@ message WindowFrame {
 
 message WindowSort {
 	repeated ByItem order_by = 1;
-	optional SortOrder sort_order = 2;
-	optional Executor child = 3;
+	optional Executor child = 2;
 }
 
 // It represents a Executor.
