@@ -75,8 +75,8 @@ enum SortOrder {
 }
 
 message WindowSort {
-	repeated string partition_by = 1;
-	repeated string order_by = 2;
+	repeated Expr partition_by = 1;
+	repeated Expr order_by = 2;
 	optional SortOrder sort_order = 3;
 	optional Executor child = 4;
 }
