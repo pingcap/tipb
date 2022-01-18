@@ -27,6 +27,7 @@ enum ExecType {
 	TypeExchangeReceiver = 10;
 	TypeProjection = 11;
 	TypeWindow = 12;
+	TypeWindowSort = 13;
 }
 
 message Window {
@@ -36,15 +37,48 @@ message Window {
 	repeated Expr window_func = 4;
 	optional int64 preceding = 5;
 	optional int64 following = 6;
-	optional WindowFrameMode window_frame_mode = 7;
+	optional WindowFrame window_frame = 7;
 	optional Executor child = 8;
 }
 
 enum WindowFrameMode {
 	range = 0;
 	rows = 1;
+	groups = 2;
 }
 
+enum BoundaryType {
+	unbounded = 0;
+	current = 1;
+	offset = 2;
+}
+
+enum FrameDirection {
+	preceding = 0;
+	following = 1;
+}
+
+message WindowFrame {
+	optional WindowFrameMode window_frame_mode = 1;
+	optional BoundaryType begin_type = 2;
+	optional BoundaryType end_type = 3;
+	optional int64 begin_offset = 4;
+	optional int64 end_offset = 5;
+	optional FrameDirection begin_direction = 6;
+	optional FrameDirection end_direction = 7;
+
+}
+
+enum SortOrder {
+	asc = 0;
+	desc = 1;
+}
+
+message WindowSort {
+	repeated string partition_by = 1;
+	repeated string order_by = 2;
+	optional SortOrder sort_order = 3;
+}
 
 // It represents a Executor.
 message Executor {

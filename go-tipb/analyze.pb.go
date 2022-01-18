@@ -37,6 +37,8 @@
 		ChecksumRequest
 		ChecksumResponse
 		Window
+		WindowFrame
+		WindowSort
 		Executor
 		ExchangeSender
 		ExchangeReceiver
