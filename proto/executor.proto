@@ -53,7 +53,7 @@ enum BoundaryType {
 	offset = 2;
 }
 
-enum FrameDirection {
+enum BoundaryDirection {
 	preceding = 0;
 	following = 1;
 }
@@ -64,8 +64,8 @@ message WindowFrame {
 	optional BoundaryType end_type = 3;
 	optional int64 begin_offset = 4;
 	optional int64 end_offset = 5;
-	optional FrameDirection begin_direction = 6;
-	optional FrameDirection end_direction = 7;
+	optional BoundaryDirection begin_direction = 6;
+	optional BoundaryDirection end_direction = 7;
 
 }
 
