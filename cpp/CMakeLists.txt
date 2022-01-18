@@ -86,5 +86,4 @@ add_library(tipb ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(tipb PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${Protobuf_INCLUDE_DIR}
-    # ${gRPC_INCLUDE_DIRS}
 )
