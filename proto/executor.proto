@@ -35,10 +35,8 @@ message Window {
 	repeated Expr order_by = 2;
 	repeated Expr agg_func = 3;
 	repeated Expr window_func = 4;
-	optional int64 preceding = 5;
-	optional int64 following = 6;
-	optional WindowFrame window_frame = 7;
-	optional Executor child = 8;
+	optional WindowFrame window_frame = 5;
+	optional Executor child = 6;
 }
 
 enum WindowFrameMode {
@@ -53,19 +51,14 @@ enum BoundaryType {
 	Offset = 2;
 }
 
-enum BoundaryDirection {
-	Preceding = 0;
-	Following = 1;
-}
-
 message WindowFrame {
 	optional WindowFrameMode window_frame_mode = 1;
 	optional BoundaryType begin_type = 2;
 	optional BoundaryType end_type = 3;
 	optional int64 begin_offset = 4;
 	optional int64 end_offset = 5;
-	optional BoundaryDirection begin_direction = 6;
-	optional BoundaryDirection end_direction = 7;
+	optional bool begin_preceding = 6;
+	optional bool end_preceding = 7;
 
 }
 
