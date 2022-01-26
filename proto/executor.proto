@@ -26,43 +26,8 @@ enum ExecType {
 	TypeExchangeSender = 9;
 	TypeExchangeReceiver = 10;
 	TypeProjection = 11;
-	TypeWindow = 12;
-	TypeWindowSort = 13;
-}
-
-message Window {
-	repeated Expr partition_by = 1;
-	repeated ByItem order_by = 2;
-	repeated Expr agg_func = 3;
-	optional WindowFrame window_frame = 4;
-	optional Executor child = 5;
-}
-
-enum WindowFrameMode {
-	Range = 0;
-	Rows = 1;
-	Groups = 2;
-}
-
-enum BoundaryType {
-	Unbounded = 0;
-	Current = 1;
-	Offset = 2;
-}
-
-message WindowFrame {
-	optional WindowFrameMode window_frame_mode = 1;
-	optional BoundaryType begin_type = 2;
-	optional BoundaryType end_type = 3;
-	optional int64 begin_offset = 4;
-	optional int64 end_offset = 5;
-	optional bool begin_preceding = 6;
-	optional bool end_preceding = 7;
-}
-
-message WindowSort {
-	repeated ByItem order_by = 1;
-	optional Executor child = 2;
+	TypeSort = 12;
+	TypeWindow = 13;
 }
 
 // It represents a Executor.
@@ -80,8 +45,8 @@ message Executor {
 	optional Kill kill = 11;
 	optional ExchangeSender exchange_sender = 12;
 	optional Projection Projection = 13;
-	optional Window window = 14;
-	optional WindowSort window_sort = 15;
+    optional Sort sort = 14;
+	optional Window window = 15;
 }
 
 enum ExchangeType {
@@ -226,4 +191,40 @@ message ExecutorExecutionSummary {
 
 	// The execution concurrency for this executor
 	optional uint64 concurrency = 5;
+}
+
+message Sort {
+	repeated ByItem byItems = 1;
+	optional bool isPartialSort = 2;
+	optional Executor child = 3;
+}
+
+enum WindowFrameMode {
+    Rows = 0;
+	Ranges = 1;
+	Groups = 2;
+}
+
+enum BoundaryType {
+    Following = 0;
+    Preceding = 1;
+    CurrentRow = 2;
+}
+
+message WindowFrame {
+	optional WindowFrameMode window_frame_mode = 1;
+	optional BoundaryType begin_type = 2;
+	optional BoundaryType end_type = 3;
+	optional int64 begin_offset = 4;
+	optional int64 end_offset = 5;
+	optional bool begin_preceding = 6;
+	optional bool end_preceding = 7;
+}
+
+message Window {
+    repeated Expr func_desc = 1;
+	repeated ByItem partition_by = 2;
+	repeated ByItem order_by = 3;
+	optional WindowFrame window_frame = 4;
+	optional Executor child = 5;
 }
