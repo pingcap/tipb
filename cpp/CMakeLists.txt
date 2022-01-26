@@ -12,11 +12,17 @@ else ()
     set (CMAKE_CXX_STANDARD_REQUIRED ON)
 endif ()
 
-find_package(Protobuf REQUIRED)
-message(STATUS "Using protobuf: ${Protobuf_VERSION} : ${Protobuf_INCLUDE_DIRS}, ${Protobuf_LIBRARIES}")
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
-find_package(gRPC CONFIG REQUIRED)
-message(STATUS "Using gRPC: ${gRPC_VERSION}")
+if (NOT Protobuf_INCLUDE_DIR)
+    include (cmake/find_protobuf.cmake)
+endif ()
+
+# Not sure if gRPC is actually needed, at least not for TiFlash.
+# May add the following lines back if some day some other component needs C++ services defined in these protos.
+# if (NOT gRPC_FOUND)
+#     include (cmake/find_grpc.cmake)
+# endif ()
 
 # .proto files
 set (PROTO_DEF_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../proto")
@@ -65,9 +71,9 @@ foreach (F ${PROTO_DEFS})
         OUTPUT "${PROTO_OUTPUT_DIR}/${FIL_WE}.pb.cc"
                "${PROTO_OUTPUT_DIR}/${FIL_WE}.pb.h"
         WORKING_DIRECTORY ${PROTO_DEF_TMP_DIR}
-        COMMAND protobuf::protoc
+        COMMAND ${Protobuf_PROTOC_EXECUTABLE}
         ARGS --cpp_out=${PROTO_OUTPUT_DIR} ${PROTO_DEF_TMP_DIR}/${FIL_WE}.proto -I ${PROTO_DEF_TMP_DIR}
-        DEPENDS ${ABS_FIL} protobuf::protoc __clean_tipb_defs
+        DEPENDS ${ABS_FIL} ${Protobuf_PROTOC_EXECUTABLE} __clean_tipb_defs
         COMMENT "Running C++ protocol buffer compiler on ${ABS_FIL}"
         VERBATIM)
 endforeach()
@@ -79,5 +85,5 @@ set_source_files_properties(${CLEAN_PROTO_DEFS} ${PROTO_SRCS} ${PROTO_HDRS} PROP
 add_library(tipb ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(tipb PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${PROTOBUF_INCLUDE_DIRS}
+    ${Protobuf_INCLUDE_DIR}
 )
