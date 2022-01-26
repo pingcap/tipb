@@ -221,6 +221,7 @@ message WindowFrame {
 	optional bool end_preceding = 7;
 }
 
+//
 message Window {
     repeated Expr func_desc = 1;
 	repeated ByItem partition_by = 2;
