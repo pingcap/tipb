@@ -36,9 +36,6 @@
 		ChecksumRewriteRule
 		ChecksumRequest
 		ChecksumResponse
-		Window
-		WindowFrame
-		WindowSort
 		Executor
 		ExchangeSender
 		ExchangeReceiver
@@ -52,6 +49,9 @@
 		Limit
 		Kill
 		ExecutorExecutionSummary
+		Sort
+		WindowFrame
+		Window
 		FieldType
 		Expr
 		RpnExpr

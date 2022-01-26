@@ -73,10 +73,10 @@ enum ExprType {
 
 	/* Window Function */
 	Rank = 3021;
-	Dense_rank = 3022;
-	Row_number  = 3023;
-	Lag_in_frame = 3024;
-	Lead_in_frame = 3025;
+	DenseRank = 3022;
+	RowNumber  = 3023;
+	Lag = 3024;
+	Lead = 3025;
 
 	/* Scalar Function */
 	ScalarFunc = 10000;
