@@ -32,11 +32,10 @@ enum ExecType {
 
 message Window {
 	repeated Expr partition_by = 1;
-	repeated Expr order_by = 2;
+	repeated ByItem order_by = 2;
 	repeated Expr agg_func = 3;
-	repeated Expr window_func = 4;
-	optional WindowFrame window_frame = 5;
-	optional Executor child = 6;
+	optional WindowFrame window_frame = 4;
+	optional Executor child = 5;
 }
 
 enum WindowFrameMode {
@@ -59,7 +58,6 @@ message WindowFrame {
 	optional int64 end_offset = 5;
 	optional bool begin_preceding = 6;
 	optional bool end_preceding = 7;
-
 }
 
 message WindowSort {
