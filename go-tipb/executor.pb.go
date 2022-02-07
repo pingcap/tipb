@@ -957,9 +957,9 @@ func (m *Limit) GetChild() *Executor {
 type Kill struct {
 	ConnID uint64 `protobuf:"varint,1,opt,name=connID" json:"connID"`
 	// Query indicates whether terminate a single query on this connection or the whole connection.
-	//   If Query is true, terminates the statement the connection is currently executing, but leaves the connection itself intact.
-	//   If Query is false, terminates the connection associated with the given ConnectionID, after terminating any statement the connection is executing.
-	//   See https://dev.mysql.com/doc/refman/8.0/en/kill.html.
+	// 	 If Query is true, terminates the statement the connection is currently executing, but leaves the connection itself intact.
+	// 	 If Query is false, terminates the connection associated with the given ConnectionID, after terminating any statement the connection is executing.
+	// 	 See https://dev.mysql.com/doc/refman/8.0/en/kill.html.
 	Query            bool   `protobuf:"varint,2,opt,name=query" json:"query"`
 	XXX_unrecognized []byte `json:"-"`
 }

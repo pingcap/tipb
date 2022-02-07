@@ -45,7 +45,7 @@ message Executor {
 	optional Kill kill = 11;
 	optional ExchangeSender exchange_sender = 12;
 	optional Projection Projection = 13;
-    optional Sort sort = 14;
+	optional Sort sort = 14;
 	optional Window window = 15;
 }
 
@@ -200,28 +200,28 @@ message Sort {
 }
 
 enum BoundaryType {
-    Following = 0;
-    Preceding = 1;
-    CurrentRow = 2;
+	Following = 0;
+	Preceding = 1;
+	CurrentRow = 2;
 }
 
 message WindowFrameBound {
-    optional BoundaryType type = 1;
-		optional bool unbounded = 2;
-		optional int64 offset = 3; // only use for `rows` frame type
-		repeated Expr calcFuncs = 4; // only use for `ranges` frame type
+	optional BoundaryType type = 1;
+	optional bool unbounded = 2;
+	optional int64 offset = 3; // only use for `rows` frame type
+	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
 }
 
 enum WindowFrameType {
-    Rows = 0;
-		Ranges = 1;
-		Groups = 2;
+	Rows = 0;
+	Ranges = 1;
+	Groups = 2;
 }
 
 message WindowFrame {
-    optional WindowFrameType type = 1;
-    optional WindowFrameBound start = 2;
-    optional WindowFrameBound end = 3;
+	optional WindowFrameType type = 1;
+	optional WindowFrameBound start = 2;
+	optional WindowFrameBound end = 3;
 }
 
 message Window {
