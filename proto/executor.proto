@@ -199,14 +199,14 @@ message Sort {
 	optional Executor child = 3;
 }
 
-enum BoundaryType {
+enum WindowBoundType {
 	Following = 0;
 	Preceding = 1;
 	CurrentRow = 2;
 }
 
 message WindowFrameBound {
-	optional BoundaryType type = 1;
+	optional WindowBoundType type = 1;
 	optional bool unbounded = 2;
 	optional int64 offset = 3; // only use for `rows` frame type
 	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
@@ -228,6 +228,6 @@ message Window {
 	repeated Expr func_desc = 1;
 	repeated ByItem partition_by = 2;
 	repeated ByItem order_by = 3;
-	optional WindowFrame window_frame = 4;
+	optional WindowFrame frame = 4;
 	optional Executor child = 5;
 }
