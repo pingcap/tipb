@@ -71,12 +71,18 @@ enum ExprType {
 	JsonObjectAgg = 3019;
 	ApproxCountDistinct = 3020;
 
-	/* Window Function */
-	Rank = 3021;
-	DenseRank = 3022;
-	RowNumber  = 3023;
-	Lag = 3024;
-	Lead = 3025;
+	// Window functions
+	RowNumber = 4001;
+	Rank = 4002;
+	DenseRank = 4003;
+	CumeDist = 4004;
+	PercentRank = 4005;
+	Ntile = 4006;
+	Lead = 4007;
+	Lag = 4008;
+	FirstValue = 4009;
+	LastValue = 4010;
+	NthValue = 4011;
 
 	/* Scalar Function */
 	ScalarFunc = 10000;
