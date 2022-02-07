@@ -206,9 +206,9 @@ enum WindowBoundType {
 }
 
 message WindowFrameBound {
-	optional WindowBoundType type = 1;
-	optional bool unbounded = 2;
-	optional int64 offset = 3; // only use for `rows` frame type
+	optional WindowBoundType type = 1 [(gogoproto.nullable) = false];
+	optional bool unbounded = 2 [(gogoproto.nullable) = false];
+	optional uint64 offset = 3; // only use for `rows` frame type
 	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
 }
 
@@ -219,7 +219,7 @@ enum WindowFrameType {
 }
 
 message WindowFrame {
-	optional WindowFrameType type = 1;
+	optional WindowFrameType type = 1 [(gogoproto.nullable) = false];
 	optional WindowFrameBound start = 2;
 	optional WindowFrameBound end = 3;
 }
