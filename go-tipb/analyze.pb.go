@@ -50,6 +50,7 @@
 		Kill
 		ExecutorExecutionSummary
 		Sort
+		WindowFrameBound
 		WindowFrame
 		Window
 		FieldType
