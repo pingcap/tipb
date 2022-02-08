@@ -199,32 +199,35 @@ message Sort {
 	optional Executor child = 3;
 }
 
-enum WindowFrameMode {
+enum WindowBoundType {
+	Following = 0;
+	Preceding = 1;
+	CurrentRow = 2;
+}
+
+message WindowFrameBound {
+	optional WindowBoundType type = 1 [(gogoproto.nullable) = false];
+	optional bool unbounded = 2 [(gogoproto.nullable) = false];
+	optional uint64 offset = 3; // only use for `rows` frame type
+	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
+}
+
+enum WindowFrameType {
 	Rows = 0;
 	Ranges = 1;
 	Groups = 2;
 }
 
-enum BoundaryType {
-	Unbounded = 0;
-	Current = 1;
-	Offset = 2;
-}
-
 message WindowFrame {
-	optional WindowFrameMode window_frame_mode = 1;
-	optional BoundaryType begin_type = 2;
-	optional BoundaryType end_type = 3;
-	optional int64 begin_offset = 4;
-	optional int64 end_offset = 5;
-	optional bool begin_preceding = 6;
-	optional bool end_preceding = 7;
+	optional WindowFrameType type = 1 [(gogoproto.nullable) = false];
+	optional WindowFrameBound start = 2;
+	optional WindowFrameBound end = 3;
 }
 
 message Window {
 	repeated Expr func_desc = 1;
 	repeated ByItem partition_by = 2;
 	repeated ByItem order_by = 3;
-	optional WindowFrame window_frame = 4;
+	optional WindowFrame frame = 4;
 	optional Executor child = 5;
 }
