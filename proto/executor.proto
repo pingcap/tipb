@@ -26,8 +26,9 @@ enum ExecType {
 	TypeExchangeSender = 9;
 	TypeExchangeReceiver = 10;
 	TypeProjection = 11;
-	TypeSort = 12;
-	TypeWindow = 13;
+	TypePartitionTableScan = 12;
+	TypeSort = 13;
+	TypeWindow = 14;
 }
 
 // It represents a Executor.
@@ -45,8 +46,9 @@ message Executor {
 	optional Kill kill = 11;
 	optional ExchangeSender exchange_sender = 12;
 	optional Projection Projection = 13;
-	optional Sort sort = 14;
-	optional Window window = 15;
+	optional PartitionTableScan partition_table_scan = 14;
+	optional Sort sort = 15;
+	optional Window window = 16;
 }
 
 enum ExchangeType {
@@ -86,6 +88,15 @@ message TableScan {
 	optional EngineType next_read_engine = 5 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
 	repeated KeyRange ranges = 6 [(gogoproto.nullable) = false]; // For global read in join, we must point out the key ranges when we don't have the region info.
 	repeated int64 primary_prefix_column_ids = 7;
+}
+
+message PartitionTableScan {
+	optional int64 table_id = 1 [(gogoproto.nullable) = false];
+	repeated ColumnInfo columns = 2;
+	optional bool desc = 3 [(gogoproto.nullable) = false];
+	repeated int64 primary_column_ids = 4;
+	repeated int64 primary_prefix_column_ids = 5;
+	repeated int64 partition_ids = 6;
 }
 
 enum JoinType {
