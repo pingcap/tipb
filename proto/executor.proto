@@ -226,7 +226,6 @@ message WindowFrameBound {
 enum WindowFrameType {
 	Rows = 0;
 	Ranges = 1;
-	Groups = 2;
 }
 
 message WindowFrame {
