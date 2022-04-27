@@ -130,6 +130,8 @@ message DAGRequest {
 
         // Force using the encode type specified by encode_type, currently only used in TiFlash
 	optional bool force_encode_type = 18;
+
+	optional TiflashConfig tiflash_config = 19;
 }
 
 enum EncodeType {
@@ -163,4 +165,8 @@ message StreamResponse {
 	repeated int64 output_counts = 5;
 	optional int64 warning_count = 6;
 	repeated int64 ndvs = 7;
+}
+
+message TiflashConfig {
+	map<string, string> config_map = 1 [(gogoproto.nullable) = false];
 }

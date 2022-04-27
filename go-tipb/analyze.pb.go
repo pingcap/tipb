@@ -74,6 +74,7 @@
 		ChunkMemoryLayout
 		UserIdentity
 		StreamResponse
+		TiflashConfig
 		TopSQLRecord
 		TopSQLRecordItem
 		SQLMeta
