@@ -13,6 +13,8 @@
 
 package sharedbytes
 
+// import "fmt"
+
 // SharedBytes is a custom type for protobuf, it does not
 // allocates memory in Unmarshal.
 type SharedBytes []byte
@@ -32,7 +34,10 @@ func (sb SharedBytes) MarshalTo(data []byte) (n int, err error) {
 
 // Unmarshal implements custom type for gogo/protobuf.
 func (sb *SharedBytes) Unmarshal(data []byte) error {
-	*sb = data
+	x := make([]byte, len(data))
+	copy(x, data)
+	*sb = x
+	// *sb = data
 	return nil
 }
 
