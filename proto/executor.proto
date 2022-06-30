@@ -49,6 +49,8 @@ message Executor {
 	optional PartitionTableScan partition_table_scan = 14;
 	optional Sort sort = 15;
 	optional Window window = 16;
+    optional uint64 fine_grained_shuffle_stream_count = 17 [(gogoproto.nullable) = false];
+    optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 }
 
 enum ExchangeType {
