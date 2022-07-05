@@ -146,7 +146,11 @@ type PlanMeta struct {
 	PlanDigest     []byte `protobuf:"bytes,1,opt,name=plan_digest,json=planDigest,proto3" json:"plan_digest,omitempty"`
 	NormalizedPlan string `protobuf:"bytes,2,opt,name=normalized_plan,json=normalizedPlan,proto3" json:"normalized_plan,omitempty"`
 	// If `normalized_plan` is unacceptably large, set `encoded_normalized_plan` instead.
-	// The final normalized plan is expected to get by applying github.com/pingcap/tidb/util/plancodec.DecodePlan
+	//
+	// The textual normalized plan is expected to get by following steps:
+	// 1. decode from base64
+	// 2. decode from snappy
+	// 3. decode from github.com/pingcap/tidb/util/plancodec.DecodeNormalizedPlan
 	EncodedNormalizedPlan string `protobuf:"bytes,3,opt,name=encoded_normalized_plan,json=encodedNormalizedPlan,proto3" json:"encoded_normalized_plan,omitempty"`
 }
 

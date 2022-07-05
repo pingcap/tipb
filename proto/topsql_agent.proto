@@ -49,7 +49,11 @@ message PlanMeta {
     string normalized_plan = 2;  // potentially > 1M
 
     // If `normalized_plan` is unacceptably large, set `encoded_normalized_plan` instead.
-    // The final normalized plan is expected to get by applying github.com/pingcap/tidb/util/plancodec.DecodePlan
+    //
+    // The textual normalized plan is expected to get by following steps:
+    // 1. decode from base64
+    // 2. decode from snappy
+    // 3. decode from github.com/pingcap/tidb/util/plancodec.DecodeNormalizedPlan
     string encoded_normalized_plan = 3;
 }
 
