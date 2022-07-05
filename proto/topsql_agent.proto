@@ -47,6 +47,10 @@ message SQLMeta {
 message PlanMeta {
     bytes plan_digest = 1;
     string normalized_plan = 2;  // potentially > 1M
+
+    // If `normalized_plan` is unacceptably large, set `encoded_normalized_plan` instead.
+    // The final normalized plan is expected to get by applying github.com/pingcap/tidb/util/plancodec.DecodePlan
+    string encoded_normalized_plan = 3;
 }
 
 message EmptyResponse {}
