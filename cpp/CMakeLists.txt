@@ -27,9 +27,10 @@ endif ()
 # .proto files
 set (PROTO_DEF_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../proto")
 file (GLOB PROTO_DEFS "${PROTO_DEF_DIR}/*.proto")
-# The output dir for .pb.h, .pb.cc
-set (PROTO_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tipb")
+# The output dir for .pb.h, .pb.cc. Generated under build directory.
+set (PROTO_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/tipb")
 file (MAKE_DIRECTORY "${PROTO_OUTPUT_DIR}")
+message(STATUS ".pb.h, .pb.cc of tipb are generated under ${PROTO_OUTPUT_DIR}")
 # A temporary directory for proto file without gogoproto marks
 set (PROTO_DEF_TMP_DIR "${CMAKE_CURRENT_BINARY_DIR}/protos")
 file (MAKE_DIRECTORY "${PROTO_DEF_TMP_DIR}")
@@ -86,4 +87,5 @@ add_library(tipb ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(tipb PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${Protobuf_INCLUDE_DIR}
+    ${PROTO_OUTPUT_DIR}
 )
