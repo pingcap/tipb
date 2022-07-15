@@ -90,6 +90,7 @@ message TableScan {
 	optional EngineType next_read_engine = 5 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
 	repeated KeyRange ranges = 6 [(gogoproto.nullable) = false]; // For global read in join, we must point out the key ranges when we don't have the region info.
 	repeated int64 primary_prefix_column_ids = 7;
+	optional bool keep_order = 8;
 }
 
 message PartitionTableScan {
