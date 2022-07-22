@@ -57,6 +57,7 @@
 		Window
 		ExplainData
 		ExplainOperator
+		AccessObject
 		DynamicPartitionAccessObjects
 		DynamicPartitionAccessObject
 		ScanAccessObject

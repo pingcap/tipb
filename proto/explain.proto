@@ -27,7 +27,7 @@ message ExplainOperator {
     string name = 1;
     repeated ExplainOperator children = 2;
 
-    DriverSide driver_side = 3;
+    repeated OperatorLabel labels = 3;
 
     // the cost of the current operator
     double cost = 4;
@@ -39,21 +39,25 @@ message ExplainOperator {
     StoreType store_type = 8;
 
     // The XXXReader/XXXScan/MemTable/PointGet/BatchPointGet may use this
-    oneof access_object {
-        ScanAccessObject scan_object = 9;
-        DynamicPartitionAccessObjects dynamic_partition_objects = 10;
-        string other_object = 11;
-    }
+    repeated AccessObject access_objects = 9;
 
-    string operator_info = 12;
-    string root_basic_exec_info = 13;
-    repeated string root_group_exec_info = 14;
-    string cop_exec_info = 15;
+    string operator_info = 10;
+    string root_basic_exec_info = 11;
+    repeated string root_group_exec_info = 12;
+    string cop_exec_info = 13;
 
     // memory_bytes and disk_bytes are expected to be displayed as "N/A" when they are -1,
     // this will be consistent with the result of EXPLAIN ANALYZE.
-    int64 memory_bytes = 16;
-    int64 disk_bytes = 17;
+    int64 memory_bytes = 14;
+    int64 disk_bytes = 15;
+}
+
+message AccessObject {
+    oneof access_object {
+        ScanAccessObject scan_object = 1;
+        DynamicPartitionAccessObjects dynamic_partition_objects = 2;
+        string other_object = 3;
+    }
 }
 
 message DynamicPartitionAccessObjects {
@@ -94,13 +98,14 @@ enum StoreType {
     unspecified = 0;
     tidb = 1;
     tikv = 2;
-    tiflash =3;
+    tiflash = 3;
 }
 
-enum DriverSide {
+enum OperatorLabel {
+    // empty is not expected to be used.
     empty = 0;
-    build = 1;
-    probe = 2;
-    seed = 3;
-    recursive = 4;
+    buildSide = 1;
+    probeSide = 2;
+    seedPart = 3;
+    recursivePart = 4;
 }
