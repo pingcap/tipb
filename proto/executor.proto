@@ -82,6 +82,7 @@ enum EngineType {
 	TiFlash = 2;
 }
 
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
@@ -91,6 +92,7 @@ message TableScan {
 	repeated KeyRange ranges = 6 [(gogoproto.nullable) = false]; // For global read in join, we must point out the key ranges when we don't have the region info.
 	repeated int64 primary_prefix_column_ids = 7;
 	optional bool keep_order = 8;
+	optional bool is_fast_scan = 9;
 }
 
 message PartitionTableScan {
@@ -100,6 +102,7 @@ message PartitionTableScan {
 	repeated int64 primary_column_ids = 4;
 	repeated int64 primary_prefix_column_ids = 5;
 	repeated int64 partition_ids = 6;
+	optional bool is_fast_scan = 7;
 }
 
 enum JoinType {
