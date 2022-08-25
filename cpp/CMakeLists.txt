@@ -85,7 +85,6 @@ set_source_files_properties(${CLEAN_PROTO_DEFS} ${PROTO_SRCS} ${PROTO_HDRS} PROP
 
 add_library(tipb ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(tipb PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}
     ${Protobuf_INCLUDE_DIR}
-    ${PROTO_OUTPUT_DIR}
 )
