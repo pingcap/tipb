@@ -211,8 +211,7 @@ message ExecutorExecutionSummary {
 
 message Sort {
 	repeated ByItem byItems = 1;
-	optional bool isPartialSort = 2;
-	optional Executor child = 3;
+	optional Executor child = 2;
 }
 
 enum WindowBoundType {

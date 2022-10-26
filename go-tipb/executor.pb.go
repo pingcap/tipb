@@ -1149,8 +1149,7 @@ func (m *ExecutorExecutionSummary) GetConcurrency() uint64 {
 
 type Sort struct {
 	ByItems          []*ByItem `protobuf:"bytes,1,rep,name=byItems" json:"byItems,omitempty"`
-	IsPartialSort    *bool     `protobuf:"varint,2,opt,name=isPartialSort" json:"isPartialSort,omitempty"`
-	Child            *Executor `protobuf:"bytes,3,opt,name=child" json:"child,omitempty"`
+	Child            *Executor `protobuf:"bytes,2,opt,name=child" json:"child,omitempty"`
 	XXX_unrecognized []byte    `json:"-"`
 }
 
@@ -1164,13 +1163,6 @@ func (m *Sort) GetByItems() []*ByItem {
 		return m.ByItems
 	}
 	return nil
-}
-
-func (m *Sort) GetIsPartialSort() bool {
-	if m != nil && m.IsPartialSort != nil {
-		return *m.IsPartialSort
-	}
-	return false
 }
 
 func (m *Sort) GetChild() *Executor {
@@ -2389,16 +2381,6 @@ func (m *Sort) MarshalTo(dAtA []byte) (int, error) {
 			i += n
 		}
 	}
-	if m.IsPartialSort != nil {
-		dAtA[i] = 0x10
-		i++
-		if *m.IsPartialSort {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i++
-	}
 	if m.Child != nil {
 		dAtA[i] = 0x1a
 		i++
@@ -3061,9 +3043,6 @@ func (m *Sort) Size() (n int) {
 			l = e.Size()
 			n += 1 + l + sovExecutor(uint64(l))
 		}
-	}
-	if m.IsPartialSort != nil {
-		n += 2
 	}
 	if m.Child != nil {
 		l = m.Child.Size()
@@ -6461,27 +6440,6 @@ func (m *Sort) Unmarshal(dAtA []byte) error {
 			}
 			iNdEx = postIndex
 		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IsPartialSort", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowExecutor
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			b := bool(v != 0)
-			m.IsPartialSort = &b
-		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Child", wireType)
 			}
