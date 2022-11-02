@@ -325,7 +325,7 @@ type DAGRequest struct {
 	RootExecutor *Executor `protobuf:"bytes,17,opt,name=root_executor,json=rootExecutor" json:"root_executor,omitempty"`
 	// Force using the encode type specified by encode_type, currently only used in TiFlash
 	ForceEncodeType *bool `protobuf:"varint,18,opt,name=force_encode_type,json=forceEncodeType" json:"force_encode_type,omitempty"`
-	// A flag signed to read regions on other TiFlash node through coprocessor, currently only used in TiFlash
+	// A flag mark read regions on other TiFlash node through coprocessor, currently only used in TiFlash
 	IsRemoteRead     *bool  `protobuf:"varint,19,opt,name=is_remote_read,json=isRemoteRead" json:"is_remote_read,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }

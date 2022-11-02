@@ -131,7 +131,7 @@ message DAGRequest {
 	// Force using the encode type specified by encode_type, currently only used in TiFlash
 	optional bool force_encode_type = 18;
 
-	// A flag signed to read regions on other TiFlash node through coprocessor, currently only used in TiFlash
+	// A flag mark read regions on other TiFlash node through coprocessor, currently only used in TiFlash
 	optional bool is_remote_read = 19;
 }
 
