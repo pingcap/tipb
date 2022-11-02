@@ -128,11 +128,11 @@ message DAGRequest {
 	// Represents tree struct based executors, if this field is set, should ignore the executors field, currently only used in TiFlash
 	optional Executor root_executor = 17;
 
-    // Force using the encode type specified by encode_type, currently only used in TiFlash
+	// Force using the encode type specified by encode_type, currently only used in TiFlash
 	optional bool force_encode_type = 18;
 
-    // A flag signed to read regions on other TiFlash node through coprocessor, currently only used in TiFlash
-    optional bool is_remote_read = 19;
+	// A flag signed to read regions on other TiFlash node through coprocessor, currently only used in TiFlash
+	optional bool is_remote_read = 19;
 }
 
 enum EncodeType {
