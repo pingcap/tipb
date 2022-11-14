@@ -207,6 +207,17 @@ message ExecutorExecutionSummary {
 
 	// The execution concurrency for this executor
 	optional uint64 concurrency = 5;
+
+	oneof DetailInfo {
+		FullTableScanContext full_table_scan_context = 6;
+	}
+}
+
+message FullTableScanContext {
+	optional uint64 scan_packs_count = 1;
+    optional uint64 scan_rows_count = 2;
+    optional uint64 skip_packs_count = 3;
+    optional uint64 skip_rows_count = 4;
 }
 
 message Sort {
