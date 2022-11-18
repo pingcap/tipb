@@ -209,15 +209,18 @@ message ExecutorExecutionSummary {
 	optional uint64 concurrency = 5;
 
 	oneof DetailInfo {
-		FullTableScanContext full_table_scan_context = 6;
+		TableScanContext table_scan_context = 6;
 	}
 }
 
-message FullTableScanContext {
+message TableScanContext {
 	optional uint64 scan_packs_count = 1;
     optional uint64 scan_rows_count = 2;
     optional uint64 skip_packs_count = 3;
     optional uint64 skip_rows_count = 4;
+	optional uint64 rough_set_index_load_time_in_milliseconds = 5;
+	optional uint64 dmfile_read_time_in_milliseconds = 6;
+	optional uint64 create_snapshot_time_in_milliseconds = 7;
 }
 
 message Sort {
