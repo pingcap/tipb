@@ -218,9 +218,9 @@ message TableScanContext {
     optional uint64 scan_rows_count = 2;
     optional uint64 skip_packs_count = 3;
     optional uint64 skip_rows_count = 4;
-	optional uint64 rough_set_index_load_time_in_milliseconds = 5;
-	optional uint64 dmfile_read_time_in_milliseconds = 6;
-	optional uint64 create_snapshot_time_in_milliseconds = 7;
+	optional uint64 rough_set_index_load_time_in_ns = 5;
+	optional uint64 dmfile_read_time_in_ns = 6;
+	optional uint64 create_snapshot_time_in_ns = 7;
 }
 
 message Sort {
