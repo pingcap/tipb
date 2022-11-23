@@ -51,7 +51,7 @@
 		Limit
 		Kill
 		ExecutorExecutionSummary
-		TableScanContext
+		TiFlashScanContext
 		Sort
 		WindowFrameBound
 		WindowFrame
