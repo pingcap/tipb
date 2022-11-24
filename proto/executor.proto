@@ -29,6 +29,7 @@ enum ExecType {
 	TypePartitionTableScan = 12;
 	TypeSort = 13;
 	TypeWindow = 14;
+	TypeRepeatSource = 15;   // RepeatSource executor is used to repeat underlying data sources to feed different grouping sets.
 }
 
 // It represents a Executor.
@@ -51,6 +52,7 @@ message Executor {
 	optional Window window = 16;
 	optional uint64 fine_grained_shuffle_stream_count = 17 [(gogoproto.nullable) = false];
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
+	optional RepeatSource repeat_source = 19;
 }
 
 enum ExchangeType {
@@ -261,4 +263,17 @@ message Window {
 	repeated ByItem order_by = 3;
 	optional WindowFrame frame = 4;
 	optional Executor child = 5;
+}
+
+message GroupingExpr {
+	repeated Expr grouping_expr = 1;         // for grouping expressions like: expr[a,b]
+}
+
+message GroupingSet {
+	repeated GroupingExpr grouping_exprs = 1;
+}
+
+message RepeatSource {
+	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
+	optional Executor child = 2;
 }
