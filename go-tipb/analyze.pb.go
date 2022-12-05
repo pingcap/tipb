@@ -2,108 +2,107 @@
 // source: analyze.proto
 
 /*
-	Package tipb is a generated protocol buffer package.
+Package tipb is a generated protocol buffer package.
 
-	It is generated from these files:
-		analyze.proto
-		checksum.proto
-		executor.proto
-		explain.proto
-		expression.proto
-		metadata.proto
-		resourcetag.proto
-		schema.proto
-		select.proto
-		topsql_agent.proto
-		trace.proto
+It is generated from these files:
 
-	It has these top-level messages:
-		AnalyzeReq
-		AnalyzeIndexReq
-		AnalyzeColumnsReq
-		AnalyzeMixedResp
-		AnalyzeColumnGroup
-		AnalyzeColumnsResp
-		AnalyzeIndexResp
-		Bucket
-		Histogram
-		FMSketch
-		SampleCollector
-		RowSampleCollector
-		RowSample
-		CMSketchRow
-		CMSketchTopN
-		CMSketch
-		ChecksumRewriteRule
-		ChecksumRequest
-		ChecksumResponse
-		Executor
-		ExchangeSender
-		ExchangeReceiver
-		TableScan
-		PartitionTableScan
-		Join
-		IndexScan
-		Selection
-		Projection
-		Aggregation
-		TopN
-		Limit
-		Kill
-		ExecutorExecutionSummary
-		TiFlashScanContext
-		Sort
-		WindowFrameBound
-		WindowFrame
-		Window
-		ExplainData
-		ExplainOperator
-		AccessObject
-		DynamicPartitionAccessObjects
-		DynamicPartitionAccessObject
-		ScanAccessObject
-		IndexAccess
-		FieldType
-		Expr
-		RpnExpr
-		ByItem
-		InUnionMetadata
-		CompareInMetadata
-		ResourceGroupTag
-		TableInfo
-		ColumnInfo
-		IndexInfo
-		KeyRange
-		Row
-		Error
-		SelectResponse
-		Chunk
-		RowMeta
-		DAGRequest
-		ChunkMemoryLayout
-		UserIdentity
-		StreamResponse
-		TopSQLRecord
-		TopSQLRecordItem
-		SQLMeta
-		PlanMeta
-		EmptyResponse
-		TopSQLSubRequest
-		TopSQLSubResponse
+	analyze.proto
+	checksum.proto
+	executor.proto
+	explain.proto
+	expression.proto
+	metadata.proto
+	resourcetag.proto
+	schema.proto
+	select.proto
+	topsql_agent.proto
+	trace.proto
+
+It has these top-level messages:
+
+	AnalyzeReq
+	AnalyzeIndexReq
+	AnalyzeColumnsReq
+	AnalyzeMixedResp
+	AnalyzeColumnGroup
+	AnalyzeColumnsResp
+	AnalyzeIndexResp
+	Bucket
+	Histogram
+	FMSketch
+	SampleCollector
+	RowSampleCollector
+	RowSample
+	CMSketchRow
+	CMSketchTopN
+	CMSketch
+	ChecksumRewriteRule
+	ChecksumRequest
+	ChecksumResponse
+	Executor
+	ExchangeSender
+	ExchangeReceiver
+	TableScan
+	PartitionTableScan
+	Join
+	IndexScan
+	Selection
+	Projection
+	Aggregation
+	TopN
+	Limit
+	Kill
+	ExecutorExecutionSummary
+	TiFlashScanContext
+	Sort
+	WindowFrameBound
+	WindowFrame
+	Window
+	ExplainData
+	ExplainOperator
+	AccessObject
+	DynamicPartitionAccessObjects
+	DynamicPartitionAccessObject
+	ScanAccessObject
+	IndexAccess
+	FieldType
+	Expr
+	RpnExpr
+	ByItem
+	InUnionMetadata
+	CompareInMetadata
+	ResourceGroupTag
+	TableInfo
+	ColumnInfo
+	IndexInfo
+	KeyRange
+	Row
+	Error
+	SelectResponse
+	Chunk
+	RowMeta
+	DAGRequest
+	ChunkMemoryLayout
+	UserIdentity
+	StreamResponse
+	TopSQLRecord
+	TopSQLRecordItem
+	SQLMeta
+	PlanMeta
+	EmptyResponse
+	TopSQLSubRequest
+	TopSQLSubResponse
 */
 package tipb
 
-import (
-	"fmt"
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
 
-	proto "github.com/golang/protobuf/proto"
+import encoding_binary "encoding/binary"
 
-	math "math"
-
-	encoding_binary "encoding/binary"
-
-	io "io"
-)
+import io "io"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal

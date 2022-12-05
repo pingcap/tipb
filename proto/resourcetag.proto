@@ -14,10 +14,11 @@ option (gogoproto.unmarshaler_all) = true;
 message ResourceGroupTag {
   optional bytes sql_digest = 1;
   optional bytes plan_digest = 2;
-
+ 
   // Use to label the handling kv type of the request.
   // This is for TiKV resource_metering to collect execution information by the key label.
   optional ResourceGroupTagLabel label = 3;
+  optional bytes group_name = 4;
 }
 
 enum ResourceGroupTagLabel {

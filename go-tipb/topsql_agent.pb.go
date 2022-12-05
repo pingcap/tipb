@@ -3,19 +3,17 @@
 
 package tipb
 
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
+import _ "github.com/gogo/protobuf/gogoproto"
+
 import (
-	"fmt"
-
-	proto "github.com/golang/protobuf/proto"
-
-	math "math"
-
 	context "golang.org/x/net/context"
-
 	grpc "google.golang.org/grpc"
-
-	io "io"
 )
+
+import io "io"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
