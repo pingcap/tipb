@@ -60,7 +60,7 @@ It has these top-level messages:
 	Window
 	GroupingExpr
 	GroupingSet
-	RepeatSource
+	Expand
 	ExplainData
 	ExplainOperator
 	AccessObject
