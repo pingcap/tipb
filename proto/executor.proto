@@ -132,8 +132,8 @@ message Join {
 	repeated Expr right_conditions = 10;
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
-	repeated Expr left_nullaware_join_keys = 13;
-	repeated Expr right_nullaware_join_keys = 14;
+	repeated Expr left_null_aware_join_keys = 13;
+	repeated Expr right_null_aware_join_keys = 14;
 }
 
 message IndexScan {
