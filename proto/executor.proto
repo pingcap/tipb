@@ -76,7 +76,7 @@ message ExchangeSender {
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
-	optional CompressionMode compression = 7;
+	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
