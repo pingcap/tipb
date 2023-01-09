@@ -59,6 +59,13 @@ enum ExchangeType {
 	Hash = 2;
 }
 
+// Data compression mode
+enum CompressionMode {
+	NONE = 0; // no compression
+	FAST = 1; // fast compression/decompression speed, compression ratio is lower than HC mode
+	HIGH_COMPRESSION = 2; // high compression (HC) ratio mode
+}
+
 // ExchangeSender will build connection with ExchangeReceiver.
 message ExchangeSender {
 	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
@@ -67,6 +74,7 @@ message ExchangeSender {
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
+	optional CompressionMode compression = 7;
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
