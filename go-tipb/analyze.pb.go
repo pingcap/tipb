@@ -2,99 +2,97 @@
 // source: analyze.proto
 
 /*
-Package tipb is a generated protocol buffer package.
+	Package tipb is a generated protocol buffer package.
 
-It is generated from these files:
+	It is generated from these files:
+		analyze.proto
+		checksum.proto
+		executor.proto
+		explain.proto
+		expression.proto
+		metadata.proto
+		resourcetag.proto
+		schema.proto
+		select.proto
+		topsql_agent.proto
+		trace.proto
 
-	analyze.proto
-	checksum.proto
-	executor.proto
-	explain.proto
-	expression.proto
-	metadata.proto
-	resourcetag.proto
-	schema.proto
-	select.proto
-	topsql_agent.proto
-	trace.proto
-
-It has these top-level messages:
-
-	AnalyzeReq
-	AnalyzeIndexReq
-	AnalyzeColumnsReq
-	AnalyzeMixedResp
-	AnalyzeColumnGroup
-	AnalyzeColumnsResp
-	AnalyzeIndexResp
-	Bucket
-	Histogram
-	FMSketch
-	SampleCollector
-	RowSampleCollector
-	RowSample
-	CMSketchRow
-	CMSketchTopN
-	CMSketch
-	ChecksumRewriteRule
-	ChecksumRequest
-	ChecksumResponse
-	Executor
-	ExchangeSender
-	ExchangeReceiver
-	TableScan
-	PartitionTableScan
-	Join
-	IndexScan
-	Selection
-	Projection
-	Aggregation
-	TopN
-	Limit
-	Kill
-	ExecutorExecutionSummary
-	TiFlashScanContext
-	Sort
-	WindowFrameBound
-	WindowFrame
-	Window
-	GroupingExpr
-	GroupingSet
-	Expand
-	ExplainData
-	ExplainOperator
-	AccessObject
-	DynamicPartitionAccessObjects
-	DynamicPartitionAccessObject
-	ScanAccessObject
-	IndexAccess
-	FieldType
-	Expr
-	RpnExpr
-	ByItem
-	InUnionMetadata
-	CompareInMetadata
-	ResourceGroupTag
-	TableInfo
-	ColumnInfo
-	IndexInfo
-	KeyRange
-	Row
-	Error
-	SelectResponse
-	Chunk
-	RowMeta
-	DAGRequest
-	ChunkMemoryLayout
-	UserIdentity
-	StreamResponse
-	TopSQLRecord
-	TopSQLRecordItem
-	SQLMeta
-	PlanMeta
-	EmptyResponse
-	TopSQLSubRequest
-	TopSQLSubResponse
+	It has these top-level messages:
+		AnalyzeReq
+		AnalyzeIndexReq
+		AnalyzeColumnsReq
+		AnalyzeMixedResp
+		AnalyzeColumnGroup
+		AnalyzeColumnsResp
+		AnalyzeIndexResp
+		Bucket
+		Histogram
+		FMSketch
+		SampleCollector
+		RowSampleCollector
+		RowSample
+		CMSketchRow
+		CMSketchTopN
+		CMSketch
+		ChecksumRewriteRule
+		ChecksumRequest
+		ChecksumResponse
+		Executor
+		ExchangeSender
+		ExchangeReceiver
+		TableScan
+		PartitionTableScan
+		Join
+		IndexScan
+		Selection
+		Projection
+		Aggregation
+		TopN
+		Limit
+		Kill
+		ExecutorExecutionSummary
+		TiFlashScanContext
+		Sort
+		WindowFrameBound
+		WindowFrame
+		Window
+		GroupingExpr
+		GroupingSet
+		Expand
+		ExplainData
+		ExplainOperator
+		AccessObject
+		DynamicPartitionAccessObjects
+		DynamicPartitionAccessObject
+		ScanAccessObject
+		IndexAccess
+		FieldType
+		Expr
+		RpnExpr
+		ByItem
+		InUnionMetadata
+		CompareInMetadata
+		ResourceGroupTag
+		TableInfo
+		ColumnInfo
+		IndexInfo
+		KeyRange
+		Row
+		Error
+		SelectResponse
+		Chunk
+		RowMeta
+		DAGRequest
+		ChunkMemoryLayout
+		UserIdentity
+		StreamResponse
+		TopSQLRecord
+		TopSQLRecordItem
+		SQLMeta
+		PlanMeta
+		EmptyResponse
+		TopSQLSubRequest
+		TopSQLSubResponse
 */
 package tipb
 
@@ -867,41 +865,41 @@ func (m *AnalyzeReq) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Tp))
 	if m.StartTsFallback != nil {
 		dAtA[i] = 0x10
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.StartTsFallback))
 	}
 	dAtA[i] = 0x18
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Flags))
 	dAtA[i] = 0x20
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.TimeZoneOffset))
 	if m.IdxReq != nil {
 		dAtA[i] = 0x2a
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.IdxReq.Size()))
 		n1, err := m.IdxReq.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n1
+		i = n1
 	}
 	if m.ColReq != nil {
 		dAtA[i] = 0x32
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.ColReq.Size()))
 		n2, err := m.ColReq.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n2
+		i = n2
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -922,39 +920,39 @@ func (m *AnalyzeIndexReq) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.BucketSize))
 	dAtA[i] = 0x10
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.NumColumns))
 	if m.CmsketchDepth != nil {
 		dAtA[i] = 0x18
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.CmsketchDepth))
 	}
 	if m.CmsketchWidth != nil {
 		dAtA[i] = 0x20
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.CmsketchWidth))
 	}
 	dAtA[i] = 0x28
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.SampleSize))
 	dAtA[i] = 0x30
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.SketchSize))
 	if m.TopNSize != nil {
 		dAtA[i] = 0x38
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.TopNSize))
 	}
 	if m.Version != nil {
 		dAtA[i] = 0x40
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.Version))
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -975,75 +973,75 @@ func (m *AnalyzeColumnsReq) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.BucketSize))
 	dAtA[i] = 0x10
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.SampleSize))
 	dAtA[i] = 0x18
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.SketchSize))
 	if len(m.ColumnsInfo) > 0 {
 		for _, msg := range m.ColumnsInfo {
 			dAtA[i] = 0x22
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if m.CmsketchDepth != nil {
 		dAtA[i] = 0x28
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.CmsketchDepth))
 	}
 	if m.CmsketchWidth != nil {
 		dAtA[i] = 0x30
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.CmsketchWidth))
 	}
 	if len(m.PrimaryColumnIds) > 0 {
 		for _, num := range m.PrimaryColumnIds {
 			dAtA[i] = 0x38
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if m.Version != nil {
 		dAtA[i] = 0x40
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.Version))
 	}
 	if len(m.PrimaryPrefixColumnIds) > 0 {
 		for _, num := range m.PrimaryPrefixColumnIds {
 			dAtA[i] = 0x48
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if len(m.ColumnGroups) > 0 {
 		for _, msg := range m.ColumnGroups {
 			dAtA[i] = 0x52
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if m.SampleRate != nil {
 		dAtA[i] = 0x59
-		i++
+		i
 		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.SampleRate))))
-		i += 8
+		i = 8
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1065,26 +1063,26 @@ func (m *AnalyzeMixedResp) MarshalTo(dAtA []byte) (int, error) {
 	_ = l
 	if m.ColumnsResp != nil {
 		dAtA[i] = 0xa
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.ColumnsResp.Size()))
 		n3, err := m.ColumnsResp.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n3
+		i = n3
 	}
 	if m.IndexResp != nil {
 		dAtA[i] = 0x12
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.IndexResp.Size()))
 		n4, err := m.IndexResp.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n4
+		i = n4
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1107,19 +1105,19 @@ func (m *AnalyzeColumnGroup) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.ColumnOffsets) > 0 {
 		for _, num := range m.ColumnOffsets {
 			dAtA[i] = 0x8
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if len(m.PrefixLengths) > 0 {
 		for _, num := range m.PrefixLengths {
 			dAtA[i] = 0x10
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1142,37 +1140,37 @@ func (m *AnalyzeColumnsResp) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Collectors) > 0 {
 		for _, msg := range m.Collectors {
 			dAtA[i] = 0xa
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if m.PkHist != nil {
 		dAtA[i] = 0x12
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.PkHist.Size()))
 		n5, err := m.PkHist.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n5
+		i = n5
 	}
 	if m.RowCollector != nil {
 		dAtA[i] = 0x1a
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.RowCollector.Size()))
 		n6, err := m.RowCollector.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n6
+		i = n6
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1194,36 +1192,36 @@ func (m *AnalyzeIndexResp) MarshalTo(dAtA []byte) (int, error) {
 	_ = l
 	if m.Hist != nil {
 		dAtA[i] = 0xa
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.Hist.Size()))
 		n7, err := m.Hist.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n7
+		i = n7
 	}
 	if m.Cms != nil {
 		dAtA[i] = 0x12
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.Cms.Size()))
 		n8, err := m.Cms.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n8
+		i = n8
 	}
 	if m.Collector != nil {
 		dAtA[i] = 0x1a
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.Collector.Size()))
 		n9, err := m.Collector.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n9
+		i = n9
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1244,30 +1242,30 @@ func (m *Bucket) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Count))
 	if m.LowerBound != nil {
 		dAtA[i] = 0x12
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(len(m.LowerBound)))
-		i += copy(dAtA[i:], m.LowerBound)
+		i = copy(dAtA[i:], m.LowerBound)
 	}
 	if m.UpperBound != nil {
 		dAtA[i] = 0x1a
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(len(m.UpperBound)))
-		i += copy(dAtA[i:], m.UpperBound)
+		i = copy(dAtA[i:], m.UpperBound)
 	}
 	dAtA[i] = 0x20
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Repeats))
 	if m.Ndv != nil {
 		dAtA[i] = 0x28
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.Ndv))
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1288,22 +1286,22 @@ func (m *Histogram) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Ndv))
 	if len(m.Buckets) > 0 {
 		for _, msg := range m.Buckets {
 			dAtA[i] = 0x12
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1324,17 +1322,17 @@ func (m *FMSketch) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	dAtA[i] = 0x8
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Mask))
 	if len(m.Hashset) > 0 {
 		for _, num := range m.Hashset {
 			dAtA[i] = 0x10
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1357,44 +1355,44 @@ func (m *SampleCollector) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Samples) > 0 {
 		for _, b := range m.Samples {
 			dAtA[i] = 0xa
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(len(b)))
-			i += copy(dAtA[i:], b)
+			i = copy(dAtA[i:], b)
 		}
 	}
 	dAtA[i] = 0x10
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.NullCount))
 	dAtA[i] = 0x18
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Count))
 	if m.FmSketch != nil {
 		dAtA[i] = 0x22
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.FmSketch.Size()))
 		n10, err := m.FmSketch.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n10
+		i = n10
 	}
 	if m.CmSketch != nil {
 		dAtA[i] = 0x2a
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(m.CmSketch.Size()))
 		n11, err := m.CmSketch.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n11
+		i = n11
 	}
 	if m.TotalSize != nil {
 		dAtA[i] = 0x30
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(*m.TotalSize))
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1417,46 +1415,46 @@ func (m *RowSampleCollector) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Samples) > 0 {
 		for _, msg := range m.Samples {
 			dAtA[i] = 0xa
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if len(m.NullCounts) > 0 {
 		for _, num := range m.NullCounts {
 			dAtA[i] = 0x10
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	dAtA[i] = 0x18
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Count))
 	if len(m.FmSketch) > 0 {
 		for _, msg := range m.FmSketch {
 			dAtA[i] = 0x22
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if len(m.TotalSize) > 0 {
 		for _, num := range m.TotalSize {
 			dAtA[i] = 0x28
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1479,16 +1477,16 @@ func (m *RowSample) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Row) > 0 {
 		for _, b := range m.Row {
 			dAtA[i] = 0xa
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(len(b)))
-			i += copy(dAtA[i:], b)
+			i = copy(dAtA[i:], b)
 		}
 	}
 	dAtA[i] = 0x10
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Weight))
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1511,12 +1509,12 @@ func (m *CMSketchRow) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Counters) > 0 {
 		for _, num := range m.Counters {
 			dAtA[i] = 0x8
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(num))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1538,15 +1536,15 @@ func (m *CMSketchTopN) MarshalTo(dAtA []byte) (int, error) {
 	_ = l
 	if m.Data != nil {
 		dAtA[i] = 0xa
-		i++
+		i
 		i = encodeVarintAnalyze(dAtA, i, uint64(len(m.Data)))
-		i += copy(dAtA[i:], m.Data)
+		i = copy(dAtA[i:], m.Data)
 	}
 	dAtA[i] = 0x10
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.Count))
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1569,32 +1567,32 @@ func (m *CMSketch) MarshalTo(dAtA []byte) (int, error) {
 	if len(m.Rows) > 0 {
 		for _, msg := range m.Rows {
 			dAtA[i] = 0xa
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	if len(m.TopN) > 0 {
 		for _, msg := range m.TopN {
 			dAtA[i] = 0x12
-			i++
+			i
 			i = encodeVarintAnalyze(dAtA, i, uint64(msg.Size()))
 			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
-			i += n
+			i = n
 		}
 	}
 	dAtA[i] = 0x18
-	i++
+	i
 	i = encodeVarintAnalyze(dAtA, i, uint64(m.DefaultValue))
 	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+		i = copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	return i, nil
 }
@@ -1603,30 +1601,30 @@ func encodeVarintAnalyze(dAtA []byte, offset int, v uint64) int {
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
-		offset++
+		offset
 	}
 	dAtA[offset] = uint8(v)
-	return offset + 1
+	return offset  1
 }
 func (m *AnalyzeReq) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.Tp))
+	n = 1  sovAnalyze(uint64(m.Tp))
 	if m.StartTsFallback != nil {
-		n += 1 + sovAnalyze(uint64(*m.StartTsFallback))
+		n = 1  sovAnalyze(uint64(*m.StartTsFallback))
 	}
-	n += 1 + sovAnalyze(uint64(m.Flags))
-	n += 1 + sovAnalyze(uint64(m.TimeZoneOffset))
+	n = 1  sovAnalyze(uint64(m.Flags))
+	n = 1  sovAnalyze(uint64(m.TimeZoneOffset))
 	if m.IdxReq != nil {
 		l = m.IdxReq.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.ColReq != nil {
 		l = m.ColReq.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1634,24 +1632,24 @@ func (m *AnalyzeReq) Size() (n int) {
 func (m *AnalyzeIndexReq) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.BucketSize))
-	n += 1 + sovAnalyze(uint64(m.NumColumns))
+	n = 1  sovAnalyze(uint64(m.BucketSize))
+	n = 1  sovAnalyze(uint64(m.NumColumns))
 	if m.CmsketchDepth != nil {
-		n += 1 + sovAnalyze(uint64(*m.CmsketchDepth))
+		n = 1  sovAnalyze(uint64(*m.CmsketchDepth))
 	}
 	if m.CmsketchWidth != nil {
-		n += 1 + sovAnalyze(uint64(*m.CmsketchWidth))
+		n = 1  sovAnalyze(uint64(*m.CmsketchWidth))
 	}
-	n += 1 + sovAnalyze(uint64(m.SampleSize))
-	n += 1 + sovAnalyze(uint64(m.SketchSize))
+	n = 1  sovAnalyze(uint64(m.SampleSize))
+	n = 1  sovAnalyze(uint64(m.SketchSize))
 	if m.TopNSize != nil {
-		n += 1 + sovAnalyze(uint64(*m.TopNSize))
+		n = 1  sovAnalyze(uint64(*m.TopNSize))
 	}
 	if m.Version != nil {
-		n += 1 + sovAnalyze(uint64(*m.Version))
+		n = 1  sovAnalyze(uint64(*m.Version))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1659,45 +1657,45 @@ func (m *AnalyzeIndexReq) Size() (n int) {
 func (m *AnalyzeColumnsReq) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.BucketSize))
-	n += 1 + sovAnalyze(uint64(m.SampleSize))
-	n += 1 + sovAnalyze(uint64(m.SketchSize))
+	n = 1  sovAnalyze(uint64(m.BucketSize))
+	n = 1  sovAnalyze(uint64(m.SampleSize))
+	n = 1  sovAnalyze(uint64(m.SketchSize))
 	if len(m.ColumnsInfo) > 0 {
 		for _, e := range m.ColumnsInfo {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if m.CmsketchDepth != nil {
-		n += 1 + sovAnalyze(uint64(*m.CmsketchDepth))
+		n = 1  sovAnalyze(uint64(*m.CmsketchDepth))
 	}
 	if m.CmsketchWidth != nil {
-		n += 1 + sovAnalyze(uint64(*m.CmsketchWidth))
+		n = 1  sovAnalyze(uint64(*m.CmsketchWidth))
 	}
 	if len(m.PrimaryColumnIds) > 0 {
 		for _, e := range m.PrimaryColumnIds {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if m.Version != nil {
-		n += 1 + sovAnalyze(uint64(*m.Version))
+		n = 1  sovAnalyze(uint64(*m.Version))
 	}
 	if len(m.PrimaryPrefixColumnIds) > 0 {
 		for _, e := range m.PrimaryPrefixColumnIds {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if len(m.ColumnGroups) > 0 {
 		for _, e := range m.ColumnGroups {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if m.SampleRate != nil {
-		n += 9
+		n = 9
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1707,14 +1705,14 @@ func (m *AnalyzeMixedResp) Size() (n int) {
 	_ = l
 	if m.ColumnsResp != nil {
 		l = m.ColumnsResp.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.IndexResp != nil {
 		l = m.IndexResp.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1724,16 +1722,16 @@ func (m *AnalyzeColumnGroup) Size() (n int) {
 	_ = l
 	if len(m.ColumnOffsets) > 0 {
 		for _, e := range m.ColumnOffsets {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if len(m.PrefixLengths) > 0 {
 		for _, e := range m.PrefixLengths {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1744,19 +1742,19 @@ func (m *AnalyzeColumnsResp) Size() (n int) {
 	if len(m.Collectors) > 0 {
 		for _, e := range m.Collectors {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if m.PkHist != nil {
 		l = m.PkHist.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.RowCollector != nil {
 		l = m.RowCollector.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1766,18 +1764,18 @@ func (m *AnalyzeIndexResp) Size() (n int) {
 	_ = l
 	if m.Hist != nil {
 		l = m.Hist.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.Cms != nil {
 		l = m.Cms.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.Collector != nil {
 		l = m.Collector.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1785,21 +1783,21 @@ func (m *AnalyzeIndexResp) Size() (n int) {
 func (m *Bucket) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.Count))
+	n = 1  sovAnalyze(uint64(m.Count))
 	if m.LowerBound != nil {
 		l = len(m.LowerBound)
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.UpperBound != nil {
 		l = len(m.UpperBound)
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
-	n += 1 + sovAnalyze(uint64(m.Repeats))
+	n = 1  sovAnalyze(uint64(m.Repeats))
 	if m.Ndv != nil {
-		n += 1 + sovAnalyze(uint64(*m.Ndv))
+		n = 1  sovAnalyze(uint64(*m.Ndv))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1807,15 +1805,15 @@ func (m *Bucket) Size() (n int) {
 func (m *Histogram) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.Ndv))
+	n = 1  sovAnalyze(uint64(m.Ndv))
 	if len(m.Buckets) > 0 {
 		for _, e := range m.Buckets {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1823,14 +1821,14 @@ func (m *Histogram) Size() (n int) {
 func (m *FMSketch) Size() (n int) {
 	var l int
 	_ = l
-	n += 1 + sovAnalyze(uint64(m.Mask))
+	n = 1  sovAnalyze(uint64(m.Mask))
 	if len(m.Hashset) > 0 {
 		for _, e := range m.Hashset {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1841,24 +1839,24 @@ func (m *SampleCollector) Size() (n int) {
 	if len(m.Samples) > 0 {
 		for _, b := range m.Samples {
 			l = len(b)
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
-	n += 1 + sovAnalyze(uint64(m.NullCount))
-	n += 1 + sovAnalyze(uint64(m.Count))
+	n = 1  sovAnalyze(uint64(m.NullCount))
+	n = 1  sovAnalyze(uint64(m.Count))
 	if m.FmSketch != nil {
 		l = m.FmSketch.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.CmSketch != nil {
 		l = m.CmSketch.Size()
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
 	if m.TotalSize != nil {
-		n += 1 + sovAnalyze(uint64(*m.TotalSize))
+		n = 1  sovAnalyze(uint64(*m.TotalSize))
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1869,28 +1867,28 @@ func (m *RowSampleCollector) Size() (n int) {
 	if len(m.Samples) > 0 {
 		for _, e := range m.Samples {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if len(m.NullCounts) > 0 {
 		for _, e := range m.NullCounts {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
-	n += 1 + sovAnalyze(uint64(m.Count))
+	n = 1  sovAnalyze(uint64(m.Count))
 	if len(m.FmSketch) > 0 {
 		for _, e := range m.FmSketch {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if len(m.TotalSize) > 0 {
 		for _, e := range m.TotalSize {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1901,12 +1899,12 @@ func (m *RowSample) Size() (n int) {
 	if len(m.Row) > 0 {
 		for _, b := range m.Row {
 			l = len(b)
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
-	n += 1 + sovAnalyze(uint64(m.Weight))
+	n = 1  sovAnalyze(uint64(m.Weight))
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1916,11 +1914,11 @@ func (m *CMSketchRow) Size() (n int) {
 	_ = l
 	if len(m.Counters) > 0 {
 		for _, e := range m.Counters {
-			n += 1 + sovAnalyze(uint64(e))
+			n = 1  sovAnalyze(uint64(e))
 		}
 	}
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1930,11 +1928,11 @@ func (m *CMSketchTopN) Size() (n int) {
 	_ = l
 	if m.Data != nil {
 		l = len(m.Data)
-		n += 1 + l + sovAnalyze(uint64(l))
+		n = 1  l  sovAnalyze(uint64(l))
 	}
-	n += 1 + sovAnalyze(uint64(m.Count))
+	n = 1  sovAnalyze(uint64(m.Count))
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -1945,25 +1943,25 @@ func (m *CMSketch) Size() (n int) {
 	if len(m.Rows) > 0 {
 		for _, e := range m.Rows {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
 	if len(m.TopN) > 0 {
 		for _, e := range m.TopN {
 			l = e.Size()
-			n += 1 + l + sovAnalyze(uint64(l))
+			n = 1  l  sovAnalyze(uint64(l))
 		}
 	}
-	n += 1 + sovAnalyze(uint64(m.DefaultValue))
+	n = 1  sovAnalyze(uint64(m.DefaultValue))
 	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
+		n = len(m.XXX_unrecognized)
 	}
 	return n
 }
 
 func sovAnalyze(x uint64) (n int) {
 	for {
-		n++
+		n
 		x >>= 7
 		if x == 0 {
 			break
@@ -1980,7 +1978,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -1988,7 +1986,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -2008,7 +2006,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Tp", wireType)
 			}
 			m.Tp = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2016,7 +2014,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Tp |= (AnalyzeType(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2027,7 +2025,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field StartTsFallback", wireType)
 			}
 			var v uint64
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2035,7 +2033,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2047,7 +2045,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Flags", wireType)
 			}
 			m.Flags = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2055,7 +2053,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Flags |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2066,7 +2064,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field TimeZoneOffset", wireType)
 			}
 			m.TimeZoneOffset = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2074,7 +2072,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.TimeZoneOffset |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2085,7 +2083,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field IdxReq", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2093,7 +2091,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2102,7 +2100,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2118,7 +2116,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field ColReq", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2126,7 +2124,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2135,7 +2133,7 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2155,11 +2153,11 @@ func (m *AnalyzeReq) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -2174,7 +2172,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -2182,7 +2180,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -2202,7 +2200,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field BucketSize", wireType)
 			}
 			m.BucketSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2210,7 +2208,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.BucketSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2221,7 +2219,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field NumColumns", wireType)
 			}
 			m.NumColumns = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2229,7 +2227,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.NumColumns |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2240,7 +2238,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field CmsketchDepth", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2248,7 +2246,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2260,7 +2258,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field CmsketchWidth", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2268,7 +2266,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2280,7 +2278,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field SampleSize", wireType)
 			}
 			m.SampleSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2288,7 +2286,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.SampleSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2299,7 +2297,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field SketchSize", wireType)
 			}
 			m.SketchSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2307,7 +2305,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.SketchSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2318,7 +2316,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field TopNSize", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2326,7 +2324,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2338,7 +2336,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Version", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2346,7 +2344,7 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2362,11 +2360,11 @@ func (m *AnalyzeIndexReq) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -2381,7 +2379,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -2389,7 +2387,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -2409,7 +2407,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field BucketSize", wireType)
 			}
 			m.BucketSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2417,7 +2415,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.BucketSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2428,7 +2426,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field SampleSize", wireType)
 			}
 			m.SampleSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2436,7 +2434,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.SampleSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2447,7 +2445,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field SketchSize", wireType)
 			}
 			m.SketchSize = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2455,7 +2453,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.SketchSize |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2466,7 +2464,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field ColumnsInfo", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2474,7 +2472,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2483,7 +2481,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2497,7 +2495,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field CmsketchDepth", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2505,7 +2503,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2517,7 +2515,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field CmsketchWidth", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2525,7 +2523,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2535,7 +2533,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 		case 7:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2543,7 +2541,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2552,7 +2550,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				m.PrimaryColumnIds = append(m.PrimaryColumnIds, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2560,7 +2558,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2569,13 +2567,13 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -2583,7 +2581,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -2599,7 +2597,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Version", wireType)
 			}
 			var v int32
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2607,7 +2605,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2617,7 +2615,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 		case 9:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2625,7 +2623,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2634,7 +2632,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				m.PrimaryPrefixColumnIds = append(m.PrimaryPrefixColumnIds, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2642,7 +2640,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2651,13 +2649,13 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -2665,7 +2663,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -2681,7 +2679,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field ColumnGroups", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2689,7 +2687,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2698,7 +2696,7 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2712,11 +2710,11 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field SampleRate", wireType)
 			}
 			var v uint64
-			if (iNdEx + 8) > l {
+			if (iNdEx  8) > l {
 				return io.ErrUnexpectedEOF
 			}
 			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
-			iNdEx += 8
+			iNdEx = 8
 			v2 := float64(math.Float64frombits(v))
 			m.SampleRate = &v2
 		default:
@@ -2728,11 +2726,11 @@ func (m *AnalyzeColumnsReq) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -2747,7 +2745,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -2755,7 +2753,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -2775,7 +2773,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field ColumnsResp", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2783,7 +2781,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2792,7 +2790,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2808,7 +2806,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field IndexResp", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -2816,7 +2814,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -2825,7 +2823,7 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -2845,11 +2843,11 @@ func (m *AnalyzeMixedResp) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -2864,7 +2862,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -2872,7 +2870,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -2890,7 +2888,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 		case 1:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2898,7 +2896,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2907,7 +2905,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 				m.ColumnOffsets = append(m.ColumnOffsets, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2915,7 +2913,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2924,13 +2922,13 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -2938,7 +2936,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -2952,7 +2950,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 		case 2:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2960,7 +2958,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2969,7 +2967,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 				m.PrefixLengths = append(m.PrefixLengths, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -2977,7 +2975,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -2986,13 +2984,13 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -3000,7 +2998,7 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -3020,11 +3018,11 @@ func (m *AnalyzeColumnGroup) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3039,7 +3037,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3047,7 +3045,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3067,7 +3065,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Collectors", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3075,7 +3073,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3084,7 +3082,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3098,7 +3096,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field PkHist", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3106,7 +3104,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3115,7 +3113,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3131,7 +3129,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field RowCollector", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3139,7 +3137,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3148,7 +3146,7 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3168,11 +3166,11 @@ func (m *AnalyzeColumnsResp) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3187,7 +3185,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3195,7 +3193,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3215,7 +3213,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Hist", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3223,7 +3221,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3232,7 +3230,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3248,7 +3246,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Cms", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3256,7 +3254,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3265,7 +3263,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3281,7 +3279,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Collector", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3289,7 +3287,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3298,7 +3296,7 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3318,11 +3316,11 @@ func (m *AnalyzeIndexResp) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3337,7 +3335,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3345,7 +3343,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3365,7 +3363,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Count", wireType)
 			}
 			m.Count = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3373,7 +3371,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Count |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3384,7 +3382,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field LowerBound", wireType)
 			}
 			var byteLen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3392,7 +3390,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3401,7 +3399,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 			if byteLen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx  byteLen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3415,7 +3413,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpperBound", wireType)
 			}
 			var byteLen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3423,7 +3421,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3432,7 +3430,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 			if byteLen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx  byteLen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3446,7 +3444,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Repeats", wireType)
 			}
 			m.Repeats = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3454,7 +3452,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Repeats |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3465,7 +3463,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Ndv", wireType)
 			}
 			var v int64
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3473,7 +3471,7 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3489,11 +3487,11 @@ func (m *Bucket) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3508,7 +3506,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3516,7 +3514,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3536,7 +3534,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Ndv", wireType)
 			}
 			m.Ndv = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3544,7 +3542,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Ndv |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3555,7 +3553,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Buckets", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3563,7 +3561,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3572,7 +3570,7 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3590,11 +3588,11 @@ func (m *Histogram) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3609,7 +3607,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3617,7 +3615,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3637,7 +3635,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Mask", wireType)
 			}
 			m.Mask = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3645,7 +3643,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Mask |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3654,7 +3652,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 		case 2:
 			if wireType == 0 {
 				var v uint64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -3662,7 +3660,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (uint64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -3671,7 +3669,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 				m.Hashset = append(m.Hashset, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -3679,7 +3677,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -3688,13 +3686,13 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v uint64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -3702,7 +3700,7 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (uint64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -3722,11 +3720,11 @@ func (m *FMSketch) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3741,7 +3739,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3749,7 +3747,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3769,7 +3767,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Samples", wireType)
 			}
 			var byteLen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3777,7 +3775,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3786,7 +3784,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 			if byteLen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx  byteLen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3798,7 +3796,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field NullCount", wireType)
 			}
 			m.NullCount = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3806,7 +3804,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.NullCount |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3817,7 +3815,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Count", wireType)
 			}
 			m.Count = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3825,7 +3823,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Count |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3836,7 +3834,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field FmSketch", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3844,7 +3842,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3853,7 +3851,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3869,7 +3867,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field CmSketch", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3877,7 +3875,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3886,7 +3884,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -3902,7 +3900,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field TotalSize", wireType)
 			}
 			var v int64
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3910,7 +3908,7 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				v |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3926,11 +3924,11 @@ func (m *SampleCollector) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -3945,7 +3943,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -3953,7 +3951,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -3973,7 +3971,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Samples", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -3981,7 +3979,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -3990,7 +3988,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4002,7 +4000,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 		case 2:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4010,7 +4008,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4019,7 +4017,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				m.NullCounts = append(m.NullCounts, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4027,7 +4025,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4036,13 +4034,13 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -4050,7 +4048,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -4066,7 +4064,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Count", wireType)
 			}
 			m.Count = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4074,7 +4072,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Count |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4085,7 +4083,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field FmSketch", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4093,7 +4091,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4102,7 +4100,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4114,7 +4112,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 		case 5:
 			if wireType == 0 {
 				var v int64
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4122,7 +4120,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (int64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4131,7 +4129,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				m.TotalSize = append(m.TotalSize, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4139,7 +4137,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4148,13 +4146,13 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v int64
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -4162,7 +4160,7 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (int64(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -4182,11 +4180,11 @@ func (m *RowSampleCollector) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -4201,7 +4199,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -4209,7 +4207,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -4229,7 +4227,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Row", wireType)
 			}
 			var byteLen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4237,7 +4235,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4246,7 +4244,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 			if byteLen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx  byteLen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4258,7 +4256,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Weight", wireType)
 			}
 			m.Weight = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4266,7 +4264,7 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Weight |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4281,11 +4279,11 @@ func (m *RowSample) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -4300,7 +4298,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -4308,7 +4306,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -4326,7 +4324,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 		case 1:
 			if wireType == 0 {
 				var v uint32
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4334,7 +4332,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					v |= (uint32(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4343,7 +4341,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 				m.Counters = append(m.Counters, v)
 			} else if wireType == 2 {
 				var packedLen int
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return ErrIntOverflowAnalyze
 					}
@@ -4351,7 +4349,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 						return io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					packedLen |= (int(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4360,13 +4358,13 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 				if packedLen < 0 {
 					return ErrInvalidLengthAnalyze
 				}
-				postIndex := iNdEx + packedLen
+				postIndex := iNdEx  packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
 				for iNdEx < postIndex {
 					var v uint32
-					for shift := uint(0); ; shift += 7 {
+					for shift := uint(0); ; shift = 7 {
 						if shift >= 64 {
 							return ErrIntOverflowAnalyze
 						}
@@ -4374,7 +4372,7 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 							return io.ErrUnexpectedEOF
 						}
 						b := dAtA[iNdEx]
-						iNdEx++
+						iNdEx
 						v |= (uint32(b) & 0x7F) << shift
 						if b < 0x80 {
 							break
@@ -4394,11 +4392,11 @@ func (m *CMSketchRow) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -4413,7 +4411,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -4421,7 +4419,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -4441,7 +4439,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Data", wireType)
 			}
 			var byteLen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4449,7 +4447,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				byteLen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4458,7 +4456,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 			if byteLen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx  byteLen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4472,7 +4470,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Count", wireType)
 			}
 			m.Count = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4480,7 +4478,7 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.Count |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4495,11 +4493,11 @@ func (m *CMSketchTopN) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -4514,7 +4512,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 	for iNdEx < l {
 		preIndex := iNdEx
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return ErrIntOverflowAnalyze
 			}
@@ -4522,7 +4520,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -4542,7 +4540,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field Rows", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4550,7 +4548,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4559,7 +4557,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4573,7 +4571,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field TopN", wireType)
 			}
 			var msglen int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4581,7 +4579,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4590,7 +4588,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 			if msglen < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx  msglen
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -4604,7 +4602,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 				return fmt.Errorf("proto: wrong wireType = %d for field DefaultValue", wireType)
 			}
 			m.DefaultValue = 0
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAnalyze
 				}
@@ -4612,7 +4610,7 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 					return io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				m.DefaultValue |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
@@ -4627,11 +4625,11 @@ func (m *CMSketch) Unmarshal(dAtA []byte) error {
 			if skippy < 0 {
 				return ErrInvalidLengthAnalyze
 			}
-			if (iNdEx + skippy) > l {
+			if (iNdEx  skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdExskippy]...)
+			iNdEx = skippy
 		}
 	}
 
@@ -4645,7 +4643,7 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 	iNdEx := 0
 	for iNdEx < l {
 		var wire uint64
-		for shift := uint(0); ; shift += 7 {
+		for shift := uint(0); ; shift = 7 {
 			if shift >= 64 {
 				return 0, ErrIntOverflowAnalyze
 			}
@@ -4653,7 +4651,7 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 				return 0, io.ErrUnexpectedEOF
 			}
 			b := dAtA[iNdEx]
-			iNdEx++
+			iNdEx
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
 				break
@@ -4662,25 +4660,25 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 		wireType := int(wire & 0x7)
 		switch wireType {
 		case 0:
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return 0, ErrIntOverflowAnalyze
 				}
 				if iNdEx >= l {
 					return 0, io.ErrUnexpectedEOF
 				}
-				iNdEx++
+				iNdEx
 				if dAtA[iNdEx-1] < 0x80 {
 					break
 				}
 			}
 			return iNdEx, nil
 		case 1:
-			iNdEx += 8
+			iNdEx = 8
 			return iNdEx, nil
 		case 2:
 			var length int
-			for shift := uint(0); ; shift += 7 {
+			for shift := uint(0); ; shift = 7 {
 				if shift >= 64 {
 					return 0, ErrIntOverflowAnalyze
 				}
@@ -4688,13 +4686,13 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 					return 0, io.ErrUnexpectedEOF
 				}
 				b := dAtA[iNdEx]
-				iNdEx++
+				iNdEx
 				length |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			iNdEx += length
+			iNdEx = length
 			if length < 0 {
 				return 0, ErrInvalidLengthAnalyze
 			}
@@ -4703,7 +4701,7 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 			for {
 				var innerWire uint64
 				var start int = iNdEx
-				for shift := uint(0); ; shift += 7 {
+				for shift := uint(0); ; shift = 7 {
 					if shift >= 64 {
 						return 0, ErrIntOverflowAnalyze
 					}
@@ -4711,7 +4709,7 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 						return 0, io.ErrUnexpectedEOF
 					}
 					b := dAtA[iNdEx]
-					iNdEx++
+					iNdEx
 					innerWire |= (uint64(b) & 0x7F) << shift
 					if b < 0x80 {
 						break
@@ -4725,13 +4723,13 @@ func skipAnalyze(dAtA []byte) (n int, err error) {
 				if err != nil {
 					return 0, err
 				}
-				iNdEx = start + next
+				iNdEx = start  next
 			}
 			return iNdEx, nil
 		case 4:
 			return iNdEx, nil
 		case 5:
-			iNdEx += 4
+			iNdEx = 4
 			return iNdEx, nil
 		default:
 			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
