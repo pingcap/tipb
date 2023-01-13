@@ -228,9 +228,12 @@ message TiFlashScanContext {
 	optional uint64 total_dmfile_skipped_packs = 2;
 	optional uint64 total_dmfile_scanned_rows = 3;
 	optional uint64 total_dmfile_skipped_rows = 4;
-	optional uint64 total_dmfile_rough_set_index_load_time_ms = 5;
-	optional uint64 total_dmfile_read_time_ms = 6;
-	optional uint64 total_create_snapshot_time_ms = 7;
+	// optional uint64 total_dmfile_rough_set_index_load_time_ms = 5;
+	// optional uint64 total_dmfile_read_time_ms = 6;
+	// optional uint64 total_create_snapshot_time_ms = 7;
+	optional uint64 total_dmfile_rough_set_index_load_time_ns = 8;
+	optional uint64 total_dmfile_read_time_ns = 9;
+	optional uint64 total_create_snapshot_time_ns = 10;
 }
 
 
