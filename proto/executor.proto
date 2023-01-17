@@ -231,6 +231,8 @@ message TiFlashScanContext {
 	optional uint64 total_dmfile_rough_set_index_load_time_ms = 5;
 	optional uint64 total_dmfile_read_time_ms = 6;
 	optional uint64 total_create_snapshot_time_ms = 7;
+	optional uint64 total_local_region_num = 8;
+	optional uint64 total_remote_region_num = 9;
 }
 
 
