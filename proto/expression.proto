@@ -313,6 +313,7 @@ enum ScalarFuncSig {
 	UnaryNotInt = 3104;
 	UnaryNotDecimal = 3105;
 	UnaryNotReal = 3106;
+	UnaryNotJSON = 3107;
 	UnaryMinusInt = 3108;
 	UnaryMinusReal = 3109;
 	UnaryMinusDecimal = 3110;

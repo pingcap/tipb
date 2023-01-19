@@ -56,6 +56,9 @@
 		WindowFrameBound
 		WindowFrame
 		Window
+		GroupingExpr
+		GroupingSet
+		Expand
 		ExplainData
 		ExplainOperator
 		AccessObject

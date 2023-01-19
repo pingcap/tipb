@@ -36,6 +36,7 @@ const (
 	ExecType_TypePartitionTableScan ExecType = 12
 	ExecType_TypeSort               ExecType = 13
 	ExecType_TypeWindow             ExecType = 14
+	ExecType_TypeExpand             ExecType = 15
 )
 
 var ExecType_name = map[int32]string{
@@ -54,6 +55,7 @@ var ExecType_name = map[int32]string{
 	12: "TypePartitionTableScan",
 	13: "TypeSort",
 	14: "TypeWindow",
+	15: "TypeExpand",
 }
 var ExecType_value = map[string]int32{
 	"TypeTableScan":          0,
@@ -71,6 +73,7 @@ var ExecType_value = map[string]int32{
 	"TypePartitionTableScan": 12,
 	"TypeSort":               13,
 	"TypeWindow":             14,
+	"TypeExpand":             15,
 }
 
 func (x ExecType) Enum() *ExecType {
@@ -128,6 +131,44 @@ func (x *ExchangeType) UnmarshalJSON(data []byte) error {
 }
 func (ExchangeType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{1} }
 
+// Data compression mode
+type CompressionMode int32
+
+const (
+	CompressionMode_NONE             CompressionMode = 0
+	CompressionMode_FAST             CompressionMode = 1
+	CompressionMode_HIGH_COMPRESSION CompressionMode = 2
+)
+
+var CompressionMode_name = map[int32]string{
+	0: "NONE",
+	1: "FAST",
+	2: "HIGH_COMPRESSION",
+}
+var CompressionMode_value = map[string]int32{
+	"NONE":             0,
+	"FAST":             1,
+	"HIGH_COMPRESSION": 2,
+}
+
+func (x CompressionMode) Enum() *CompressionMode {
+	p := new(CompressionMode)
+	*p = x
+	return p
+}
+func (x CompressionMode) String() string {
+	return proto.EnumName(CompressionMode_name, int32(x))
+}
+func (x *CompressionMode) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(CompressionMode_value, data, "CompressionMode")
+	if err != nil {
+		return err
+	}
+	*x = CompressionMode(value)
+	return nil
+}
+func (CompressionMode) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{2} }
+
 type EngineType int32
 
 const (
@@ -163,7 +204,7 @@ func (x *EngineType) UnmarshalJSON(data []byte) error {
 	*x = EngineType(value)
 	return nil
 }
-func (EngineType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{2} }
+func (EngineType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{3} }
 
 type JoinType int32
 
@@ -212,7 +253,7 @@ func (x *JoinType) UnmarshalJSON(data []byte) error {
 	*x = JoinType(value)
 	return nil
 }
-func (JoinType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{3} }
+func (JoinType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{4} }
 
 type JoinExecType int32
 
@@ -243,7 +284,7 @@ func (x *JoinExecType) UnmarshalJSON(data []byte) error {
 	*x = JoinExecType(value)
 	return nil
 }
-func (JoinExecType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{4} }
+func (JoinExecType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{5} }
 
 type WindowBoundType int32
 
@@ -280,7 +321,7 @@ func (x *WindowBoundType) UnmarshalJSON(data []byte) error {
 	*x = WindowBoundType(value)
 	return nil
 }
-func (WindowBoundType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{5} }
+func (WindowBoundType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{6} }
 
 type WindowFrameType int32
 
@@ -317,7 +358,7 @@ func (x *WindowFrameType) UnmarshalJSON(data []byte) error {
 	*x = WindowFrameType(value)
 	return nil
 }
-func (WindowFrameType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{6} }
+func (WindowFrameType) EnumDescriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{7} }
 
 // It represents a Executor.
 type Executor struct {
@@ -339,6 +380,7 @@ type Executor struct {
 	Window                        *Window             `protobuf:"bytes,16,opt,name=window" json:"window,omitempty"`
 	FineGrainedShuffleStreamCount uint64              `protobuf:"varint,17,opt,name=fine_grained_shuffle_stream_count,json=fineGrainedShuffleStreamCount" json:"fine_grained_shuffle_stream_count"`
 	FineGrainedShuffleBatchSize   uint64              `protobuf:"varint,18,opt,name=fine_grained_shuffle_batch_size,json=fineGrainedShuffleBatchSize" json:"fine_grained_shuffle_batch_size"`
+	Expand                        *Expand             `protobuf:"bytes,19,opt,name=expand" json:"expand,omitempty"`
 	XXX_unrecognized              []byte              `json:"-"`
 }
 
@@ -473,15 +515,23 @@ func (m *Executor) GetFineGrainedShuffleBatchSize() uint64 {
 	return 0
 }
 
+func (m *Executor) GetExpand() *Expand {
+	if m != nil {
+		return m.Expand
+	}
+	return nil
+}
+
 // ExchangeSender will build connection with ExchangeReceiver.
 type ExchangeSender struct {
-	Tp               ExchangeType `protobuf:"varint,1,opt,name=tp,enum=tipb.ExchangeType" json:"tp"`
-	EncodedTaskMeta  [][]byte     `protobuf:"bytes,2,rep,name=encoded_task_meta,json=encodedTaskMeta" json:"encoded_task_meta,omitempty"`
-	PartitionKeys    []*Expr      `protobuf:"bytes,3,rep,name=partition_keys,json=partitionKeys" json:"partition_keys,omitempty"`
-	Child            *Executor    `protobuf:"bytes,4,opt,name=child" json:"child,omitempty"`
-	Types            []*FieldType `protobuf:"bytes,5,rep,name=types" json:"types,omitempty"`
-	AllFieldTypes    []*FieldType `protobuf:"bytes,6,rep,name=all_field_types,json=allFieldTypes" json:"all_field_types,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+	Tp               ExchangeType    `protobuf:"varint,1,opt,name=tp,enum=tipb.ExchangeType" json:"tp"`
+	EncodedTaskMeta  [][]byte        `protobuf:"bytes,2,rep,name=encoded_task_meta,json=encodedTaskMeta" json:"encoded_task_meta,omitempty"`
+	PartitionKeys    []*Expr         `protobuf:"bytes,3,rep,name=partition_keys,json=partitionKeys" json:"partition_keys,omitempty"`
+	Child            *Executor       `protobuf:"bytes,4,opt,name=child" json:"child,omitempty"`
+	Types            []*FieldType    `protobuf:"bytes,5,rep,name=types" json:"types,omitempty"`
+	AllFieldTypes    []*FieldType    `protobuf:"bytes,6,rep,name=all_field_types,json=allFieldTypes" json:"all_field_types,omitempty"`
+	Compression      CompressionMode `protobuf:"varint,7,opt,name=compression,enum=tipb.CompressionMode" json:"compression"`
+	XXX_unrecognized []byte          `json:"-"`
 }
 
 func (m *ExchangeSender) Reset()                    { *m = ExchangeSender{} }
@@ -529,6 +579,13 @@ func (m *ExchangeSender) GetAllFieldTypes() []*FieldType {
 		return m.AllFieldTypes
 	}
 	return nil
+}
+
+func (m *ExchangeSender) GetCompression() CompressionMode {
+	if m != nil {
+		return m.Compression
+	}
+	return CompressionMode_NONE
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
@@ -1255,6 +1312,8 @@ type TiFlashScanContext struct {
 	TotalDmfileRoughSetIndexLoadTimeMs *uint64 `protobuf:"varint,5,opt,name=total_dmfile_rough_set_index_load_time_ms,json=totalDmfileRoughSetIndexLoadTimeMs" json:"total_dmfile_rough_set_index_load_time_ms,omitempty"`
 	TotalDmfileReadTimeMs              *uint64 `protobuf:"varint,6,opt,name=total_dmfile_read_time_ms,json=totalDmfileReadTimeMs" json:"total_dmfile_read_time_ms,omitempty"`
 	TotalCreateSnapshotTimeMs          *uint64 `protobuf:"varint,7,opt,name=total_create_snapshot_time_ms,json=totalCreateSnapshotTimeMs" json:"total_create_snapshot_time_ms,omitempty"`
+	TotalLocalRegionNum                *uint64 `protobuf:"varint,8,opt,name=total_local_region_num,json=totalLocalRegionNum" json:"total_local_region_num,omitempty"`
+	TotalRemoteRegionNum               *uint64 `protobuf:"varint,9,opt,name=total_remote_region_num,json=totalRemoteRegionNum" json:"total_remote_region_num,omitempty"`
 	XXX_unrecognized                   []byte  `json:"-"`
 }
 
@@ -1308,6 +1367,20 @@ func (m *TiFlashScanContext) GetTotalDmfileReadTimeMs() uint64 {
 func (m *TiFlashScanContext) GetTotalCreateSnapshotTimeMs() uint64 {
 	if m != nil && m.TotalCreateSnapshotTimeMs != nil {
 		return *m.TotalCreateSnapshotTimeMs
+	}
+	return 0
+}
+
+func (m *TiFlashScanContext) GetTotalLocalRegionNum() uint64 {
+	if m != nil && m.TotalLocalRegionNum != nil {
+		return *m.TotalLocalRegionNum
+	}
+	return 0
+}
+
+func (m *TiFlashScanContext) GetTotalRemoteRegionNum() uint64 {
+	if m != nil && m.TotalRemoteRegionNum != nil {
+		return *m.TotalRemoteRegionNum
 	}
 	return 0
 }
@@ -1468,6 +1541,65 @@ func (m *Window) GetChild() *Executor {
 	return nil
 }
 
+type GroupingExpr struct {
+	GroupingExpr     []*Expr `protobuf:"bytes,1,rep,name=grouping_expr,json=groupingExpr" json:"grouping_expr,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *GroupingExpr) Reset()                    { *m = GroupingExpr{} }
+func (m *GroupingExpr) String() string            { return proto.CompactTextString(m) }
+func (*GroupingExpr) ProtoMessage()               {}
+func (*GroupingExpr) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{19} }
+
+func (m *GroupingExpr) GetGroupingExpr() []*Expr {
+	if m != nil {
+		return m.GroupingExpr
+	}
+	return nil
+}
+
+type GroupingSet struct {
+	GroupingExprs    []*GroupingExpr `protobuf:"bytes,1,rep,name=grouping_exprs,json=groupingExprs" json:"grouping_exprs,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *GroupingSet) Reset()                    { *m = GroupingSet{} }
+func (m *GroupingSet) String() string            { return proto.CompactTextString(m) }
+func (*GroupingSet) ProtoMessage()               {}
+func (*GroupingSet) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{20} }
+
+func (m *GroupingSet) GetGroupingExprs() []*GroupingExpr {
+	if m != nil {
+		return m.GroupingExprs
+	}
+	return nil
+}
+
+type Expand struct {
+	GroupingSets     []*GroupingSet `protobuf:"bytes,1,rep,name=grouping_sets,json=groupingSets" json:"grouping_sets,omitempty"`
+	Child            *Executor      `protobuf:"bytes,2,opt,name=child" json:"child,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
+}
+
+func (m *Expand) Reset()                    { *m = Expand{} }
+func (m *Expand) String() string            { return proto.CompactTextString(m) }
+func (*Expand) ProtoMessage()               {}
+func (*Expand) Descriptor() ([]byte, []int) { return fileDescriptorExecutor, []int{21} }
+
+func (m *Expand) GetGroupingSets() []*GroupingSet {
+	if m != nil {
+		return m.GroupingSets
+	}
+	return nil
+}
+
+func (m *Expand) GetChild() *Executor {
+	if m != nil {
+		return m.Child
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*Executor)(nil), "tipb.Executor")
 	proto.RegisterType((*ExchangeSender)(nil), "tipb.ExchangeSender")
@@ -1488,8 +1620,12 @@ func init() {
 	proto.RegisterType((*WindowFrameBound)(nil), "tipb.WindowFrameBound")
 	proto.RegisterType((*WindowFrame)(nil), "tipb.WindowFrame")
 	proto.RegisterType((*Window)(nil), "tipb.Window")
+	proto.RegisterType((*GroupingExpr)(nil), "tipb.GroupingExpr")
+	proto.RegisterType((*GroupingSet)(nil), "tipb.GroupingSet")
+	proto.RegisterType((*Expand)(nil), "tipb.Expand")
 	proto.RegisterEnum("tipb.ExecType", ExecType_name, ExecType_value)
 	proto.RegisterEnum("tipb.ExchangeType", ExchangeType_name, ExchangeType_value)
+	proto.RegisterEnum("tipb.CompressionMode", CompressionMode_name, CompressionMode_value)
 	proto.RegisterEnum("tipb.EngineType", EngineType_name, EngineType_value)
 	proto.RegisterEnum("tipb.JoinType", JoinType_name, JoinType_value)
 	proto.RegisterEnum("tipb.JoinExecType", JoinExecType_name, JoinExecType_value)
@@ -1672,6 +1808,18 @@ func (m *Executor) MarshalTo(dAtA []byte) (int, error) {
 	dAtA[i] = 0x1
 	i++
 	i = encodeVarintExecutor(dAtA, i, uint64(m.FineGrainedShuffleBatchSize))
+	if m.Expand != nil {
+		dAtA[i] = 0x9a
+		i++
+		dAtA[i] = 0x1
+		i++
+		i = encodeVarintExecutor(dAtA, i, uint64(m.Expand.Size()))
+		n15, err := m.Expand.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n15
+	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
 	}
@@ -1720,11 +1868,11 @@ func (m *ExchangeSender) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n15, err := m.Child.MarshalTo(dAtA[i:])
+		n16, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n15
+		i += n16
 	}
 	if len(m.Types) > 0 {
 		for _, msg := range m.Types {
@@ -1750,6 +1898,9 @@ func (m *ExchangeSender) MarshalTo(dAtA []byte) (int, error) {
 			i += n
 		}
 	}
+	dAtA[i] = 0x38
+	i++
+	i = encodeVarintExecutor(dAtA, i, uint64(m.Compression))
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
 	}
@@ -2239,11 +2390,11 @@ func (m *Selection) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n16, err := m.Child.MarshalTo(dAtA[i:])
+		n17, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n16
+		i += n17
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2294,11 +2445,11 @@ func (m *Projection) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n17, err := m.Child.MarshalTo(dAtA[i:])
+		n18, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n17
+		i += n18
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2381,11 +2532,11 @@ func (m *Aggregation) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x32
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n18, err := m.Child.MarshalTo(dAtA[i:])
+		n19, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n18
+		i += n19
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2427,11 +2578,11 @@ func (m *TopN) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n19, err := m.Child.MarshalTo(dAtA[i:])
+		n20, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n19
+		i += n20
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2461,11 +2612,11 @@ func (m *Limit) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x12
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n20, err := m.Child.MarshalTo(dAtA[i:])
+		n21, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n20
+		i += n21
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2547,11 +2698,11 @@ func (m *ExecutorExecutionSummary) MarshalTo(dAtA []byte) (int, error) {
 		i = encodeVarintExecutor(dAtA, i, uint64(*m.Concurrency))
 	}
 	if m.DetailInfo != nil {
-		nn21, err := m.DetailInfo.MarshalTo(dAtA[i:])
+		nn22, err := m.DetailInfo.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += nn21
+		i += nn22
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2565,11 +2716,11 @@ func (m *ExecutorExecutionSummary_TiflashScanContext) MarshalTo(dAtA []byte) (in
 		dAtA[i] = 0x32
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.TiflashScanContext.Size()))
-		n22, err := m.TiflashScanContext.MarshalTo(dAtA[i:])
+		n23, err := m.TiflashScanContext.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n22
+		i += n23
 	}
 	return i, nil
 }
@@ -2623,6 +2774,16 @@ func (m *TiFlashScanContext) MarshalTo(dAtA []byte) (int, error) {
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(*m.TotalCreateSnapshotTimeMs))
 	}
+	if m.TotalLocalRegionNum != nil {
+		dAtA[i] = 0x40
+		i++
+		i = encodeVarintExecutor(dAtA, i, uint64(*m.TotalLocalRegionNum))
+	}
+	if m.TotalRemoteRegionNum != nil {
+		dAtA[i] = 0x48
+		i++
+		i = encodeVarintExecutor(dAtA, i, uint64(*m.TotalRemoteRegionNum))
+	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
 	}
@@ -2670,11 +2831,11 @@ func (m *Sort) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n23, err := m.Child.MarshalTo(dAtA[i:])
+		n24, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n23
+		i += n24
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2753,21 +2914,21 @@ func (m *WindowFrame) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x12
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Start.Size()))
-		n24, err := m.Start.MarshalTo(dAtA[i:])
+		n25, err := m.Start.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n24
+		i += n25
 	}
 	if m.End != nil {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.End.Size()))
-		n25, err := m.End.MarshalTo(dAtA[i:])
+		n26, err := m.End.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n25
+		i += n26
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2830,21 +2991,130 @@ func (m *Window) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Frame.Size()))
-		n26, err := m.Frame.MarshalTo(dAtA[i:])
+		n27, err := m.Frame.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n26
+		i += n27
 	}
 	if m.Child != nil {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
-		n27, err := m.Child.MarshalTo(dAtA[i:])
+		n28, err := m.Child.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
-		i += n27
+		i += n28
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *GroupingExpr) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GroupingExpr) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.GroupingExpr) > 0 {
+		for _, msg := range m.GroupingExpr {
+			dAtA[i] = 0xa
+			i++
+			i = encodeVarintExecutor(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *GroupingSet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GroupingSet) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.GroupingExprs) > 0 {
+		for _, msg := range m.GroupingExprs {
+			dAtA[i] = 0xa
+			i++
+			i = encodeVarintExecutor(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *Expand) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Expand) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.GroupingSets) > 0 {
+		for _, msg := range m.GroupingSets {
+			dAtA[i] = 0xa
+			i++
+			i = encodeVarintExecutor(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.Child != nil {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintExecutor(dAtA, i, uint64(m.Child.Size()))
+		n29, err := m.Child.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n29
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -2927,6 +3197,10 @@ func (m *Executor) Size() (n int) {
 	}
 	n += 2 + sovExecutor(uint64(m.FineGrainedShuffleStreamCount))
 	n += 2 + sovExecutor(uint64(m.FineGrainedShuffleBatchSize))
+	if m.Expand != nil {
+		l = m.Expand.Size()
+		n += 2 + l + sovExecutor(uint64(l))
+	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
 	}
@@ -2965,6 +3239,7 @@ func (m *ExchangeSender) Size() (n int) {
 			n += 1 + l + sovExecutor(uint64(l))
 		}
 	}
+	n += 1 + sovExecutor(uint64(m.Compression))
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
 	}
@@ -3368,6 +3643,12 @@ func (m *TiFlashScanContext) Size() (n int) {
 	if m.TotalCreateSnapshotTimeMs != nil {
 		n += 1 + sovExecutor(uint64(*m.TotalCreateSnapshotTimeMs))
 	}
+	if m.TotalLocalRegionNum != nil {
+		n += 1 + sovExecutor(uint64(*m.TotalLocalRegionNum))
+	}
+	if m.TotalRemoteRegionNum != nil {
+		n += 1 + sovExecutor(uint64(*m.TotalRemoteRegionNum))
+	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
 	}
@@ -3458,6 +3739,55 @@ func (m *Window) Size() (n int) {
 	if m.Frame != nil {
 		l = m.Frame.Size()
 		n += 1 + l + sovExecutor(uint64(l))
+	}
+	if m.Child != nil {
+		l = m.Child.Size()
+		n += 1 + l + sovExecutor(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GroupingExpr) Size() (n int) {
+	var l int
+	_ = l
+	if len(m.GroupingExpr) > 0 {
+		for _, e := range m.GroupingExpr {
+			l = e.Size()
+			n += 1 + l + sovExecutor(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GroupingSet) Size() (n int) {
+	var l int
+	_ = l
+	if len(m.GroupingExprs) > 0 {
+		for _, e := range m.GroupingExprs {
+			l = e.Size()
+			n += 1 + l + sovExecutor(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Expand) Size() (n int) {
+	var l int
+	_ = l
+	if len(m.GroupingSets) > 0 {
+		for _, e := range m.GroupingSets {
+			l = e.Size()
+			n += 1 + l + sovExecutor(uint64(l))
+		}
 	}
 	if m.Child != nil {
 		l = m.Child.Size()
@@ -4060,6 +4390,39 @@ func (m *Executor) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		case 19:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Expand", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Expand == nil {
+				m.Expand = &Expand{}
+			}
+			if err := m.Expand.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipExecutor(dAtA[iNdEx:])
@@ -4285,6 +4648,25 @@ func (m *ExchangeSender) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Compression", wireType)
+			}
+			m.Compression = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Compression |= (CompressionMode(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipExecutor(dAtA[iNdEx:])
@@ -6984,6 +7366,46 @@ func (m *TiFlashScanContext) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.TotalCreateSnapshotTimeMs = &v
+		case 8:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TotalLocalRegionNum", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.TotalLocalRegionNum = &v
+		case 9:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TotalRemoteRegionNum", wireType)
+			}
+			var v uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.TotalRemoteRegionNum = &v
 		default:
 			iNdEx = preIndex
 			skippy, err := skipExecutor(dAtA[iNdEx:])
@@ -7575,6 +7997,285 @@ func (m *Window) Unmarshal(dAtA []byte) error {
 			}
 			iNdEx = postIndex
 		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Child", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Child == nil {
+				m.Child = &Executor{}
+			}
+			if err := m.Child.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExecutor(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GroupingExpr) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExecutor
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GroupingExpr: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GroupingExpr: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupingExpr", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GroupingExpr = append(m.GroupingExpr, &Expr{})
+			if err := m.GroupingExpr[len(m.GroupingExpr)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExecutor(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GroupingSet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExecutor
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GroupingSet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GroupingSet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupingExprs", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GroupingExprs = append(m.GroupingExprs, &GroupingExpr{})
+			if err := m.GroupingExprs[len(m.GroupingExprs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipExecutor(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Expand) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowExecutor
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Expand: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Expand: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupingSets", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowExecutor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthExecutor
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GroupingSets = append(m.GroupingSets, &GroupingSet{})
+			if err := m.GroupingSets[len(m.GroupingSets)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Child", wireType)
 			}
