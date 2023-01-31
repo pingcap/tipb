@@ -183,7 +183,9 @@ message TopN {
 	// Order by clause.
 	repeated ByItem order_by = 1;
 	optional uint64 limit = 2 [(gogoproto.nullable) = false];
-	optional Executor child = 3;
+	repeated ByItem partition_by = 3;
+	optional uint64 recommended_part_num = 4;
+	optional Executor child = 5;
 }
 
 message Limit {
