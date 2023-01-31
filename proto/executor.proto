@@ -30,7 +30,6 @@ enum ExecType {
 	TypeSort = 13;
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
-	TypePartitionTopN = 16;
 }
 
 // It represents a Executor.
@@ -54,7 +53,6 @@ message Executor {
 	optional uint64 fine_grained_shuffle_stream_count = 17 [(gogoproto.nullable) = false];
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
-	optional PartitionTopN partition_topN = 20;
 }
 
 enum ExchangeType {
@@ -288,11 +286,4 @@ message GroupingSet {
 message Expand{
 	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
 	optional Executor child = 2;
-}
-
-message PartitionTopN {
-    repeated ByItem partition_by = 1;
-    repeated ByItem order_by = 2;
-    optional uint64 limit = 3 [(gogoproto.nullable) = false];
-    optional Executor child = 4;
 }

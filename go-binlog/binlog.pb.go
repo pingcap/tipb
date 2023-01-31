@@ -2,17 +2,15 @@
 // source: binlog.proto
 
 /*
-Package binlog is a generated protocol buffer package.
+	Package binlog is a generated protocol buffer package.
 
-It is generated from these files:
+	It is generated from these files:
+		binlog.proto
 
-	binlog.proto
-
-It has these top-level messages:
-
-	TableMutation
-	PrewriteValue
-	Binlog
+	It has these top-level messages:
+		TableMutation
+		PrewriteValue
+		Binlog
 */
 package binlog
 

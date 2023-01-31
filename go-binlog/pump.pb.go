@@ -2,21 +2,19 @@
 // source: pump.proto
 
 /*
-Package binlog is a generated protocol buffer package.
+	Package binlog is a generated protocol buffer package.
 
-It is generated from these files:
+	It is generated from these files:
+		pump.proto
 
-	pump.proto
-
-It has these top-level messages:
-
-	WriteBinlogReq
-	WriteBinlogResp
-	PullBinlogReq
-	PullBinlogResp
-	Pos
-	Meta
-	Entity
+	It has these top-level messages:
+		WriteBinlogReq
+		WriteBinlogResp
+		PullBinlogReq
+		PullBinlogResp
+		Pos
+		Meta
+		Entity
 */
 package binlog
 
