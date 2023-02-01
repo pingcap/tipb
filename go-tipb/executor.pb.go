@@ -1061,8 +1061,10 @@ func (m *Aggregation) GetChild() *Executor {
 
 type TopN struct {
 	// Order by clause.
-	OrderBy          []*ByItem `protobuf:"bytes,1,rep,name=order_by,json=orderBy" json:"order_by,omitempty"`
-	Limit            uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
+	OrderBy []*ByItem `protobuf:"bytes,1,rep,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Limit   uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
+	// If partition_by is not empty, it means the return topN of each partition.
+	// generally used sql like `where row_number() over (partition by ... order by ...) < X`
 	PartitionBy      []*ByItem `protobuf:"bytes,3,rep,name=partition_by,json=partitionBy" json:"partition_by,omitempty"`
 	Child            *Executor `protobuf:"bytes,4,opt,name=child" json:"child,omitempty"`
 	XXX_unrecognized []byte    `json:"-"`
