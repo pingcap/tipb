@@ -3,6 +3,7 @@
 
 /*
 	Package tipb is a generated protocol buffer package.
+
 	It is generated from these files:
 		analyze.proto
 		checksum.proto
@@ -15,6 +16,7 @@
 		select.proto
 		topsql_agent.proto
 		trace.proto
+
 	It has these top-level messages:
 		AnalyzeReq
 		AnalyzeIndexReq

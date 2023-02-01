@@ -3,8 +3,10 @@
 
 /*
 	Package binlog is a generated protocol buffer package.
+
 	It is generated from these files:
 		cistern.proto
+
 	It has these top-level messages:
 		DumpBinlogReq
 		DumpBinlogResp
