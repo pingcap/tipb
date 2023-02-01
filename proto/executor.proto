@@ -184,8 +184,7 @@ message TopN {
 	repeated ByItem order_by = 1;
 	optional uint64 limit = 2 [(gogoproto.nullable) = false];
 	repeated ByItem partition_by = 3;
-	optional uint64 recommended_part_num = 4;
-	optional Executor child = 5;
+	optional Executor child = 4;
 }
 
 message Limit {
