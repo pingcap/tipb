@@ -1065,7 +1065,7 @@ type TopN struct {
 	Limit   uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
 	Child   *Executor `protobuf:"bytes,3,opt,name=child" json:"child,omitempty"`
 	// If partition_by is not empty, it means the return topN of each partition.
-	// generally used in sql like `where row_number() over (partition by ... order by ...) < X`
+	// Generally used in sql like `where row_number() over (partition by ... order by ...) < X`
 	PartitionBy      []*ByItem `protobuf:"bytes,4,rep,name=partition_by,json=partitionBy" json:"partition_by,omitempty"`
 	XXX_unrecognized []byte    `json:"-"`
 }
