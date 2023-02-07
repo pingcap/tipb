@@ -1064,8 +1064,8 @@ type TopN struct {
 	OrderBy []*ByItem `protobuf:"bytes,1,rep,name=order_by,json=orderBy" json:"order_by,omitempty"`
 	Limit   uint64    `protobuf:"varint,2,opt,name=limit" json:"limit"`
 	Child   *Executor `protobuf:"bytes,3,opt,name=child" json:"child,omitempty"`
-	// If partition_by is not empty, it means the return topN of each partition.
-	// Generally used in sql like `where row_number() over (partition by ... order by ...) < X`
+	// If partition_by is not empty, it means need to return topN of each partition.
+	// Generally used in sqls like `where row_number() over (partition by ... order by ...) < X`
 	PartitionBy      []*ByItem `protobuf:"bytes,4,rep,name=partition_by,json=partitionBy" json:"partition_by,omitempty"`
 	XXX_unrecognized []byte    `json:"-"`
 }

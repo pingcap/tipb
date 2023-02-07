@@ -184,8 +184,8 @@ message TopN {
 	repeated ByItem order_by = 1;
 	optional uint64 limit = 2 [(gogoproto.nullable) = false];
 	optional Executor child = 3;
-	// If partition_by is not empty, it means the return topN of each partition.
-	// Generally used in sql like `where row_number() over (partition by ... order by ...) < X`
+	// If partition_by is not empty, it means need to return topN of each partition.
+	// Generally used in sqls like `where row_number() over (partition by ... order by ...) < X`
 	repeated ByItem partition_by = 4;
 }
 
