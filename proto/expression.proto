@@ -256,7 +256,7 @@ enum ScalarFuncSig {
 	IntDivideIntUnsignedSigned = 235;
 	IntDivideIntSignedSigned = 236;
 	IntDivideIntSignedUnsigned = 237;
-	
+
 	/*math*/
 	AbsInt = 2101;
 	AbsUInt = 2102;
@@ -443,6 +443,7 @@ enum ScalarFuncSig {
 	TiDBShard = 4572;
 
 	/*like*/
+	IlikeSig = 4309;
 	LikeSig = 4310;
 	RegexpSig = 4311;
 	RegexpUTF8Sig = 4312;
