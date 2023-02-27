@@ -142,8 +142,9 @@ message Join {
 	repeated Expr right_conditions = 10;
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
-	repeated Expr left_null_aware_join_keys = 13;
-	repeated Expr right_null_aware_join_keys = 14;
+	// Less than or equal to this position, the join keys in `left_join_keys` and `right_join_keys` are the semi join keys.
+	// Otherwise, the join keys in `left_join_keys` and `right_join_keys` are the other equal conditions.
+	optional uint64 semi_join_keys_pos = 13;
 }
 
 message IndexScan {
