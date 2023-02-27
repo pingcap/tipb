@@ -783,9 +783,9 @@ type Join struct {
 	OtherConditions         []*Expr      `protobuf:"bytes,11,rep,name=other_conditions,json=otherConditions" json:"other_conditions,omitempty"`
 	OtherEqConditionsFromIn []*Expr      `protobuf:"bytes,12,rep,name=other_eq_conditions_from_in,json=otherEqConditionsFromIn" json:"other_eq_conditions_from_in,omitempty"`
 	// If `semi_join_keys_pos` > 0, null-aware semi join will be used.
-	// So `semi_join_keys_pos` is 1-based.
-	// Less than or equal to this position, the join keys in `left_join_keys` and `right_join_keys` are the semi join keys.
-	// Greater then this position, the join keys in `left_join_keys` and `right_join_keys` are the other equal conditions if any.
+	// `semi_join_keys_pos` is 1-based.
+	// Less than or equal to it, the join keys in `left_join_keys` and `right_join_keys` are the semi join keys.
+	// Greater than it, the join keys in `left_join_keys` and `right_join_keys` are the other equal conditions if any.
 	SemiJoinKeysPos  *uint64 `protobuf:"varint,13,opt,name=semi_join_keys_pos,json=semiJoinKeysPos" json:"semi_join_keys_pos,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
