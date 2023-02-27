@@ -142,8 +142,9 @@ message Join {
 	repeated Expr right_conditions = 10;
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
+	// If `semi_join_keys_pos` > 0, null-aware semi join will be used.
 	// Less than or equal to this position, the join keys in `left_join_keys` and `right_join_keys` are the semi join keys.
-	// Otherwise, the join keys in `left_join_keys` and `right_join_keys` are the other equal conditions.
+	// Greater then this position, the join keys in `left_join_keys` and `right_join_keys` are the other equal conditions if any.
 	optional uint64 semi_join_keys_pos = 13;
 }
 
