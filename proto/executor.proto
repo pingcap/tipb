@@ -77,6 +77,11 @@ message ExchangeSender {
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
+	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
+}
+
+message EncodedBytesSlice {
+	repeated bytes encoded_tasks = 1;
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
@@ -289,4 +294,18 @@ message GroupingSet {
 message Expand{
 	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
 	optional Executor child = 2;
+}
+
+message CteProducer {
+	optional Executor SeedExec = 1;
+	optional Executor RecurExec = 2;
+	optional int64 CteID = 3;
+}
+
+message CteConsumer {
+	optional int64 CteID = 1;
+}
+
+message Sequence {
+	repeated Executor children = 1;
 }
