@@ -89,7 +89,7 @@ message ExchangeReceiver {
 	repeated bytes encoded_task_meta = 1;
 	repeated FieldType field_types = 2;
 	optional ExchangeType tp = 3;
-	optional bool is_cte_consumer = 4;
+	repeated bytes original_cte_prdocuer_task_meta = 4;
 }
 
 enum EngineType {
