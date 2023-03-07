@@ -194,6 +194,9 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
+    // If partition_by is not empty, it means need to return limitN of each partition.
+    // Generally used in sqls like `where row_number() over (partition by ...) < X`
+    repeated ByItem partition_by = 3;
 }
 
 message Kill {
