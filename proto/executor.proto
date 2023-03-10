@@ -102,6 +102,7 @@ message TableScan {
 	repeated int64 primary_prefix_column_ids = 7;
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
 }
 
 message PartitionTableScan {
@@ -112,6 +113,7 @@ message PartitionTableScan {
 	repeated int64 primary_prefix_column_ids = 5;
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
 }
 
 enum JoinType {
