@@ -154,6 +154,8 @@ message IndexScan {
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
+	optional bool is_global = 7; // check whether it is a global index.
+	repeated int64 partition_ids = 8; // used for global index
 }
 
 message Selection {
