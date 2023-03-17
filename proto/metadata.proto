@@ -20,3 +20,8 @@ message CompareInMetadata {
     // consts represents all non-null const args in repeated Datum format.
     optional bytes consts = 2;
 }
+
+message GroupingFunctionMetadata {
+    required uint32 version = 1;
+    repeated uint64 grouping_ids = 2;
+}
