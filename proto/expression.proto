@@ -5,6 +5,7 @@ package tipb;
 option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
+import "metadata.proto";
 import "gogoproto/gogo.proto";
 
 option (gogoproto.marshaler_all) = true;
@@ -721,6 +722,7 @@ message Expr {
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 	repeated ByItem order_by = 8;
 	optional AggFunctionMode aggFuncMode = 9;
+	optional GroupingFunctionMetadata groupingMeta = 10;
 }
 
 // Expression organized in RPN form.
