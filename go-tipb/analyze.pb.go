@@ -74,6 +74,7 @@ It has these top-level messages:
 	ByItem
 	InUnionMetadata
 	CompareInMetadata
+	GroupingFunctionMetadata
 	ResourceGroupTag
 	TableInfo
 	ColumnInfo
