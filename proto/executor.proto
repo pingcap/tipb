@@ -295,4 +295,5 @@ message GroupingSet {
 message Expand{
 	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
 	optional Executor child = 2;
+	optional uint64 version = 3;            // expand version
 }
