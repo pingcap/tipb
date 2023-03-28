@@ -108,6 +108,7 @@ message TableScan {
 	repeated int64 primary_prefix_column_ids = 7;
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
 }
 
 message PartitionTableScan {
@@ -118,6 +119,7 @@ message PartitionTableScan {
 	repeated int64 primary_prefix_column_ids = 5;
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
 }
 
 enum JoinType {
@@ -148,6 +150,7 @@ message Join {
 	repeated Expr right_conditions = 10;
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
+	optional bool is_null_aware_semi_join = 13;
 }
 
 message IndexScan {
@@ -199,6 +202,9 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
+    	// If partition_by is not empty, it means need to return limitN of each partition.
+    	// Generally used in sqls like `where row_number() over (partition by ...) < X`
+    	repeated ByItem partition_by = 3;
 }
 
 message Kill {
