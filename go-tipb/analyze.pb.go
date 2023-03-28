@@ -61,6 +61,8 @@ It has these top-level messages:
 	GroupingExpr
 	GroupingSet
 	Expand
+	ProjectExpr
+	Expand2
 	ExplainData
 	ExplainOperator
 	AccessObject
