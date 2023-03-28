@@ -61,7 +61,7 @@ It has these top-level messages:
 	GroupingExpr
 	GroupingSet
 	Expand
-	ProjectExpr
+	ExprSlice
 	Expand2
 	ExplainData
 	ExplainOperator
