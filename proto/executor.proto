@@ -105,6 +105,8 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
+	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
+	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];;
 }
 
 message PartitionTableScan {
@@ -116,6 +118,7 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
+	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
 }
 
 enum JoinType {
@@ -147,6 +150,27 @@ message Join {
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
 	optional bool is_null_aware_semi_join = 13;
+	repeated RuntimeFilter runtime_filter_list = 14; // only used by TiFlash
+}
+
+message RuntimeFilter {
+	optional int32 id = 1 [(gogoproto.nullable) = false];
+	optional Expr source_expr = 2;
+	optional Expr target_expr = 3;
+	optional string source_executor_id = 4 [(gogoproto.nullable) = false];
+	optional string target_executor_id = 5 [(gogoproto.nullable) = false];
+	optional Expr rf_expr = 6;
+	optional RuntimeFilterType rf_type = 7 [(gogoproto.nullable) = false];
+	optional RuntimeFilterMode rf_mode = 8 [(gogoproto.nullable) = false];
+}
+
+enum RuntimeFilterType {
+	IN = 0;
+	MIN_MAX = 1;
+}
+
+enum RuntimeFilterMode {
+	LOCAL = 0;
 }
 
 message IndexScan {
@@ -163,6 +187,7 @@ message Selection {
 	repeated Expr conditions = 1;
 	repeated RpnExpr rpn_conditions = 2;
 	optional Executor child = 3;
+	optional bool has_rf_conditions = 4 [(gogoproto.nullable) = false];
 }
 
 message Projection {
