@@ -159,9 +159,8 @@ message RuntimeFilter {
 	optional Expr target_expr = 3;
 	optional string source_executor_id = 4 [(gogoproto.nullable) = false];
 	optional string target_executor_id = 5 [(gogoproto.nullable) = false];
-	optional Expr rf_expr = 6;
-	optional RuntimeFilterType rf_type = 7 [(gogoproto.nullable) = false];
-	optional RuntimeFilterMode rf_mode = 8 [(gogoproto.nullable) = false];
+	optional RuntimeFilterType rf_type = 6 [(gogoproto.nullable) = false];
+	optional RuntimeFilterMode rf_mode = 7 [(gogoproto.nullable) = false];
 }
 
 enum RuntimeFilterType {
