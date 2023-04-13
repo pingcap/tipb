@@ -119,6 +119,7 @@ message PartitionTableScan {
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
+        optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];;
 }
 
 enum JoinType {
@@ -166,10 +167,12 @@ message RuntimeFilter {
 enum RuntimeFilterType {
 	IN = 0;
 	MIN_MAX = 1;
+        BLOOM_FILTER= 2;
 }
 
 enum RuntimeFilterMode {
 	LOCAL = 0;
+        GLOBAL = 1;
 }
 
 message IndexScan {
