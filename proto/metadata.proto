@@ -21,7 +21,13 @@ message CompareInMetadata {
     optional bytes consts = 2;
 }
 
+enum GroupingMode {
+    ModeBitAnd = 1; // Do 'and' operation, e.g. x & y
+    ModeNumericCmp = 2; // Compare two number
+    ModeNumericSet = 3; // Find if number in the set
+}
+
 message GroupingFunctionMetadata {
-    required uint32 version = 1;
-    repeated uint64 grouping_ids = 2;
+    required uint32 mode = 1;
+    repeated uint64 grouping_marks = 2; // Contain the grouping's meta info
 }

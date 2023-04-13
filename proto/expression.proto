@@ -723,7 +723,6 @@ message Expr {
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 	repeated ByItem order_by = 8;
 	optional AggFunctionMode aggFuncMode = 9;
-	optional GroupingFunctionMetadata groupingMeta = 10;
 }
 
 // Expression organized in RPN form.
