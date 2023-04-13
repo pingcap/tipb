@@ -155,8 +155,8 @@ message Join {
 
 message RuntimeFilter {
 	optional int32 id = 1 [(gogoproto.nullable) = false];
-	optional Expr source_expr = 2;
-	optional Expr target_expr = 3;
+	repeated Expr source_expr_list = 2;
+	repeated Expr target_expr_list = 3;
 	optional string source_executor_id = 4 [(gogoproto.nullable) = false];
 	optional string target_executor_id = 5 [(gogoproto.nullable) = false];
 	optional RuntimeFilterType rf_type = 6 [(gogoproto.nullable) = false];
