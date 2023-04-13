@@ -186,7 +186,6 @@ message Selection {
 	repeated Expr conditions = 1;
 	repeated RpnExpr rpn_conditions = 2;
 	optional Executor child = 3;
-	optional bool has_rf_conditions = 4 [(gogoproto.nullable) = false];
 }
 
 message Projection {
