@@ -10,15 +10,52 @@ import (
 
 	math "math"
 
-	io "io"
-
 	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
+
+	io "io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+type GroupingMode int32
+
+const (
+	GroupingMode_ModeBitAnd     GroupingMode = 1
+	GroupingMode_ModeNumericCmp GroupingMode = 2
+	GroupingMode_ModeNumericSet GroupingMode = 3
+)
+
+var GroupingMode_name = map[int32]string{
+	1: "ModeBitAnd",
+	2: "ModeNumericCmp",
+	3: "ModeNumericSet",
+}
+var GroupingMode_value = map[string]int32{
+	"ModeBitAnd":     1,
+	"ModeNumericCmp": 2,
+	"ModeNumericSet": 3,
+}
+
+func (x GroupingMode) Enum() *GroupingMode {
+	p := new(GroupingMode)
+	*p = x
+	return p
+}
+func (x GroupingMode) String() string {
+	return proto.EnumName(GroupingMode_name, int32(x))
+}
+func (x *GroupingMode) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(GroupingMode_value, data, "GroupingMode")
+	if err != nil {
+		return err
+	}
+	*x = GroupingMode(value)
+	return nil
+}
+func (GroupingMode) EnumDescriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{0} }
 
 type InUnionMetadata struct {
 	InUnion          bool   `protobuf:"varint,1,req,name=in_union,json=inUnion" json:"in_union"`
@@ -63,9 +100,38 @@ func (m *CompareInMetadata) GetConsts() []byte {
 	return nil
 }
 
+type GroupingFunctionMetadata struct {
+	Mode             *uint32  `protobuf:"varint,1,req,name=mode" json:"mode,omitempty"`
+	GroupingMarks    []uint64 `protobuf:"varint,2,rep,name=grouping_marks,json=groupingMarks" json:"grouping_marks,omitempty"`
+	XXX_unrecognized []byte   `json:"-"`
+}
+
+func (m *GroupingFunctionMetadata) Reset()         { *m = GroupingFunctionMetadata{} }
+func (m *GroupingFunctionMetadata) String() string { return proto.CompactTextString(m) }
+func (*GroupingFunctionMetadata) ProtoMessage()    {}
+func (*GroupingFunctionMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptorMetadata, []int{2}
+}
+
+func (m *GroupingFunctionMetadata) GetMode() uint32 {
+	if m != nil && m.Mode != nil {
+		return *m.Mode
+	}
+	return 0
+}
+
+func (m *GroupingFunctionMetadata) GetGroupingMarks() []uint64 {
+	if m != nil {
+		return m.GroupingMarks
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*InUnionMetadata)(nil), "tipb.InUnionMetadata")
 	proto.RegisterType((*CompareInMetadata)(nil), "tipb.CompareInMetadata")
+	proto.RegisterType((*GroupingFunctionMetadata)(nil), "tipb.GroupingFunctionMetadata")
+	proto.RegisterEnum("tipb.GroupingMode", GroupingMode_name, GroupingMode_value)
 }
 func (m *InUnionMetadata) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
@@ -131,6 +197,41 @@ func (m *CompareInMetadata) MarshalTo(dAtA []byte) (int, error) {
 	return i, nil
 }
 
+func (m *GroupingFunctionMetadata) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GroupingFunctionMetadata) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.Mode == nil {
+		return 0, new(github_com_golang_protobuf_proto.RequiredNotSetError)
+	} else {
+		dAtA[i] = 0x8
+		i++
+		i = encodeVarintMetadata(dAtA, i, uint64(*m.Mode))
+	}
+	if len(m.GroupingMarks) > 0 {
+		for _, num := range m.GroupingMarks {
+			dAtA[i] = 0x10
+			i++
+			i = encodeVarintMetadata(dAtA, i, uint64(num))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
 func encodeVarintMetadata(dAtA []byte, offset int, v uint64) int {
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
@@ -157,6 +258,23 @@ func (m *CompareInMetadata) Size() (n int) {
 	if m.Consts != nil {
 		l = len(m.Consts)
 		n += 1 + l + sovMetadata(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GroupingFunctionMetadata) Size() (n int) {
+	var l int
+	_ = l
+	if m.Mode != nil {
+		n += 1 + sovMetadata(uint64(*m.Mode))
+	}
+	if len(m.GroupingMarks) > 0 {
+		for _, e := range m.GroupingMarks {
+			n += 1 + sovMetadata(uint64(e))
+		}
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -360,6 +478,144 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
+	var hasFields [1]uint64
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMetadata
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GroupingFunctionMetadata: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GroupingFunctionMetadata: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Mode", wireType)
+			}
+			var v uint32
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMetadata
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (uint32(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Mode = &v
+			hasFields[0] |= uint64(0x00000001)
+		case 2:
+			if wireType == 0 {
+				var v uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowMetadata
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= (uint64(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.GroupingMarks = append(m.GroupingMarks, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowMetadata
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= (int(b) & 0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthMetadata
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				for iNdEx < postIndex {
+					var v uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowMetadata
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= (uint64(b) & 0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.GroupingMarks = append(m.GroupingMarks, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupingMarks", wireType)
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMetadata(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthMetadata
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+	if hasFields[0]&uint64(0x00000001) == 0 {
+		return new(github_com_golang_protobuf_proto.RequiredNotSetError)
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func skipMetadata(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
@@ -468,17 +724,23 @@ var (
 func init() { proto.RegisterFile("metadata.proto", fileDescriptorMetadata) }
 
 var fileDescriptorMetadata = []byte{
-	// 192 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcb, 0x4d, 0x2d, 0x49,
-	0x4c, 0x49, 0x2c, 0x49, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0xc9, 0x2c, 0x48,
-	0x92, 0x12, 0x49, 0xcf, 0x4f, 0xcf, 0x07, 0x0b, 0xe8, 0x83, 0x58, 0x10, 0x39, 0x25, 0x23, 0x2e,
-	0x7e, 0xcf, 0xbc, 0xd0, 0xbc, 0xcc, 0xfc, 0x3c, 0x5f, 0xa8, 0x26, 0x21, 0x79, 0x2e, 0x8e, 0xcc,
-	0xbc, 0xf8, 0x52, 0x90, 0x98, 0x04, 0xa3, 0x02, 0x93, 0x06, 0x87, 0x13, 0xcb, 0x89, 0x7b, 0xf2,
-	0x0c, 0x41, 0xec, 0x99, 0x10, 0x85, 0x4a, 0x3e, 0x5c, 0x82, 0xce, 0xf9, 0xb9, 0x05, 0x89, 0x45,
-	0xa9, 0x9e, 0x28, 0xba, 0x32, 0x12, 0x8b, 0xe3, 0xf3, 0x4a, 0x73, 0x72, 0x50, 0x75, 0x65, 0x24,
-	0x16, 0xfb, 0x95, 0xe6, 0xe4, 0x08, 0x89, 0x71, 0xb1, 0x25, 0xe7, 0xe7, 0x15, 0x97, 0x14, 0x4b,
-	0x30, 0x29, 0x30, 0x6a, 0xf0, 0x04, 0x41, 0x79, 0x4e, 0x9a, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78,
-	0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x8c, 0xc7, 0x72, 0x0c, 0x5c, 0xa2, 0xc9, 0xf9, 0xb9,
-	0x7a, 0x05, 0x99, 0x79, 0xe9, 0xc9, 0x89, 0x05, 0x7a, 0x25, 0x99, 0x29, 0x49, 0x7a, 0x20, 0x0f,
-	0x04, 0x30, 0x02, 0x02, 0x00, 0x00, 0xff, 0xff, 0xc3, 0x62, 0x50, 0x96, 0xd9, 0x00, 0x00, 0x00,
+	// 288 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x90, 0xdf, 0x4a, 0xf3, 0x30,
+	0x18, 0xc6, 0x97, 0xad, 0x7c, 0xdf, 0x78, 0xd9, 0x6a, 0x0d, 0x2a, 0xc5, 0x83, 0x6e, 0x14, 0x84,
+	0xea, 0x41, 0x05, 0xef, 0xc0, 0x0e, 0x26, 0x03, 0x3b, 0xa4, 0xb2, 0xe3, 0x92, 0xb5, 0xa5, 0x0b,
+	0x36, 0x7f, 0x68, 0x93, 0x7b, 0xf1, 0x92, 0x76, 0xe8, 0x15, 0x88, 0xd4, 0x1b, 0x91, 0x74, 0x1d,
+	0x38, 0x8f, 0xf2, 0xbe, 0xbf, 0x3c, 0xcf, 0x8f, 0x10, 0xb0, 0x59, 0xa1, 0x48, 0x4e, 0x14, 0x09,
+	0x65, 0x2d, 0x94, 0xc0, 0x96, 0xa2, 0x72, 0x7b, 0x7d, 0x51, 0x8a, 0x52, 0x74, 0xe0, 0xde, 0x4c,
+	0x87, 0x3b, 0xff, 0x01, 0xce, 0x56, 0x7c, 0xc3, 0xa9, 0xe0, 0x71, 0x5f, 0xc2, 0x33, 0x18, 0x53,
+	0x9e, 0x6a, 0xc3, 0x5c, 0x34, 0x1f, 0x06, 0xe3, 0xc8, 0xda, 0x7f, 0xce, 0x06, 0xc9, 0x7f, 0x7a,
+	0x08, 0xfa, 0xcf, 0x70, 0xbe, 0x10, 0x4c, 0x92, 0xba, 0x58, 0x9d, 0xb4, 0x76, 0xa4, 0x49, 0xb9,
+	0xae, 0xaa, 0xd3, 0xd6, 0x8e, 0x34, 0x6b, 0x5d, 0x55, 0xf8, 0x0a, 0xfe, 0x65, 0x82, 0x37, 0xaa,
+	0x71, 0x87, 0x73, 0x14, 0x4c, 0x92, 0x7e, 0xf3, 0x37, 0xe0, 0x3e, 0xd5, 0x42, 0x4b, 0xca, 0xcb,
+	0xa5, 0xe6, 0x99, 0xfa, 0xfd, 0x14, 0x0c, 0x16, 0x13, 0x79, 0xd1, 0x09, 0xa7, 0x49, 0x37, 0xe3,
+	0x1b, 0xb0, 0xcb, 0x3e, 0x9f, 0x32, 0x52, 0xbf, 0x19, 0xdf, 0x28, 0xb0, 0x92, 0xe9, 0x91, 0xc6,
+	0x06, 0xde, 0x2d, 0x61, 0x72, 0xd4, 0xc6, 0xa6, 0x66, 0x03, 0x98, 0x33, 0xa2, 0xea, 0x91, 0xe7,
+	0x0e, 0xc2, 0x18, 0x6c, 0xb3, 0xaf, 0x35, 0x2b, 0x6a, 0x9a, 0x2d, 0x98, 0x74, 0x86, 0x7f, 0xd8,
+	0x6b, 0xa1, 0x9c, 0x51, 0x74, 0xbb, 0x6f, 0x3d, 0xf4, 0xd1, 0x7a, 0xe8, 0xab, 0xf5, 0xd0, 0xfb,
+	0xb7, 0x37, 0x80, 0xcb, 0x4c, 0xb0, 0xd0, 0x78, 0x33, 0x22, 0x43, 0x45, 0xf3, 0x6d, 0x68, 0xfe,
+	0xf7, 0x05, 0xfd, 0x04, 0x00, 0x00, 0xff, 0xff, 0xfc, 0xed, 0x6f, 0x31, 0x78, 0x01, 0x00, 0x00,
 }

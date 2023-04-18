@@ -5,6 +5,7 @@ package tipb;
 option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
+import "metadata.proto";
 import "gogoproto/gogo.proto";
 
 option (gogoproto.marshaler_all) = true;
@@ -441,6 +442,7 @@ enum ScalarFuncSig {
 	VitessHash = 4570;
 	IsUUID = 4571;
 	TiDBShard = 4572;
+	GroupingSig = 4573;
 
 	/*like*/
 	IlikeSig = 4309;

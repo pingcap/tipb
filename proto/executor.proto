@@ -30,6 +30,7 @@ enum ExecType {
 	TypeSort = 13;
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
 }
 
 // It represents a Executor.
@@ -53,6 +54,7 @@ message Executor {
 	optional uint64 fine_grained_shuffle_stream_count = 17 [(gogoproto.nullable) = false];
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
+	optional Expand2 expand2= 20;
 }
 
 enum ExchangeType {
@@ -298,21 +300,20 @@ message GroupingSet {
 	repeated GroupingExpr grouping_exprs = 1;
 }
 
+// Deprecated in the nearly feature usage
 message Expand{
 	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
 	optional Executor child = 2;
+	optional uint64 version = 3;            // expand version
 }
 
-message CteProducer {
-	optional Executor SeedExec = 1;
-	optional Executor RecurExec = 2;
-	optional int64 CteID = 3;
+message ExprSlice {
+	repeated Expr exprs = 1;
 }
 
-message CteConsumer {
-	optional int64 CteID = 1;
+message Expand2{
+	repeated ExprSlice proj_exprs = 1;           // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
+	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
+	optional Executor child = 3;
 }
 
-message Sequence {
-	repeated Executor children = 1;
-}

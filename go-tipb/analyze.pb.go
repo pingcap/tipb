@@ -62,9 +62,8 @@ It has these top-level messages:
 	GroupingExpr
 	GroupingSet
 	Expand
-	CteProducer
-	CteConsumer
-	Sequence
+	ExprSlice
+	Expand2
 	ExplainData
 	ExplainOperator
 	AccessObject
@@ -78,6 +77,7 @@ It has these top-level messages:
 	ByItem
 	InUnionMetadata
 	CompareInMetadata
+	GroupingFunctionMetadata
 	ResourceGroupTag
 	TableInfo
 	ColumnInfo
