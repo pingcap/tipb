@@ -44,7 +44,6 @@ done
 cd proto-cpp
 echo "generate cpp code..."
 protoc --cpp_out=../cpp/tipb/ *.proto
-#/Users/elsa/Workspace/pingcap/tiflash/cmake-build-debug/contrib/protobuf-cmake/protoc --cpp_out=../cpp/tipb/ *.proto
 cd ..
 
 rm -rf proto-cpp
