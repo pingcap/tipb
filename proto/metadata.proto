@@ -28,6 +28,6 @@ enum GroupingMode {
 }
 
 message GroupingFunctionMetadata {
-    required uint32 mode = 1;
+    required GroupingMode mode = 1;
     repeated uint64 grouping_marks = 2; // Contain the grouping's meta info
 }
