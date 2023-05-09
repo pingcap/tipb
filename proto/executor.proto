@@ -67,6 +67,11 @@ message ExchangeSender {
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
+	repeated EncodedBytesSlice upstream_cte_task_meta = 7;
+}
+
+message EncodedBytesSlice {
+	repeated bytes encoded_tasks = 1;
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
@@ -74,6 +79,7 @@ message ExchangeReceiver {
 	repeated bytes encoded_task_meta = 1;
 	repeated FieldType field_types = 2;
 	optional ExchangeType tp = 3;
+	repeated bytes original_cte_prdocuer_task_meta = 4;
 }
 
 enum EngineType {
@@ -262,3 +268,4 @@ message Window {
 	optional WindowFrame frame = 4;
 	optional Executor child = 5;
 }
+
