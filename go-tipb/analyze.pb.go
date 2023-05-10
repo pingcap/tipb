@@ -46,6 +46,7 @@ It has these top-level messages:
 	TableScan
 	PartitionTableScan
 	Join
+	RuntimeFilter
 	IndexScan
 	Selection
 	Projection
