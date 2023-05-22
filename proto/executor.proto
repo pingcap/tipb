@@ -276,6 +276,7 @@ message TiFlashScanContext {
 	optional uint64 total_create_snapshot_time_ms = 7;
 	optional uint64 total_local_region_num = 8;
 	optional uint64 total_remote_region_num = 9;
+	optional uint64 total_user_read_bytes = 10;
 }
 
 
