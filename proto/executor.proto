@@ -74,7 +74,7 @@ enum CompressionMode {
 message ExchangeSender {
 	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
 	repeated bytes encoded_task_meta = 2;
-	repeated Expr partition_keys = 3; 
+	repeated Expr partition_keys = 3;
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
@@ -301,7 +301,8 @@ message WindowFrameBound {
 	optional WindowBoundType type = 1 [(gogoproto.nullable) = false];
 	optional bool unbounded = 2 [(gogoproto.nullable) = false];
 	optional uint64 offset = 3; // only use for `rows` frame type
-	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
+	repeated Expr calcFuncs = 4; // deprecated
+	optional Expr range_val = 5; // only use for `ranges` frame type
 }
 
 enum WindowFrameType {
