@@ -74,7 +74,7 @@ enum CompressionMode {
 message ExchangeSender {
 	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
 	repeated bytes encoded_task_meta = 2;
-	repeated Expr partition_keys = 3; 
+	repeated Expr partition_keys = 3;
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
@@ -297,11 +297,20 @@ enum WindowBoundType {
 	CurrentRow = 2;
 }
 
+// Used for range frame's comparison when finding frame's boundary
+enum RangeCmpDataType {
+	Int = 0;
+	Float = 1;
+	Decimal = 2;
+}
+
 message WindowFrameBound {
 	optional WindowBoundType type = 1 [(gogoproto.nullable) = false];
 	optional bool unbounded = 2 [(gogoproto.nullable) = false];
 	optional uint64 offset = 3; // only use for `rows` frame type
-	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
+	repeated Expr calcFuncs = 4; // Deprecated
+	optional Expr frame_range = 5; // only use for `range` frame type
+	optional RangeCmpDataType cmp_data_type = 6; // only use for `range` frame type
 }
 
 enum WindowFrameType {
