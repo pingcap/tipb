@@ -282,6 +282,9 @@ message TiFlashScanContext {
 	optional uint64 total_local_region_num = 8;
 	optional uint64 total_remote_region_num = 9;
 	optional uint64 total_user_read_bytes = 10;
+	optional uint64 total_wait_index_ms = 11;
+	optional uint64 total_cache_read_dmfile_size = 12;
+	optional uint64 total_s3_read_dmfile_size = 13;
 }
 
 
