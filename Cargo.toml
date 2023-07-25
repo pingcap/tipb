@@ -20,7 +20,7 @@ futures = "0.3.5"
 grpcio = { version = "0.10.0", default-features = false }
 
 [build-dependencies]
-protobuf-build = { version = "0.13", default-features = false }
+protobuf-build = { version = "0.15.1", default-features = false }
 
 [patch.crates-io]
 protobuf-codegen = { git = "https://github.com/pingcap/rust-protobuf", rev="82b49fea7e696fd647b5aca0a6c6ec944eab3189" }
