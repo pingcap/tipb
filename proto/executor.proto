@@ -285,7 +285,7 @@ message TiFlashScanContext {
 	optional uint64 total_learner_read_ms = 11;
 	optional uint64 total_disagg_read_cache_hit_size = 12;
 	optional uint64 total_disagg_read_cache_miss_size = 13;
-	optional uint64 total_dmfile_rough_set_index_check_time_ns = 14;
+	optional uint64 total_dmfile_rough_set_index_check_time_ms = 14;
 }
 
 
