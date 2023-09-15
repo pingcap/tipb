@@ -306,6 +306,7 @@ enum RangeCmpDataType {
 	Int = 0;
 	Float = 1;
 	Decimal = 2;
+	DateTime = 3;
 }
 
 message WindowFrameBound {
