@@ -20,7 +20,7 @@ message FieldType {
 	optional int32 collate = 5 [(gogoproto.nullable) = false];
 	optional string charset = 6 [(gogoproto.nullable) = false];
 	repeated string elems = 7 [(gogoproto.nullable) = false];
-	optional bool array = 8 [(gogoproto.nullable) = false];
+	// Field 8 was used to mark whether the `FieldType` is an array.
 }
 
 enum ExprType {
