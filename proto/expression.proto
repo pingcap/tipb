@@ -512,14 +512,14 @@ enum ScalarFuncSig {
 	JsonMemberOfSig = 5029;
 
 	/*vector*/
-	VecAsText = 5040;
-	VecFromText = 5041;
-	VecDims = 5042;
-	VecL1Distance = 5043;
-	VecL2Distance = 5044;
-	VecInnerProduct = 5045;
-	VecCosineDistance = 5046;
-	VecL2Norm = 5047;
+	VecAsTextSig = 5040;
+	VecFromTextSig = 5041;
+	VecDimsSig = 5042;
+	VecL1DistanceSig = 5043;
+	VecL2DistanceSig = 5044;
+	VecInnerProductSig = 5045;
+	VecCosineDistanceSig = 5046;
+	VecL2NormSig = 5047;
 
 	/*time*/
 	DateFormatSig = 6001;
