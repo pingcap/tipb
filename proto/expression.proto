@@ -511,6 +511,16 @@ enum ScalarFuncSig {
 	JsonStorageFreeSig = 5028;
 	JsonMemberOfSig = 5029;
 
+	/*vector*/
+	VecAsText = 5040;
+	VecFromText = 5041;
+	VecDims = 5042;
+	VecL1Distance = 5043;
+	VecL2Distance = 5044;
+	VecInnerProduct = 5045;
+	VecCosineDistance = 5046;
+	VecL2Norm = 5047;
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
