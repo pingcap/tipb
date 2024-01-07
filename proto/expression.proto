@@ -43,6 +43,7 @@ enum ExprType {
 	MysqlSet = 106;
 	MysqlTime = 107;
 	MysqlJson = 108;
+	TiDBVectorFloat32 = 109;
 
 	// Encoded value list.
 	ValueList = 151;
