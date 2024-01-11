@@ -101,8 +101,8 @@ enum EngineType {
 }
 
 message TableScanANNHint {
-	optional int64 limit = 1 [(gogoproto.nullable) = false];
-	repeated ByItem by_items = 2;
+	optional ByItem top_n_order_by = 1;
+	optional int64 top_n_limit = 2 [(gogoproto.nullable) = false];
 	optional Expr pre_filters = 3;
 }
 
