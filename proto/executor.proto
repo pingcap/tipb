@@ -100,10 +100,30 @@ enum EngineType {
 	TiFlash = 2;
 }
 
-message TableScanANNHint {
-	optional ByItem top_n_order_by = 1;
-	optional int64 top_n_limit = 2 [(gogoproto.nullable) = false];
-	optional Expr pre_filters = 3;
+enum ANNQueryDistanceMetric {
+	InvalidMetric = 0;
+	// L1 = 1;                 // Not supported for now
+	L2 = 2;
+	Cosine = 3;
+	// NegInnerProduct = 4;    // Not supported for now
+}
+
+enum ANNQueryType {
+	InvalidQueryType = 0;
+	OrderBy = 1;
+	// Where = 2;              // Not supported for now
+}
+
+message ANNQueryInfo {
+	optional ANNQueryType query_type = 1;
+	optional ANNQueryDistanceMetric distance_metric = 2;
+	optional uint64 top_k = 3;
+	repeated float ref_vec_f32 = 4; // The reference vector to calculate distance with
+	reserved 5; // reserved for ref_vec_f64
+
+	optional double max_distance = 10; // Only for ANNQueryType==Where
+
+	optional uint32 hnsw_ef_search = 20; // Only for HNSW indexes
 }
 
 message TableScan {
@@ -117,7 +137,7 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional TableScanANNHint ann_hint = 13;
+	optional ANNQueryInfo ann_query = 13;
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
 	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
 }
@@ -131,7 +151,7 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional TableScanANNHint ann_hint = 11;
+	optional ANNQueryInfo ann_query = 11;
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
         optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
 }
