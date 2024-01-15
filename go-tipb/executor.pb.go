@@ -1470,8 +1470,8 @@ type ExecutorExecutionSummary struct {
 	// Types that are valid to be assigned to DetailInfo:
 	//	*ExecutorExecutionSummary_TiflashScanContext
 	DetailInfo isExecutorExecutionSummary_DetailInfo `protobuf_oneof:"DetailInfo"`
-	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info of tiflash.
-	// NOTE: it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
+	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info. For now it's only for tiflash.
+	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
 	RuConsumption    []byte `protobuf:"bytes,7,opt,name=ru_consumption,json=ruConsumption" json:"ru_consumption,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
