@@ -264,6 +264,9 @@ message ExecutorExecutionSummary {
 	oneof DetailInfo {
 		TiFlashScanContext tiflash_scan_context = 6;
 	}
+
+    // Serialize kvproto resource_manager.Consumption to tell tidb the consumption info of tiflash.
+    optional bytes tiflash_ru_consumption = 7;
 }
 
 message TiFlashExecutionInfo {
