@@ -264,9 +264,11 @@ message ExecutorExecutionSummary {
 	oneof DetailInfo {
 		TiFlashScanContext tiflash_scan_context = 6;
 	}
+	
 
-    // Serialize kvproto resource_manager.Consumption to tell tidb the consumption info of tiflash.
-    optional bytes tiflash_ru_consumption = 7;
+	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info of tiflash.
+	// NOTE: it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
+	optional bytes ru_consumption = 7;
 }
 
 message TiFlashExecutionInfo {
