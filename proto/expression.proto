@@ -164,6 +164,8 @@ enum ScalarFuncSig {
 	CoalesceDuration = 4206;
 	// unimplemented in tidb
 	CoalesceJson = 4207;
+	CoalesceVectorFloat32 = 4230;
+
 	LTInt = 100;
 	LTReal = 101;
 	LTDecimal = 102;
@@ -193,11 +195,13 @@ enum ScalarFuncSig {
 	GreatestDecimal = 4217;
 	GreatestString = 4218;
 	GreatestTime = 4219;
+	GreatestVectorFloat32 = 4240;
 	LeastInt = 4220;
 	LeastReal = 4221;
 	LeastDecimal = 4222;
 	LeastString = 4223;
 	LeastTime = 4224;
+	LeastVectorFloat32 = 4250;
 	IntervalInt = 4225;
 	IntervalReal = 4226;
 	GEInt = 130;

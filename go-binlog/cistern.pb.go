@@ -2,18 +2,20 @@
 // source: cistern.proto
 
 /*
-	Package binlog is a generated protocol buffer package.
+Package binlog is a generated protocol buffer package.
 
-	It is generated from these files:
-		cistern.proto
+It is generated from these files:
 
-	It has these top-level messages:
-		DumpBinlogReq
-		DumpBinlogResp
-		DumpDDLJobsReq
-		DumpDDLJobsResp
-		NotifyReq
-		NotifyResp
+	cistern.proto
+
+It has these top-level messages:
+
+	DumpBinlogReq
+	DumpBinlogResp
+	DumpDDLJobsReq
+	DumpDDLJobsResp
+	NotifyReq
+	NotifyResp
 */
 package binlog
 
