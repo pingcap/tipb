@@ -152,7 +152,13 @@ enum ScalarFuncSig {
 	CastJsonAsDuration = 65;
 	CastJsonAsJson = 66;
 
+	CastVectorFloat32AsInt = 70;
+	CastVectorFloat32AsReal = 71;
 	CastVectorFloat32AsString = 72;
+	CastVectorFloat32AsDecimal = 73;
+	CastVectorFloat32AsTime = 74;
+	CastVectorFloat32AsDuration = 75;
+	CastVectorFloat32AsJson = 76;
 	CastVectorFloat32AsVectorFloat32 = 77;
 
 	/*compare*/
@@ -398,6 +404,7 @@ enum ScalarFuncSig {
 	IfNullString = 4104;
 	IfNullTime = 4105;
 	IfNullDuration = 4106;
+	IfNullVectorFloat32 = 4170;
 	IfInt = 4107;
 	IfReal = 4108;
 	IfDecimal = 4109;
@@ -406,6 +413,7 @@ enum ScalarFuncSig {
 	IfDuration = 4112;
 	IfNullJson = 4113;
 	IfJson = 4114;
+	IfVectorFloat32 = 4115;
 	CaseWhenInt = 4208;
 	CaseWhenReal = 4209;
 	CaseWhenDecimal = 4210;
@@ -414,6 +422,7 @@ enum ScalarFuncSig {
 	CaseWhenDuration = 4213;
 	// unimplemented in tidb
 	CaseWhenJson = 4214;
+	CaseWhenVectorFloat32 = 4260;
 
 	/* encryption */
 	AesDecrypt = 4501;
