@@ -43,7 +43,8 @@ enum ExprType {
 	MysqlSet = 106;
 	MysqlTime = 107;
 	MysqlJson = 108;
-	TiDBVectorFloat32 = 109;
+
+	TiDBVectorFloat32 = 121;
 
 	// Encoded value list.
 	ValueList = 151;
@@ -126,7 +127,6 @@ enum ScalarFuncSig {
 	CastStringAsTime = 34;
 	CastStringAsDuration = 35;
 	CastStringAsJson = 36;
-	CastStringAsVectorFloat32 = 37;
 
 	CastTimeAsInt = 40;
 	CastTimeAsReal = 41;
@@ -152,15 +152,6 @@ enum ScalarFuncSig {
 	CastJsonAsDuration = 65;
 	CastJsonAsJson = 66;
 
-	CastVectorFloat32AsInt = 70;
-	CastVectorFloat32AsReal = 71;
-	CastVectorFloat32AsString = 72;
-	CastVectorFloat32AsDecimal = 73;
-	CastVectorFloat32AsTime = 74;
-	CastVectorFloat32AsDuration = 75;
-	CastVectorFloat32AsJson = 76;
-	CastVectorFloat32AsVectorFloat32 = 77;
-
 	/*compare*/
 	CoalesceInt = 4201;
 	CoalesceReal = 4202;
@@ -170,8 +161,6 @@ enum ScalarFuncSig {
 	CoalesceDuration = 4206;
 	// unimplemented in tidb
 	CoalesceJson = 4207;
-	CoalesceVectorFloat32 = 4230;
-
 	LTInt = 100;
 	LTReal = 101;
 	LTDecimal = 102;
@@ -179,7 +168,6 @@ enum ScalarFuncSig {
 	LTTime = 104;
 	LTDuration = 105;
 	LTJson = 106;
-	LTVectorFloat32 = 107;
 	LEInt = 110;
 	LEReal = 111;
 	LEDecimal = 112;
@@ -187,7 +175,6 @@ enum ScalarFuncSig {
 	LETime = 114;
 	LEDuration = 115;
 	LEJson = 116;
-	LEVectorFloat32 = 117;
 	GTInt = 120;
 	GTReal = 121;
 	GTDecimal = 122;
@@ -195,19 +182,16 @@ enum ScalarFuncSig {
 	GTTime = 124;
 	GTDuration = 125;
 	GTJson = 126;
-	GTVectorFloat32 = 127;
 	GreatestInt = 4215;
 	GreatestReal = 4216;
 	GreatestDecimal = 4217;
 	GreatestString = 4218;
 	GreatestTime = 4219;
-	GreatestVectorFloat32 = 4240;
 	LeastInt = 4220;
 	LeastReal = 4221;
 	LeastDecimal = 4222;
 	LeastString = 4223;
 	LeastTime = 4224;
-	LeastVectorFloat32 = 4250;
 	IntervalInt = 4225;
 	IntervalReal = 4226;
 	GEInt = 130;
@@ -217,7 +201,6 @@ enum ScalarFuncSig {
 	GETime = 134;
 	GEDuration = 135;
 	GEJson = 136;
-	GEVectorFloat32 = 137;
 	EQInt = 140;
 	EQReal = 141;
 	EQDecimal = 142;
@@ -225,7 +208,6 @@ enum ScalarFuncSig {
 	EQTime = 144;
 	EQDuration = 145;
 	EQJson = 146;
-	EQVectorFloat32 = 147;
 	NEInt = 150;
 	NEReal = 151;
 	NEDecimal = 152;
@@ -233,7 +215,6 @@ enum ScalarFuncSig {
 	NETime = 154;
 	NEDuration = 155;
 	NEJson = 156;
-	NEVectorFloat32 = 157;
 	NullEQInt = 160;
 	NullEQReal = 161;
 	NullEQDecimal = 162;
@@ -241,7 +222,6 @@ enum ScalarFuncSig {
 	NullEQTime = 164;
 	NullEQDuration = 165;
 	NullEQJson = 166;
-	NullEQVectorFloat32 = 167;
 
 	/*arithmetic*/
 	PlusReal = 200;
@@ -280,9 +260,6 @@ enum ScalarFuncSig {
 	IntDivideIntUnsignedSigned = 235;
 	IntDivideIntSignedSigned = 236;
 	IntDivideIntSignedUnsigned = 237;
-	PlusVectorFloat32 = 250;
-	MinusVectorFloat32 = 251;
-	MultiplyVectorFloat32 = 252;
 
 	/*math*/
 	AbsInt = 2101;
@@ -352,7 +329,6 @@ enum ScalarFuncSig {
 	IntIsNull = 3116;
 	// unimplemented in tidb
 	JsonIsNull = 3117;
-	VectorFloat32IsNull = 3164;
 	BitAndSig = 3118;
 	BitOrSig = 3119;
 	BitXorSig = 3120;
@@ -360,21 +336,17 @@ enum ScalarFuncSig {
 	IntIsTrue = 3122;
 	RealIsTrue = 3123;
 	DecimalIsTrue = 3124;
-	VectorFloat32IsTrue = 3160;
 	IntIsFalse = 3125;
 	RealIsFalse = 3126;
 	DecimalIsFalse = 3127;
-	VectorFloat32IsFalse = 3161;
 	LeftShift = 3129;
 	RightShift = 3130;
 	IntIsTrueWithNull = 3142;
 	RealIsTrueWithNull = 3143;
 	DecimalIsTrueWithNull = 3144;
-	VectorFloat32IsTrueWithNull = 3162;
 	IntIsFalseWithNull = 3145;
 	RealIsFalseWithNull = 3146;
 	DecimalIsFalseWithNull = 3147;
-	VectorFloat32IsFalseWithNull = 3163;
 
 	/*other*/
 	BitCount = 3128;
@@ -404,7 +376,6 @@ enum ScalarFuncSig {
 	IfNullString = 4104;
 	IfNullTime = 4105;
 	IfNullDuration = 4106;
-	IfNullVectorFloat32 = 4170;
 	IfInt = 4107;
 	IfReal = 4108;
 	IfDecimal = 4109;
@@ -413,7 +384,6 @@ enum ScalarFuncSig {
 	IfDuration = 4112;
 	IfNullJson = 4113;
 	IfJson = 4114;
-	IfVectorFloat32 = 4115;
 	CaseWhenInt = 4208;
 	CaseWhenReal = 4209;
 	CaseWhenDecimal = 4210;
@@ -422,7 +392,6 @@ enum ScalarFuncSig {
 	CaseWhenDuration = 4213;
 	// unimplemented in tidb
 	CaseWhenJson = 4214;
-	CaseWhenVectorFloat32 = 4260;
 
 	/* encryption */
 	AesDecrypt = 4501;
@@ -464,7 +433,6 @@ enum ScalarFuncSig {
 	RealAnyValue = 4558;
 	StringAnyValue = 4559;
 	TimeAnyValue = 4560;
-	VectorFloat32AnyValue = 4574;
 	InetAton = 4561;
 	InetNtoa = 4562;
 	Inet6Aton = 4563;
@@ -525,14 +493,47 @@ enum ScalarFuncSig {
 	JsonMemberOfSig = 5029;
 
 	/*vector*/
-	VecAsTextSig = 5040;
-	VecFromTextSig = 5041;
-	VecDimsSig = 5042;
-	VecL1DistanceSig = 5043;
-	VecL2DistanceSig = 5044;
-	VecNegativeInnerProductSig = 5045;
-	VecCosineDistanceSig = 5046;
-	VecL2NormSig = 5047;
+	VecAsTextSig = 5110;
+	VecFromTextSig = 5111;
+	VecDimsSig = 5112;
+	VecL1DistanceSig = 5113;
+	VecL2DistanceSig = 5114;
+	VecNegativeInnerProductSig = 5115;
+	VecCosineDistanceSig = 5116;
+	VecL2NormSig = 5117;
+
+	CastStringAsVectorFloat32 = 5180;
+	CastVectorFloat32AsInt = 5181;
+	CastVectorFloat32AsReal = 5182;
+	CastVectorFloat32AsString = 5183;
+	CastVectorFloat32AsDecimal = 5184;
+	CastVectorFloat32AsTime = 5185;
+	CastVectorFloat32AsDuration = 5186;
+	CastVectorFloat32AsJson = 5187;
+	CastVectorFloat32AsVectorFloat32 = 5188;
+
+	PlusVectorFloat32 = 5141;
+	MinusVectorFloat32 = 5142;
+	MultiplyVectorFloat32 = 5143;
+	VectorFloat32AnyValue = 5144;
+	CoalesceVectorFloat32 = 5145;
+	LTVectorFloat32 = 5146;
+	LEVectorFloat32 = 5147;
+	GTVectorFloat32 = 5148;
+	GreatestVectorFloat32 = 5149;
+	LeastVectorFloat32 = 5150;
+	GEVectorFloat32 = 5151;
+	EQVectorFloat32 = 5152;
+	NEVectorFloat32 = 5153;
+	NullEQVectorFloat32 = 5154;
+	VectorFloat32IsNull = 5155;
+	VectorFloat32IsTrue = 5156;
+	VectorFloat32IsFalse = 5157;
+	VectorFloat32IsTrueWithNull = 5158;
+	VectorFloat32IsFalseWithNull = 5159;
+	IfNullVectorFloat32 = 5160;
+	IfVectorFloat32 = 5161;
+	CaseWhenVectorFloat32 = 5162;
 
 	/*time*/
 	DateFormatSig = 6001;

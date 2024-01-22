@@ -857,6 +857,7 @@ func (m *ExchangeReceiver) GetOriginalCtePrdocuerTaskMeta() [][]byte {
 	return nil
 }
 
+// ANN = Approximate Nearest Neighbor. For some queries, ANN index can be used.
 type ANNQueryInfo struct {
 	QueryType        ANNQueryType           `protobuf:"varint,1,opt,name=query_type,json=queryType,enum=tipb.ANNQueryType" json:"query_type"`
 	DistanceMetric   ANNQueryDistanceMetric `protobuf:"varint,2,opt,name=distance_metric,json=distanceMetric,enum=tipb.ANNQueryDistanceMetric" json:"distance_metric"`

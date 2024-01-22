@@ -114,6 +114,7 @@ enum ANNQueryType {
 	// Where = 2;              // Not supported for now
 }
 
+// ANN = Approximate Nearest Neighbor. For some queries, ANN index can be used.
 message ANNQueryInfo {
 	optional ANNQueryType query_type = 1 [(gogoproto.nullable) = false];
 	optional ANNQueryDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
@@ -140,7 +141,7 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 13;
+	optional ANNQueryInfo ann_query = 13; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
 	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
 }
@@ -154,7 +155,7 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 11;
+	optional ANNQueryInfo ann_query = 11; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
         optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
 }
@@ -295,7 +296,7 @@ message ExecutorExecutionSummary {
 	oneof DetailInfo {
 		TiFlashScanContext tiflash_scan_context = 6;
 	}
-	
+
 	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info. For now it's only for tiflash.
 	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
 	optional bytes ru_consumption = 7;
