@@ -41,6 +41,7 @@
 		ExchangeSender
 		EncodedBytesSlice
 		ExchangeReceiver
+		ANNQueryInfo
 		TableScan
 		PartitionTableScan
 		Join

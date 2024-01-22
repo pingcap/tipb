@@ -100,6 +100,35 @@ enum EngineType {
 	TiFlash = 2;
 }
 
+enum ANNQueryDistanceMetric {
+	InvalidMetric = 0;
+	// L1 = 1;                 // Not supported for now
+	L2 = 2;
+	Cosine = 3;
+	// NegInnerProduct = 4;    // Not supported for now
+}
+
+enum ANNQueryType {
+	InvalidQueryType = 0;
+	OrderBy = 1;
+	// Where = 2;              // Not supported for now
+}
+
+message ANNQueryInfo {
+	optional ANNQueryType query_type = 1 [(gogoproto.nullable) = false];
+	optional ANNQueryDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
+	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
+	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
+	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+
+	repeated float ref_vec_f32 = 6; // The reference vector to calculate distance with
+	reserved 7; // reserved for ref_vec_f64
+
+	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
+
+	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+}
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
@@ -111,6 +140,7 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
+	optional ANNQueryInfo ann_query = 13;
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
 	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
 }
@@ -124,6 +154,7 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
+	optional ANNQueryInfo ann_query = 11;
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
         optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
 }
