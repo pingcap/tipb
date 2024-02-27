@@ -39,10 +39,13 @@
 		ChecksumResponse
 		Executor
 		ExchangeSender
+		EncodedBytesSlice
 		ExchangeReceiver
+		ANNQueryInfo
 		TableScan
 		PartitionTableScan
 		Join
+		RuntimeFilter
 		IndexScan
 		Selection
 		Projection
@@ -51,6 +54,7 @@
 		Limit
 		Kill
 		ExecutorExecutionSummary
+		TiFlashExecutionInfo
 		TiFlashScanContext
 		Sort
 		WindowFrameBound
@@ -59,6 +63,8 @@
 		GroupingExpr
 		GroupingSet
 		Expand
+		ExprSlice
+		Expand2
 		ExplainData
 		ExplainOperator
 		AccessObject
@@ -72,6 +78,8 @@
 		ByItem
 		InUnionMetadata
 		CompareInMetadata
+		GroupingMark
+		GroupingFunctionMetadata
 		ResourceGroupTag
 		TableInfo
 		ColumnInfo

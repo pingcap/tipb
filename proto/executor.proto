@@ -30,6 +30,7 @@ enum ExecType {
 	TypeSort = 13;
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
 }
 
 // It represents a Executor.
@@ -53,6 +54,7 @@ message Executor {
 	optional uint64 fine_grained_shuffle_stream_count = 17 [(gogoproto.nullable) = false];
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
+	optional Expand2 expand2= 20;
 }
 
 enum ExchangeType {
@@ -72,11 +74,16 @@ enum CompressionMode {
 message ExchangeSender {
 	optional ExchangeType tp = 1 [(gogoproto.nullable) = false];
 	repeated bytes encoded_task_meta = 2;
-	repeated Expr partition_keys = 3; 
+	repeated Expr partition_keys = 3;
 	optional Executor child = 4;
 	repeated FieldType types = 5;  // partition keys' types
 	repeated FieldType all_field_types = 6;
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
+	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
+}
+
+message EncodedBytesSlice {
+	repeated bytes encoded_tasks = 1;
 }
 
 // ExchangeReceiver accept connection and receiver data from ExchangeSender.
@@ -84,12 +91,43 @@ message ExchangeReceiver {
 	repeated bytes encoded_task_meta = 1;
 	repeated FieldType field_types = 2;
 	optional ExchangeType tp = 3;
+	repeated bytes original_cte_prdocuer_task_meta = 4;
 }
 
 enum EngineType {
 	Local = 0;
 	TiKV = 1;
 	TiFlash = 2;
+}
+
+enum ANNQueryDistanceMetric {
+	InvalidMetric = 0;
+	L1 = 1;
+	L2 = 2;
+	Cosine = 3;
+	InnerProduct = 4;
+}
+
+enum ANNQueryType {
+	InvalidQueryType = 0;
+	OrderBy = 1;
+	// Where = 2;              // Not supported for now
+}
+
+// ANN = Approximate Nearest Neighbor. For some queries, ANN index can be used.
+message ANNQueryInfo {
+	optional ANNQueryType query_type = 1 [(gogoproto.nullable) = false];
+	optional ANNQueryDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
+	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
+	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
+	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+
+	repeated float ref_vec_f32 = 6; // The reference vector to calculate distance with
+	reserved 7; // reserved for ref_vec_f64
+
+	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
+
+	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
 message TableScan {
@@ -102,6 +140,10 @@ message TableScan {
 	repeated int64 primary_prefix_column_ids = 7;
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
+	optional ANNQueryInfo ann_query = 13; // only used by TiFlash
+	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
+	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
 }
 
 message PartitionTableScan {
@@ -112,6 +154,10 @@ message PartitionTableScan {
 	repeated int64 primary_prefix_column_ids = 5;
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
+	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
+	optional ANNQueryInfo ann_query = 11; // only used by TiFlash
+	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
+        optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
 }
 
 enum JoinType {
@@ -142,6 +188,29 @@ message Join {
 	repeated Expr right_conditions = 10;
 	repeated Expr other_conditions = 11;
 	repeated Expr other_eq_conditions_from_in = 12;
+	optional bool is_null_aware_semi_join = 13;
+	repeated RuntimeFilter runtime_filter_list = 14; // only used by TiFlash
+}
+
+message RuntimeFilter {
+	optional int32 id = 1 [(gogoproto.nullable) = false];
+	repeated Expr source_expr_list = 2;
+	repeated Expr target_expr_list = 3;
+	optional string source_executor_id = 4 [(gogoproto.nullable) = false];
+	optional string target_executor_id = 5 [(gogoproto.nullable) = false];
+	optional RuntimeFilterType rf_type = 6 [(gogoproto.nullable) = false];
+	optional RuntimeFilterMode rf_mode = 7 [(gogoproto.nullable) = false];
+}
+
+enum RuntimeFilterType {
+	IN = 0;
+	MIN_MAX = 1;
+        BLOOM_FILTER= 2;
+}
+
+enum RuntimeFilterMode {
+	LOCAL = 0;
+        GLOBAL = 1;
 }
 
 message IndexScan {
@@ -193,6 +262,9 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
+    	// If partition_by is not empty, it means need to return limitN of each partition.
+    	// Generally used in sqls like `where row_number() over (partition by ...) < X`
+    	repeated ByItem partition_by = 3;
 }
 
 message Kill {
@@ -224,6 +296,15 @@ message ExecutorExecutionSummary {
 	oneof DetailInfo {
 		TiFlashScanContext tiflash_scan_context = 6;
 	}
+
+	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info. For now it's only for tiflash.
+	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
+	optional bytes ru_consumption = 7;
+}
+
+message TiFlashExecutionInfo {
+	// The execution summary of each executor, no order limitation.
+	repeated ExecutorExecutionSummary execution_summaries = 1;
 }
 
 message TiFlashScanContext {
@@ -231,11 +312,16 @@ message TiFlashScanContext {
 	optional uint64 total_dmfile_skipped_packs = 2;
 	optional uint64 total_dmfile_scanned_rows = 3;
 	optional uint64 total_dmfile_skipped_rows = 4;
-	optional uint64 total_dmfile_rough_set_index_load_time_ms = 5;
+	optional uint64 total_dmfile_rough_set_index_load_time_ms = 5; // deprecated
 	optional uint64 total_dmfile_read_time_ms = 6;
 	optional uint64 total_create_snapshot_time_ms = 7;
 	optional uint64 total_local_region_num = 8;
 	optional uint64 total_remote_region_num = 9;
+	optional uint64 total_user_read_bytes = 10;
+	optional uint64 total_learner_read_ms = 11;
+	optional uint64 total_disagg_read_cache_hit_size = 12;
+	optional uint64 total_disagg_read_cache_miss_size = 13;
+	optional uint64 total_dmfile_rough_set_index_check_time_ms = 14;
 }
 
 
@@ -251,11 +337,22 @@ enum WindowBoundType {
 	CurrentRow = 2;
 }
 
+// Used for range frame's comparison when finding frame's boundary
+enum RangeCmpDataType {
+	Int = 0;
+	Float = 1;
+	Decimal = 2;
+	DateTime = 3;
+	Duration = 4;
+}
+
 message WindowFrameBound {
 	optional WindowBoundType type = 1 [(gogoproto.nullable) = false];
 	optional bool unbounded = 2 [(gogoproto.nullable) = false];
 	optional uint64 offset = 3; // only use for `rows` frame type
-	repeated Expr calcFuncs = 4; // only use for `ranges` frame type
+	repeated Expr calcFuncs = 4; // Deprecated
+	optional Expr frame_range = 5; // only use for `range` frame type
+	optional RangeCmpDataType cmp_data_type = 6; // only use for `range` frame type
 }
 
 enum WindowFrameType {
@@ -286,7 +383,20 @@ message GroupingSet {
 	repeated GroupingExpr grouping_exprs = 1;
 }
 
+// Deprecated in the nearly feature usage
 message Expand{
 	repeated GroupingSet grouping_sets = 1; // for grouping sets like: expr[a,b] and expr[c]
 	optional Executor child = 2;
+	optional uint64 version = 3;            // expand version
 }
+
+message ExprSlice {
+	repeated Expr exprs = 1;
+}
+
+message Expand2{
+	repeated ExprSlice proj_exprs = 1;           // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
+	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
+	optional Executor child = 3;
+}
+
