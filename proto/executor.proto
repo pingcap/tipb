@@ -102,10 +102,10 @@ enum EngineType {
 
 enum ANNQueryDistanceMetric {
 	InvalidMetric = 0;
-	// L1 = 1;                 // Not supported for now
+	L1 = 1;
 	L2 = 2;
 	Cosine = 3;
-	// NegInnerProduct = 4;    // Not supported for now
+	InnerProduct = 4;
 }
 
 enum ANNQueryType {
