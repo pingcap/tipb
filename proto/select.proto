@@ -130,6 +130,9 @@ message DAGRequest {
 
         // Force using the encode type specified by encode_type, currently only used in TiFlash
 	optional bool force_encode_type = 18;
+
+	// It indicates the number of digits by which to increase the scale of the result of division operations performed with the / operator.
+	optional uint32 div_precision_increment = 19;
 }
 
 enum EncodeType {
