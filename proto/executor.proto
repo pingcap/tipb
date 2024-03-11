@@ -122,7 +122,7 @@ message ANNQueryInfo {
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
 	optional int64 column_id = 5 [(gogoproto.nullable) = false];
 
-	repeated float ref_vec_f32 = 6; // The reference vector to calculate distance with
+	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
 
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
