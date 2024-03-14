@@ -26,6 +26,7 @@ message ColumnInfo {
 	repeated string elems = 7;
 	optional bytes default_val = 8; // Encoded datum.
 	optional bool pk_handle = 21 [(gogoproto.nullable) = false]; // PK handle column value is row handle.
+	optional bool array = 22 [(gogoproto.nullable) = false];
 }
 
 message IndexInfo {

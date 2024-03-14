@@ -5,6 +5,7 @@ package tipb;
 option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
+import "metadata.proto";
 import "gogoproto/gogo.proto";
 
 option (gogoproto.marshaler_all) = true;
@@ -19,6 +20,7 @@ message FieldType {
 	optional int32 collate = 5 [(gogoproto.nullable) = false];
 	optional string charset = 6 [(gogoproto.nullable) = false];
 	repeated string elems = 7 [(gogoproto.nullable) = false];
+	optional bool array = 8 [(gogoproto.nullable) = false];
 }
 
 enum ExprType {
@@ -41,6 +43,8 @@ enum ExprType {
 	MysqlSet = 106;
 	MysqlTime = 107;
 	MysqlJson = 108;
+
+	TiDBVectorFloat32 = 121;
 
 	// Encoded value list.
 	ValueList = 151;
@@ -441,6 +445,7 @@ enum ScalarFuncSig {
 	VitessHash = 4570;
 	IsUUID = 4571;
 	TiDBShard = 4572;
+	GroupingSig = 4573;
 
 	/*like*/
 	IlikeSig = 4309;
@@ -485,6 +490,50 @@ enum ScalarFuncSig {
 	JsonValidStringSig = 5026;
 	JsonValidOthersSig = 5027;
 	JsonStorageFreeSig = 5028;
+	JsonMemberOfSig = 5029;
+
+	/*vector*/
+	VecAsTextSig = 5110;
+	VecFromTextSig = 5111;
+	VecDimsSig = 5112;
+	VecL1DistanceSig = 5113;
+	VecL2DistanceSig = 5114;
+	VecNegativeInnerProductSig = 5115;
+	VecCosineDistanceSig = 5116;
+	VecL2NormSig = 5117;
+
+	CastStringAsVectorFloat32 = 5180;
+	CastVectorFloat32AsInt = 5181;
+	CastVectorFloat32AsReal = 5182;
+	CastVectorFloat32AsString = 5183;
+	CastVectorFloat32AsDecimal = 5184;
+	CastVectorFloat32AsTime = 5185;
+	CastVectorFloat32AsDuration = 5186;
+	CastVectorFloat32AsJson = 5187;
+	CastVectorFloat32AsVectorFloat32 = 5188;
+
+	PlusVectorFloat32 = 5141;
+	MinusVectorFloat32 = 5142;
+	MultiplyVectorFloat32 = 5143;
+	VectorFloat32AnyValue = 5144;
+	CoalesceVectorFloat32 = 5145;
+	LTVectorFloat32 = 5146;
+	LEVectorFloat32 = 5147;
+	GTVectorFloat32 = 5148;
+	GreatestVectorFloat32 = 5149;
+	LeastVectorFloat32 = 5150;
+	GEVectorFloat32 = 5151;
+	EQVectorFloat32 = 5152;
+	NEVectorFloat32 = 5153;
+	NullEQVectorFloat32 = 5154;
+	VectorFloat32IsNull = 5155;
+	VectorFloat32IsTrue = 5156;
+	VectorFloat32IsFalse = 5157;
+	VectorFloat32IsTrueWithNull = 5158;
+	VectorFloat32IsFalseWithNull = 5159;
+	IfNullVectorFloat32 = 5160;
+	IfVectorFloat32 = 5161;
+	CaseWhenVectorFloat32 = 5162;
 
 	/*time*/
 	DateFormatSig = 6001;
