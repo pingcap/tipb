@@ -326,11 +326,11 @@ message TiFlashScanContext {
 	optional uint64 total_vector_idx_load_from_disk = 101;
 	optional uint64 total_vector_idx_load_from_cache = 102;
 	optional uint64 total_vector_idx_load_time_ms = 103;
-	optional uint64 total_vector_idx_read_vec_time_ms = 104;
-	optional uint64 total_vector_idx_read_others_time_ms = 105;
-	optional uint64 total_vector_idx_visited_nodes = 106;
-	optional uint64 total_vector_idx_discarded_nodes = 107;
-
+	optional uint64 total_vector_idx_search_time_ms = 104;
+	optional uint64 total_vector_idx_search_visited_nodes = 105;
+	optional uint64 total_vector_idx_search_discarded_nodes = 106;
+	optional uint64 total_vector_idx_read_vec_time_ms = 107;
+	optional uint64 total_vector_idx_read_others_time_ms = 108;
 }
 
 
