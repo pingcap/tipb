@@ -122,7 +122,7 @@ message ANNQueryInfo {
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
 	optional int64 column_id = 5 [(gogoproto.nullable) = false];
 
-	repeated float ref_vec_f32 = 6; // The reference vector to calculate distance with
+	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
 
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
@@ -322,6 +322,15 @@ message TiFlashScanContext {
 	optional uint64 total_disagg_read_cache_hit_size = 12;
 	optional uint64 total_disagg_read_cache_miss_size = 13;
 	optional uint64 total_dmfile_rough_set_index_check_time_ms = 14;
+
+	optional uint64 total_vector_idx_load_from_disk = 101;
+	optional uint64 total_vector_idx_load_from_cache = 102;
+	optional uint64 total_vector_idx_load_time_ms = 103;
+	optional uint64 total_vector_idx_search_time_ms = 104;
+	optional uint64 total_vector_idx_search_visited_nodes = 105;
+	optional uint64 total_vector_idx_search_discarded_nodes = 106;
+	optional uint64 total_vector_idx_read_vec_time_ms = 107;
+	optional uint64 total_vector_idx_read_others_time_ms = 108;
 }
 
 
