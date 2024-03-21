@@ -100,12 +100,19 @@ enum EngineType {
 	TiFlash = 2;
 }
 
-enum ANNQueryDistanceMetric {
-	InvalidMetric = 0;
+// Note: The name of the enum is intentionally aligned with tidb/parser/index_vector.go.
+enum VectorIndexKind {
+	INVALID_INDEX_KIND = 0;
+	HNSW = 1;
+}
+
+// Note: The name of the enum is intentionally aligned with tidb/parser/index_vector.go.
+enum VectorDistanceMetric {
+	INVALID_DISTANCE_METRIC = 0;
 	L1 = 1;
 	L2 = 2;
-	Cosine = 3;
-	InnerProduct = 4;
+	COSINE = 3;
+	INNER_PRODUCT = 4;
 }
 
 enum ANNQueryType {
@@ -117,7 +124,7 @@ enum ANNQueryType {
 // ANN = Approximate Nearest Neighbor. For some queries, ANN index can be used.
 message ANNQueryInfo {
 	optional ANNQueryType query_type = 1 [(gogoproto.nullable) = false];
-	optional ANNQueryDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
+	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
 	optional int64 column_id = 5 [(gogoproto.nullable) = false];
