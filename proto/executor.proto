@@ -355,8 +355,9 @@ message TiFlashScanContext {
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
 
-	optional uint64 total_vector_idx_load_from_disk = 101;
-	optional uint64 total_vector_idx_load_from_cache = 102;
+	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
+	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
+	optional uint64 total_vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
 	optional uint64 total_vector_idx_load_time_ms = 103;
 	optional uint64 total_vector_idx_search_time_ms = 104;
 	optional uint64 total_vector_idx_search_visited_nodes = 105;
