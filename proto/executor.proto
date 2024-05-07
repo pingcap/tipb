@@ -271,21 +271,55 @@ message TiFlashExecutionInfo {
 	repeated ExecutorExecutionSummary execution_summaries = 1;
 }
 
+message TiFlashRegionNumOfInstance {
+	optional string instance_id = 1;
+	optional uint64 region_num = 2;
+}
+
 message TiFlashScanContext {
-	optional uint64 total_dmfile_scanned_packs = 1;
-	optional uint64 total_dmfile_skipped_packs = 2;
-	optional uint64 total_dmfile_scanned_rows = 3;
-	optional uint64 total_dmfile_skipped_rows = 4;
-	optional uint64 total_dmfile_rough_set_index_load_time_ms = 5; // deprecated
-	optional uint64 total_dmfile_read_time_ms = 6;
-	optional uint64 total_create_snapshot_time_ms = 7;
-	optional uint64 total_local_region_num = 8;
-	optional uint64 total_remote_region_num = 9;
-	optional uint64 total_user_read_bytes = 10;
+	optional uint64 dmfile_scanned_packs = 1 [deprecated=true];
+	optional uint64 dmfile_skipped_packs = 2 [deprecated=true];
+	optional uint64 dmfile_data_scanned_rows = 3;
+	optional uint64 dmfile_data_skipped_rows = 4;
+	optional uint64 total_dmfile_rs_load_ms = 5 [deprecated=true];
+	optional uint64 total_dmfile_read_ms = 6;
+	optional uint64 total_build_snapshot_ms = 7;
+	optional uint64 local_regions = 8;
+	optional uint64 remote_regions = 9;
+	optional uint64 user_read_bytes = 10;
 	optional uint64 total_learner_read_ms = 11;
-	optional uint64 total_disagg_read_cache_hit_size = 12;
-	optional uint64 total_disagg_read_cache_miss_size = 13;
-	optional uint64 total_dmfile_rough_set_index_check_time_ms = 14;
+	optional uint64 disagg_read_cache_hit_bytes = 12;
+	optional uint64 disagg_read_cache_miss_bytes = 13;
+	optional uint64 total_dmfile_rs_check_ms = 14;
+	optional uint64 stale_read_regions = 15;
+	optional uint64 segments = 16;
+	optional uint64 read_tasks = 17;
+	optional uint64 delta_rows = 18;
+	optional uint64 delta_bytes = 19;
+	optional uint64 mvcc_input_rows = 20;
+	optional uint64 mvcc_input_bytes = 21;
+	optional uint64 mvcc_output_rows = 22;
+	optional uint64 lm_skip_rows = 23;
+	optional uint64 total_build_inputstream_ms = 24;
+	optional uint64 total_build_bitmap_ms = 25;
+	optional uint64 min_local_stream_ms = 26;
+	optional uint64 max_local_stream_ms = 27;
+	optional uint64 min_remote_stream_ms = 28;
+	optional uint64 max_remote_stream_ms = 29;
+	repeated TiFlashRegionNumOfInstance regions_of_instance = 30;
+	optional uint64 dmfile_mvcc_scanned_rows = 31;
+	optional uint64 dmfile_mvcc_skipped_rows = 32;
+	optional uint64 dmfile_lm_filter_scanned_rows = 33;
+	optional uint64 dmfile_lm_filter_skipped_rows = 34;
+
+	optional uint64 total_vector_idx_load_from_disk = 101;
+	optional uint64 total_vector_idx_load_from_cache = 102;
+	optional uint64 total_vector_idx_load_time_ms = 103;
+	optional uint64 total_vector_idx_search_time_ms = 104;
+	optional uint64 total_vector_idx_search_visited_nodes = 105;
+	optional uint64 total_vector_idx_search_discarded_nodes = 106;
+	optional uint64 total_vector_idx_read_vec_time_ms = 107;
+	optional uint64 total_vector_idx_read_others_time_ms = 108;
 }
 
 

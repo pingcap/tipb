@@ -54,6 +54,7 @@
 		Kill
 		ExecutorExecutionSummary
 		TiFlashExecutionInfo
+		TiFlashRegionNumOfInstance
 		TiFlashScanContext
 		Sort
 		WindowFrameBound
