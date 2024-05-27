@@ -442,3 +442,22 @@ message Expand2{
 	optional Executor child = 3;
 }
 
+enum TiFlashIndexType {
+	InvalidIndex = 0;
+	Vector = 1;
+	Set = 2;
+	BloomFilter = 3;
+}
+
+message TiFlashVectorIndexInfo {
+	required VectorIndexKind index_kind = 1;
+	required VectorDistanceMetric distance_metric = 2;
+	required uint64 dimension = 3;
+}
+
+message AddTiFlashIndexTask {
+	required TiFlashIndexType index_type = 1;
+	required int64 table_id = 2;
+	required int64 column_id = 3;
+	optional TiFlashVectorIndexInfo vector_index_info = 4;
+}
