@@ -66,6 +66,8 @@
 		Expand
 		ExprSlice
 		Expand2
+		TiFlashVectorIndexInfo
+		AddTiFlashIndexTask
 		ExplainData
 		ExplainOperator
 		AccessObject
