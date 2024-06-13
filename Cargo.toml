@@ -5,8 +5,9 @@ edition = "2021"
 
 [features]
 default = ["protobuf-codec"]
-protobuf-codec = ["grpcio", "protobuf-build/protobuf-codec", "grpcio/protobuf-codec"]
+protobuf-codec = ["protobuf-build/protobuf-codec"]
 prost-codec = ["prost", "prost-derive", "lazy_static", "protobuf-build/prost-codec"]
+grpcio-protobuf-codec = ["grpcio", "protobuf-codec", "grpcio/protobuf-codec"]
 grpcio-prost-codec = ["prost-codec", "grpcio", "grpcio/prost-codec"]
 tonic-prost-codec = ["prost-codec", "tonic", "protobuf-build/tonic-prost-codec"]
 
