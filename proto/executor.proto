@@ -253,6 +253,7 @@ message Aggregation {
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
+    // 0 means auto pass through; -1 means force prehashagg; 1 means force streaming
 	optional int32 hashagg_adaptive_policy = 7 [(gogoproto.nullable) = false];
 }
 

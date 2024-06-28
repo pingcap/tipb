@@ -1500,10 +1500,11 @@ type Aggregation struct {
 	AggFunc    []*Expr    `protobuf:"bytes,2,rep,name=agg_func,json=aggFunc" json:"agg_func,omitempty"`
 	RpnAggFunc []*RpnExpr `protobuf:"bytes,5,rep,name=rpn_agg_func,json=rpnAggFunc" json:"rpn_agg_func,omitempty"`
 	// If it is a stream aggregation.
-	Streamed              bool      `protobuf:"varint,3,opt,name=streamed" json:"streamed"`
-	Child                 *Executor `protobuf:"bytes,6,opt,name=child" json:"child,omitempty"`
-	HashaggAdaptivePolicy int32     `protobuf:"varint,7,opt,name=hashagg_adaptive_policy,json=hashaggAdaptivePolicy" json:"hashagg_adaptive_policy"`
-	XXX_unrecognized      []byte    `json:"-"`
+	Streamed bool      `protobuf:"varint,3,opt,name=streamed" json:"streamed"`
+	Child    *Executor `protobuf:"bytes,6,opt,name=child" json:"child,omitempty"`
+	// 0 means auto pass through; -1 means force prehashagg; 1 means force streaming
+	HashaggAdaptivePolicy int32  `protobuf:"varint,7,opt,name=hashagg_adaptive_policy,json=hashaggAdaptivePolicy" json:"hashagg_adaptive_policy"`
+	XXX_unrecognized      []byte `json:"-"`
 }
 
 func (m *Aggregation) Reset()                    { *m = Aggregation{} }
