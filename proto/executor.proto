@@ -253,7 +253,7 @@ message Aggregation {
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
-    optional bool auto_pass_through = 7 [(gogoproto.nullable) = false];
+	optional bool auto_pass_through = 7 [(gogoproto.nullable) = false];
 }
 
 message TopN {
