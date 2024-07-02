@@ -243,6 +243,12 @@ message Projection {
 	optional Executor child = 3;
 }
 
+enum TiFlashPreAggMode {
+	ForcePreAgg = 0;
+	Auto = 1;
+	ForceStreaming = 2;
+}
+
 message Aggregation {
 	// Group by clause.
 	repeated Expr group_by = 1;
@@ -253,6 +259,7 @@ message Aggregation {
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
 	optional Executor child = 6;
+	optional TiFlashPreAggMode pre_agg_mode = 7;
 }
 
 message TopN {
