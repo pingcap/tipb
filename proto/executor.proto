@@ -130,11 +130,8 @@ message ANNQueryInfo {
 	optional int64 column_id = 5 [(gogoproto.nullable) = false];
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
-	reserved 7; // reserved for ref_vec_f64
 
-	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
-
-	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+	repeated Expr pushed_down_projections = 20 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
