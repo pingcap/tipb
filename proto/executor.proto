@@ -131,7 +131,11 @@ message ANNQueryInfo {
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 
-	repeated Expr pushed_down_projections = 20 [(gogoproto.nullable) = false];
+	// If specified, the content of TableScan's output column (specified by this field) will not be
+	// used (which is ensured to be the Vector data column) and TableScan must output an additional
+	// column using the Distance function. Implementor does not need to really generate the Vector
+	// data column.
+	optional uint32 distance_proj_column_idx = 20 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
