@@ -18,6 +18,7 @@ message ResourceGroupTag {
   // Use to label the handling kv type of the request.
   // This is for TiKV resource_metering to collect execution information by the key label.
   optional ResourceGroupTagLabel label = 3;
+  optional int64 table_id = 4 [(gogoproto.nullable) = false];
 }
 
 enum ResourceGroupTagLabel {
