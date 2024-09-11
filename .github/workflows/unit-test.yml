@@ -3,6 +3,22 @@ name: "Unit Test"
 on: [ push,pull_request ]
 
 jobs:
+  go:
+    name: Test go generation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.20"
+      - name: Install protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.5.1'
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Test
+        run: make go && git diff --exit-code
   cpp:
     name: Test cpp generation
     runs-on: ubuntu-latest
