@@ -6144,9 +6144,6 @@
         ],
         "imports": [
           {
-            "path": "metadata.proto"
-          },
-          {
             "path": "gogoproto/gogo.proto"
           },
           {

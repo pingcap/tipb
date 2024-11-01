@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 function sed_inplace()
@@ -41,9 +41,11 @@ for file in `ls proto-cpp/*`; do
     clean_up ${file}
 done
 
+PROTO_INCLUDE=.:../include
+
 cd proto-cpp
 echo "generate cpp code..."
-protoc --cpp_out=../cpp/tipb/ *.proto
+protoc -I${PROTO_INCLUDE} --cpp_out=../cpp/tipb/ *.proto
 cd ..
 
 rm -rf proto-cpp

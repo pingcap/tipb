@@ -22,7 +22,7 @@ rust: check
 	cargo check && \
 	cargo check --no-default-features --features prost-codec
 
-c++: dependence check
+c++: dependence
 	./scripts/generate-cpp.sh
 
 tipb.a:
