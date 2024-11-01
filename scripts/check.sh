@@ -4,7 +4,7 @@ check_protoc_version() {
     version=$(protoc --version | awk '{print $NF}')
     major=$(echo ${version} | cut -d '.' -f 1)
     minor=$(echo ${version} | cut -d '.' -f 2)
-    if [ "$major" -eq 3 ] && [ "$minor" -ge 8 ]; then
+    if [ "$major" -eq 3 ] && [ "$minor" -ge 5 ]; then
         return 0
     fi
     # protobuf bumps the major version to 21 after 3.
@@ -12,7 +12,7 @@ check_protoc_version() {
     if [ "$major" -ge 21 ]; then
         return 0
     fi
-    echo "protoc version not match, version 3.8.x+ is needed, current version: ${version}"
+    echo "protoc version not match, version 3.5.x+ is needed, current version: ${version}"
     return 1
 }
 
