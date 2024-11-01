@@ -4,8 +4,8 @@
 package tipb
 
 import (
-	fmt "fmt"
-	math "math"
+	"fmt"
+	"math"
 
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/golang/protobuf/proto"
