@@ -6,11 +6,17 @@ option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
 import "executor.proto";
+
 import "gogoproto/gogo.proto";
+import "rustproto.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (rustproto.lite_runtime_all) = true;
 
 // values are all in text format.
 message Row {
@@ -124,7 +130,7 @@ message DAGRequest {
 
 	// UserIdentity uses to do privilege check. It is only used in TiDB cluster memory table.
 	optional UserIdentity user = 16;
-	
+
 	// Represents tree struct based executors, if this field is set, should ignore the executors field, currently only used in TiFlash
 	optional Executor root_executor = 17;
 

@@ -4,3 +4,4 @@ target
 cpp/tipb/*.h
 cpp/tipb/*.cc
 cpp/build/
+bin
