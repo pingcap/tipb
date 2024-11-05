@@ -37,7 +37,7 @@ check-protos-compatible() {
         protolock commit --force -lockdir=scripts -protoroot=proto
     fi
     # git report error like "fatal: detected dubious ownership in repository at" when reading the host's git folder
-    git config --global --add safe.directory $(pwd)
+    git config --global --add safe.directory "$(pwd)"
     # If the output message is encountered, please add proto.lock to git as well.
     git diff scripts/proto.lock | cat
     git diff --quiet scripts/proto.lock
@@ -69,15 +69,13 @@ check-protos-options() {
 
     local folder="./proto"
     for pb in "$folder"/*; do
-        if [ -f "$pb" ]; then
-            # Iterate through the array
-            for option in "${options[@]}"; do
-                if ! grep -q "$option" $pb; then
-                    echo "Please add option \"$option\" to $pb"
-                    return 1
-                fi
-            done
-        fi
+        # Iterate through the array
+        for option in "${options[@]}"; do
+            if ! grep -q "$option" "$pb"; then
+                echo "Please add option \"$option\" to $pb"
+                return 1
+            fi
+        done
     done
 
     return 0
