@@ -44,6 +44,7 @@ It has these top-level messages:
 	EncodedBytesSlice
 	ExchangeReceiver
 	ANNQueryInfo
+	FTSInfo
 	TableScan
 	PartitionTableScan
 	Join

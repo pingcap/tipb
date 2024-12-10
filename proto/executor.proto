@@ -139,6 +139,12 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
+message FTSInfo {
+	optional string column_name = 1 [(gogoproto.nullable) = false];
+	optional int64 column_id = 2 [(gogoproto.nullable) = false];
+	optional string query_text = 3 [(gogoproto.nullable) = false];
+}
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
@@ -151,6 +157,7 @@ message TableScan {
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
 	optional ANNQueryInfo ann_query = 13; // only used by TiFlash
+	optional FTSInfo fts = 14; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
 	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
 }

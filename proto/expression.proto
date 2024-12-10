@@ -535,6 +535,9 @@ enum ScalarFuncSig {
 	IfVectorFloat32 = 5161;
 	CaseWhenVectorFloat32 = 5162;
 
+	/*fts*/
+	MatchAgainst = 5201;
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
