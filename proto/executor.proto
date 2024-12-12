@@ -140,9 +140,13 @@ message ANNQueryInfo {
 }
 
 message FTSQueryInfo {
-	optional string column_name = 1 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 column_id = 2 [(gogoproto.nullable) = false];
-	optional string query_text = 3 [(gogoproto.nullable) = false];
+	optional int64 index_id = 1 [(gogoproto.nullable) = false];
+	// The index may contain multiple columns, while the query could only specify one.
+
+	repeated int64 column_ids = 2 [(gogoproto.nullable) = false];
+	repeated string column_names = 3 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
+
+	optional string query_text = 4 [(gogoproto.nullable) = false];
 
 	// Currently TopK is not supported.
 }
