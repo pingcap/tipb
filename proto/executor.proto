@@ -138,6 +138,12 @@ message ANNQueryInfo {
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
 
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+	
+	// If enabled, the content of TableScan's vector output column (whose ID is column_id) will not be
+	// used and TableScan must output an additional column using the Distance function (whose id
+	// is indicated by virtual_distance_col_id). Implementor does not need to really generate the
+	// Vector data column.
+	optional bool enable_distance_proj = 21 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
