@@ -1023,6 +1023,22 @@
             ]
           },
           {
+            "name": "ColumnarIndexType",
+            "enum_fields": [
+              {
+                "name": "TypeInvalid"
+              },
+              {
+                "name": "TypeVector",
+                "integer": 1
+              },
+              {
+                "name": "TypeInvert",
+                "integer": 2
+              }
+            ]
+          },
+          {
             "name": "JoinType",
             "enum_fields": [
               {
@@ -1369,6 +1385,12 @@
                 "name": "upstream_cte_task_meta",
                 "type": "EncodedBytesSlice",
                 "is_repeated": true
+              },
+              {
+                "id": 9,
+                "name": "same_zone_flag",
+                "type": "bool",
+                "is_repeated": true
               }
             ]
           },
@@ -1408,6 +1430,12 @@
                 "id": 4,
                 "name": "original_cte_prdocuer_task_meta",
                 "type": "bytes",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "same_zone_flag",
+                "type": "bool",
                 "is_repeated": true
               }
             ]
@@ -1523,6 +1551,64 @@
             ]
           },
           {
+            "name": "InvertQueryInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "index_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "column_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ColumnarIndexInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "index_type",
+                "type": "ColumnarIndexType",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "ann_query_info",
+                "type": "ANNQueryInfo",
+                "oneof_parent": "index"
+              },
+              {
+                "id": 3,
+                "name": "invert_query_info",
+                "type": "InvertQueryInfo",
+                "oneof_parent": "index"
+              }
+            ]
+          },
+          {
             "name": "TableScan",
             "fields": [
               {
@@ -1610,12 +1696,6 @@
                 "is_repeated": true
               },
               {
-                "id": 13,
-                "name": "ann_query",
-                "type": "ANNQueryInfo",
-                "optional": true
-              },
-              {
                 "id": 11,
                 "name": "runtime_filter_list",
                 "type": "RuntimeFilter",
@@ -1632,6 +1712,18 @@
                     "value": "false"
                   }
                 ]
+              },
+              {
+                "id": 13,
+                "name": "deprecated_ann_query",
+                "type": "ANNQueryInfo",
+                "optional": true
+              },
+              {
+                "id": 14,
+                "name": "used_columnar_indexes",
+                "type": "ColumnarIndexInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -1699,12 +1791,6 @@
                 "is_repeated": true
               },
               {
-                "id": 11,
-                "name": "ann_query",
-                "type": "ANNQueryInfo",
-                "optional": true
-              },
-              {
                 "id": 9,
                 "name": "runtime_filter_list",
                 "type": "RuntimeFilter",
@@ -1721,6 +1807,18 @@
                     "value": "false"
                   }
                 ]
+              },
+              {
+                "id": 11,
+                "name": "deprecated_ann_query",
+                "type": "ANNQueryInfo",
+                "optional": true
+              },
+              {
+                "id": 12,
+                "name": "used_columnar_indexes",
+                "type": "ColumnarIndexInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -2195,7 +2293,8 @@
               {
                 "id": 6,
                 "name": "tiflash_scan_context",
-                "type": "TiFlashScanContext"
+                "type": "TiFlashScanContext",
+                "oneof_parent": "DetailInfo"
               },
               {
                 "id": 7,
@@ -2207,6 +2306,12 @@
                 "id": 8,
                 "name": "tiflash_wait_summary",
                 "type": "TiFlashWaitSummary",
+                "optional": true
+              },
+              {
+                "id": 9,
+                "name": "tiflash_network_summary",
+                "type": "TiFlashNetWorkSummary",
                 "optional": true
               }
             ]
@@ -2538,6 +2643,35 @@
               {
                 "id": 3,
                 "name": "pipeline_breaker_wait_ns",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashNetWorkSummary",
+            "fields": [
+              {
+                "id": 1,
+                "name": "inner_zone_send_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "inner_zone_receive_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "inter_zone_send_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 4,
+                "name": "inter_zone_receive_bytes",
                 "type": "uint64",
                 "optional": true
               }
@@ -3010,17 +3144,20 @@
               {
                 "id": 1,
                 "name": "scan_object",
-                "type": "ScanAccessObject"
+                "type": "ScanAccessObject",
+                "oneof_parent": "access_object"
               },
               {
                 "id": 2,
                 "name": "dynamic_partition_objects",
-                "type": "DynamicPartitionAccessObjects"
+                "type": "DynamicPartitionAccessObjects",
+                "oneof_parent": "access_object"
               },
               {
                 "id": 3,
                 "name": "other_object",
-                "type": "string"
+                "type": "string",
+                "oneof_parent": "access_object"
               }
             ]
           },
@@ -7320,17 +7457,20 @@
               {
                 "id": 1,
                 "name": "record",
-                "type": "TopSQLRecord"
+                "type": "TopSQLRecord",
+                "oneof_parent": "resp_oneof"
               },
               {
                 "id": 2,
                 "name": "sql_meta",
-                "type": "SQLMeta"
+                "type": "SQLMeta",
+                "oneof_parent": "resp_oneof"
               },
               {
                 "id": 3,
                 "name": "plan_meta",
-                "type": "PlanMeta"
+                "type": "PlanMeta",
+                "oneof_parent": "resp_oneof"
               }
             ]
           }
