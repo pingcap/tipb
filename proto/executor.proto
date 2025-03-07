@@ -156,7 +156,7 @@ message FTSQueryInfo {
 
 	optional string query_text = 4 [(gogoproto.nullable) = false];
 
-	// Currently TopK is not supported.
+	optional uint32 optional_top_k = 5; // FTS Query may or may not have a TopK specifier.
 }
 
 message TableScan {
