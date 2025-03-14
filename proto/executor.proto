@@ -37,6 +37,7 @@ enum ExecType {
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
 	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeTiCIScan = 17;
 }
 
 // It represents a Executor.
@@ -61,6 +62,7 @@ message Executor {
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
 	optional Expand2 expand2= 20;
+	optional TiCIScan tici_scan = 21;
 }
 
 enum ExchangeType {
@@ -477,3 +479,16 @@ message Expand2{
 	optional Executor child = 3;
 }
 
+enum TiCIScanQueryType {
+	QueryMatch = 0;
+	QueryRank = 1;
+}
+
+message TiCIScan {
+    optional int64 table_id = 1 [(gogoproto.nullable) = false];
+    optional int64 index_id = 2 [(gogoproto.nullable) = false];
+    repeated ColumnInfo columns = 3;
+    optional TiCIScanQueryType type = 4;
+    optional string query_json_str = 5;
+    optional uint64 limit = 6 [(gogoproto.nullable) = false];
+}
