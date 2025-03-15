@@ -147,16 +147,25 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
+enum FTSQueryType {
+	FTSQueryTypeInvalid = 0;
+	FTSQueryTypeFilter = 1; // Not supported yet
+	FTSQueryTypeTopK = 2;
+}
+
 message FTSQueryInfo {
-	optional int64 index_id = 1 [(gogoproto.nullable) = false];
-	// The index may contain multiple columns, while the query could only specify one.
+	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
 
-	repeated int64 column_ids = 2 [(gogoproto.nullable) = false];
-	repeated string column_names = 3 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
+	optional int64 index_id = 2 [(gogoproto.nullable) = false];
 
-	optional string query_text = 4 [(gogoproto.nullable) = false];
+	// Currently only one column is supported.
+	repeated ColumnInfo columns = 3;
+	repeated string column_names = 4; // For debug purpose only. Currently only used in explain.
 
-	optional uint32 optional_top_k = 5; // FTS Query may or may not have a TopK specifier.
+	optional string query_text = 5 [(gogoproto.nullable) = false];
+
+	// For QueryType == TopK
+	optional uint32 top_k = 10;
 }
 
 message TableScan {
