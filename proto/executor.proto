@@ -151,6 +151,10 @@ message ANNQueryInfo {
 	// is indicated by virtual_distance_col_id). Implementor does not need to really generate the
 	// Vector data column.
 	optional bool enable_distance_proj = 21 [(gogoproto.nullable) = false];
+
+	// as we remove the vector column in table_scan, we need to save the vector column type to indicate which vector type(nullable or not) 
+	// we need to read when index is not built.
+	optional FieldType vector_column_type = 22 [(gogoproto.nullable) = true];
 }
 
 message TableScan {
