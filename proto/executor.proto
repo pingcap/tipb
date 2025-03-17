@@ -154,7 +154,7 @@ message ANNQueryInfo {
 
 	// as we remove the vector column in table_scan, we need to save the vector column type to indicate which vector type(nullable or not) 
 	// we need to read when index is not built.
-	optional ColumnInfo column_info = 22 [(gogoproto.nullable) = false];
+	optional ColumnInfo column = 22 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
