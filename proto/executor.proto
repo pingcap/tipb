@@ -135,7 +135,7 @@ message ANNQueryInfo {
 	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+	optional int64 deprecated_column_id = 5 [(gogoproto.nullable) = false];
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
@@ -154,7 +154,7 @@ message ANNQueryInfo {
 
 	// as we remove the vector column in table_scan, we need to save the vector column type to indicate which vector type(nullable or not) 
 	// we need to read when index is not built.
-	optional FieldType vector_column_type = 22 [(gogoproto.nullable) = true];
+	optional ColumnInfo column_info = 22 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
