@@ -135,7 +135,11 @@ message ANNQueryInfo {
 	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 deprecated_column_id = 5 [(gogoproto.nullable) = false];
+	optional int64 deprecated_column_id = 5;
+	// Persists the original vector column's type information (including nullability)
+	// to ensure correct data handling. This field is always populated with the column's
+	// schema metadata, regardless of whether enable_distance_proj is enabled.
+	optional ColumnInfo column = 22 [(gogoproto.nullable) = false];
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
@@ -147,14 +151,10 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 
 	// If enabled, the content of TableScan's vector output column (whose ID is column_id) will not be
-	// used and TableScan must output an additional column using the Distance function (whose id
-	// is indicated by virtual_distance_col_id). Implementor does not need to really generate the
+	// used and TableScan must output an additional column using the Distance function (whose id must be -2000)
+	// Implementor does not need to really generate the
 	// Vector data column.
 	optional bool enable_distance_proj = 21 [(gogoproto.nullable) = false];
-
-	// as we remove the vector column in table_scan, we need to save the vector column type to indicate which vector type(nullable or not) 
-	// we need to read when index is not built.
-	optional ColumnInfo column = 22 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
