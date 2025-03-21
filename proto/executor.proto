@@ -137,7 +137,7 @@ message ANNQueryInfo {
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
 	// deprecated field, we use column to get the id first, and this field will not be set again.
 	// Retain this field to be compatible with older versions of tidb
-	optional int64 column_id = 5;
+	optional int64 deprecated_column_id = 5;
 	// Persists the original vector column's type information (including nullability)
 	// to ensure correct data handling. This field is always populated with the column's
 	// schema metadata, regardless of whether enable_distance_proj is enabled.
