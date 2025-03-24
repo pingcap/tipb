@@ -152,10 +152,32 @@ message InvertedQueryInfo {
 	optional int64 column_id = 2 [(gogoproto.nullable) = false];
 }
 
+enum FTSQueryType {
+	FTSQueryTypeInvalid = 0;
+	FTSQueryTypeFilter = 1; // Not supported yet
+	FTSQueryTypeTopK = 2;
+}
+
+message FTSQueryInfo {
+	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
+
+	optional int64 index_id = 2 [(gogoproto.nullable) = false];
+
+	// Currently only one column is supported.
+	repeated ColumnInfo columns = 3;
+	repeated string column_names = 4; // For debug purpose only. Currently only used in explain.
+
+	optional string query_text = 5 [(gogoproto.nullable) = false];
+
+	// For QueryType == TopK
+	optional uint32 top_k = 10;
+}
+
 enum ColumnarIndexType {
 	TypeInvalid = 0;
 	TypeVector = 1;
 	TypeInverted = 2;
+	TypeFulltext = 3;
 }
 
 message ColumnarIndexInfo {
@@ -163,6 +185,7 @@ message ColumnarIndexInfo {
 	oneof index {
 		ANNQueryInfo ann_query_info = 2;
 		InvertedQueryInfo invert_query_info = 3;
+		FTSQueryInfo fts_query_info = 4;
 	}
 }
 
@@ -346,7 +369,7 @@ message ExecutorExecutionSummary {
 	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
 	optional bytes ru_consumption = 7;
 
-	// Only for tiflash, records the wait info. 
+	// Only for tiflash, records the wait info.
 	optional TiFlashWaitSummary tiflash_wait_summary = 8;
 
 	// Only for tiflash, records network info.
