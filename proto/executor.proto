@@ -147,6 +147,11 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
+message InvertedQueryInfo {
+	optional int64 index_id = 1 [(gogoproto.nullable) = false];
+	optional int64 column_id = 2 [(gogoproto.nullable) = false];
+}
+
 enum FTSQueryType {
 	FTSQueryTypeInvalid = 0;
 	FTSQueryTypeFilter = 1; // Not supported yet
@@ -168,6 +173,22 @@ message FTSQueryInfo {
 	optional uint32 top_k = 10;
 }
 
+enum ColumnarIndexType {
+	TypeInvalid = 0;
+	TypeVector = 1;
+	TypeInverted = 2;
+	TypeFulltext = 3;
+}
+
+message ColumnarIndexInfo {
+	optional ColumnarIndexType index_type = 1 [(gogoproto.nullable) = false];
+	oneof index {
+		ANNQueryInfo ann_query_info = 2;
+		InvertedQueryInfo invert_query_info = 3;
+		FTSQueryInfo fts_query_info = 4;
+	}
+}
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
@@ -179,10 +200,10 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 13; // only used by TiFlash
-	optional FTSQueryInfo fts_query = 14; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
-	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
+	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false]; // only used by TiFlash
+	optional ANNQueryInfo deprecated_ann_query = 13; // only used by TiFlash
+	repeated ColumnarIndexInfo used_columnar_indexes = 14; // only used by TiFlash
 }
 
 message PartitionTableScan {
@@ -194,10 +215,10 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 11; // only used by TiFlash
-	optional FTSQueryInfo fts_query = 12; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
-        optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
+    optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false]; // only used by TiFlash
+	optional ANNQueryInfo deprecated_ann_query = 11; // only used by TiFlash
+	repeated ColumnarIndexInfo used_columnar_indexes = 12; // only used by TiFlash
 }
 
 enum JoinType {
