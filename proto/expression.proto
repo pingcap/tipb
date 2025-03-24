@@ -540,7 +540,7 @@ enum ScalarFuncSig {
 	CaseWhenVectorFloat32 = 5162;
 
 	/*fts*/
-	TextSearch = 5201;
+	FTSMatchWord = 5201;
 
 	/*time*/
 	DateFormatSig = 6001;
