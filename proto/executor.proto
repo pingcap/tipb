@@ -147,7 +147,7 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
-message InvertQueryInfo {
+message InvertedQueryInfo {
 	optional int64 index_id = 1 [(gogoproto.nullable) = false];
 	optional int64 column_id = 2 [(gogoproto.nullable) = false];
 }
@@ -155,14 +155,14 @@ message InvertQueryInfo {
 enum ColumnarIndexType {
 	TypeInvalid = 0;
 	TypeVector = 1;
-	TypeInvert = 2;
+	TypeInverted = 2;
 }
 
 message ColumnarIndexInfo {
 	optional ColumnarIndexType index_type = 1 [(gogoproto.nullable) = false];
 	oneof index {
 		ANNQueryInfo ann_query_info = 2;
-		InvertQueryInfo invert_query_info = 3;
+		InvertedQueryInfo invert_query_info = 3;
 	}
 }
 

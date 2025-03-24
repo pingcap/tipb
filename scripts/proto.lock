@@ -1033,7 +1033,7 @@
                 "integer": 1
               },
               {
-                "name": "TypeInvert",
+                "name": "TypeInverted",
                 "integer": 2
               }
             ]
@@ -1551,7 +1551,7 @@
             ]
           },
           {
-            "name": "InvertQueryInfo",
+            "name": "InvertedQueryInfo",
             "fields": [
               {
                 "id": 1,
@@ -1603,7 +1603,7 @@
               {
                 "id": 3,
                 "name": "invert_query_info",
-                "type": "InvertQueryInfo",
+                "type": "InvertedQueryInfo",
                 "oneof_parent": "index"
               }
             ]
