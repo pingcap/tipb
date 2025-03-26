@@ -487,8 +487,9 @@ enum TiCIScanQueryType {
 message TiCIScan {
     optional int64 table_id = 1 [(gogoproto.nullable) = false];
     optional int64 index_id = 2 [(gogoproto.nullable) = false];
-    repeated ColumnInfo columns = 3;
-    optional TiCIScanQueryType type = 4;
-    optional string query_json_str = 5;
-    optional uint64 limit = 6 [(gogoproto.nullable) = false];
+    repeated ColumnInfo return_columns = 3;
+	repeated ColumnInfo query_columns = 4;
+    optional TiCIScanQueryType type = 5;
+    optional string query_json_str = 6;
+    optional uint64 limit = 7 [(gogoproto.nullable) = false];
 }
