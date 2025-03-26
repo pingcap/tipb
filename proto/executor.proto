@@ -135,7 +135,9 @@ message ANNQueryInfo {
 	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+	// deprecated field, we use column to get the id first, and this field will not be set again.
+	// Retain this field to be compatible with older versions of TiDB
+	optional int64 deprecated_column_id = 5;
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
@@ -145,6 +147,16 @@ message ANNQueryInfo {
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
 
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+
+	// Persists the original vector column's type information (including nullability)
+	// to ensure correct data handling. This field is always populated with the column's
+	// schema metadata, regardless of whether enable_distance_proj is enabled.
+	optional ColumnInfo column = 21 [(gogoproto.nullable) = false];
+
+	// If enabled, the content of TableScan's vector output column (whose ID is column.id) will be removed and
+	// TableScan will read a distance column (whose id must be -2000) as replacement, TiFlash persistent layer
+	// does not need to really read the Vector data column when index has been built.
+	optional bool enable_distance_proj = 22 [(gogoproto.nullable) = false];
 }
 
 message InvertedQueryInfo {
