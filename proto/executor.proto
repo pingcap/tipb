@@ -174,7 +174,7 @@ message ColumnarIndexInfo {
 	optional ColumnarIndexType index_type = 1 [(gogoproto.nullable) = false];
 	oneof index {
 		ANNQueryInfo ann_query_info = 2;
-		InvertedQueryInfo invert_query_info = 3;
+		InvertedQueryInfo inverted_query_info = 3;
 	}
 }
 
@@ -411,15 +411,28 @@ message TiFlashScanContext {
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
 
-	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
-	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
-	optional uint64 total_vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
-	optional uint64 total_vector_idx_load_time_ms = 103;
-	optional uint64 total_vector_idx_search_time_ms = 104;
-	optional uint64 total_vector_idx_search_visited_nodes = 105;
-	optional uint64 total_vector_idx_search_discarded_nodes = 106;
-	optional uint64 total_vector_idx_read_vec_time_ms = 107;
-	optional uint64 total_vector_idx_read_others_time_ms = 108;
+	/// vector index related fields
+
+	optional uint64 vector_idx_load_from_s3 = 100;  // Index file not available in disk
+	optional uint64 vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
+	optional uint64 vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
+	optional uint64 vector_idx_load_time_ms = 103;
+	optional uint64 vector_idx_search_time_ms = 104;
+	optional uint64 vector_idx_search_visited_nodes = 105;
+	optional uint64 vector_idx_search_discarded_nodes = 106;
+	optional uint64 vector_idx_read_vec_time_ms = 107;
+	optional uint64 vector_idx_read_others_time_ms = 108;
+
+	/// inverted index related fields
+
+	optional uint64 inverted_idx_load_from_s3 = 109;
+    optional uint64 inverted_idx_load_from_disk = 110;
+    optional uint64 inverted_idx_load_from_cache = 111;
+    optional uint64 inverted_idx_load_time_ms = 112;
+    optional uint64 inverted_idx_search_time_ms = 113;
+    optional uint64 inverted_idx_search_skipped_packs = 114;
+    optional uint64 inverted_idx_indexed_rows = 115;
+    optional uint64 inverted_idx_search_selected_rows = 116;
 }
 
 message TiFlashWaitSummary {
