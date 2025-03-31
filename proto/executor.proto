@@ -425,14 +425,14 @@ message TiFlashScanContext {
 
 	/// inverted index related fields
 
-	optional uint64 inverted_idx_load_from_s3 = 109;
-    optional uint64 inverted_idx_load_from_disk = 110;
-    optional uint64 inverted_idx_load_from_cache = 111;
-    optional uint64 inverted_idx_load_time_ms = 112;
-    optional uint64 inverted_idx_search_time_ms = 113;
-    optional uint64 inverted_idx_search_skipped_packs = 114;
-    optional uint64 inverted_idx_indexed_rows = 115;
-    optional uint64 inverted_idx_search_selected_rows = 116;
+	optional uint32 inverted_idx_load_from_s3 = 120;
+    optional uint32 inverted_idx_load_from_disk = 121;
+    optional uint32 inverted_idx_load_from_cache = 122;
+    optional uint64 inverted_idx_load_time_ms = 123;
+    optional uint64 inverted_idx_search_time_ms = 124;
+    optional uint32 inverted_idx_search_skipped_packs = 125;
+    optional uint64 inverted_idx_indexed_rows = 126;
+    optional uint64 inverted_idx_search_selected_rows = 127;
 }
 
 message TiFlashWaitSummary {

@@ -2642,49 +2642,49 @@
                 "optional": true
               },
               {
-                "id": 109,
+                "id": 120,
                 "name": "inverted_idx_load_from_s3",
-                "type": "uint64",
+                "type": "uint32",
                 "optional": true
               },
               {
-                "id": 110,
+                "id": 121,
                 "name": "inverted_idx_load_from_disk",
-                "type": "uint64",
+                "type": "uint32",
                 "optional": true
               },
               {
-                "id": 111,
+                "id": 122,
                 "name": "inverted_idx_load_from_cache",
-                "type": "uint64",
+                "type": "uint32",
                 "optional": true
               },
               {
-                "id": 112,
+                "id": 123,
                 "name": "inverted_idx_load_time_ms",
                 "type": "uint64",
                 "optional": true
               },
               {
-                "id": 113,
+                "id": 124,
                 "name": "inverted_idx_search_time_ms",
                 "type": "uint64",
                 "optional": true
               },
               {
-                "id": 114,
+                "id": 125,
                 "name": "inverted_idx_search_skipped_packs",
-                "type": "uint64",
+                "type": "uint32",
                 "optional": true
               },
               {
-                "id": 115,
+                "id": 126,
                 "name": "inverted_idx_indexed_rows",
                 "type": "uint64",
                 "optional": true
               },
               {
-                "id": 116,
+                "id": 127,
                 "name": "inverted_idx_search_selected_rows",
                 "type": "uint64",
                 "optional": true
