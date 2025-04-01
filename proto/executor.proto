@@ -135,7 +135,9 @@ message ANNQueryInfo {
 	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+	// deprecated field, we use column to get the id first, and this field will not be set again.
+	// Retain this field to be compatible with older versions of TiDB
+	optional int64 deprecated_column_id = 5;
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
@@ -145,6 +147,16 @@ message ANNQueryInfo {
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
 
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+
+	// Persists the original vector column's type information (including nullability)
+	// to ensure correct data handling. This field is always populated with the column's
+	// schema metadata, regardless of whether enable_distance_proj is enabled.
+	optional ColumnInfo column = 21 [(gogoproto.nullable) = false];
+
+	// If enabled, the content of TableScan's vector output column (whose ID is column.id) will be removed and
+	// TableScan will read a distance column (whose id must be -2000) as replacement, TiFlash persistent layer
+	// does not need to really read the Vector data column when index has been built.
+	optional bool enable_distance_proj = 22 [(gogoproto.nullable) = false];
 }
 
 message InvertedQueryInfo {
@@ -184,7 +196,7 @@ message ColumnarIndexInfo {
 	optional ColumnarIndexType index_type = 1 [(gogoproto.nullable) = false];
 	oneof index {
 		ANNQueryInfo ann_query_info = 2;
-		InvertedQueryInfo invert_query_info = 3;
+		InvertedQueryInfo inverted_query_info = 3;
 		FTSQueryInfo fts_query_info = 4;
 	}
 }
@@ -422,15 +434,47 @@ message TiFlashScanContext {
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
 
-	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
-	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
-	optional uint64 total_vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
-	optional uint64 total_vector_idx_load_time_ms = 103;
-	optional uint64 total_vector_idx_search_time_ms = 104;
-	optional uint64 total_vector_idx_search_visited_nodes = 105;
-	optional uint64 total_vector_idx_search_discarded_nodes = 106;
-	optional uint64 total_vector_idx_read_vec_time_ms = 107;
-	optional uint64 total_vector_idx_read_others_time_ms = 108;
+	/// vector index related fields
+
+	optional uint64 vector_idx_load_from_s3 = 100;  // Index file not available in disk
+	optional uint64 vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
+	optional uint64 vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
+	optional uint64 vector_idx_load_time_ms = 103;
+	optional uint64 vector_idx_search_time_ms = 104;
+	optional uint64 vector_idx_search_visited_nodes = 105;
+	optional uint64 vector_idx_search_discarded_nodes = 106;
+	optional uint64 vector_idx_read_vec_time_ms = 107;
+	optional uint64 vector_idx_read_others_time_ms = 108;
+
+	/// inverted index related fields
+
+	optional uint32 inverted_idx_load_from_s3 = 120;
+    optional uint32 inverted_idx_load_from_disk = 121;
+    optional uint32 inverted_idx_load_from_cache = 122;
+    optional uint64 inverted_idx_load_time_ms = 123;
+    optional uint64 inverted_idx_search_time_ms = 124;
+    optional uint32 inverted_idx_search_skipped_packs = 125;
+    optional uint64 inverted_idx_indexed_rows = 126;
+    optional uint64 inverted_idx_search_selected_rows = 127;
+
+	/// fulltext index related fields
+
+	optional uint32 fts_load_from_s3 = 140;
+    optional uint32 fts_load_from_disk = 141;
+    optional uint32 fts_load_from_cache = 142;
+    optional uint64 fts_load_time_ms = 143;
+	optional uint32 fts_miss_rows_stable = 144;
+	optional uint32 fts_miss_rows_delta = 145;
+	optional uint32 fts_miss_rows_inmemory = 146;
+	optional uint64 fts_miss_read_time_ms = 147; // How long it takes to read these rows (which does not have index)
+	optional uint64 fts_miss_search_time_ms = 148; // Include search+score
+	optional uint64 fts_hit_rows_stable = 150; // How many rows are not brute-processed by using the index. It is not equal to rows that are returned by the index.
+	optional uint64 fts_hit_rows_delta = 151; // How many rows are not brute-processed by using the index. It is not equal to rows that are returned by the index.
+	optional uint64 fts_hit_rows_inmemory = 152; // How many rows are not brute-processed by using the index. It is not equal to rows that are returned by the index.
+	optional uint64 fts_hit_search_time_ms = 153; // Include search+score
+	optional uint64 fts_hit_read_fts_rows = 154; // How many rows are read from FTS column. If there is a TopK push down then this field will be greatly reduced.
+	optional uint64 fts_hit_read_fts_time_ms = 155; // How long read from FTS column
+	optional uint64 fts_hit_read_others_time_ms = 156; // How long read from other columns
 }
 
 message TiFlashWaitSummary {
