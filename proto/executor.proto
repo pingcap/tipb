@@ -449,41 +449,41 @@ message TiFlashScanContext {
 	/// inverted index related fields
 
 	optional uint32 inverted_idx_load_from_s3 = 120;
-    optional uint32 inverted_idx_load_from_disk = 121;
-    optional uint32 inverted_idx_load_from_cache = 122;
-    optional uint64 inverted_idx_load_time_ms = 123;
-    optional uint64 inverted_idx_search_time_ms = 124;
-    optional uint32 inverted_idx_search_skipped_packs = 125;
-    optional uint64 inverted_idx_indexed_rows = 126;
-    optional uint64 inverted_idx_search_selected_rows = 127;
+	optional uint32 inverted_idx_load_from_disk = 121;
+	optional uint32 inverted_idx_load_from_cache = 122;
+	optional uint64 inverted_idx_load_time_ms = 123;
+	optional uint64 inverted_idx_search_time_ms = 124;
+	optional uint32 inverted_idx_search_skipped_packs = 125;
+	optional uint64 inverted_idx_indexed_rows = 126;
+	optional uint64 inverted_idx_search_selected_rows = 127;
 
 	/// fulltext index related fields
 
 	optional uint32 fts_n_from_inmemory_noindex = 150;
-    optional uint32 fts_n_from_tiny_index = 151;
-    optional uint32 fts_n_from_tiny_noindex = 152;
-    optional uint32 fts_n_from_dmf_index = 153;
-    optional uint32 fts_n_from_dmf_noindex = 154;
-    optional uint64 fts_rows_from_inmemory_noindex = 155;
-    optional uint64 fts_rows_from_tiny_index = 156;
-    optional uint64 fts_rows_from_tiny_noindex = 157;
-    optional uint64 fts_rows_from_dmf_index = 158;
-    optional uint64 fts_rows_from_dmf_noindex = 159;
-    optional uint64 fts_idx_load_total_ms = 160;
-    optional uint32 fts_idx_load_from_cache = 161;
-    optional uint32 fts_idx_load_from_column_file = 162;
-    optional uint32 fts_idx_load_from_stable_s3 = 163;
-    optional uint32 fts_idx_load_from_stable_disk = 164;
-    optional uint32 fts_idx_search_n = 165;
-    optional uint64 fts_idx_search_total_ms = 166;
-    optional uint64 fts_idx_dm_search_rows = 167;
-    optional uint64 fts_idx_dm_total_read_fts_ms = 168;
-    optional uint64 fts_idx_dm_total_read_others_ms = 169;
-    optional uint64 fts_idx_tiny_search_rows = 170;
-    optional uint64 fts_idx_tiny_total_read_fts_ms = 171;
-    optional uint64 fts_idx_tiny_total_read_others_ms = 172;
-    optional uint64 fts_brute_total_read_ms = 173;
-    optional uint64 fts_brute_total_search_ms = 174;
+	optional uint32 fts_n_from_tiny_index = 151;
+	optional uint32 fts_n_from_tiny_noindex = 152;
+	optional uint32 fts_n_from_dmf_index = 153;
+	optional uint32 fts_n_from_dmf_noindex = 154;
+	optional uint64 fts_rows_from_inmemory_noindex = 155;
+	optional uint64 fts_rows_from_tiny_index = 156;
+	optional uint64 fts_rows_from_tiny_noindex = 157;
+	optional uint64 fts_rows_from_dmf_index = 158;
+	optional uint64 fts_rows_from_dmf_noindex = 159;
+	optional uint64 fts_idx_load_total_ms = 160;
+	optional uint32 fts_idx_load_from_cache = 161;
+	optional uint32 fts_idx_load_from_column_file = 162;
+	optional uint32 fts_idx_load_from_stable_s3 = 163;
+	optional uint32 fts_idx_load_from_stable_disk = 164;
+	optional uint32 fts_idx_search_n = 165;
+	optional uint64 fts_idx_search_total_ms = 166;
+	optional uint64 fts_idx_dm_search_rows = 167;
+	optional uint64 fts_idx_dm_total_read_fts_ms = 168;
+	optional uint64 fts_idx_dm_total_read_others_ms = 169;
+	optional uint64 fts_idx_tiny_search_rows = 170;
+	optional uint64 fts_idx_tiny_total_read_fts_ms = 171;
+	optional uint64 fts_idx_tiny_total_read_others_ms = 172;
+	optional uint64 fts_brute_total_read_ms = 173;
+	optional uint64 fts_brute_total_search_ms = 174;
 }
 
 message TiFlashWaitSummary {
