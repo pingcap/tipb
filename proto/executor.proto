@@ -180,6 +180,7 @@ message FTSQueryInfo {
 	repeated string column_names = 4; // For debug purpose only. Currently only used in explain.
 
 	optional string query_text = 5 [(gogoproto.nullable) = false];
+	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
 
 	// For QueryType == TopK
 	optional uint32 top_k = 10;
