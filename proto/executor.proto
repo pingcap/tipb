@@ -37,6 +37,8 @@ enum ExecType {
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
 	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeCTESink = 17;
+	TypeCTESource = 18;
 }
 
 // It represents a Executor.
@@ -61,6 +63,8 @@ message Executor {
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
 	optional Expand2 expand2= 20;
+	optional CTESink cte_sink = 21;
+	optional CTESource cte_source = 22;
 }
 
 enum ExchangeType {
@@ -87,6 +91,16 @@ message ExchangeSender {
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
 	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
 	repeated bool same_zone_flag = 9;
+}
+
+message CTESink {
+	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
+}
+
+message CTESource {
+	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
+	required FieldType field_types = 2;
+	repeated Expr partition_keys = 3;
 }
 
 message EncodedBytesSlice {
