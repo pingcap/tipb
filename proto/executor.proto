@@ -99,7 +99,9 @@ message CTESink {
 
 message CTESource {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
+	// CTE output schema
 	required FieldType field_types = 2;
+	// expressions that partition data
 	repeated Expr partition_keys = 3;
 }
 
