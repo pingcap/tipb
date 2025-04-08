@@ -103,6 +103,8 @@ message CTESource {
 	repeated FieldType field_types = 2;
 	// expressions that partition data
 	repeated Expr partition_keys = 3;
+	// partition keys' types
+	repeated FieldType types = 4;
 }
 
 message EncodedBytesSlice {
