@@ -1,8 +1,6 @@
 module github.com/pingcap/tipb
 
-go 1.22
-
-toolchain go1.23.8
+go 1.20
 
 require (
 	github.com/gogo/protobuf v1.3.2
@@ -18,5 +16,5 @@ require (
 	golang.org/x/text v0.3.3 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8 // indirect
-	google.golang.org/protobuf v1.36.6 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )
