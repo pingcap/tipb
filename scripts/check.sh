@@ -69,6 +69,11 @@ check-protos-options() {
 
     local folder="./proto"
     for pb in "$folder"/*; do
+        # Skip directories
+        if [ -d "$pb" ]; then
+            continue
+        fi
+        
         # Iterate through the array
         for option in "${options[@]}"; do
             if ! grep -q "$option" "$pb"; then
