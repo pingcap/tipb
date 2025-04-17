@@ -7735,6 +7735,11 @@
             "fields": [
               {
                 "id": 1,
+                "name": "table_id",
+                "type": "int64"
+              },
+              {
+                "id": 2,
                 "name": "index_id",
                 "type": "string"
               }
@@ -7852,37 +7857,32 @@
             "fields": [
               {
                 "id": 1,
-                "name": "table_id",
-                "type": "int64"
-              },
-              {
-                "id": 2,
                 "name": "index_id",
                 "type": "int64"
               },
               {
-                "id": 3,
+                "id": 2,
                 "name": "index_name",
                 "type": "string"
               },
               {
-                "id": 4,
+                "id": 3,
                 "name": "index_type",
                 "type": "IndexType"
               },
               {
-                "id": 5,
+                "id": 4,
                 "name": "columns",
                 "type": "TiCIColumnInfo",
                 "is_repeated": true
               },
               {
-                "id": 6,
+                "id": 5,
                 "name": "is_unique",
                 "type": "bool"
               },
               {
-                "id": 7,
+                "id": 6,
                 "name": "parser_info",
                 "type": "ParserInfo"
               }
@@ -7891,7 +7891,7 @@
               {
                 "key_type": "string",
                 "field": {
-                  "id": 8,
+                  "id": 7,
                   "name": "other_params",
                   "type": "string"
                 }
@@ -7969,7 +7969,8 @@
               {
                 "id": 7,
                 "name": "s3_path",
-                "type": "string"
+                "type": "string",
+                "is_repeated": true
               }
             ]
           }
