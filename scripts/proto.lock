@@ -625,9 +625,6 @@
           },
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -652,22 +649,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -802,9 +783,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -820,31 +798,15 @@
             "value": "com.pingcap.tidb.tipb"
           },
           {
-            "name": "(gogoproto.marshaler_all)",
-            "value": "true"
-          },
-          {
             "name": "(gogoproto.sizer_all)",
             "value": "true"
           },
           {
-            "name": "(gogoproto.unmarshaler_all)",
+            "name": "(gogoproto.marshaler_all)",
             "value": "true"
           },
           {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
+            "name": "(gogoproto.unmarshaler_all)",
             "value": "true"
           }
         ]
@@ -929,16 +891,12 @@
                 "integer": 17
               },
               {
-                "name": "TypeCTESink",
-                "integer": 18
-              },
-              {
-                "name": "TypeCTESource",
-                "integer": 19
-              },
-              {
                 "name": "TypeIndexLookUp",
                 "integer": 20
+              },
+              {
+                "name": "TypeExplainForConnection",
+                "integer": 21
               }
             ]
           },
@@ -1045,32 +1003,12 @@
                 "name": "FTSQueryTypeInvalid"
               },
               {
-                "name": "FTSQueryTypeNoScore",
+                "name": "FTSQueryTypeFilter",
                 "integer": 1
               },
               {
-                "name": "FTSQueryTypeWithScore",
+                "name": "FTSQueryTypeTopK",
                 "integer": 2
-              }
-            ]
-          },
-          {
-            "name": "ColumnarIndexType",
-            "enum_fields": [
-              {
-                "name": "TypeInvalid"
-              },
-              {
-                "name": "TypeVector",
-                "integer": 1
-              },
-              {
-                "name": "TypeInverted",
-                "integer": 2
-              },
-              {
-                "name": "TypeFulltext",
-                "integer": 3
               }
             ]
           },
@@ -1364,18 +1302,6 @@
                 "optional": true
               },
               {
-                "id": 22,
-                "name": "cte_sink",
-                "type": "CTESink",
-                "optional": true
-              },
-              {
-                "id": 23,
-                "name": "cte_source",
-                "type": "CTESource",
-                "optional": true
-              },
-              {
                 "id": 24,
                 "name": "index_lookup",
                 "type": "IndexLookUp",
@@ -1385,6 +1311,12 @@
                 "id": 25,
                 "name": "parent_idx",
                 "type": "uint32",
+                "optional": true
+              },
+              {
+                "id": 26,
+                "name": "explain_for_connection",
+                "type": "ExplainForConnection",
                 "optional": true
               }
             ]
@@ -1451,112 +1383,6 @@
                 "name": "upstream_cte_task_meta",
                 "type": "EncodedBytesSlice",
                 "is_repeated": true
-              },
-              {
-                "id": 9,
-                "name": "same_zone_flag",
-                "type": "bool",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "CTESink",
-            "fields": [
-              {
-                "id": 1,
-                "name": "cte_id",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 2,
-                "name": "cte_source_num",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "name": "cte_sink_num",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 4,
-                "name": "child",
-                "type": "Executor",
-                "optional": true
-              },
-              {
-                "id": 5,
-                "name": "field_types",
-                "type": "FieldType",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "CTESource",
-            "fields": [
-              {
-                "id": 1,
-                "name": "cte_id",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 2,
-                "name": "cte_source_num",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "name": "cte_sink_num",
-                "type": "uint32",
-                "required": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 4,
-                "name": "field_types",
-                "type": "FieldType",
-                "is_repeated": true
               }
             ]
           },
@@ -1574,6 +1400,12 @@
                 "name": "keep_order",
                 "type": "bool",
                 "optional": true
+              },
+              {
+                "id": 3,
+                "name": "children",
+                "type": "Executor",
+                "is_repeated": true
               }
             ]
           },
@@ -1613,12 +1445,6 @@
                 "id": 4,
                 "name": "original_cte_prdocuer_task_meta",
                 "type": "bytes",
-                "is_repeated": true
-              },
-              {
-                "id": 5,
-                "name": "same_zone_flag",
-                "type": "bool",
                 "is_repeated": true
               }
             ]
@@ -1676,9 +1502,15 @@
               },
               {
                 "id": 5,
-                "name": "deprecated_column_id",
+                "name": "column_id",
                 "type": "int64",
-                "optional": true
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "id": 6,
@@ -1721,63 +1553,10 @@
                     "value": "false"
                   }
                 ]
-              },
-              {
-                "id": 21,
-                "name": "column",
-                "type": "ColumnInfo",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 22,
-                "name": "enable_distance_proj",
-                "type": "bool",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
               }
             ],
             "reserved_ids": [
               7
-            ]
-          },
-          {
-            "name": "InvertedQueryInfo",
-            "fields": [
-              {
-                "id": 1,
-                "name": "index_id",
-                "type": "int64",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 2,
-                "name": "column_id",
-                "type": "int64",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              }
             ]
           },
           {
@@ -1848,65 +1627,6 @@
                 "name": "top_k",
                 "type": "uint32",
                 "optional": true
-              },
-              {
-                "id": 20,
-                "name": "query_func",
-                "type": "ScalarFuncSig",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 21,
-                "name": "match_expr",
-                "type": "Expr",
-                "is_repeated": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "ColumnarIndexInfo",
-            "fields": [
-              {
-                "id": 1,
-                "name": "index_type",
-                "type": "ColumnarIndexType",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "id": 2,
-                "name": "ann_query_info",
-                "type": "ANNQueryInfo",
-                "oneof_parent": "index"
-              },
-              {
-                "id": 3,
-                "name": "inverted_query_info",
-                "type": "InvertedQueryInfo",
-                "oneof_parent": "index"
-              },
-              {
-                "id": 4,
-                "name": "fts_query_info",
-                "type": "FTSQueryInfo",
-                "oneof_parent": "index"
               }
             ]
           },
@@ -1998,6 +1718,12 @@
                 "is_repeated": true
               },
               {
+                "id": 13,
+                "name": "ann_query",
+                "type": "ANNQueryInfo",
+                "optional": true
+              },
+              {
                 "id": 11,
                 "name": "runtime_filter_list",
                 "type": "RuntimeFilter",
@@ -2014,18 +1740,6 @@
                     "value": "false"
                   }
                 ]
-              },
-              {
-                "id": 13,
-                "name": "deprecated_ann_query",
-                "type": "ANNQueryInfo",
-                "optional": true
-              },
-              {
-                "id": 14,
-                "name": "used_columnar_indexes",
-                "type": "ColumnarIndexInfo",
-                "is_repeated": true
               }
             ]
           },
@@ -2093,6 +1807,12 @@
                 "is_repeated": true
               },
               {
+                "id": 11,
+                "name": "ann_query",
+                "type": "ANNQueryInfo",
+                "optional": true
+              },
+              {
                 "id": 9,
                 "name": "runtime_filter_list",
                 "type": "RuntimeFilter",
@@ -2109,18 +1829,6 @@
                     "value": "false"
                   }
                 ]
-              },
-              {
-                "id": 11,
-                "name": "deprecated_ann_query",
-                "type": "ANNQueryInfo",
-                "optional": true
-              },
-              {
-                "id": 12,
-                "name": "used_columnar_indexes",
-                "type": "ColumnarIndexInfo",
-                "is_repeated": true
               }
             ]
           },
@@ -2364,12 +2072,6 @@
                 "name": "primary_column_ids",
                 "type": "int64",
                 "is_repeated": true
-              },
-              {
-                "id": 7,
-                "name": "fts_query_info",
-                "type": "FTSQueryInfo",
-                "optional": true
               }
             ]
           },
@@ -2533,6 +2235,12 @@
                 "name": "partition_by",
                 "type": "ByItem",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "truncate_key_expr",
+                "type": "Expr",
+                "is_repeated": true
               }
             ]
           },
@@ -2555,6 +2263,23 @@
                 "id": 2,
                 "name": "query",
                 "type": "bool",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ExplainForConnection",
+            "fields": [
+              {
+                "id": 1,
+                "name": "connection_id",
+                "type": "uint64",
                 "optional": true,
                 "options": [
                   {
@@ -2614,12 +2339,6 @@
                 "id": 8,
                 "name": "tiflash_wait_summary",
                 "type": "TiFlashWaitSummary",
-                "optional": true
-              },
-              {
-                "id": 9,
-                "name": "tiflash_network_summary",
-                "type": "TiFlashNetWorkSummary",
                 "optional": true
               }
             ]
@@ -2879,103 +2598,55 @@
               },
               {
                 "id": 100,
-                "name": "vector_idx_load_from_s3",
+                "name": "total_vector_idx_load_from_s3",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 101,
-                "name": "vector_idx_load_from_disk",
+                "name": "total_vector_idx_load_from_disk",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 102,
-                "name": "vector_idx_load_from_cache",
+                "name": "total_vector_idx_load_from_cache",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 103,
-                "name": "vector_idx_load_time_ms",
+                "name": "total_vector_idx_load_time_ms",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 104,
-                "name": "vector_idx_search_time_ms",
+                "name": "total_vector_idx_search_time_ms",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 105,
-                "name": "vector_idx_search_visited_nodes",
+                "name": "total_vector_idx_search_visited_nodes",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 106,
-                "name": "vector_idx_search_discarded_nodes",
+                "name": "total_vector_idx_search_discarded_nodes",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 107,
-                "name": "vector_idx_read_vec_time_ms",
+                "name": "total_vector_idx_read_vec_time_ms",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 108,
-                "name": "vector_idx_read_others_time_ms",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 120,
-                "name": "inverted_idx_load_from_s3",
-                "type": "uint32",
-                "optional": true
-              },
-              {
-                "id": 121,
-                "name": "inverted_idx_load_from_disk",
-                "type": "uint32",
-                "optional": true
-              },
-              {
-                "id": 122,
-                "name": "inverted_idx_load_from_cache",
-                "type": "uint32",
-                "optional": true
-              },
-              {
-                "id": 123,
-                "name": "inverted_idx_load_time_ms",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 124,
-                "name": "inverted_idx_search_time_ms",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 125,
-                "name": "inverted_idx_search_skipped_packs",
-                "type": "uint32",
-                "optional": true
-              },
-              {
-                "id": 126,
-                "name": "inverted_idx_indexed_rows",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 127,
-                "name": "inverted_idx_search_selected_rows",
+                "name": "total_vector_idx_read_others_time_ms",
                 "type": "uint64",
                 "optional": true
               },
@@ -3149,35 +2820,6 @@
               {
                 "id": 3,
                 "name": "pipeline_breaker_wait_ns",
-                "type": "uint64",
-                "optional": true
-              }
-            ]
-          },
-          {
-            "name": "TiFlashNetWorkSummary",
-            "fields": [
-              {
-                "id": 1,
-                "name": "inner_zone_send_bytes",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 2,
-                "name": "inner_zone_receive_bytes",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 3,
-                "name": "inter_zone_send_bytes",
-                "type": "uint64",
-                "optional": true
-              },
-              {
-                "id": 4,
-                "name": "inter_zone_receive_bytes",
                 "type": "uint64",
                 "optional": true
               }
@@ -3423,9 +3065,6 @@
           },
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -3450,22 +3089,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -3568,12 +3191,6 @@
                 "id": 4,
                 "name": "discarded_due_to_too_long",
                 "type": "bool"
-              },
-              {
-                "id": 5,
-                "name": "subqueries",
-                "type": "ExplainOperator",
-                "is_repeated": true
               }
             ]
           },
@@ -3658,16 +3275,6 @@
                 "id": 15,
                 "name": "disk_bytes",
                 "type": "int64"
-              },
-              {
-                "id": 16,
-                "name": "brief_name",
-                "type": "string"
-              },
-              {
-                "id": 17,
-                "name": "brief_operator_info",
-                "type": "string"
               }
             ]
           },
@@ -3783,9 +3390,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -3810,22 +3414,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -5662,18 +5250,6 @@
                 "integer": 5201
               },
               {
-                "name": "FTSMatchExpression",
-                "integer": 5202
-              },
-              {
-                "name": "FTSMatchPrefix",
-                "integer": 5203
-              },
-              {
-                "name": "FTSMatchRegexp",
-                "integer": 5204
-              },
-              {
                 "name": "DateFormatSig",
                 "integer": 6001
               },
@@ -6830,10 +6406,10 @@
         ],
         "imports": [
           {
-            "path": "gogoproto/gogo.proto"
+            "path": "metadata.proto"
           },
           {
-            "path": "rustproto.proto"
+            "path": "gogoproto/gogo.proto"
           }
         ],
         "package": {
@@ -6858,22 +6434,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -6974,9 +6534,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -7001,22 +6558,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -7076,12 +6617,6 @@
                     "value": "false"
                   }
                 ]
-              },
-              {
-                "id": 5,
-                "name": "keyspace_name",
-                "type": "bytes",
-                "optional": true
               }
             ]
           }
@@ -7089,9 +6624,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -7116,22 +6648,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -7345,9 +6861,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -7372,22 +6885,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -7911,9 +7408,6 @@
           },
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -7938,22 +7432,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -8302,9 +7780,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -8321,22 +7796,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -8364,11 +7823,6 @@
                 "name": "items",
                 "type": "TopSQLRecordItem",
                 "is_repeated": true
-              },
-              {
-                "id": 4,
-                "name": "keyspace_name",
-                "type": "bytes"
               }
             ]
           },
@@ -8398,6 +7852,16 @@
               {
                 "id": 6,
                 "name": "stmt_duration_count",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "stmt_network_in_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 8,
+                "name": "stmt_network_out_bytes",
                 "type": "uint64"
               }
             ],
@@ -8429,11 +7893,6 @@
                 "id": 3,
                 "name": "is_internal_sql",
                 "type": "bool"
-              },
-              {
-                "id": 4,
-                "name": "keyspace_name",
-                "type": "bytes"
               }
             ]
           },
@@ -8454,11 +7913,6 @@
                 "id": 3,
                 "name": "encoded_normalized_plan",
                 "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "keyspace_name",
-                "type": "bytes"
               }
             ]
           },
@@ -8531,9 +7985,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -8558,22 +8009,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
@@ -8619,9 +8054,6 @@
         "imports": [
           {
             "path": "gogoproto/gogo.proto"
-          },
-          {
-            "path": "rustproto.proto"
           }
         ],
         "package": {
@@ -8646,22 +8078,6 @@
           },
           {
             "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
             "value": "true"
           }
         ]
