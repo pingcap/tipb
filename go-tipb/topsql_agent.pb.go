@@ -29,6 +29,10 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// A wrapper over keyspace_id.
+// When a field is not specified in proto3, its value will be regarded as 0; however, keyspace_id = 0 is regarded as a valid keyspace (which
+// is the "DEFAULT" keyspace). To distinguish unspecified keyspace (NullKeyspace, 0xffffffff) and the default keyspace in some APIs as well
+// as preventing potential misuse, we wrap the keyspace_id into a message type which is nullable.
 type KeyspaceScope struct {
 	KeyspaceId uint32 `protobuf:"varint,1,opt,name=keyspace_id,json=keyspaceId,proto3" json:"keyspace_id,omitempty"`
 }
