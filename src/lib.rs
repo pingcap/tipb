@@ -8,3 +8,6 @@ mod protos {
 }
 
 pub use crate::protos::tipb::*;
+
+// TiCI protobuf module
+// pub mod tici_proto;

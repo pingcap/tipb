@@ -7658,7 +7658,7 @@
       }
     },
     {
-      "protopath": "tici:/:indexer.proto",
+      "protopath": "tici.proto",
       "def": {
         "enums": [
           {
@@ -8006,7 +8006,7 @@
           }
         ],
         "package": {
-          "name": "tipb.tici"
+          "name": "tipb"
         },
         "options": [
           {
