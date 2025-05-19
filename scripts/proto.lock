@@ -1627,6 +1627,18 @@
                 "name": "top_k",
                 "type": "uint32",
                 "optional": true
+              },
+              {
+                "id": 20,
+                "name": "query_func",
+                "type": "ScalarFuncSig",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               }
             ]
           },
@@ -2072,6 +2084,12 @@
                 "name": "primary_column_ids",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 7,
+                "name": "fts_query_info",
+                "type": "FTSQueryInfo",
+                "optional": true
               }
             ]
           },
@@ -5248,6 +5266,18 @@
               {
                 "name": "FTSMatchWord",
                 "integer": 5201
+              },
+              {
+                "name": "FTSMatchExpression",
+                "integer": 5202
+              },
+              {
+                "name": "FTSMatchPrefix",
+                "integer": 5203
+              },
+              {
+                "name": "FTSMatchRegexp",
+                "integer": 5204
               },
               {
                 "name": "DateFormatSig",

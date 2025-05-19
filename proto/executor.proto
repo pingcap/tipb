@@ -175,6 +175,9 @@ message FTSQueryInfo {
 
 	// For QueryType == TopK
 	optional uint32 top_k = 10;
+
+	// Distinguish match_word, match_expression, match_prefix, match_regexp
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
@@ -267,6 +270,7 @@ message IndexScan {
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
+	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
 }
 
 message Selection {
