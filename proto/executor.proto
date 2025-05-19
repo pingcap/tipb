@@ -294,6 +294,7 @@ message IndexScan {
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
+	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
 }
 
 message Selection {
