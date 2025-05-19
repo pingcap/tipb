@@ -184,6 +184,9 @@ message FTSQueryInfo {
 
 	// For QueryType == TopK
 	optional uint32 top_k = 10;
+
+	// Distinguish match_word, match_expression, match_prefix, match_regexp
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false]; 
 }
 
 enum ColumnarIndexType {
