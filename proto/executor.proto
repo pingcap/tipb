@@ -62,6 +62,7 @@ message Executor {
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
 	optional Expand2 expand2= 20;
+	optional InitStats init_stats = 21;
 }
 
 enum ExchangeType {
@@ -580,3 +581,4 @@ message Expand2{
 	optional Executor child = 3;
 }
 
+message InitStats { repeated string table_names = 1; }
