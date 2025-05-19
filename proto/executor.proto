@@ -37,6 +37,7 @@ enum ExecType {
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
 	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeInitStats = 17;
 }
 
 // It represents a Executor.
@@ -186,7 +187,7 @@ message FTSQueryInfo {
 	optional uint32 top_k = 10;
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
-	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false]; 
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 }
 
 enum ColumnarIndexType {
