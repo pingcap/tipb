@@ -166,8 +166,8 @@ message InvertedQueryInfo {
 
 enum FTSQueryType {
 	FTSQueryTypeInvalid = 0;
-	FTSQueryTypeFilter = 1; // Not supported yet
-	FTSQueryTypeTopK = 2;
+	FTSQueryTypeNoScore = 1;   // Means no scoring is ever needed, encourages the engine to use a fast path.
+	FTSQueryTypeWithScore = 2;
 }
 
 message FTSQueryInfo {
@@ -182,11 +182,15 @@ message FTSQueryInfo {
 	optional string query_text = 5 [(gogoproto.nullable) = false];
 	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
 
-	// For QueryType == TopK
+	// For QueryType == WithScore, a top_k can be optionally specified.
+	// If top_k is specified, it means the TableScan is safe to return at most *top* k results
+	// because upper executors will have a TopK anyway.
+	// If not specified (optional, or top_k is very large), then all results will be returned.
+	// This option is not supported for QueryType == NoScore.
 	optional uint32 top_k = 10;
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
-	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false]; 
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 }
 
 enum ColumnarIndexType {
