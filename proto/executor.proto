@@ -302,6 +302,7 @@ message IndexScan {
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
 	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
+	repeated KeyRange fts_ranges = 8 [(gogoproto.nullable) = false]; // Only for FTS query
 }
 
 message Selection {
