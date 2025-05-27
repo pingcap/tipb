@@ -170,6 +170,12 @@ enum FTSQueryType {
 	FTSQueryTypeWithScore = 2;
 }
 
+message ShardInfo {
+	optional uint64 shard_id = 1 [(gogoproto.nullable) = false];
+	optional uint64 shard_epoch = 2 [(gogoproto.nullable) = false];
+	repeated KeyRange ranges = 3;
+}
+
 message FTSQueryInfo {
 	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
 
@@ -191,6 +197,7 @@ message FTSQueryInfo {
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
+	repeated ShardInfo shard_infos = 21; // Shard infos for FTS index, used by TiFlash.
 }
 
 enum ColumnarIndexType {
@@ -302,7 +309,6 @@ message IndexScan {
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
 	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
-	repeated KeyRange fts_ranges = 8 [(gogoproto.nullable) = false]; // Only for FTS query
 }
 
 message Selection {
