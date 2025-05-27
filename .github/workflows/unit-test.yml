@@ -29,6 +29,10 @@ jobs:
           version: '3.5.1'
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.14
+        with:
+          cmake-version: '3.31.6'
       - name: Test
         run: make c++ && git diff --exit-code
 
@@ -45,5 +49,9 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.14
+        with:
+          cmake-version: '3.31.6'
       - name: Test
         run: make rust
