@@ -95,8 +95,9 @@ message ExchangeSender {
 
 message CTESink {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
-	optional Executor child = 2;
-	repeated FieldType field_types = 3;
+	required uint32 cte_sink_num = 2;
+	optional Executor child = 3;
+	repeated FieldType field_types = 4;
 }
 
 message CTESource {
