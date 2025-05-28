@@ -541,6 +541,9 @@ enum ScalarFuncSig {
 
 	/*fts*/
 	FTSMatchWord = 5201;
+	FTSMatchExpression = 5202;
+	FTSMatchPrefix = 5203;
+	FTSMatchRegexp = 5204;
 
 	/*time*/
 	DateFormatSig = 6001;
