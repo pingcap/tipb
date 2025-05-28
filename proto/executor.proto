@@ -95,15 +95,17 @@ message ExchangeSender {
 
 message CTESink {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
-	required uint32 cte_sink_num = 2;
-	optional Executor child = 3;
-	repeated FieldType field_types = 4;
+	required uint32 cte_source_num = 2;
+	required uint32 cte_sink_num = 3;
+	optional Executor child = 4;
+	repeated FieldType field_types = 5;
 }
 
 message CTESource {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
 	repeated FieldType field_types = 2;
 	required uint32 cte_source_num = 3;
+	required uint32 cte_sink_num = 4;
 }
 
 message EncodedBytesSlice {
