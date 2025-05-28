@@ -103,6 +103,7 @@ message CTESink {
 message CTESource {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
 	repeated FieldType field_types = 2;
+	required uint32 cte_source_num = 3;
 }
 
 message EncodedBytesSlice {
