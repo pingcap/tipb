@@ -103,7 +103,6 @@ message CTESink {
 	repeated FieldType field_types = 5;
 }
 
-
 message CTESource {
 	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
 	required uint32 cte_source_num = 2 [(gogoproto.nullable) = false];
