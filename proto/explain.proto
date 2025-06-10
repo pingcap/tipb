@@ -54,6 +54,9 @@ message ExplainOperator {
     // this will be consistent with the result of EXPLAIN ANALYZE.
     int64 memory_bytes = 14;
     int64 disk_bytes = 15;
+    
+    string brief_name = 16;
+    string brief_operator_info = 17;
 }
 
 message AccessObject {
