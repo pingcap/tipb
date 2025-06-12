@@ -212,6 +212,9 @@ message FTSQueryInfo {
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
+
+	// Can only contain fts expression and and/or expression. 
+	optional Expr match_expr = 21 [(gogoproto.nullable) = false];
 }
 
 enum ColumnarIndexType {
