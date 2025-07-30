@@ -923,6 +923,22 @@
               {
                 "name": "TypeExpand2",
                 "integer": 16
+              },
+              {
+                "name": "TypeBroadcastQuery",
+                "integer": 17
+              },
+              {
+                "name": "TypeCTESink",
+                "integer": 18
+              },
+              {
+                "name": "TypeCTESource",
+                "integer": 19
+              },
+              {
+                "name": "TypeIndexLookUp",
+                "integer": 20
               }
             ]
           },
@@ -1029,11 +1045,11 @@
                 "name": "FTSQueryTypeInvalid"
               },
               {
-                "name": "FTSQueryTypeFilter",
+                "name": "FTSQueryTypeNoScore",
                 "integer": 1
               },
               {
-                "name": "FTSQueryTypeTopK",
+                "name": "FTSQueryTypeWithScore",
                 "integer": 2
               }
             ]
@@ -1340,6 +1356,36 @@
                 "name": "expand2",
                 "type": "Expand2",
                 "optional": true
+              },
+              {
+                "id": 21,
+                "name": "broadcast_query",
+                "type": "BroadcastQuery",
+                "optional": true
+              },
+              {
+                "id": 22,
+                "name": "cte_sink",
+                "type": "CTESink",
+                "optional": true
+              },
+              {
+                "id": 23,
+                "name": "cte_source",
+                "type": "CTESource",
+                "optional": true
+              },
+              {
+                "id": 24,
+                "name": "index_lookup",
+                "type": "IndexLookUp",
+                "optional": true
+              },
+              {
+                "id": 25,
+                "name": "parent_idx",
+                "type": "uint32",
+                "optional": true
               }
             ]
           },
@@ -1411,6 +1457,123 @@
                 "name": "same_zone_flag",
                 "type": "bool",
                 "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "CTESink",
+            "fields": [
+              {
+                "id": 1,
+                "name": "cte_id",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "cte_source_num",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "cte_sink_num",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "name": "child",
+                "type": "Executor",
+                "optional": true
+              },
+              {
+                "id": 5,
+                "name": "field_types",
+                "type": "FieldType",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "CTESource",
+            "fields": [
+              {
+                "id": 1,
+                "name": "cte_id",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "cte_source_num",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "cte_sink_num",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "name": "field_types",
+                "type": "FieldType",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "IndexLookUp",
+            "fields": [
+              {
+                "id": 1,
+                "name": "index_handle_offsets",
+                "type": "uint32",
+                "is_repeated": true
+              },
+              {
+                "id": 2,
+                "name": "keep_order",
+                "type": "bool",
+                "optional": true
               }
             ]
           },
@@ -1685,6 +1848,30 @@
                 "name": "top_k",
                 "type": "uint32",
                 "optional": true
+              },
+              {
+                "id": 20,
+                "name": "query_func",
+                "type": "ScalarFuncSig",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 21,
+                "name": "match_expr",
+                "type": "Expr",
+                "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               }
             ]
           },
@@ -2177,6 +2364,12 @@
                 "name": "primary_column_ids",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 7,
+                "name": "fts_query_info",
+                "type": "FTSQueryInfo",
+                "optional": true
               }
             ]
           },
@@ -3208,6 +3401,17 @@
                 "optional": true
               }
             ]
+          },
+          {
+            "name": "BroadcastQuery",
+            "fields": [
+              {
+                "id": 1,
+                "name": "query",
+                "type": "string",
+                "optional": true
+              }
+            ]
           }
         ],
         "imports": [
@@ -3364,6 +3568,12 @@
                 "id": 4,
                 "name": "discarded_due_to_too_long",
                 "type": "bool"
+              },
+              {
+                "id": 5,
+                "name": "subqueries",
+                "type": "ExplainOperator",
+                "is_repeated": true
               }
             ]
           },
@@ -3448,6 +3658,16 @@
                 "id": 15,
                 "name": "disk_bytes",
                 "type": "int64"
+              },
+              {
+                "id": 16,
+                "name": "brief_name",
+                "type": "string"
+              },
+              {
+                "id": 17,
+                "name": "brief_operator_info",
+                "type": "string"
               }
             ]
           },
@@ -5442,6 +5662,18 @@
                 "integer": 5201
               },
               {
+                "name": "FTSMatchExpression",
+                "integer": 5202
+              },
+              {
+                "name": "FTSMatchPrefix",
+                "integer": 5203
+              },
+              {
+                "name": "FTSMatchRegexp",
+                "integer": 5204
+              },
+              {
                 "name": "DateFormatSig",
                 "integer": 6001
               },
@@ -6844,6 +7076,12 @@
                     "value": "false"
                   }
                 ]
+              },
+              {
+                "id": 5,
+                "name": "keyspace_name",
+                "type": "bytes",
+                "optional": true
               }
             ]
           }
@@ -7236,6 +7474,35 @@
             ]
           },
           {
+            "name": "IntermediateOutput",
+            "fields": [
+              {
+                "id": 1,
+                "name": "encode_type",
+                "type": "EncodeType",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "chunks",
+                "type": "Chunk",
+                "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "name": "SelectResponse",
             "fields": [
               {
@@ -7303,6 +7570,12 @@
                 "name": "ndvs",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 11,
+                "name": "intermediate_outputs",
+                "type": "IntermediateOutput",
+                "is_repeated": true
               }
             ]
           },
@@ -7336,6 +7609,29 @@
                     "value": "false"
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "name": "IntermediateOutputChannel",
+            "fields": [
+              {
+                "id": 1,
+                "name": "executor_idx",
+                "type": "uint32",
+                "required": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "output_offsets",
+                "type": "uint32",
+                "is_repeated": true
               }
             ]
           },
@@ -7502,6 +7798,12 @@
                 "name": "div_precision_increment",
                 "type": "uint32",
                 "optional": true
+              },
+              {
+                "id": 20,
+                "name": "intermediate_output_channels",
+                "type": "IntermediateOutputChannel",
+                "is_repeated": true
               }
             ]
           },
@@ -8062,6 +8364,11 @@
                 "name": "items",
                 "type": "TopSQLRecordItem",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "keyspace_name",
+                "type": "bytes"
               }
             ]
           },
@@ -8122,6 +8429,11 @@
                 "id": 3,
                 "name": "is_internal_sql",
                 "type": "bool"
+              },
+              {
+                "id": 4,
+                "name": "keyspace_name",
+                "type": "bytes"
               }
             ]
           },
@@ -8142,6 +8454,11 @@
                 "id": 3,
                 "name": "encoded_normalized_plan",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "keyspace_name",
+                "type": "bytes"
               }
             ]
           },

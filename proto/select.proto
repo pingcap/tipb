@@ -29,6 +29,12 @@ message Error {
 	optional string msg = 2 [(gogoproto.nullable) = false];
 }
 
+// It is the data of a intermidiate output channel
+message IntermediateOutput {
+	optional EncodeType encode_type = 1 [(gogoproto.nullable) = false];
+	repeated Chunk chunks = 2 [(gogoproto.nullable) = false];
+}
+
 // Response for SelectRequest.
 message SelectResponse {
 	optional Error error = 1;
@@ -53,6 +59,8 @@ message SelectResponse {
 	// ndvs collects the number of distinct value information per range. It will be used to serve as execution feedback information.
 	// Helping us improve the table's statistics information.
 	repeated int64 ndvs = 10;
+	// It contains all the intermedidate outputs.
+	repeated IntermediateOutput intermediate_outputs = 11;
 }
 
 // Chunk contains multiple rows data and rows meta.
@@ -62,6 +70,18 @@ message Chunk {
 
 	// Meta data for every row.
 	repeated RowMeta rows_meta = 4 [(gogoproto.nullable) = false];
+}
+
+// IntermediateOutputChannel is the channel description for the intermediate ouput.
+// The SelectResponse of a DAGRequest may output some intermediate data because not all rows can be processed in DAG.
+// For example, the executor IndexLookUp scans the index records and look up the rows locally. 
+// If a related row of a index is not found locally, this index record should be ouput into the intermediate channel
+// for the further processment in the TiDB side.
+message IntermediateOutputChannel {
+	// executor_idx indicates which executor outputs this intermediate result.
+	required uint32 executor_idx = 1 [(gogoproto.nullable) = false];
+	// It represents which columns we should output.
+	repeated uint32 output_offsets = 2;
 }
 
 // RowMeta contains row handle and length of a row.
@@ -76,7 +96,23 @@ message DAGRequest {
 	// Deprecated. Start Ts has been moved to coprocessor.Request.
 	optional uint64 start_ts_fallback = 1;
 
-	// It represents push down Executors.
+	// It represents push down Executors and follows the order of depth-first search with post-order traversal.
+	// That is: left child first, then right child, then parent.
+	// For example, a DAG:
+	//                A
+	//               /
+	//              B
+	//            /   \
+	//           C     D
+	//          /     / \
+	//         E     F   G
+	//        /
+	//       H
+	// Its order should be: [H, E, C, F, G, D, B, A]
+	// In most cases, there is only one child for each parent, that makes executors simple array from the srouce
+	// to the out most executors, and the response only need to output the final rows.
+	// But when a executor has more than one children, for example, IndexLookUp, some intermedidate result is required to output.
+	// The field `intermediate_output_channels` describes it.
 	repeated Executor executors = 2;
 
 	// time zone offset in seconds
@@ -139,6 +175,9 @@ message DAGRequest {
 
 	// It indicates the number of digits by which to increase the scale of the result of division operations performed with the / operator.
 	optional uint32 div_precision_increment = 19;
+
+	// It inidcates the intermdidate result channels.
+	repeated IntermediateOutputChannel intermediate_output_channels = 20;
 }
 
 enum EncodeType {

@@ -40,6 +40,7 @@ enum ExecType {
 	TypeBroadcastQuery = 17;
 	TypeCTESink = 18;
 	TypeCTESource = 19;
+	TypeIndexLookUp = 20;
 }
 
 // It represents a Executor.
@@ -67,6 +68,10 @@ message Executor {
 	optional BroadcastQuery broadcast_query = 21;
 	optional CTESink cte_sink = 22;
 	optional CTESource cte_source = 23;
+	optional IndexLookUp index_lookup = 24;
+	// It indicates the parent index of current executor.
+	// Not set indicates its parent is the next executor in `DAGRequest.executors`.
+	optional uint32 parent_idx = 25;
 }
 
 enum ExchangeType {
@@ -108,6 +113,12 @@ message CTESource {
 	required uint32 cte_source_num = 2 [(gogoproto.nullable) = false];
 	required uint32 cte_sink_num = 3 [(gogoproto.nullable) = false];
 	repeated FieldType field_types = 4;
+}
+
+message IndexLookUp {
+	// It represents the index columns we should use to build the row handle.
+	repeated uint32 index_handle_offsets = 1;
+	optional bool keep_order = 2;
 }
 
 message EncodedBytesSlice {
