@@ -182,6 +182,9 @@ message FTSQueryInfo {
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
+
+	// Filter pushed down to tici
+	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
 }
 
 message TableScan {
