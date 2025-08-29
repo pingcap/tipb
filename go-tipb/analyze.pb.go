@@ -41,6 +41,7 @@ It has these top-level messages:
 	ChecksumResponse
 	Executor
 	ExchangeSender
+	IndexLookUp
 	EncodedBytesSlice
 	ExchangeReceiver
 	ANNQueryInfo
@@ -91,8 +92,10 @@ It has these top-level messages:
 	KeyRange
 	Row
 	Error
+	IntermediateOutput
 	SelectResponse
 	Chunk
+	IntermediateOutputChannel
 	RowMeta
 	DAGRequest
 	ChunkMemoryLayout
