@@ -5,20 +5,26 @@ package tipb
 
 import (
 	"fmt"
+	"io"
+	"math"
 
+	_ "github.com/gogo/protobuf/gogoproto"
+	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
 	proto "github.com/golang/protobuf/proto"
 
-	math "math"
-
-	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
-
-	io "io"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GroupingMode int32
 
@@ -33,6 +39,7 @@ var GroupingMode_name = map[int32]string{
 	2: "ModeNumericCmp",
 	3: "ModeNumericSet",
 }
+
 var GroupingMode_value = map[string]int32{
 	"ModeBitAnd":     1,
 	"ModeNumericCmp": 2,
@@ -44,9 +51,11 @@ func (x GroupingMode) Enum() *GroupingMode {
 	*p = x
 	return p
 }
+
 func (x GroupingMode) String() string {
 	return proto.EnumName(GroupingMode_name, int32(x))
 }
+
 func (x *GroupingMode) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(GroupingMode_value, data, "GroupingMode")
 	if err != nil {
@@ -55,17 +64,47 @@ func (x *GroupingMode) UnmarshalJSON(data []byte) error {
 	*x = GroupingMode(value)
 	return nil
 }
-func (GroupingMode) EnumDescriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{0} }
 
-type InUnionMetadata struct {
-	InUnion          bool   `protobuf:"varint,1,req,name=in_union,json=inUnion" json:"in_union"`
-	XXX_unrecognized []byte `json:"-"`
+func (GroupingMode) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_56d9f74966f40d04, []int{0}
 }
 
-func (m *InUnionMetadata) Reset()                    { *m = InUnionMetadata{} }
-func (m *InUnionMetadata) String() string            { return proto.CompactTextString(m) }
-func (*InUnionMetadata) ProtoMessage()               {}
-func (*InUnionMetadata) Descriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{0} }
+type InUnionMetadata struct {
+	InUnion bool `protobuf:"varint,1,req,name=in_union,json=inUnion" json:"in_union"`
+}
+
+func (m *InUnionMetadata) Reset()         { *m = InUnionMetadata{} }
+func (m *InUnionMetadata) String() string { return proto.CompactTextString(m) }
+func (*InUnionMetadata) ProtoMessage()    {}
+func (*InUnionMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_56d9f74966f40d04, []int{0}
+}
+func (m *InUnionMetadata) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *InUnionMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_InUnionMetadata.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *InUnionMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InUnionMetadata.Merge(m, src)
+}
+func (m *InUnionMetadata) XXX_Size() int {
+	return m.Size()
+}
+func (m *InUnionMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_InUnionMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InUnionMetadata proto.InternalMessageInfo
 
 func (m *InUnionMetadata) GetInUnion() bool {
 	if m != nil {
@@ -77,14 +116,41 @@ func (m *InUnionMetadata) GetInUnion() bool {
 type CompareInMetadata struct {
 	HasNull bool `protobuf:"varint,1,req,name=has_null,json=hasNull" json:"has_null"`
 	// consts represents all non-null const args in repeated Datum format.
-	Consts           []byte `protobuf:"bytes,2,opt,name=consts" json:"consts,omitempty"`
-	XXX_unrecognized []byte `json:"-"`
+	Consts []byte `protobuf:"bytes,2,opt,name=consts" json:"consts,omitempty"`
 }
 
-func (m *CompareInMetadata) Reset()                    { *m = CompareInMetadata{} }
-func (m *CompareInMetadata) String() string            { return proto.CompactTextString(m) }
-func (*CompareInMetadata) ProtoMessage()               {}
-func (*CompareInMetadata) Descriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{1} }
+func (m *CompareInMetadata) Reset()         { *m = CompareInMetadata{} }
+func (m *CompareInMetadata) String() string { return proto.CompactTextString(m) }
+func (*CompareInMetadata) ProtoMessage()    {}
+func (*CompareInMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_56d9f74966f40d04, []int{1}
+}
+func (m *CompareInMetadata) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CompareInMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CompareInMetadata.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CompareInMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CompareInMetadata.Merge(m, src)
+}
+func (m *CompareInMetadata) XXX_Size() int {
+	return m.Size()
+}
+func (m *CompareInMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_CompareInMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CompareInMetadata proto.InternalMessageInfo
 
 func (m *CompareInMetadata) GetHasNull() bool {
 	if m != nil {
@@ -101,14 +167,41 @@ func (m *CompareInMetadata) GetConsts() []byte {
 }
 
 type GroupingMark struct {
-	GroupingNums     []uint64 `protobuf:"varint,1,rep,name=grouping_nums,json=groupingNums" json:"grouping_nums,omitempty"`
-	XXX_unrecognized []byte   `json:"-"`
+	GroupingNums []uint64 `protobuf:"varint,1,rep,name=grouping_nums,json=groupingNums" json:"grouping_nums,omitempty"`
 }
 
-func (m *GroupingMark) Reset()                    { *m = GroupingMark{} }
-func (m *GroupingMark) String() string            { return proto.CompactTextString(m) }
-func (*GroupingMark) ProtoMessage()               {}
-func (*GroupingMark) Descriptor() ([]byte, []int) { return fileDescriptorMetadata, []int{2} }
+func (m *GroupingMark) Reset()         { *m = GroupingMark{} }
+func (m *GroupingMark) String() string { return proto.CompactTextString(m) }
+func (*GroupingMark) ProtoMessage()    {}
+func (*GroupingMark) Descriptor() ([]byte, []int) {
+	return fileDescriptor_56d9f74966f40d04, []int{2}
+}
+func (m *GroupingMark) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GroupingMark) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GroupingMark.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GroupingMark) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GroupingMark.Merge(m, src)
+}
+func (m *GroupingMark) XXX_Size() int {
+	return m.Size()
+}
+func (m *GroupingMark) XXX_DiscardUnknown() {
+	xxx_messageInfo_GroupingMark.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GroupingMark proto.InternalMessageInfo
 
 func (m *GroupingMark) GetGroupingNums() []uint64 {
 	if m != nil {
@@ -120,16 +213,41 @@ func (m *GroupingMark) GetGroupingNums() []uint64 {
 type GroupingFunctionMetadata struct {
 	Mode *GroupingMode `protobuf:"varint,1,req,name=mode,enum=tipb.GroupingMode" json:"mode,omitempty"`
 	// 2 dimension here, out-most dimension is for grouping(a,b) = grouping(a) << 1 + grouping(b); we should maintain a slice of grouping mark.
-	GroupingMarks    []*GroupingMark `protobuf:"bytes,2,rep,name=grouping_marks,json=groupingMarks" json:"grouping_marks,omitempty"`
-	XXX_unrecognized []byte          `json:"-"`
+	GroupingMarks []*GroupingMark `protobuf:"bytes,2,rep,name=grouping_marks,json=groupingMarks" json:"grouping_marks,omitempty"`
 }
 
 func (m *GroupingFunctionMetadata) Reset()         { *m = GroupingFunctionMetadata{} }
 func (m *GroupingFunctionMetadata) String() string { return proto.CompactTextString(m) }
 func (*GroupingFunctionMetadata) ProtoMessage()    {}
 func (*GroupingFunctionMetadata) Descriptor() ([]byte, []int) {
-	return fileDescriptorMetadata, []int{3}
+	return fileDescriptor_56d9f74966f40d04, []int{3}
 }
+func (m *GroupingFunctionMetadata) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GroupingFunctionMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GroupingFunctionMetadata.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GroupingFunctionMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GroupingFunctionMetadata.Merge(m, src)
+}
+func (m *GroupingFunctionMetadata) XXX_Size() int {
+	return m.Size()
+}
+func (m *GroupingFunctionMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_GroupingFunctionMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GroupingFunctionMetadata proto.InternalMessageInfo
 
 func (m *GroupingFunctionMetadata) GetMode() GroupingMode {
 	if m != nil && m.Mode != nil {
@@ -146,16 +264,46 @@ func (m *GroupingFunctionMetadata) GetGroupingMarks() []*GroupingMark {
 }
 
 func init() {
+	proto.RegisterEnum("tipb.GroupingMode", GroupingMode_name, GroupingMode_value)
 	proto.RegisterType((*InUnionMetadata)(nil), "tipb.InUnionMetadata")
 	proto.RegisterType((*CompareInMetadata)(nil), "tipb.CompareInMetadata")
 	proto.RegisterType((*GroupingMark)(nil), "tipb.GroupingMark")
 	proto.RegisterType((*GroupingFunctionMetadata)(nil), "tipb.GroupingFunctionMetadata")
-	proto.RegisterEnum("tipb.GroupingMode", GroupingMode_name, GroupingMode_value)
 }
+
+func init() { proto.RegisterFile("metadata.proto", fileDescriptor_56d9f74966f40d04) }
+
+var fileDescriptor_56d9f74966f40d04 = []byte{
+	// 357 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x4f, 0x6b, 0xe2, 0x40,
+	0x18, 0xc6, 0x33, 0x1a, 0x76, 0x65, 0xd6, 0x8d, 0xee, 0xb0, 0xbb, 0x04, 0x0f, 0x51, 0xb2, 0xb0,
+	0x84, 0x3d, 0x64, 0xc1, 0x9e, 0x3c, 0x56, 0xc1, 0x22, 0x54, 0x29, 0x29, 0x3d, 0xcb, 0x98, 0x84,
+	0x38, 0x98, 0x99, 0x09, 0xf3, 0xe7, 0xd8, 0xef, 0xd0, 0x63, 0x3f, 0x42, 0x3f, 0x8a, 0x47, 0x8f,
+	0x9e, 0x4a, 0x31, 0x5f, 0xa4, 0x4c, 0xfc, 0x83, 0xb6, 0xa7, 0xbc, 0xcf, 0xf3, 0xe6, 0x79, 0x9f,
+	0x1f, 0x03, 0x1d, 0x9a, 0x2a, 0x9c, 0x60, 0x85, 0xc3, 0x42, 0x70, 0xc5, 0x91, 0xad, 0x48, 0xb1,
+	0xe8, 0xfc, 0xcc, 0x78, 0xc6, 0x2b, 0xe3, 0xbf, 0x99, 0xf6, 0xbb, 0x4e, 0x4b, 0x68, 0xa9, 0xaa,
+	0x71, 0x6f, 0xf8, 0x7d, 0xd8, 0x9a, 0xb0, 0x07, 0x46, 0x38, 0x9b, 0x1e, 0xae, 0xa0, 0x2e, 0x6c,
+	0x10, 0x36, 0xd7, 0xc6, 0x73, 0x41, 0xaf, 0x16, 0x34, 0x86, 0xf6, 0xfa, 0xb5, 0x6b, 0x45, 0x5f,
+	0xc9, 0xfe, 0x47, 0xff, 0x16, 0xfe, 0x18, 0x71, 0x5a, 0x60, 0x91, 0x4e, 0x2e, 0x52, 0x4b, 0x2c,
+	0xe7, 0x4c, 0xe7, 0xf9, 0x65, 0x6a, 0x89, 0xe5, 0x4c, 0xe7, 0x39, 0xfa, 0x0d, 0xbf, 0xc4, 0x9c,
+	0x49, 0x25, 0xdd, 0x5a, 0x0f, 0x04, 0xcd, 0xe8, 0xa0, 0xfc, 0x2b, 0xd8, 0xbc, 0x11, 0x5c, 0x17,
+	0x84, 0x65, 0x53, 0x2c, 0x56, 0xe8, 0x0f, 0xfc, 0x9e, 0x1d, 0xf4, 0x9c, 0x69, 0x2a, 0x5d, 0xd0,
+	0xab, 0x07, 0x76, 0xd4, 0x3c, 0x9a, 0x33, 0x4d, 0xa5, 0xff, 0x08, 0xdd, 0x63, 0x68, 0xac, 0x59,
+	0xac, 0xce, 0xf9, 0xff, 0x42, 0x9b, 0xf2, 0x24, 0xad, 0x28, 0x9c, 0x3e, 0x0a, 0xcd, 0x73, 0x84,
+	0xa7, 0x0a, 0x9e, 0xa4, 0x51, 0xb5, 0x47, 0x03, 0xe8, 0x9c, 0x8a, 0x28, 0x16, 0x2b, 0x03, 0x56,
+	0x0f, 0xbe, 0x7d, 0x4a, 0x60, 0xb1, 0x8a, 0x4e, 0x48, 0x46, 0xc9, 0x7f, 0xe3, 0x33, 0x66, 0x73,
+	0xca, 0x81, 0xd0, 0x7c, 0x87, 0x44, 0x5d, 0xb3, 0xa4, 0x0d, 0x10, 0x82, 0x8e, 0xd1, 0x33, 0x4d,
+	0x53, 0x41, 0xe2, 0x11, 0x2d, 0xda, 0xb5, 0x0f, 0xde, 0x7d, 0xaa, 0xda, 0xf5, 0xe1, 0x60, 0xfb,
+	0xd2, 0x00, 0xeb, 0x9d, 0x07, 0x36, 0x3b, 0x0f, 0xbc, 0xed, 0x3c, 0xf0, 0x54, 0x7a, 0xd6, 0x73,
+	0xe9, 0x59, 0x9b, 0xd2, 0xb3, 0xb6, 0xa5, 0x67, 0xc1, 0x5f, 0x31, 0xa7, 0xa1, 0xe9, 0x89, 0x71,
+	0x11, 0x2a, 0x92, 0x2c, 0x2a, 0xb8, 0x3b, 0xf0, 0x1e, 0x00, 0x00, 0xff, 0xff, 0xf5, 0x18, 0x15,
+	0x48, 0xf6, 0x01, 0x00, 0x00,
+}
+
 func (m *InUnionMetadata) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -163,28 +311,30 @@ func (m *InUnionMetadata) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *InUnionMetadata) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *InUnionMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	dAtA[i] = 0x8
-	i++
+	i--
 	if m.InUnion {
 		dAtA[i] = 1
 	} else {
 		dAtA[i] = 0
 	}
-	i++
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	i--
+	dAtA[i] = 0x8
+	return len(dAtA) - i, nil
 }
 
 func (m *CompareInMetadata) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -192,34 +342,37 @@ func (m *CompareInMetadata) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *CompareInMetadata) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CompareInMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	dAtA[i] = 0x8
-	i++
+	if m.Consts != nil {
+		i -= len(m.Consts)
+		copy(dAtA[i:], m.Consts)
+		i = encodeVarintMetadata(dAtA, i, uint64(len(m.Consts)))
+		i--
+		dAtA[i] = 0x12
+	}
+	i--
 	if m.HasNull {
 		dAtA[i] = 1
 	} else {
 		dAtA[i] = 0
 	}
-	i++
-	if m.Consts != nil {
-		dAtA[i] = 0x12
-		i++
-		i = encodeVarintMetadata(dAtA, i, uint64(len(m.Consts)))
-		i += copy(dAtA[i:], m.Consts)
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	i--
+	dAtA[i] = 0x8
+	return len(dAtA) - i, nil
 }
 
 func (m *GroupingMark) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -227,27 +380,29 @@ func (m *GroupingMark) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *GroupingMark) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GroupingMark) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	if len(m.GroupingNums) > 0 {
-		for _, num := range m.GroupingNums {
+		for iNdEx := len(m.GroupingNums) - 1; iNdEx >= 0; iNdEx-- {
+			i = encodeVarintMetadata(dAtA, i, uint64(m.GroupingNums[iNdEx]))
+			i--
 			dAtA[i] = 0x8
-			i++
-			i = encodeVarintMetadata(dAtA, i, uint64(num))
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *GroupingFunctionMetadata) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -255,55 +410,64 @@ func (m *GroupingFunctionMetadata) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *GroupingFunctionMetadata) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GroupingFunctionMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	if len(m.GroupingMarks) > 0 {
+		for iNdEx := len(m.GroupingMarks) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.GroupingMarks[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintMetadata(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
 	if m.Mode == nil {
 		return 0, new(github_com_golang_protobuf_proto.RequiredNotSetError)
 	} else {
-		dAtA[i] = 0x8
-		i++
 		i = encodeVarintMetadata(dAtA, i, uint64(*m.Mode))
+		i--
+		dAtA[i] = 0x8
 	}
-	if len(m.GroupingMarks) > 0 {
-		for _, msg := range m.GroupingMarks {
-			dAtA[i] = 0x12
-			i++
-			i = encodeVarintMetadata(dAtA, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(dAtA[i:])
-			if err != nil {
-				return 0, err
-			}
-			i += n
-		}
-	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func encodeVarintMetadata(dAtA []byte, offset int, v uint64) int {
+	offset -= sovMetadata(v)
+	base := offset
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
 	dAtA[offset] = uint8(v)
-	return offset + 1
+	return base
 }
 func (m *InUnionMetadata) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 2
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
 func (m *CompareInMetadata) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	n += 2
@@ -311,13 +475,13 @@ func (m *CompareInMetadata) Size() (n int) {
 		l = len(m.Consts)
 		n += 1 + l + sovMetadata(uint64(l))
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
 func (m *GroupingMark) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.GroupingNums) > 0 {
@@ -325,13 +489,13 @@ func (m *GroupingMark) Size() (n int) {
 			n += 1 + sovMetadata(uint64(e))
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
 func (m *GroupingFunctionMetadata) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Mode != nil {
@@ -343,21 +507,11 @@ func (m *GroupingFunctionMetadata) Size() (n int) {
 			n += 1 + l + sovMetadata(uint64(l))
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
 func sovMetadata(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
+	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozMetadata(x uint64) (n int) {
 	return sovMetadata(uint64((x << 1) ^ uint64((int64(x) >> 63))))
@@ -378,7 +532,7 @@ func (m *InUnionMetadata) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -406,7 +560,7 @@ func (m *InUnionMetadata) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= (int(b) & 0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -419,13 +573,12 @@ func (m *InUnionMetadata) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthMetadata
 			}
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -454,7 +607,7 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -482,7 +635,7 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= (int(b) & 0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -503,7 +656,7 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				byteLen |= (int(b) & 0x7F) << shift
+				byteLen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -512,6 +665,9 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthMetadata
 			}
 			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthMetadata
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -526,13 +682,12 @@ func (m *CompareInMetadata) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthMetadata
 			}
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -560,7 +715,7 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -586,7 +741,7 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					v |= (uint64(b) & 0x7F) << shift
+					v |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -603,7 +758,7 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					packedLen |= (int(b) & 0x7F) << shift
+					packedLen |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -612,8 +767,22 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 					return ErrInvalidLengthMetadata
 				}
 				postIndex := iNdEx + packedLen
+				if postIndex < 0 {
+					return ErrInvalidLengthMetadata
+				}
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA[iNdEx:postIndex] {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.GroupingNums) == 0 {
+					m.GroupingNums = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -626,7 +795,7 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 						}
 						b := dAtA[iNdEx]
 						iNdEx++
-						v |= (uint64(b) & 0x7F) << shift
+						v |= uint64(b&0x7F) << shift
 						if b < 0x80 {
 							break
 						}
@@ -642,13 +811,12 @@ func (m *GroupingMark) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthMetadata
 			}
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -674,7 +842,7 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -702,7 +870,7 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= (GroupingMode(b) & 0x7F) << shift
+				v |= GroupingMode(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -723,7 +891,7 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -732,6 +900,9 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthMetadata
 			}
 			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthMetadata
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -746,13 +917,12 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthMetadata
 			}
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -768,6 +938,7 @@ func (m *GroupingFunctionMetadata) Unmarshal(dAtA []byte) error {
 func skipMetadata(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
+	depth := 0
 	for iNdEx < l {
 		var wire uint64
 		for shift := uint(0); ; shift += 7 {
@@ -799,10 +970,8 @@ func skipMetadata(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			return iNdEx, nil
 		case 1:
 			iNdEx += 8
-			return iNdEx, nil
 		case 2:
 			var length int
 			for shift := uint(0); ; shift += 7 {
@@ -819,80 +988,34 @@ func skipMetadata(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
 				return 0, ErrInvalidLengthMetadata
 			}
-			return iNdEx, nil
+			iNdEx += length
 		case 3:
-			for {
-				var innerWire uint64
-				var start int = iNdEx
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return 0, ErrIntOverflowMetadata
-					}
-					if iNdEx >= l {
-						return 0, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					innerWire |= (uint64(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				innerWireType := int(innerWire & 0x7)
-				if innerWireType == 4 {
-					break
-				}
-				next, err := skipMetadata(dAtA[start:])
-				if err != nil {
-					return 0, err
-				}
-				iNdEx = start + next
-			}
-			return iNdEx, nil
+			depth++
 		case 4:
-			return iNdEx, nil
+			if depth == 0 {
+				return 0, ErrUnexpectedEndOfGroupMetadata
+			}
+			depth--
 		case 5:
 			iNdEx += 4
-			return iNdEx, nil
 		default:
 			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
 		}
+		if iNdEx < 0 {
+			return 0, ErrInvalidLengthMetadata
+		}
+		if depth == 0 {
+			return iNdEx, nil
+		}
 	}
-	panic("unreachable")
+	return 0, io.ErrUnexpectedEOF
 }
 
 var (
-	ErrInvalidLengthMetadata = fmt.Errorf("proto: negative length found during unmarshaling")
-	ErrIntOverflowMetadata   = fmt.Errorf("proto: integer overflow")
+	ErrInvalidLengthMetadata        = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowMetadata          = fmt.Errorf("proto: integer overflow")
+	ErrUnexpectedEndOfGroupMetadata = fmt.Errorf("proto: unexpected end of group")
 )
-
-func init() { proto.RegisterFile("metadata.proto", fileDescriptorMetadata) }
-
-var fileDescriptorMetadata = []byte{
-	// 330 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x8f, 0xcf, 0x4a, 0xeb, 0x40,
-	0x18, 0xc5, 0x3b, 0x6d, 0xb8, 0xb7, 0x7c, 0xb7, 0x37, 0xd6, 0x41, 0x25, 0xb8, 0x48, 0x4b, 0x04,
-	0x89, 0x2e, 0x22, 0xd4, 0x95, 0x4b, 0x5b, 0xa8, 0x14, 0x6c, 0x91, 0x88, 0xeb, 0x32, 0x4d, 0x42,
-	0x3a, 0x34, 0x33, 0x13, 0xe6, 0xcf, 0xd2, 0xf7, 0xf0, 0x91, 0xba, 0xf4, 0x09, 0x44, 0xea, 0x8b,
-	0xc8, 0xa4, 0x7f, 0x68, 0x75, 0x35, 0x73, 0xce, 0x37, 0xe7, 0x3b, 0xbf, 0x01, 0x97, 0x65, 0x9a,
-	0xa4, 0x44, 0x93, 0xa8, 0x94, 0x42, 0x0b, 0xec, 0x68, 0x5a, 0xce, 0xce, 0x4f, 0x72, 0x91, 0x8b,
-	0xca, 0xb8, 0xb1, 0xb7, 0xf5, 0x2c, 0xe8, 0xc1, 0xd1, 0x88, 0xbf, 0x70, 0x2a, 0xf8, 0x78, 0x13,
-	0xc2, 0x1d, 0x68, 0x52, 0x3e, 0x35, 0xd6, 0xf3, 0x50, 0xb7, 0x1e, 0x36, 0xfb, 0xce, 0xf2, 0xa3,
-	0x53, 0x8b, 0xff, 0xd2, 0xf5, 0xc3, 0xe0, 0x11, 0x8e, 0x07, 0x82, 0x95, 0x44, 0x66, 0xa3, 0x83,
-	0xd4, 0x9c, 0xa8, 0x29, 0x37, 0x45, 0x71, 0x98, 0x9a, 0x13, 0x35, 0x31, 0x45, 0x81, 0xcf, 0xe0,
-	0x4f, 0x22, 0xb8, 0xd2, 0xca, 0xab, 0x77, 0x51, 0xd8, 0x8a, 0x37, 0x2a, 0xb8, 0x85, 0xd6, 0x83,
-	0x14, 0xa6, 0xa4, 0x3c, 0x1f, 0x13, 0xb9, 0xc0, 0x17, 0xf0, 0x3f, 0xdf, 0xe8, 0x29, 0x37, 0x4c,
-	0x79, 0xa8, 0xdb, 0x08, 0x9d, 0xb8, 0xb5, 0x35, 0x27, 0x86, 0xa9, 0xe0, 0x15, 0xbc, 0x6d, 0x68,
-	0x68, 0x78, 0xa2, 0xf7, 0xf9, 0x2f, 0xc1, 0x61, 0x22, 0xcd, 0x2a, 0x0a, 0xb7, 0x87, 0x23, 0xfb,
-	0xfb, 0x68, 0x57, 0x21, 0xd2, 0x2c, 0xae, 0xe6, 0xf8, 0x0e, 0xdc, 0x5d, 0x11, 0x23, 0x72, 0x61,
-	0xc1, 0x1a, 0xe1, 0xbf, 0x5f, 0x09, 0x22, 0x17, 0xf1, 0x0e, 0xc9, 0x2a, 0x75, 0x3d, 0xdc, 0x63,
-	0xb6, 0xab, 0x5c, 0x00, 0x7b, 0xf6, 0xa9, 0xbe, 0xe7, 0x69, 0x1b, 0x61, 0x0c, 0xae, 0xd5, 0x13,
-	0xc3, 0x32, 0x49, 0x93, 0x01, 0x2b, 0xdb, 0xf5, 0x1f, 0xde, 0x73, 0xa6, 0xdb, 0x8d, 0xfe, 0xd5,
-	0x72, 0xe5, 0xa3, 0xf7, 0x95, 0x8f, 0x3e, 0x57, 0x3e, 0x7a, 0xfb, 0xf2, 0x6b, 0x70, 0x9a, 0x08,
-	0x16, 0xd9, 0xbd, 0x09, 0x29, 0x23, 0x4d, 0xd3, 0x59, 0x05, 0xf3, 0x84, 0xbe, 0x03, 0x00, 0x00,
-	0xff, 0xff, 0x9b, 0xa0, 0x1a, 0x97, 0xd5, 0x01, 0x00, 0x00,
-}

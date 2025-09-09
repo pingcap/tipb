@@ -5,12 +5,16 @@ package tipb;
 option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
-import "metadata.proto";
 import "gogoproto/gogo.proto";
+import "rustproto.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (rustproto.lite_runtime_all) = true;
 
 message FieldType {
 	optional int32 tp = 1      [(gogoproto.nullable) = false];
@@ -535,6 +539,12 @@ enum ScalarFuncSig {
 	IfVectorFloat32 = 5161;
 	CaseWhenVectorFloat32 = 5162;
 
+	/*fts*/
+	FTSMatchWord = 5201;
+	FTSMatchExpression = 5202;
+	FTSMatchPrefix = 5203;
+	FTSMatchRegexp = 5204;
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
@@ -679,6 +689,14 @@ enum ScalarFuncSig {
 	SubDateDecimalInt = 6141;
 	SubDateDecimalReal = 6142;
 	SubDateDecimalDecimal = 6143;
+	AddDateDurationStringDatetime = 6144;
+	AddDateDurationIntDatetime = 6145;
+	AddDateDurationRealDatetime = 6146;
+	AddDateDurationDecimalDatetime = 6147;
+	SubDateDurationStringDatetime = 6148;
+	SubDateDurationIntDatetime = 6149;
+	SubDateDurationRealDatetime = 6150;
+	SubDateDurationDecimalDatetime = 6151;
 
 	/* String functions */
 	BitLength = 7001;

@@ -1,11 +1,20 @@
 module github.com/pingcap/tipb
 
-go 1.16
+go 1.20
 
 require (
-	github.com/gogo/protobuf v0.0.0-20171007142547-342cbe0a0415
-	github.com/golang/protobuf v1.3.4
-	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b
-	golang.org/x/tools v0.0.0-20201125231158-b5590deeca9b
+	github.com/gogo/protobuf v1.3.2
+	github.com/golang/protobuf v1.5.3
+	golang.org/x/tools v0.0.0-20210106214847-113979e3529a
 	google.golang.org/grpc v1.24.0
+)
+
+require (
+	golang.org/x/mod v0.3.0 // indirect
+	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b // indirect
+	golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f // indirect
+	golang.org/x/text v0.3.3 // indirect
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )

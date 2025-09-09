@@ -7,11 +7,17 @@ option java_package = "com.pingcap.tidb.tipb";
 
 import "expression.proto";
 import "schema.proto";
+
 import "gogoproto/gogo.proto";
+import "rustproto.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (rustproto.lite_runtime_all) = true;
 
 enum ExecType {
 	TypeTableScan = 0;
@@ -31,6 +37,10 @@ enum ExecType {
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
 	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeBroadcastQuery = 17;
+	TypeCTESink = 18;
+	TypeCTESource = 19;
+	TypeIndexLookUp = 20;
 }
 
 // It represents a Executor.
@@ -55,6 +65,13 @@ message Executor {
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
 	optional Expand2 expand2= 20;
+	optional BroadcastQuery broadcast_query = 21;
+	optional CTESink cte_sink = 22;
+	optional CTESource cte_source = 23;
+	optional IndexLookUp index_lookup = 24;
+	// It indicates the parent index of current executor.
+	// Not set indicates its parent is the next executor in `DAGRequest.executors`.
+	optional uint32 parent_idx = 25;
 }
 
 enum ExchangeType {
@@ -80,6 +97,28 @@ message ExchangeSender {
 	repeated FieldType all_field_types = 6;
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
 	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
+	repeated bool same_zone_flag = 9;
+}
+
+message CTESink {
+	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
+	required uint32 cte_source_num = 2 [(gogoproto.nullable) = false];
+	required uint32 cte_sink_num = 3 [(gogoproto.nullable) = false];
+	optional Executor child = 4;
+	repeated FieldType field_types = 5;
+}
+
+message CTESource {
+	required uint32 cte_id = 1 [(gogoproto.nullable) = false];
+	required uint32 cte_source_num = 2 [(gogoproto.nullable) = false];
+	required uint32 cte_sink_num = 3 [(gogoproto.nullable) = false];
+	repeated FieldType field_types = 4;
+}
+
+message IndexLookUp {
+	// It represents the index columns we should use to build the row handle.
+	repeated uint32 index_handle_offsets = 1;
+	optional bool keep_order = 2;
 }
 
 message EncodedBytesSlice {
@@ -92,6 +131,7 @@ message ExchangeReceiver {
 	repeated FieldType field_types = 2;
 	optional ExchangeType tp = 3;
 	repeated bytes original_cte_prdocuer_task_meta = 4;
+	repeated bool same_zone_flag = 5;
 }
 
 enum EngineType {
@@ -127,14 +167,81 @@ message ANNQueryInfo {
 	optional VectorDistanceMetric distance_metric = 2 [(gogoproto.nullable) = false];
 	optional uint32 top_k = 3 [(gogoproto.nullable) = false];
 	optional string column_name = 4 [(gogoproto.nullable) = false]; // For debug purpose only. Currently only used in explain.
-	optional int64 column_id = 5 [(gogoproto.nullable) = false];
+	// deprecated field, we use column to get the id first, and this field will not be set again.
+	// Retain this field to be compatible with older versions of TiDB
+	optional int64 deprecated_column_id = 5;
 
 	optional bytes ref_vec_f32 = 6; // The reference vector to calculate distance with, with each element is a Float32
 	reserved 7; // reserved for ref_vec_f64
 
+	optional int64 index_id = 8 [(gogoproto.nullable) = false];
+
 	optional double max_distance = 10 [(gogoproto.nullable) = false]; // Only for ANNQueryType==Where
 
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
+
+	// Persists the original vector column's type information (including nullability)
+	// to ensure correct data handling. This field is always populated with the column's
+	// schema metadata, regardless of whether enable_distance_proj is enabled.
+	optional ColumnInfo column = 21 [(gogoproto.nullable) = false];
+
+	// If enabled, the content of TableScan's vector output column (whose ID is column.id) will be removed and
+	// TableScan will read a distance column (whose id must be -2000) as replacement, TiFlash persistent layer
+	// does not need to really read the Vector data column when index has been built.
+	optional bool enable_distance_proj = 22 [(gogoproto.nullable) = false];
+}
+
+message InvertedQueryInfo {
+	optional int64 index_id = 1 [(gogoproto.nullable) = false];
+	optional int64 column_id = 2 [(gogoproto.nullable) = false];
+}
+
+enum FTSQueryType {
+	FTSQueryTypeInvalid = 0;
+	FTSQueryTypeNoScore = 1;   // Means no scoring is ever needed, encourages the engine to use a fast path.
+	FTSQueryTypeWithScore = 2;
+}
+
+message FTSQueryInfo {
+	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
+
+	optional int64 index_id = 2 [(gogoproto.nullable) = false];
+
+	// Currently only one column is supported.
+	repeated ColumnInfo columns = 3;
+	repeated string column_names = 4; // For debug purpose only. Currently only used in explain.
+
+	optional string query_text = 5 [(gogoproto.nullable) = false];
+	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
+
+	// For QueryType == WithScore, a top_k can be optionally specified.
+	// If top_k is specified, it means the TableScan is safe to return at most *top* k results
+	// because upper executors will have a TopK anyway.
+	// If not specified (optional, or top_k is very large), then all results will be returned.
+	// This option is not supported for QueryType == NoScore.
+	optional uint32 top_k = 10;
+
+	// Distinguish match_word, match_expression, match_prefix, match_regexp
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
+
+	// Filter pushed down to tici
+	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+}
+
+enum ColumnarIndexType {
+	TypeInvalid = 0;
+	TypeVector = 1;
+	TypeInverted = 2;
+	TypeFulltext = 3;
+}
+
+message ColumnarIndexInfo {
+	optional ColumnarIndexType index_type = 1 [(gogoproto.nullable) = false];
+	oneof index {
+		ANNQueryInfo ann_query_info = 2;
+		InvertedQueryInfo inverted_query_info = 3;
+		FTSQueryInfo fts_query_info = 4;
+	}
 }
 
 message TableScan {
@@ -148,9 +255,10 @@ message TableScan {
 	optional bool keep_order = 8;
 	optional bool is_fast_scan = 9; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 10; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 13; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 11; // only used by TiFlash
-	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false];
+	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false]; // only used by TiFlash
+	optional ANNQueryInfo deprecated_ann_query = 13; // only used by TiFlash
+	repeated ColumnarIndexInfo used_columnar_indexes = 14; // only used by TiFlash
 }
 
 message PartitionTableScan {
@@ -162,9 +270,10 @@ message PartitionTableScan {
 	repeated int64 partition_ids = 6;
 	optional bool is_fast_scan = 7; // fast_scan is a feature only provided by TiFlash (but not TiKV).
 	repeated Expr pushed_down_filter_conditions = 8; // conditions that are pushed down to storage layer, only used by TiFlash.
-	optional ANNQueryInfo ann_query = 11; // only used by TiFlash
 	repeated RuntimeFilter runtime_filter_list = 9; // only used by TiFlash
-        optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false];
+    optional int32 max_wait_time_ms = 10  [(gogoproto.nullable) = false]; // only used by TiFlash
+	optional ANNQueryInfo deprecated_ann_query = 11; // only used by TiFlash
+	repeated ColumnarIndexInfo used_columnar_indexes = 12; // only used by TiFlash
 }
 
 enum JoinType {
@@ -227,6 +336,7 @@ message IndexScan {
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
+	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
 }
 
 message Selection {
@@ -314,6 +424,12 @@ message ExecutorExecutionSummary {
 	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info. For now it's only for tiflash.
 	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
 	optional bytes ru_consumption = 7;
+
+	// Only for tiflash, records the wait info.
+	optional TiFlashWaitSummary tiflash_wait_summary = 8;
+
+	// Only for tiflash, records network info.
+	optional TiFlashNetWorkSummary tiflash_network_summary = 9;
 }
 
 message TiFlashExecutionInfo {
@@ -362,17 +478,70 @@ message TiFlashScanContext {
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
 
-	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
-	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
-	optional uint64 total_vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
-	optional uint64 total_vector_idx_load_time_ms = 103;
-	optional uint64 total_vector_idx_search_time_ms = 104;
-	optional uint64 total_vector_idx_search_visited_nodes = 105;
-	optional uint64 total_vector_idx_search_discarded_nodes = 106;
-	optional uint64 total_vector_idx_read_vec_time_ms = 107;
-	optional uint64 total_vector_idx_read_others_time_ms = 108;
+	/// vector index related fields
+
+	optional uint64 vector_idx_load_from_s3 = 100;  // Index file not available in disk
+	optional uint64 vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
+	optional uint64 vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
+	optional uint64 vector_idx_load_time_ms = 103;
+	optional uint64 vector_idx_search_time_ms = 104;
+	optional uint64 vector_idx_search_visited_nodes = 105;
+	optional uint64 vector_idx_search_discarded_nodes = 106;
+	optional uint64 vector_idx_read_vec_time_ms = 107;
+	optional uint64 vector_idx_read_others_time_ms = 108;
+
+	/// inverted index related fields
+
+	optional uint32 inverted_idx_load_from_s3 = 120;
+	optional uint32 inverted_idx_load_from_disk = 121;
+	optional uint32 inverted_idx_load_from_cache = 122;
+	optional uint64 inverted_idx_load_time_ms = 123;
+	optional uint64 inverted_idx_search_time_ms = 124;
+	optional uint32 inverted_idx_search_skipped_packs = 125;
+	optional uint64 inverted_idx_indexed_rows = 126;
+	optional uint64 inverted_idx_search_selected_rows = 127;
+
+	/// fulltext index related fields
+
+	optional uint32 fts_n_from_inmemory_noindex = 150;
+	optional uint32 fts_n_from_tiny_index = 151;
+	optional uint32 fts_n_from_tiny_noindex = 152;
+	optional uint32 fts_n_from_dmf_index = 153;
+	optional uint32 fts_n_from_dmf_noindex = 154;
+	optional uint64 fts_rows_from_inmemory_noindex = 155;
+	optional uint64 fts_rows_from_tiny_index = 156;
+	optional uint64 fts_rows_from_tiny_noindex = 157;
+	optional uint64 fts_rows_from_dmf_index = 158;
+	optional uint64 fts_rows_from_dmf_noindex = 159;
+	optional uint64 fts_idx_load_total_ms = 160;
+	optional uint32 fts_idx_load_from_cache = 161;
+	optional uint32 fts_idx_load_from_column_file = 162;
+	optional uint32 fts_idx_load_from_stable_s3 = 163;
+	optional uint32 fts_idx_load_from_stable_disk = 164;
+	optional uint32 fts_idx_search_n = 165;
+	optional uint64 fts_idx_search_total_ms = 166;
+	optional uint64 fts_idx_dm_search_rows = 167;
+	optional uint64 fts_idx_dm_total_read_fts_ms = 168;
+	optional uint64 fts_idx_dm_total_read_others_ms = 169;
+	optional uint64 fts_idx_tiny_search_rows = 170;
+	optional uint64 fts_idx_tiny_total_read_fts_ms = 171;
+	optional uint64 fts_idx_tiny_total_read_others_ms = 172;
+	optional uint64 fts_brute_total_read_ms = 173;
+	optional uint64 fts_brute_total_search_ms = 174;
 }
 
+message TiFlashWaitSummary {
+	optional uint64 minTSO_wait_ns = 1; // Time waited for minTSO satified
+	optional uint64 pipeline_queue_wait_ns = 2; // Time waited in task queue.
+	optional uint64 pipeline_breaker_wait_ns = 3; // Time waited for dependant pipeline finished.
+}
+
+message TiFlashNetWorkSummary {
+	optional uint64 inner_zone_send_bytes = 1;
+	optional uint64 inner_zone_receive_bytes = 2;
+	optional uint64 inter_zone_send_bytes = 3;
+	optional uint64 inter_zone_receive_bytes = 4;
+}
 
 message Sort {
 	repeated ByItem byItems = 1;
@@ -449,3 +618,6 @@ message Expand2{
 	optional Executor child = 3;
 }
 
+message BroadcastQuery {
+	optional string query = 1;
+}

@@ -1,23 +1,29 @@
-GOGO_PROTOBUF := `go list -f "{{.Dir}}" -m github.com/gogo/protobuf`
+.PHONY: all go rust c++
 
-.PHONY: all go rust binlog c++
+CURDIR := $(shell pwd)
 
-all: go rust binlog c++
+export GOBIN=$(CURDIR)/bin
+export PATH := $(CURDIR)/bin/:$(PATH)
+
+all: go rust c++
 
 dependence:
 	go mod download
 
-go: dependence
-	GOGO_PROTOBUF=${GOGO_PROTOBUF} ./generate-go.sh
+check: dependence
+	./scripts/check.sh
 
-rust:
-	cargo build
+go: dependence check
+	./scripts/generate-go.sh
+	GO111MODULE=on go mod tidy
+	GO111MODULE=on go build ./go-tipb/...
 
-binlog: dependence
-	GOGO_PROTOBUF=${GOGO_PROTOBUF} ./generate-binlog.sh
+rust: check
+	cargo check && \
+	cargo check --no-default-features --features prost-codec
 
 c++: dependence
-	./generate-cpp.sh
+	./scripts/generate-cpp.sh
 
 tipb.a:
 	mkdir -p cpp/build && cd cpp/build && cmake -DCMAKE_BUILD_TYPE=Release .. && make tipb

@@ -46,7 +46,7 @@ foreach (F ${PROTO_DEFS})
         OUTPUT "${PROTO_DEF_TMP_DIR}/${FIL_WE}.proto"
         WORKING_DIRECTORY ${PROTO_DEF_DIR}
         COMMAND cp ${ABS_FIL} ${PROTO_DEF_TMP_DIR}/${FIL_WE}.proto
-        COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/../generate-cpp.sh"
+        COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/generate-cpp.sh"
         ARGS clean ${PROTO_DEF_TMP_DIR}/${FIL_WE}.proto
         DEPENDS ${ABS_FIL}
         COMMENT "Generating clean proto file on ${ABS_FIL}"

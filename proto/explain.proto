@@ -6,11 +6,15 @@ option java_multiple_files = true;
 option java_package = "com.pingcap.tidb.tipb";
 
 import "gogoproto/gogo.proto";
+import "rustproto.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
-
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (rustproto.lite_runtime_all) = true;
 
 message ExplainData {
     ExplainOperator main = 1;
@@ -21,6 +25,7 @@ message ExplainData {
     // If discarded_due_to_too_long is true. The main and ctes fields should be empty and should not be used.
     // This field can be changed to a enum or int if we need to represent more states in the future.
     bool discarded_due_to_too_long = 4;
+    repeated ExplainOperator subqueries = 5;
 }
 
 message ExplainOperator {
@@ -50,6 +55,9 @@ message ExplainOperator {
     // this will be consistent with the result of EXPLAIN ANALYZE.
     int64 memory_bytes = 14;
     int64 disk_bytes = 15;
+    
+    string brief_name = 16;
+    string brief_operator_info = 17;
 }
 
 message AccessObject {

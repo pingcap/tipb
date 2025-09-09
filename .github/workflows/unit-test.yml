@@ -4,7 +4,7 @@ on: [ push,pull_request ]
 
 jobs:
   go:
-    name: Test go and binlog generation
+    name: Test go generation
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.x
@@ -18,8 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Test
-        run: make go binlog && git diff --exit-code
-
+        run: make go && git diff --exit-code
   cpp:
     name: Test cpp generation
     runs-on: ubuntu-latest
