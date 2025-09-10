@@ -226,6 +226,9 @@ message FTSQueryInfo {
 
 	// Filter pushed down to tici
 	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+
+	// Aggregate func pushed down to tici
+	optional Expr agg_expr = 22;
 }
 
 enum ColumnarIndexType {
