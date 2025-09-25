@@ -36,6 +36,8 @@ message TopSQLRecordItem {
     map<string, uint64> stmt_kv_exec_count = 4; // target => count
     uint64 stmt_duration_sum_ns = 5;
     uint64 stmt_duration_count = 6;
+    uint64 stmt_network_in_bytes = 7; // traffic from client
+    uint64 stmt_network_out_bytes = 8; // traffic to client
 }
 
 message SQLMeta {
