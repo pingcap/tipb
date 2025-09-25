@@ -1574,6 +1574,12 @@
                 "name": "keep_order",
                 "type": "bool",
                 "optional": true
+              },
+              {
+                "id": 3,
+                "name": "children",
+                "type": "Executor",
+                "is_repeated": true
               }
             ]
           },
@@ -8398,6 +8404,16 @@
               {
                 "id": 6,
                 "name": "stmt_duration_count",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "stmt_network_in_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 8,
+                "name": "stmt_network_out_bytes",
                 "type": "uint64"
               }
             ],
