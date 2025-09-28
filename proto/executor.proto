@@ -119,6 +119,7 @@ message IndexLookUp {
 	// It represents the index columns we should use to build the row handle.
 	repeated uint32 index_handle_offsets = 1;
 	optional bool keep_order = 2;
+	repeated Executor children = 3;
 }
 
 message EncodedBytesSlice {
