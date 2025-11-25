@@ -222,6 +222,9 @@ message FTSQueryInfo {
 	// This option is not supported for QueryType == NoScore.
 	optional uint32 top_k = 10;
 
+	// If we only need to get count result from tici
+	optional bool is_count = 11;
+
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 
