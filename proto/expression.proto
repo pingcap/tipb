@@ -450,6 +450,10 @@ enum ScalarFuncSig {
 	IsUUID = 4571;
 	TiDBShard = 4572;
 	GroupingSig = 4573;
+	UUIDv4 = 4574;
+	UUIDv7 = 4575;
+	UUIDVersion = 4576;
+	UUIDTimestamp = 4577;
 
 	/*like*/
 	IlikeSig = 4309;
