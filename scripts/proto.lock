@@ -5344,6 +5344,22 @@
                 "integer": 4573
               },
               {
+                "name": "UUIDv4",
+                "integer": 4574
+              },
+              {
+                "name": "UUIDv7",
+                "integer": 4575
+              },
+              {
+                "name": "UUIDVersion",
+                "integer": 4576
+              },
+              {
+                "name": "UUIDTimestamp",
+                "integer": 4577
+              },
+              {
                 "name": "IlikeSig",
                 "integer": 4309
               },
