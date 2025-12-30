@@ -34,7 +34,8 @@ jobs:
 
   rust:
     name: Test rust generation
-    runs-on: ubuntu-latest
+    # Pin to ubuntu-22.04 due to abseil-cpp gcc 13 compilation issue.
+    runs-on: ubuntu-22.04
     steps:
       - name: Install protoc
         uses: arduino/setup-protoc@v1
@@ -46,4 +47,4 @@ jobs:
         with:
           toolchain: stable
       - name: Test
-        run: make rust
+        run: gcc --version && make rust
