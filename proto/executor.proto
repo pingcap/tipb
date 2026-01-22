@@ -215,12 +215,10 @@ message FTSQueryInfo {
 	optional string query_text = 5 [(gogoproto.nullable) = false];
 	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
 
-	// For QueryType == WithScore, a top_k can be optionally specified.
-	// If top_k is specified, it means the TableScan is safe to return at most *top* k results
-	// because upper executors will have a TopK anyway.
-	// If not specified (optional, or top_k is very large), then all results will be returned.
-	// This option is not supported for QueryType == NoScore.
+	// These fields support pushdown for order-by and limit scenarios.
 	optional uint32 top_k = 10;
+	repeated int64 sort_column_ids = 11;
+	repeated bool sort_column_asc = 12;
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
