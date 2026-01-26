@@ -1856,6 +1856,18 @@
                 "optional": true
               },
               {
+                "id": 11,
+                "name": "sort_column_ids",
+                "type": "int64",
+                "is_repeated": true
+              },
+              {
+                "id": 12,
+                "name": "sort_column_asc",
+                "type": "bool",
+                "is_repeated": true
+              },
+              {
                 "id": 20,
                 "name": "query_func",
                 "type": "ScalarFuncSig",
@@ -5694,6 +5706,10 @@
               {
                 "name": "FTSMatchRegexp",
                 "integer": 5204
+              },
+              {
+                "name": "FTSMatchPhrase",
+                "integer": 5205
               },
               {
                 "name": "DateFormatSig",
