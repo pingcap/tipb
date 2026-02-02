@@ -105,6 +105,13 @@ service TopSQLPubSub {
     rpc Subscribe(TopSQLSubRequest) returns (stream TopSQLSubResponse) {}
 }
 
+enum CollectorType {
+    COLLECTOR_TYPE_UNSPECIFIED = 0; // For compatibility when this variable is not present. Defaults to COLLECTOR_TYPE_TOPSQL.
+    COLLECTOR_TYPE_TOPSQL = 1;
+    COLLECTOR_TYPE_TOPRU  = 2;
+    // future: COLLECTOR_TYPE_XXX = 3;
+}
+
 enum ReportInterval {
     REPORT_INTERVAL_UNSPECIFIED = 0;
     REPORT_INTERVAL_15S = 15;
@@ -112,11 +119,24 @@ enum ReportInterval {
     REPORT_INTERVAL_60S = 60;
 }
 
+// TopRU-only options
+message TopRUConfig {
+    // allowed: 15/30/60; server validates and applies default if 0
+    ReportInterval report_interval_seconds = 1;
+}
+
 message TopSQLSubRequest {
-    // enable_top_ru controls TopRU collection and reporting.
-    bool enable_top_ru = 1;
-    // report_interval controls report interval, options: 15s/30s/60s.
-    ReportInterval report_interval = 2;
+    // Semantics:
+    // - collectors empty => default enable TOPSQL
+    // - collectors non-empty => authoritative (only those enabled)
+    // Examples:
+    // - TOPSQL only: collectors=[TOPSQL] (or empty)
+    // - TOPRU only: collectors=[TOPRU]
+    // - both:        collectors=[TOPSQL, TOPRU]
+    repeated CollectorType collectors = 1;
+
+    // Only used when COLLECTOR_TYPE_TOPRU is present in collectors.
+    TopRUConfig topru = 2;
 }
 
 message TopSQLSubResponse {
