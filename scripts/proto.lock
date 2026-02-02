@@ -8245,6 +8245,12 @@
                 "id": 1,
                 "name": "parser_type",
                 "type": "ParserType"
+              },
+              {
+                "id": 3,
+                "name": "stop_words",
+                "type": "string",
+                "is_repeated": true
               }
             ],
             "maps": [

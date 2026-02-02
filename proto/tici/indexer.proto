@@ -143,6 +143,8 @@ message ParserInfo {
   ParserType parser_type = 1;
   // Parser parameters
   map<string, string> parser_params = 2;
+  // Stop words list. Only used when stopwords are enabled at index creation time.
+  repeated string stop_words = 3;
 }
 
 // GetIndexProgressRequest is a request to get the progress of an index build

@@ -13,13 +13,16 @@ protoc -I.:../include --gofast_out=plugins=grpc:../go-tipb *.proto
 protoc -I.:../include --gofast_out=plugins=grpc,Mtici/indexer.proto=github.com/pingcap/tipb/go-tipb,import_path=tipb:../go-tipb tici/*.proto
 
 cd ../go-tipb
+if [ -f "tici/indexer.pb.go" ]; then
+  mv tici/indexer.pb.go tici.pb.go
+fi
 sed -i.bak -E 's/import _ \"gogoproto\"//g' *.pb.go
 sed -i.bak -E 's/context \"context\"//g' *.pb.go
 sed -i.bak -E 's/fmt \"fmt\"//g' *.pb.go
 sed -i.bak -E 's/io \"io\"//g' *.pb.go
 sed -i.bak -E 's/math \"math\"//g' *.pb.go
 sed -i.bak -E 's/_ \".*rustproto\"//g' *.pb.go
-sed -i.bak -E 's/import _ \"\.\"//' *.pb.go
+sed -i.bak -E '/^[[:space:]]*_ \"\.\"[[:space:]]*$/d' *.pb.go
 sed -i.bak -E 's/package tipb_tici/package tipb/' *.pb.go
 
 # Remove temporary files
