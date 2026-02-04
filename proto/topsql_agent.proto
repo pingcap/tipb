@@ -26,6 +26,8 @@ service TopSQLAgent {
     // ReportPlanMeta reports plan meta to the agent.
     // The agent should deal with plan meta similarly to SQL meta.
     rpc ReportPlanMeta(stream PlanMeta) returns (EmptyResponse) {}
+    // ReportTopRURecords is called periodically to save the in-memory TopRU records.
+    rpc ReportTopRURecords(stream TopRURecord) returns (EmptyResponse) {}
 }
 
 message TopSQLRecord {
@@ -33,6 +35,23 @@ message TopSQLRecord {
     bytes plan_digest = 2;
     repeated TopSQLRecordItem items = 3;
     bytes keyspace_name = 4;
+}
+
+// TopRURecord represents RU statistics for a single (user, sql_digest, plan_digest) combination.
+message TopRURecord {
+    bytes keyspace_name = 1;
+    string user = 2;
+    bytes sql_digest = 3;
+    bytes plan_digest = 4;
+    repeated TopRURecordItem items = 5;
+}
+
+// TopRURecordItem represents statistics within a single time bucket.
+message TopRURecordItem {
+    uint64 timestamp_sec = 1; // timestamp in second
+    double total_ru = 2; // cumulative RU consumption (RRU + WRU)
+    uint64 exec_count = 3; // execution count
+    uint64 exec_duration = 4; // cumulative execution time (nanoseconds)
 }
 
 message TopSQLRecordItem {
@@ -86,12 +105,45 @@ service TopSQLPubSub {
     rpc Subscribe(TopSQLSubRequest) returns (stream TopSQLSubResponse) {}
 }
 
-message TopSQLSubRequest {}
+enum CollectorType {
+    COLLECTOR_TYPE_UNSPECIFIED = 0; // For compatibility when this variable is not present. Defaults to COLLECTOR_TYPE_TOPSQL.
+    COLLECTOR_TYPE_TOPSQL = 1;
+    COLLECTOR_TYPE_TOPRU  = 2;
+    // future: COLLECTOR_TYPE_XXX = 3;
+}
+
+enum ReportInterval {
+    REPORT_INTERVAL_UNSPECIFIED = 0;
+    REPORT_INTERVAL_15S = 15;
+    REPORT_INTERVAL_30S = 30;
+    REPORT_INTERVAL_60S = 60;
+}
+
+// TopRU-only options
+message TopRUConfig {
+    // allowed: 15/30/60; server validates and applies default if 0
+    ReportInterval report_interval_seconds = 1;
+}
+
+message TopSQLSubRequest {
+    // Semantics:
+    // - collectors empty => default enable TOPSQL
+    // - collectors non-empty => authoritative (only those enabled)
+    // Examples:
+    // - TOPSQL only: collectors=[TOPSQL] (or empty)
+    // - TOPRU only: collectors=[TOPRU]
+    // - both:        collectors=[TOPSQL, TOPRU]
+    repeated CollectorType collectors = 1;
+
+    // Only used when COLLECTOR_TYPE_TOPRU is present in collectors.
+    TopRUConfig topru = 2;
+}
 
 message TopSQLSubResponse {
     oneof resp_oneof {
         TopSQLRecord record = 1;
         SQLMeta sql_meta = 2;
         PlanMeta plan_meta = 3;
+        TopRURecord ru_record = 4;
     }
 }
