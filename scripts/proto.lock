@@ -7627,10 +7627,6 @@
                 "optional": true,
                 "options": [
                   {
-                    "name": "(gogoproto.customtype)",
-                    "value": "github.com/pingcap/tipb/sharedbytes.SharedBytes"
-                  },
-                  {
                     "name": "(gogoproto.nullable)",
                     "value": "false"
                   }
@@ -7906,10 +7902,6 @@
                 "type": "bytes",
                 "optional": true,
                 "options": [
-                  {
-                    "name": "(gogoproto.customtype)",
-                    "value": "github.com/pingcap/tipb/sharedbytes.SharedBytes"
-                  },
                   {
                     "name": "(gogoproto.nullable)",
                     "value": "false"

@@ -50,7 +50,7 @@ message SelectResponse {
 	optional int64 warning_count = 6;
 
 	// Not used any more
-	// optional bytes row_batch_data = 7 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+	// optional bytes row_batch_data = 7 [(gogoproto.nullable) = false];
 
 	// The execution summary of each executor, in the order in request.
 	repeated ExecutorExecutionSummary execution_summaries = 8;
@@ -66,7 +66,7 @@ message SelectResponse {
 // Chunk contains multiple rows data and rows meta.
 message Chunk {
 	// Data for all rows in the chunk.
-	optional bytes rows_data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+	optional bytes rows_data = 3 [(gogoproto.nullable) = false];
 
 	// Meta data for every row.
 	repeated RowMeta rows_meta = 4 [(gogoproto.nullable) = false];
@@ -205,7 +205,7 @@ message UserIdentity {
 message StreamResponse {
 	optional Error error = 1;
 	// Data for all rows
-	optional bytes data = 3 [(gogoproto.customtype) = "github.com/pingcap/tipb/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
+	optional bytes data = 3 [(gogoproto.nullable) = false];
 	repeated Error warnings = 4;
 	// output row count for each executor
 	repeated int64 output_counts = 5;
