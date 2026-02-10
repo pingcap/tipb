@@ -112,17 +112,17 @@ enum CollectorType {
     // future: COLLECTOR_TYPE_XXX = 3;
 }
 
-enum ReportInterval {
-    REPORT_INTERVAL_UNSPECIFIED = 0;
-    REPORT_INTERVAL_15S = 15;
-    REPORT_INTERVAL_30S = 30;
-    REPORT_INTERVAL_60S = 60;
+enum ItemInterval {
+    ITEM_INTERVAL_UNSPECIFIED = 0;
+    ITEM_INTERVAL_15S = 15;
+    ITEM_INTERVAL_30S = 30;
+    ITEM_INTERVAL_60S = 60;
 }
 
 // TopRU-only options
 message TopRUConfig {
     // allowed: 15/30/60; server validates and applies default if 0
-    ReportInterval report_interval_seconds = 1;
+    ItemInterval item_interval_seconds = 1;
 }
 
 message TopSQLSubRequest {
