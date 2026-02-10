@@ -35,8 +35,8 @@ enum ExecType {
 	TypePartitionTableScan = 12;
 	TypeSort = 13;
 	TypeWindow = 14;
-	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
-	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand = 15; // Expand executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand2 = 16; // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
 	TypeBroadcastQuery = 17;
 	TypeCTESink = 18;
 	TypeCTESource = 19;
@@ -93,7 +93,7 @@ message ExchangeSender {
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3;
 	optional Executor child = 4;
-	repeated FieldType types = 5;  // partition keys' types
+	repeated FieldType types = 5; // partition keys' types
 	repeated FieldType all_field_types = 6;
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
 	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
@@ -199,7 +199,7 @@ message InvertedQueryInfo {
 
 enum FTSQueryType {
 	FTSQueryTypeInvalid = 0;
-	FTSQueryTypeNoScore = 1;   // Means no scoring is ever needed, encourages the engine to use a fast path.
+	FTSQueryTypeNoScore = 1; // Means no scoring is ever needed, encourages the engine to use a fast path.
 	FTSQueryTypeWithScore = 2;
 }
 
@@ -385,9 +385,10 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
-    	// If partition_by is not empty, it means need to return limitN of each partition.
-    	// Generally used in sqls like `where row_number() over (partition by ...) < X`
-    	repeated ByItem partition_by = 3;
+	// If partition_by is not empty, it means need to return limitN of each partition.
+	// Generally used in sqls like `where row_number() over (partition by ...) < X`
+	repeated ByItem partition_by = 3;
+	repeated Expr truncate_key_expr = 4;
 }
 
 message Kill {
@@ -593,7 +594,7 @@ message Window {
 }
 
 message GroupingExpr {
-	repeated Expr grouping_expr = 1;         // for grouping expressions like: expr[a,b]
+	repeated Expr grouping_expr = 1; // for grouping expressions like: expr[a,b]
 }
 
 message GroupingSet {
@@ -612,8 +613,8 @@ message ExprSlice {
 }
 
 message Expand2{
-	repeated ExprSlice proj_exprs = 1;           // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
-	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
+	repeated ExprSlice proj_exprs = 1; // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
+	repeated string generated_output_names = 2; // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
 	optional Executor child = 3;
 }
 
