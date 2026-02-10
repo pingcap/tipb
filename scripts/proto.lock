@@ -8383,6 +8383,44 @@
     {
       "protopath": "topsql_agent.proto",
       "def": {
+        "enums": [
+          {
+            "name": "CollectorType",
+            "enum_fields": [
+              {
+                "name": "COLLECTOR_TYPE_UNSPECIFIED"
+              },
+              {
+                "name": "COLLECTOR_TYPE_TOPSQL",
+                "integer": 1
+              },
+              {
+                "name": "COLLECTOR_TYPE_TOPRU",
+                "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "ItemInterval",
+            "enum_fields": [
+              {
+                "name": "ITEM_INTERVAL_UNSPECIFIED"
+              },
+              {
+                "name": "ITEM_INTERVAL_15S",
+                "integer": 15
+              },
+              {
+                "name": "ITEM_INTERVAL_30S",
+                "integer": 30
+              },
+              {
+                "name": "ITEM_INTERVAL_60S",
+                "integer": 60
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "TopSQLRecord",
@@ -8407,6 +8445,62 @@
                 "id": 4,
                 "name": "keyspace_name",
                 "type": "bytes"
+              }
+            ]
+          },
+          {
+            "name": "TopRURecord",
+            "fields": [
+              {
+                "id": 1,
+                "name": "keyspace_name",
+                "type": "bytes"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "sql_digest",
+                "type": "bytes"
+              },
+              {
+                "id": 4,
+                "name": "plan_digest",
+                "type": "bytes"
+              },
+              {
+                "id": 5,
+                "name": "items",
+                "type": "TopRURecordItem",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "TopRURecordItem",
+            "fields": [
+              {
+                "id": 1,
+                "name": "timestamp_sec",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "total_ru",
+                "type": "double"
+              },
+              {
+                "id": 3,
+                "name": "exec_count",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "exec_duration",
+                "type": "uint64"
               }
             ]
           },
@@ -8514,7 +8608,30 @@
             "name": "EmptyResponse"
           },
           {
-            "name": "TopSQLSubRequest"
+            "name": "TopRUConfig",
+            "fields": [
+              {
+                "id": 1,
+                "name": "item_interval_seconds",
+                "type": "ItemInterval"
+              }
+            ]
+          },
+          {
+            "name": "TopSQLSubRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "collectors",
+                "type": "CollectorType",
+                "is_repeated": true
+              },
+              {
+                "id": 2,
+                "name": "topru",
+                "type": "TopRUConfig"
+              }
+            ]
           },
           {
             "name": "TopSQLSubResponse",
@@ -8535,6 +8652,12 @@
                 "id": 3,
                 "name": "plan_meta",
                 "type": "PlanMeta",
+                "oneof_parent": "resp_oneof"
+              },
+              {
+                "id": 4,
+                "name": "ru_record",
+                "type": "TopRURecord",
                 "oneof_parent": "resp_oneof"
               }
             ]
@@ -8559,6 +8682,12 @@
               {
                 "name": "ReportPlanMeta",
                 "in_type": "PlanMeta",
+                "out_type": "EmptyResponse",
+                "in_streamed": true
+              },
+              {
+                "name": "ReportTopRURecords",
+                "in_type": "TopRURecord",
                 "out_type": "EmptyResponse",
                 "in_streamed": true
               }
