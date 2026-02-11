@@ -3,6 +3,15 @@ name: "Unit Test"
 on: [ push,pull_request ]
 
 jobs:
+  proto-format:
+    name: Check proto format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Check format
+        run: make proto-fmt-check
+
   go:
     name: Test go generation
     runs-on: ubuntu-latest

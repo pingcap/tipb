@@ -5,22 +5,22 @@ package tipb.tici;
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
 
+option (gogoproto.goproto_sizecache_all) = false;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
-option (gogoproto.goproto_unkeyed_all) = false;
-option (gogoproto.goproto_unrecognized_all) = false;
-option (gogoproto.goproto_sizecache_all) = false;
 option (rustproto.lite_runtime_all) = true;
 
 // IndexerService provides index creation and deletion functionality
 service IndexerService {
   // CreateIndex creates a new index
   rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
-  
+
   // DropIndex removes an existing index
   rpc DropIndex(DropIndexRequest) returns (DropIndexResponse);
-  
+
   // GetIndexProgress retrieves the current progress of an index build
   rpc GetIndexProgress(GetIndexProgressRequest) returns (GetIndexProgressResponse);
 }
@@ -68,7 +68,6 @@ message DropIndexRequest {
   // Index ID
   int64 table_id = 1;
   string index_id = 2;
-
 }
 
 // DropIndexResponse is a response to the index drop request
@@ -169,4 +168,4 @@ message GetIndexProgressResponse {
   string last_upload_time = 6;
   // S3 path where the index is stored
   repeated string s3_path = 7;
-} 
+}

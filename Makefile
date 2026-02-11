@@ -1,4 +1,4 @@
-.PHONY: all go rust c++
+.PHONY: all dependence check proto-fmt proto-fmt-check go rust c++
 
 CURDIR := $(shell pwd)
 
@@ -12,6 +12,12 @@ dependence:
 
 check: dependence
 	./scripts/check.sh
+
+proto-fmt:
+	./scripts/proto_format.sh --write
+
+proto-fmt-check:
+	./scripts/proto_format.sh --check
 
 go: dependence check
 	./scripts/generate-go.sh
