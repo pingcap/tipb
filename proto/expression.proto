@@ -74,6 +74,9 @@ enum ExprType {
 	JsonArrayAgg = 3018;
 	JsonObjectAgg = 3019;
 	ApproxCountDistinct = 3020;
+	SumInt = 3021;
+	MinCount = 3022;
+	MaxCount = 3023;
 
 	// Window functions
 	RowNumber = 4001;
