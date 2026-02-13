@@ -138,10 +138,10 @@ message FMSketch {
 }
 
 // HLLSketch is used to count distinct values for columns.
-// message HLLSketch {
-//     optional uint32 b = 1 [(gogoproto.nullable) = false];
-//     optional bytes registers = 2;
-// }
+message HLLSketch {
+    optional uint32 b = 1 [(gogoproto.nullable) = false];
+    optional bytes registers = 2;
+}
 
 // SampleCollector is used for collect samples and calculate the count and ndv of an column.
 message SampleCollector {
@@ -161,8 +161,8 @@ message RowSampleCollector {
     repeated int64 total_size = 5;
     repeated FMSketch f1_sketch = 6;
     optional int64 sketch_sample_count = 7 [(gogoproto.nullable) = false];
-    // repeated HLLSketch hll_sketch = 8;
-    // repeated HLLSketch hll_f1_sketch = 9;
+    repeated HLLSketch hll_sketch = 8;
+    repeated HLLSketch hll_f1_sketch = 9;
 }
 
 message RowSample {
