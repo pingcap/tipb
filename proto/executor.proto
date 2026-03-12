@@ -336,6 +336,22 @@ message IndexScan {
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
 	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
+	// TableShardInfos carries shard mapping for TiCI index scan. It is populated by the planner/dispatcher
+	// and consumed by TiFlash/TiCI runtime to locate shards by executor id.
+	repeated TableShardInfos table_shard_infos = 8;
+}
+
+// ShardInfo represents a single shard's id, epoch and key ranges.
+message ShardInfo {
+	optional uint64 shard_id = 1 [(gogoproto.nullable) = false];
+	optional bytes shard_epoch = 2;
+	repeated KeyRange ranges = 3;
+}
+
+// TableShardInfos groups shard infos for a particular executor id.
+message TableShardInfos {
+	optional string executor_id = 1;
+	repeated ShardInfo shard_infos = 2;
 }
 
 message Selection {
