@@ -189,6 +189,7 @@ enum JoinType {
 	TypeAntiSemiJoin = 4;
 	TypeLeftOuterSemiJoin = 5;
 	TypeAntiLeftOuterSemiJoin = 6;
+	TypeFullOuterJoin = 7;
 }
 
 enum JoinExecType {
