@@ -1187,6 +1187,10 @@
               {
                 "name": "TypeAntiLeftOuterSemiJoin",
                 "integer": 6
+              },
+              {
+                "name": "TypeFullOuterJoin",
+                "integer": 7
               }
             ]
           },
