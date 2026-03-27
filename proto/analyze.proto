@@ -25,6 +25,7 @@ enum AnalyzeType {
     TypeSampleIndex = 3;
     TypeMixed = 4;
     TypeFullSampling = 5;
+    TypeSSTMetadata = 6;
 }
 
 message AnalyzeReq {
