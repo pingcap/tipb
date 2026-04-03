@@ -203,6 +203,44 @@ enum FTSQueryType {
 	FTSQueryTypeWithScore = 2;
 }
 
+
+enum FTSBooleanOccur {
+	FTSBooleanOccurShould = 0;
+	FTSBooleanOccurMust = 1;
+	FTSBooleanOccurMustNot = 2;
+}
+
+enum FTSBooleanModifier {
+	FTSBooleanModifierNone = 0;
+	FTSBooleanModifierBoost = 1;
+	FTSBooleanModifierDeBoost = 2;
+	FTSBooleanModifierNegate = 3;
+}
+
+enum FTSBooleanTermType {
+	FTSBooleanTermWord = 0;
+	FTSBooleanTermPhrase = 1;
+	FTSBooleanTermPrefix = 2;
+}
+
+message FTSBooleanTerm {
+	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
+	optional string text = 2 [(gogoproto.nullable) = false];
+}
+
+message FTSBooleanQuery {
+	repeated FTSBooleanNode nodes = 1;
+}
+
+message FTSBooleanNode {
+	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
+	oneof expr {
+		FTSBooleanTerm term = 3;
+		FTSBooleanQuery sub_expression = 4;
+	}
+}
+
 message FTSQueryInfo {
 	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
 
@@ -225,6 +263,7 @@ message FTSQueryInfo {
 
 	// Filter pushed down to tici
 	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+	optional FTSBooleanQuery boolean_query = 22;
 }
 
 enum ColumnarIndexType {
