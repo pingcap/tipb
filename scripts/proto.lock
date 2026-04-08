@@ -1055,6 +1055,66 @@
             ]
           },
           {
+            "name": "FTSBooleanOccur",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanOccurInvalid"
+              },
+              {
+                "name": "FTSBooleanOccurShould",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanOccurMust",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanOccurMustNot",
+                "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanModifier",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanModifierNone"
+              },
+              {
+                "name": "FTSBooleanModifierBoost",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanModifierDeBoost",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanModifierNegate",
+                "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanTermType",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanTermInvalid"
+              },
+              {
+                "name": "FTSBooleanTermWord",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanTermPhrase",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanTermPrefix",
+                "integer": 3
+              }
+            ]
+          },
+          {
             "name": "ColumnarIndexType",
             "enum_fields": [
               {
@@ -1787,6 +1847,99 @@
             ]
           },
           {
+            "name": "FTSBooleanTerm",
+            "fields": [
+              {
+                "id": 1,
+                "name": "term_type",
+                "type": "FTSBooleanTermType",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "text",
+                "type": "string",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "phrase_distance",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanQuery",
+            "fields": [
+              {
+                "id": 1,
+                "name": "nodes",
+                "type": "FTSBooleanNode",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanNode",
+            "fields": [
+              {
+                "id": 1,
+                "name": "occur",
+                "type": "FTSBooleanOccur",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "modifier",
+                "type": "FTSBooleanModifier",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "term",
+                "type": "FTSBooleanTerm",
+                "oneof_parent": "node"
+              },
+              {
+                "id": 4,
+                "name": "sub_expression",
+                "type": "FTSBooleanQuery",
+                "oneof_parent": "node"
+              }
+            ]
+          },
+          {
             "name": "FTSQueryInfo",
             "fields": [
               {
@@ -1868,29 +2021,23 @@
                 "is_repeated": true
               },
               {
-                "id": 20,
-                "name": "query_func",
-                "type": "ScalarFuncSig",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
                 "id": 21,
                 "name": "match_expr",
                 "type": "Expr",
-                "is_repeated": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
+                "is_repeated": true
+              },
+              {
+                "id": 22,
+                "name": "boolean_query",
+                "type": "FTSBooleanQuery",
+                "optional": true
               }
+            ],
+            "reserved_ids": [
+              20
+            ],
+            "reserved_names": [
+              "query_func"
             ]
           },
           {
@@ -5710,6 +5857,10 @@
               {
                 "name": "FTSMatchPhrase",
                 "integer": 5205
+              },
+              {
+                "name": "FTSMatchPhraseDistance",
+                "integer": 5206
               },
               {
                 "name": "DateFormatSig",
