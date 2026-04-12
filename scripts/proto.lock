@@ -5859,10 +5859,6 @@
                 "integer": 5205
               },
               {
-                "name": "FTSMatchPhraseDistance",
-                "integer": 5206
-              },
-              {
                 "name": "DateFormatSig",
                 "integer": 6001
               },
