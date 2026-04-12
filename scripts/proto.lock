@@ -529,6 +529,24 @@
                 "name": "total_size",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 6,
+                "name": "singleton_sketch",
+                "type": "FMSketch",
+                "is_repeated": true
+              },
+              {
+                "id": 7,
+                "name": "sketch_sample_count",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               }
             ]
           },
@@ -2041,6 +2059,101 @@
             ]
           },
           {
+            "name": "TiCIVectorQueryInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "index_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "column_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "distance_metric",
+                "type": "VectorDistanceMetric",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "name": "top_k",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "name": "query_vector",
+                "type": "bytes",
+                "optional": true
+              },
+              {
+                "id": 6,
+                "name": "dimension",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "name": "filter_expr",
+                "type": "Expr",
+                "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 8,
+                "name": "column_name",
+                "type": "string",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "name": "ColumnarIndexInfo",
             "fields": [
               {
@@ -2535,6 +2648,12 @@
                 "name": "fts_query_info",
                 "type": "FTSQueryInfo",
                 "optional": true
+              },
+              {
+                "id": 8,
+                "name": "tici_vector_query_info",
+                "type": "TiCIVectorQueryInfo",
+                "optional": true
               }
             ]
           },
@@ -2697,6 +2816,12 @@
                 "id": 3,
                 "name": "partition_by",
                 "type": "ByItem",
+                "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "truncate_key_expr",
+                "type": "Expr",
                 "is_repeated": true
               }
             ]
@@ -3291,6 +3416,42 @@
               {
                 "id": 174,
                 "name": "fts_brute_total_search_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 200,
+                "name": "tici_vec_query_count",
+                "type": "uint32",
+                "optional": true
+              },
+              {
+                "id": 201,
+                "name": "tici_vec_search_total_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 202,
+                "name": "tici_vec_filter_total_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 203,
+                "name": "tici_vec_candidate_count",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 204,
+                "name": "tici_vec_result_count",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 205,
+                "name": "tici_vec_shard_count",
                 "type": "uint64",
                 "optional": true
               }
@@ -8530,6 +8691,44 @@
     {
       "protopath": "topsql_agent.proto",
       "def": {
+        "enums": [
+          {
+            "name": "CollectorType",
+            "enum_fields": [
+              {
+                "name": "COLLECTOR_TYPE_UNSPECIFIED"
+              },
+              {
+                "name": "COLLECTOR_TYPE_TOPSQL",
+                "integer": 1
+              },
+              {
+                "name": "COLLECTOR_TYPE_TOPRU",
+                "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "ItemInterval",
+            "enum_fields": [
+              {
+                "name": "ITEM_INTERVAL_UNSPECIFIED"
+              },
+              {
+                "name": "ITEM_INTERVAL_15S",
+                "integer": 15
+              },
+              {
+                "name": "ITEM_INTERVAL_30S",
+                "integer": 30
+              },
+              {
+                "name": "ITEM_INTERVAL_60S",
+                "integer": 60
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "TopSQLRecord",
@@ -8554,6 +8753,62 @@
                 "id": 4,
                 "name": "keyspace_name",
                 "type": "bytes"
+              }
+            ]
+          },
+          {
+            "name": "TopRURecord",
+            "fields": [
+              {
+                "id": 1,
+                "name": "keyspace_name",
+                "type": "bytes"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "sql_digest",
+                "type": "bytes"
+              },
+              {
+                "id": 4,
+                "name": "plan_digest",
+                "type": "bytes"
+              },
+              {
+                "id": 5,
+                "name": "items",
+                "type": "TopRURecordItem",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "TopRURecordItem",
+            "fields": [
+              {
+                "id": 1,
+                "name": "timestamp_sec",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "total_ru",
+                "type": "double"
+              },
+              {
+                "id": 3,
+                "name": "exec_count",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "exec_duration",
+                "type": "uint64"
               }
             ]
           },
@@ -8661,7 +8916,30 @@
             "name": "EmptyResponse"
           },
           {
-            "name": "TopSQLSubRequest"
+            "name": "TopRUConfig",
+            "fields": [
+              {
+                "id": 1,
+                "name": "item_interval_seconds",
+                "type": "ItemInterval"
+              }
+            ]
+          },
+          {
+            "name": "TopSQLSubRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "collectors",
+                "type": "CollectorType",
+                "is_repeated": true
+              },
+              {
+                "id": 2,
+                "name": "topru",
+                "type": "TopRUConfig"
+              }
+            ]
           },
           {
             "name": "TopSQLSubResponse",
@@ -8682,6 +8960,12 @@
                 "id": 3,
                 "name": "plan_meta",
                 "type": "PlanMeta",
+                "oneof_parent": "resp_oneof"
+              },
+              {
+                "id": 4,
+                "name": "ru_record",
+                "type": "TopRURecord",
                 "oneof_parent": "resp_oneof"
               }
             ]
@@ -8706,6 +8990,12 @@
               {
                 "name": "ReportPlanMeta",
                 "in_type": "PlanMeta",
+                "out_type": "EmptyResponse",
+                "in_streamed": true
+              },
+              {
+                "name": "ReportTopRURecords",
+                "in_type": "TopRURecord",
                 "out_type": "EmptyResponse",
                 "in_streamed": true
               }
