@@ -153,6 +153,10 @@ message RowSampleCollector {
     optional int64 count = 3 [(gogoproto.nullable) = false];
     repeated FMSketch fm_sketch = 4;
     repeated int64 total_size = 5;
+    // singleton_sketch estimates the number of values that appear only once in the sample.
+    repeated FMSketch singleton_sketch = 6;
+    // sketch_sample_count is the number of samples processed when building fm_sketch and singleton_sketch.
+    optional int64 sketch_sample_count = 7 [(gogoproto.nullable) = false];
 }
 
 message RowSample {
