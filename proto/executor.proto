@@ -264,7 +264,8 @@ message FTSQueryInfo {
 	reserved 20;
 	reserved "query_func";
 
-	repeated Expr match_expr = 21;
+	// Filter pushed down to tici
+	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
 
 	optional FTSBooleanQuery boolean_query = 22;
 }

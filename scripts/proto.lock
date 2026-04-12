@@ -2024,7 +2024,13 @@
                 "id": 21,
                 "name": "match_expr",
                 "type": "Expr",
-                "is_repeated": true
+                "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "id": 22,
