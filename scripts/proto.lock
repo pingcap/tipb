@@ -2039,6 +2039,18 @@
                 "is_repeated": true
               },
               {
+                "id": 20,
+                "name": "query_func",
+                "type": "ScalarFuncSig",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
                 "id": 21,
                 "name": "match_expr",
                 "type": "Expr",
@@ -2056,12 +2068,6 @@
                 "type": "FTSBooleanQuery",
                 "optional": true
               }
-            ],
-            "reserved_ids": [
-              20
-            ],
-            "reserved_names": [
-              "query_func"
             ]
           },
           {

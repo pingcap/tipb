@@ -261,12 +261,13 @@ message FTSQueryInfo {
 	repeated int64 sort_column_ids = 11;
 	repeated bool sort_column_asc = 12;
 
-	reserved 20;
-	reserved "query_func";
+	// Distinguish match_word, match_expression, match_prefix, match_regexp
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 
-	// Filter pushed down to tici
+	// Pass through the inverted index conditions for the hybrid index.
 	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
 
+	// Pass through the FTS boolean query.
 	optional FTSBooleanQuery boolean_query = 22;
 }
 
