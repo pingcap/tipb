@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package tipb;
+
+option java_multiple_files = true;
+option java_package = "com.pingcap.tidb.tipb";
+
+import "schema.proto";
+
+import "gogoproto/gogo.proto";
+import "rustproto.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_unkeyed_all) = false;
+option (gogoproto.goproto_unrecognized_all) = false;
+option (gogoproto.goproto_sizecache_all) = false;
+option (rustproto.lite_runtime_all) = true;
+
+message SPFreshSearchRequest {
+    uint32 keyspace_id = 1;
+    int64 table_id = 2;
+    int64 index_id = 3;
+    uint64 start_ts = 4;
+    uint32 top_k = 5;
+
+    // query_vector_f32_le is f32 little-endian bytes, without the dims prefix.
+    bytes query_vector_f32_le = 6;
+
+    repeated ColumnInfo required_columns = 7;
+
+    // Optional tuning parameters.
+    double oversample_factor = 8;
+    // If zero, the server uses its default base beam size.
+    uint32 base_beam_size = 9;
+
+    // read_only disables background fixups (split/merge) triggered by search
+    // observations. When enabled, the server must not enqueue fixups and should
+    // avoid starting any background fixup workers.
+    bool read_only = 10;
+
+    // When true, the server populates SPFreshSearchRow.distance in each result row.
+    bool need_distance = 11;
+}
+
+message SPFreshSearchResponse {
+    repeated SPFreshSearchRow rows = 1;
+    SPFreshSearchStats stats = 2;
+}
+
+message SPFreshSearchRow {
+    bytes handle_bytes = 1;
+    float distance = 2;
+    repeated bytes column_values = 3;
+}
+
+message SPFreshSearchStats {
+    uint64 partitions_scanned = 1;
+    uint64 vectors_scanned = 2;
+    uint64 table_lookup_keys = 3;
+    uint64 table_lookup_bytes = 4;
+    // Time costs of each major stage in microseconds.
+    uint64 permit_micros = 5;
+    uint64 config_micros = 6;
+    uint64 index_open_micros = 7;
+    uint64 search_micros = 8;
+    uint64 table_lookup_micros = 9;
+    // Aggregated tikv-client RPC stats (best-effort) for this /spfresh_search
+    // request.
+    uint64 tikv_client_rpc_count = 10;
+    uint64 tikv_client_rpc_micros = 11;
+    bool read_only = 12;
+    // Effective oversample factor used by the server for this request.
+    double oversample_factor = 13;
+    // Process-local partition cache stats for this request.
+    uint64 partition_cache_hits = 14;
+    uint64 partition_cache_misses = 15;
+}

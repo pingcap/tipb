@@ -7966,6 +7966,319 @@
       }
     },
     {
+      "protopath": "spfresh_search.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "SPFreshSearchRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "keyspace_id",
+                "type": "uint32"
+              },
+              {
+                "id": 2,
+                "name": "table_id",
+                "type": "int64"
+              },
+              {
+                "id": 3,
+                "name": "index_id",
+                "type": "int64"
+              },
+              {
+                "id": 4,
+                "name": "start_ts",
+                "type": "uint64"
+              },
+              {
+                "id": 5,
+                "name": "top_k",
+                "type": "uint32"
+              },
+              {
+                "id": 6,
+                "name": "query_vector_f32_le",
+                "type": "bytes"
+              },
+              {
+                "id": 7,
+                "name": "required_columns",
+                "type": "ColumnInfo",
+                "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "oversample_factor",
+                "type": "double"
+              },
+              {
+                "id": 9,
+                "name": "base_beam_size",
+                "type": "uint32"
+              },
+              {
+                "id": 10,
+                "name": "read_only",
+                "type": "bool"
+              },
+              {
+                "id": 11,
+                "name": "need_distance",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "SPFreshSearchResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "rows",
+                "type": "SPFreshSearchRow",
+                "is_repeated": true
+              },
+              {
+                "id": 2,
+                "name": "stats",
+                "type": "SPFreshSearchStats"
+              }
+            ]
+          },
+          {
+            "name": "SPFreshSearchRow",
+            "fields": [
+              {
+                "id": 1,
+                "name": "handle_bytes",
+                "type": "bytes"
+              },
+              {
+                "id": 2,
+                "name": "distance",
+                "type": "float"
+              },
+              {
+                "id": 3,
+                "name": "column_values",
+                "type": "bytes",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "SPFreshSearchStats",
+            "fields": [
+              {
+                "id": 1,
+                "name": "partitions_scanned",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "vectors_scanned",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "table_lookup_keys",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "table_lookup_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 5,
+                "name": "permit_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "config_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "index_open_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 8,
+                "name": "search_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 9,
+                "name": "table_lookup_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 10,
+                "name": "tikv_client_rpc_count",
+                "type": "uint64"
+              },
+              {
+                "id": 11,
+                "name": "tikv_client_rpc_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 12,
+                "name": "read_only",
+                "type": "bool"
+              },
+              {
+                "id": 13,
+                "name": "oversample_factor",
+                "type": "double"
+              },
+              {
+                "id": 14,
+                "name": "partition_cache_hits",
+                "type": "uint64"
+              },
+              {
+                "id": 15,
+                "name": "partition_cache_misses",
+                "type": "uint64"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "schema.proto"
+          },
+          {
+            "path": "gogoproto/gogo.proto"
+          },
+          {
+            "path": "rustproto.proto"
+          }
+        ],
+        "package": {
+          "name": "tipb"
+        },
+        "options": [
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_package",
+            "value": "com.pingcap.tidb.tipb"
+          },
+          {
+            "name": "(gogoproto.marshaler_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.sizer_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.unmarshaler_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.goproto_unkeyed_all)",
+            "value": "false"
+          },
+          {
+            "name": "(gogoproto.goproto_unrecognized_all)",
+            "value": "false"
+          },
+          {
+            "name": "(gogoproto.goproto_sizecache_all)",
+            "value": "false"
+          },
+          {
+            "name": "(rustproto.lite_runtime_all)",
+            "value": "true"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "spfresh_teardown.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "SPFreshTeardownRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "keyspace_id",
+                "type": "uint32"
+              },
+              {
+                "id": 2,
+                "name": "table_id",
+                "type": "int64"
+              },
+              {
+                "id": 3,
+                "name": "index_id",
+                "type": "int64"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "gogoproto/gogo.proto"
+          },
+          {
+            "path": "rustproto.proto"
+          }
+        ],
+        "package": {
+          "name": "tipb"
+        },
+        "options": [
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_package",
+            "value": "com.pingcap.tidb.tipb"
+          },
+          {
+            "name": "(gogoproto.marshaler_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.sizer_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.unmarshaler_all)",
+            "value": "true"
+          },
+          {
+            "name": "(gogoproto.goproto_unkeyed_all)",
+            "value": "false"
+          },
+          {
+            "name": "(gogoproto.goproto_unrecognized_all)",
+            "value": "false"
+          },
+          {
+            "name": "(gogoproto.goproto_sizecache_all)",
+            "value": "false"
+          },
+          {
+            "name": "(rustproto.lite_runtime_all)",
+            "value": "true"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "tici:/:indexer.proto",
       "def": {
         "enums": [
