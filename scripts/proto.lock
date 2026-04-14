@@ -529,6 +529,24 @@
                 "name": "total_size",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 6,
+                "name": "singleton_sketch",
+                "type": "FMSketch",
+                "is_repeated": true
+              },
+              {
+                "id": 7,
+                "name": "sketch_sample_count",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               }
             ]
           },
@@ -1051,6 +1069,66 @@
               {
                 "name": "FTSQueryTypeWithScore",
                 "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanOccur",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanOccurInvalid"
+              },
+              {
+                "name": "FTSBooleanOccurShould",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanOccurMust",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanOccurMustNot",
+                "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanModifier",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanModifierNone"
+              },
+              {
+                "name": "FTSBooleanModifierBoost",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanModifierDeBoost",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanModifierNegate",
+                "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanTermType",
+            "enum_fields": [
+              {
+                "name": "FTSBooleanTermInvalid"
+              },
+              {
+                "name": "FTSBooleanTermWord",
+                "integer": 1
+              },
+              {
+                "name": "FTSBooleanTermPhrase",
+                "integer": 2
+              },
+              {
+                "name": "FTSBooleanTermPrefix",
+                "integer": 3
               }
             ]
           },
@@ -1787,6 +1865,99 @@
             ]
           },
           {
+            "name": "FTSBooleanTerm",
+            "fields": [
+              {
+                "id": 1,
+                "name": "term_type",
+                "type": "FTSBooleanTermType",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "text",
+                "type": "string",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "phrase_distance",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanQuery",
+            "fields": [
+              {
+                "id": 1,
+                "name": "nodes",
+                "type": "FTSBooleanNode",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "FTSBooleanNode",
+            "fields": [
+              {
+                "id": 1,
+                "name": "occur",
+                "type": "FTSBooleanOccur",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "modifier",
+                "type": "FTSBooleanModifier",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "term",
+                "type": "FTSBooleanTerm",
+                "oneof_parent": "node"
+              },
+              {
+                "id": 4,
+                "name": "sub_expression",
+                "type": "FTSBooleanQuery",
+                "oneof_parent": "node"
+              }
+            ]
+          },
+          {
             "name": "FTSQueryInfo",
             "fields": [
               {
@@ -1884,6 +2055,107 @@
                 "name": "match_expr",
                 "type": "Expr",
                 "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 22,
+                "name": "boolean_query",
+                "type": "FTSBooleanQuery",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiCIVectorQueryInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "index_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "name": "column_id",
+                "type": "int64",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "name": "distance_metric",
+                "type": "VectorDistanceMetric",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "name": "top_k",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "name": "query_vector",
+                "type": "bytes",
+                "optional": true
+              },
+              {
+                "id": 6,
+                "name": "dimension",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "name": "filter_expr",
+                "type": "Expr",
+                "is_repeated": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              },
+              {
+                "id": 8,
+                "name": "column_name",
+                "type": "string",
+                "optional": true,
                 "options": [
                   {
                     "name": "(gogoproto.nullable)",
@@ -2388,6 +2660,12 @@
                 "name": "fts_query_info",
                 "type": "FTSQueryInfo",
                 "optional": true
+              },
+              {
+                "id": 8,
+                "name": "tici_vector_query_info",
+                "type": "TiCIVectorQueryInfo",
+                "optional": true
               }
             ]
           },
@@ -2550,6 +2828,12 @@
                 "id": 3,
                 "name": "partition_by",
                 "type": "ByItem",
+                "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "truncate_key_expr",
+                "type": "Expr",
                 "is_repeated": true
               }
             ]
@@ -3144,6 +3428,42 @@
               {
                 "id": 174,
                 "name": "fts_brute_total_search_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 200,
+                "name": "tici_vec_query_count",
+                "type": "uint32",
+                "optional": true
+              },
+              {
+                "id": 201,
+                "name": "tici_vec_search_total_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 202,
+                "name": "tici_vec_filter_total_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 203,
+                "name": "tici_vec_candidate_count",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 204,
+                "name": "tici_vec_result_count",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 205,
+                "name": "tici_vec_shard_count",
                 "type": "uint64",
                 "optional": true
               }

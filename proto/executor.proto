@@ -203,6 +203,47 @@ enum FTSQueryType {
 	FTSQueryTypeWithScore = 2;
 }
 
+
+enum FTSBooleanOccur {
+	FTSBooleanOccurInvalid = 0;
+	FTSBooleanOccurShould = 1;
+	FTSBooleanOccurMust = 2;
+	FTSBooleanOccurMustNot = 3;
+}
+
+enum FTSBooleanModifier {
+	FTSBooleanModifierNone = 0;
+	FTSBooleanModifierBoost = 1;
+	FTSBooleanModifierDeBoost = 2;
+	FTSBooleanModifierNegate = 3;
+}
+
+enum FTSBooleanTermType {
+	FTSBooleanTermInvalid = 0;
+	FTSBooleanTermWord = 1;
+	FTSBooleanTermPhrase = 2;
+	FTSBooleanTermPrefix = 3;
+}
+
+message FTSBooleanTerm {
+	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
+	optional string text = 2 [(gogoproto.nullable) = false];
+	optional uint32 phrase_distance = 3 [(gogoproto.nullable) = false];
+}
+
+message FTSBooleanQuery {
+	repeated FTSBooleanNode nodes = 1;
+}
+
+message FTSBooleanNode {
+	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
+	oneof node {
+		FTSBooleanTerm term = 3;
+		FTSBooleanQuery sub_expression = 4;
+	}
+}
+
 message FTSQueryInfo {
 	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
 
@@ -223,8 +264,11 @@ message FTSQueryInfo {
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 
-	// Filter pushed down to tici
+	// Pass through the inverted index conditions for the hybrid index.
 	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+
+	// Pass through the FTS boolean query.
+	optional FTSBooleanQuery boolean_query = 22;
 }
 
 enum ColumnarIndexType {
