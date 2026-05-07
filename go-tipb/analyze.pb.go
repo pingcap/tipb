@@ -70,6 +70,7 @@ It has these top-level messages:
 	Expand
 	ExprSlice
 	Expand2
+	BroadcastQuery
 	ExplainData
 	ExplainOperator
 	AccessObject

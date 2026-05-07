@@ -31,6 +31,7 @@ enum ExecType {
 	TypeWindow = 14;
 	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
 	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeBroadcastQuery = 17;
 	TypeIndexLookUp = 20;
 }
 
@@ -56,6 +57,7 @@ message Executor {
 	optional uint64 fine_grained_shuffle_batch_size = 18 [(gogoproto.nullable) = false];
 	optional Expand expand = 19;
 	optional Expand2 expand2= 20;
+	optional BroadcastQuery broadcast_query = 21;
 	optional IndexLookUp index_lookup = 24;
 	// It indicates the parent index of current executor.
 	// Not set indicates its parent is the next executor in `DAGRequest.executors`.
@@ -471,3 +473,6 @@ message Expand2{
 	optional Executor child = 3;
 }
 
+message BroadcastQuery {
+	optional string query = 1;
+}
