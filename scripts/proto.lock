@@ -256,6 +256,12 @@
                 "name": "sample_rate",
                 "type": "double",
                 "optional": true
+              },
+              {
+                "id": 12,
+                "name": "ndv_rate",
+                "type": "double",
+                "optional": true
               }
             ]
           },
