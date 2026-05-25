@@ -140,6 +140,17 @@ message FMSketch {
     repeated uint64 hashset = 2;
 }
 
+// HLLSketch is a HyperLogLog sketch. It estimates distinct counts at a fixed,
+// small size and merges by register-wise max, which lets TiDB estimate the
+// global singleton (f1) count via a per-region leave-one-out without retaining
+// large per-region sketches.
+message HLLSketch {
+    // registers holds one byte per HLL register; its length is 1<<precision.
+    optional bytes registers = 1 [(gogoproto.nullable) = false];
+    // precision is the HLL precision p; the sketch has m = 1<<p registers.
+    optional uint32 precision = 2 [(gogoproto.nullable) = false];
+}
+
 // SampleCollector is used for collect samples and calculate the count and ndv of an column.
 message SampleCollector {
     repeated bytes samples = 1;
@@ -157,9 +168,18 @@ message RowSampleCollector {
     repeated FMSketch fm_sketch = 4;
     repeated int64 total_size = 5;
     // singleton_sketch estimates the number of values that appear only once in the sample.
+    // Superseded by hll_singleton_sketch; no longer populated when HLL is used.
     repeated FMSketch singleton_sketch = 6;
     // sketch_sample_count is the number of samples processed when building fm_sketch and singleton_sketch.
     optional int64 sketch_sample_count = 7 [(gogoproto.nullable) = false];
+    // hll_ndv_sketch is the per-column HyperLogLog over this region's distinct
+    // values. Together with hll_singleton_sketch it lets TiDB estimate the global
+    // singleton (f1) count via a per-region leave-one-out, at a fixed small size.
+    // Built only when ndv_rate < 1 (NDV sub-sampling).
+    repeated HLLSketch hll_ndv_sketch = 8;
+    // hll_singleton_sketch is the per-column HyperLogLog over values seen exactly
+    // once in this region. See hll_ndv_sketch.
+    repeated HLLSketch hll_singleton_sketch = 9;
 }
 
 message RowSample {
