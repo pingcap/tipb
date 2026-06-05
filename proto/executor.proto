@@ -295,6 +295,7 @@ message Limit {
     	// If partition_by is not empty, it means need to return limitN of each partition.
     	// Generally used in sqls like `where row_number() over (partition by ...) < X`
     	repeated ByItem partition_by = 3;
+	repeated Expr truncate_key_expr = 4;
 }
 
 message Kill {
