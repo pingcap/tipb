@@ -85,6 +85,9 @@ message AnalyzeColumnsReq {
     // sample_rate is the sampling rate that how many samples will collected.
     // There must be one non-zero value in sample_rate and sample_size.
     optional double sample_rate = 11;
+
+    // ndv_rate is the sampling rate that determines how many samples will be used to calculate the NDV.
+    optional double ndv_rate = 12;
 }
 
 message AnalyzeMixedResp {
@@ -153,6 +156,10 @@ message RowSampleCollector {
     optional int64 count = 3 [(gogoproto.nullable) = false];
     repeated FMSketch fm_sketch = 4;
     repeated int64 total_size = 5;
+    // singleton_sketch estimates the number of values that appear only once in the sample.
+    repeated FMSketch singleton_sketch = 6;
+    // sketch_sample_count is the number of samples processed when building fm_sketch and singleton_sketch.
+    optional int64 sketch_sample_count = 7 [(gogoproto.nullable) = false];
 }
 
 message RowSample {

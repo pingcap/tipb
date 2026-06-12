@@ -35,8 +35,8 @@ enum ExecType {
 	TypePartitionTableScan = 12;
 	TypeSort = 13;
 	TypeWindow = 14;
-	TypeExpand = 15;   // Expand executor is used to expand underlying data sources to feed different grouping sets.
-	TypeExpand2 = 16;   // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand = 15; // Expand executor is used to expand underlying data sources to feed different grouping sets.
+	TypeExpand2 = 16; // Expand2 executor is used to expand underlying data sources to feed different grouping sets.
 	TypeBroadcastQuery = 17;
 	TypeCTESink = 18;
 	TypeCTESource = 19;
@@ -93,7 +93,7 @@ message ExchangeSender {
 	repeated bytes encoded_task_meta = 2;
 	repeated Expr partition_keys = 3;
 	optional Executor child = 4;
-	repeated FieldType types = 5;  // partition keys' types
+	repeated FieldType types = 5; // partition keys' types
 	repeated FieldType all_field_types = 6;
 	optional CompressionMode compression = 7 [(gogoproto.nullable) = false];
 	repeated EncodedBytesSlice upstream_cte_task_meta = 8;
@@ -199,8 +199,49 @@ message InvertedQueryInfo {
 
 enum FTSQueryType {
 	FTSQueryTypeInvalid = 0;
-	FTSQueryTypeNoScore = 1;   // Means no scoring is ever needed, encourages the engine to use a fast path.
+	FTSQueryTypeNoScore = 1; // Means no scoring is ever needed, encourages the engine to use a fast path.
 	FTSQueryTypeWithScore = 2;
+}
+
+
+enum FTSBooleanOccur {
+	FTSBooleanOccurInvalid = 0;
+	FTSBooleanOccurShould = 1;
+	FTSBooleanOccurMust = 2;
+	FTSBooleanOccurMustNot = 3;
+}
+
+enum FTSBooleanModifier {
+	FTSBooleanModifierNone = 0;
+	FTSBooleanModifierBoost = 1;
+	FTSBooleanModifierDeBoost = 2;
+	FTSBooleanModifierNegate = 3;
+}
+
+enum FTSBooleanTermType {
+	FTSBooleanTermInvalid = 0;
+	FTSBooleanTermWord = 1;
+	FTSBooleanTermPhrase = 2;
+	FTSBooleanTermPrefix = 3;
+}
+
+message FTSBooleanTerm {
+	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
+	optional string text = 2 [(gogoproto.nullable) = false];
+	optional uint32 phrase_distance = 3 [(gogoproto.nullable) = false];
+}
+
+message FTSBooleanQuery {
+	repeated FTSBooleanNode nodes = 1;
+}
+
+message FTSBooleanNode {
+	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
+	oneof node {
+		FTSBooleanTerm term = 3;
+		FTSBooleanQuery sub_expression = 4;
+	}
 }
 
 message FTSQueryInfo {
@@ -215,18 +256,19 @@ message FTSQueryInfo {
 	optional string query_text = 5 [(gogoproto.nullable) = false];
 	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
 
-	// For QueryType == WithScore, a top_k can be optionally specified.
-	// If top_k is specified, it means the TableScan is safe to return at most *top* k results
-	// because upper executors will have a TopK anyway.
-	// If not specified (optional, or top_k is very large), then all results will be returned.
-	// This option is not supported for QueryType == NoScore.
+	// These fields support pushdown for order-by and limit scenarios.
 	optional uint32 top_k = 10;
+	repeated int64 sort_column_ids = 11;
+	repeated bool sort_column_asc = 12;
 
 	// Distinguish match_word, match_expression, match_prefix, match_regexp
 	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
 
-	// Filter pushed down to tici
+	// Pass through the inverted index conditions for the hybrid index.
 	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+
+	// Pass through the FTS boolean query.
+	optional FTSBooleanQuery boolean_query = 22;
 }
 
 enum ColumnarIndexType {
@@ -234,6 +276,30 @@ enum ColumnarIndexType {
 	TypeVector = 1;
 	TypeInverted = 2;
 	TypeFulltext = 3;
+}
+
+// TiCIVectorQueryInfo carries a TiCI vector top-k query.
+// Used when a hybrid index with a vector component is chosen by the planner.
+// The primary operator is ANN top-k; an optional filter expression can be
+// pushed down so that TiCI can apply it before or during the ANN search.
+message TiCIVectorQueryInfo {
+	// The index that contains the vector component.
+	optional int64 index_id = 1 [(gogoproto.nullable) = false];
+	// Column ID of the vector column being searched.
+	optional int64 column_id = 2 [(gogoproto.nullable) = false];
+	// Distance metric to use for the search.
+	optional VectorDistanceMetric distance_metric = 3 [(gogoproto.nullable) = false];
+	// Number of nearest neighbors to return.
+	optional uint32 top_k = 4 [(gogoproto.nullable) = false];
+	// The query vector, serialized as a sequence of little-endian float32 values.
+	optional bytes query_vector = 5;
+	// Dimensionality of the vector. Must match the index definition.
+	optional uint32 dimension = 6 [(gogoproto.nullable) = false];
+	// Optional pushed-down filter expression (inverted/scalar predicates).
+	// When present, TiCI applies filtering in conjunction with ANN search.
+	repeated Expr filter_expr = 7 [(gogoproto.nullable) = false];
+	// Column name, for debug/explain purposes only.
+	optional string column_name = 8 [(gogoproto.nullable) = false];
 }
 
 message ColumnarIndexInfo {
@@ -338,6 +404,7 @@ message IndexScan {
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
 	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
+	optional TiCIVectorQueryInfo tici_vector_query_info = 8; // only used by TiFlash, for TiCI hybrid vector queries
 }
 
 message Selection {
@@ -387,9 +454,10 @@ message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
 	optional Executor child = 2;
-    	// If partition_by is not empty, it means need to return limitN of each partition.
-    	// Generally used in sqls like `where row_number() over (partition by ...) < X`
-    	repeated ByItem partition_by = 3;
+	// If partition_by is not empty, it means need to return limitN of each partition.
+	// Generally used in sqls like `where row_number() over (partition by ...) < X`
+	repeated ByItem partition_by = 3;
+	repeated Expr truncate_key_expr = 4;
 }
 
 message Kill {
@@ -529,6 +597,15 @@ message TiFlashScanContext {
 	optional uint64 fts_idx_tiny_total_read_others_ms = 172;
 	optional uint64 fts_brute_total_read_ms = 173;
 	optional uint64 fts_brute_total_search_ms = 174;
+
+	/// tici vector search related fields
+
+	optional uint32 tici_vec_query_count = 200;
+	optional uint64 tici_vec_search_total_ms = 201;
+	optional uint64 tici_vec_filter_total_ms = 202;
+	optional uint64 tici_vec_candidate_count = 203;
+	optional uint64 tici_vec_result_count = 204;
+	optional uint64 tici_vec_shard_count = 205;
 }
 
 message TiFlashWaitSummary {
@@ -595,7 +672,7 @@ message Window {
 }
 
 message GroupingExpr {
-	repeated Expr grouping_expr = 1;         // for grouping expressions like: expr[a,b]
+	repeated Expr grouping_expr = 1; // for grouping expressions like: expr[a,b]
 }
 
 message GroupingSet {
@@ -614,8 +691,8 @@ message ExprSlice {
 }
 
 message Expand2{
-	repeated ExprSlice proj_exprs = 1;           // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
-	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
+	repeated ExprSlice proj_exprs = 1; // for grouping sets generated projection levels, like [a, b, c, 1#gen_col1, 2#gen_col2]
+	repeated string generated_output_names = 2; // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
 	optional Executor child = 3;
 }
 
