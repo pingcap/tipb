@@ -488,6 +488,7 @@ message ExecutorExecutionSummary {
 
 	oneof DetailInfo {
 		TiFlashScanContext tiflash_scan_context = 6;
+		ColumnarScanContext columnar_scan_context = 10;
 	}
 
 	// Serialize kvproto resource_manager.Consumption to tell tidb the consumption info. For now it's only for tiflash.
@@ -612,6 +613,28 @@ message TiFlashWaitSummary {
 	optional uint64 minTSO_wait_ns = 1; // Time waited for minTSO satified
 	optional uint64 pipeline_queue_wait_ns = 2; // Time waited in task queue.
 	optional uint64 pipeline_breaker_wait_ns = 3; // Time waited for dependant pipeline finished.
+}
+
+message ColumnarScanContext {
+	optional uint64 regions = 1;
+	optional uint64 read_tasks = 3;
+	optional uint64 physical_tables = 4;
+	optional uint64 columns = 5;
+	optional uint64 user_read_bytes = 6;
+	optional uint64 mvcc_input_rows = 7;
+	optional uint64 mvcc_input_bytes = 8;
+	optional uint64 mvcc_output_rows = 9;
+	optional uint64 total_read_block_ms = 10;
+	optional uint64 total_serialize_block_ms = 11;
+	optional uint64 total_init_reader_ms = 12;
+	optional uint64 total_prefetch_ms = 13;
+	optional uint64 rough_check_total_packs = 14;
+	optional uint64 rough_check_selected_packs = 15;
+	optional uint64 rough_check_skipped_packs = 16;
+	optional uint64 rough_check_unknown_packs = 17;
+	optional uint64 remote_segments = 18;
+	optional uint64 total_segments = 19;
+	optional uint64 total_deserialize_block_ms = 20;
 }
 
 message TiFlashNetWorkSummary {
