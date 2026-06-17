@@ -1952,14 +1952,12 @@
               {
                 "id": 3,
                 "name": "term",
-                "type": "FTSBooleanTerm",
-                "oneof_parent": "node"
+                "type": "FTSBooleanTerm"
               },
               {
                 "id": 4,
                 "name": "sub_expression",
-                "type": "FTSBooleanQuery",
-                "oneof_parent": "node"
+                "type": "FTSBooleanQuery"
               }
             ]
           },
@@ -2189,20 +2187,17 @@
               {
                 "id": 2,
                 "name": "ann_query_info",
-                "type": "ANNQueryInfo",
-                "oneof_parent": "index"
+                "type": "ANNQueryInfo"
               },
               {
                 "id": 3,
                 "name": "inverted_query_info",
-                "type": "InvertedQueryInfo",
-                "oneof_parent": "index"
+                "type": "InvertedQueryInfo"
               },
               {
                 "id": 4,
                 "name": "fts_query_info",
-                "type": "FTSQueryInfo",
-                "oneof_parent": "index"
+                "type": "FTSQueryInfo"
               }
             ]
           },
@@ -2909,8 +2904,12 @@
               {
                 "id": 6,
                 "name": "tiflash_scan_context",
-                "type": "TiFlashScanContext",
-                "oneof_parent": "DetailInfo"
+                "type": "TiFlashScanContext"
+              },
+              {
+                "id": 10,
+                "name": "columnar_scan_context",
+                "type": "ColumnarScanContext"
               },
               {
                 "id": 7,
@@ -3499,6 +3498,125 @@
             ]
           },
           {
+            "name": "ColumnarScanContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "regions",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "read_tasks",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 4,
+                "name": "physical_tables",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 5,
+                "name": "columns",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 6,
+                "name": "user_read_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 7,
+                "name": "mvcc_input_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 8,
+                "name": "mvcc_input_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 9,
+                "name": "mvcc_output_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 10,
+                "name": "total_read_block_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 11,
+                "name": "total_serialize_block_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 12,
+                "name": "total_init_reader_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 13,
+                "name": "total_prefetch_ms",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 14,
+                "name": "rough_check_total_packs",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 15,
+                "name": "rough_check_selected_packs",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 16,
+                "name": "rough_check_skipped_packs",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 17,
+                "name": "rough_check_unknown_packs",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 18,
+                "name": "remote_segments",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 19,
+                "name": "total_segments",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 20,
+                "name": "total_deserialize_block_ms",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
             "name": "TiFlashNetWorkSummary",
             "fields": [
               {
@@ -4021,20 +4139,17 @@
               {
                 "id": 1,
                 "name": "scan_object",
-                "type": "ScanAccessObject",
-                "oneof_parent": "access_object"
+                "type": "ScanAccessObject"
               },
               {
                 "id": 2,
                 "name": "dynamic_partition_objects",
-                "type": "DynamicPartitionAccessObjects",
-                "oneof_parent": "access_object"
+                "type": "DynamicPartitionAccessObjects"
               },
               {
                 "id": 3,
                 "name": "other_object",
-                "type": "string",
-                "oneof_parent": "access_object"
+                "type": "string"
               }
             ]
           },
@@ -9278,26 +9393,22 @@
               {
                 "id": 1,
                 "name": "record",
-                "type": "TopSQLRecord",
-                "oneof_parent": "resp_oneof"
+                "type": "TopSQLRecord"
               },
               {
                 "id": 2,
                 "name": "sql_meta",
-                "type": "SQLMeta",
-                "oneof_parent": "resp_oneof"
+                "type": "SQLMeta"
               },
               {
                 "id": 3,
                 "name": "plan_meta",
-                "type": "PlanMeta",
-                "oneof_parent": "resp_oneof"
+                "type": "PlanMeta"
               },
               {
                 "id": 4,
                 "name": "ru_record",
-                "type": "TopRURecord",
-                "oneof_parent": "resp_oneof"
+                "type": "TopRURecord"
               }
             ]
           }
