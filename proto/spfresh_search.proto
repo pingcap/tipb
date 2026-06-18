@@ -23,7 +23,7 @@ message SPFreshSearchRequest {
     int64 table_id = 2;
     int64 index_id = 3;
     uint64 start_ts = 4;
-    uint32 top_k = 5;
+    uint64 top_k = 5;
 
     // query_vector_f32_le is f32 little-endian bytes, without the dims prefix.
     bytes query_vector_f32_le = 6;
