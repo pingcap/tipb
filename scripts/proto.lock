@@ -1952,12 +1952,14 @@
               {
                 "id": 3,
                 "name": "term",
-                "type": "FTSBooleanTerm"
+                "type": "FTSBooleanTerm",
+                "oneof_parent": "node"
               },
               {
                 "id": 4,
                 "name": "sub_expression",
-                "type": "FTSBooleanQuery"
+                "type": "FTSBooleanQuery",
+                "oneof_parent": "node"
               }
             ]
           },
@@ -2187,17 +2189,20 @@
               {
                 "id": 2,
                 "name": "ann_query_info",
-                "type": "ANNQueryInfo"
+                "type": "ANNQueryInfo",
+                "oneof_parent": "index"
               },
               {
                 "id": 3,
                 "name": "inverted_query_info",
-                "type": "InvertedQueryInfo"
+                "type": "InvertedQueryInfo",
+                "oneof_parent": "index"
               },
               {
                 "id": 4,
                 "name": "fts_query_info",
-                "type": "FTSQueryInfo"
+                "type": "FTSQueryInfo",
+                "oneof_parent": "index"
               }
             ]
           },
@@ -2904,12 +2909,14 @@
               {
                 "id": 6,
                 "name": "tiflash_scan_context",
-                "type": "TiFlashScanContext"
+                "type": "TiFlashScanContext",
+                "oneof_parent": "DetailInfo"
               },
               {
                 "id": 10,
                 "name": "columnar_scan_context",
-                "type": "ColumnarScanContext"
+                "type": "ColumnarScanContext",
+                "oneof_parent": "DetailInfo"
               },
               {
                 "id": 7,
@@ -4139,17 +4146,20 @@
               {
                 "id": 1,
                 "name": "scan_object",
-                "type": "ScanAccessObject"
+                "type": "ScanAccessObject",
+                "oneof_parent": "access_object"
               },
               {
                 "id": 2,
                 "name": "dynamic_partition_objects",
-                "type": "DynamicPartitionAccessObjects"
+                "type": "DynamicPartitionAccessObjects",
+                "oneof_parent": "access_object"
               },
               {
                 "id": 3,
                 "name": "other_object",
-                "type": "string"
+                "type": "string",
+                "oneof_parent": "access_object"
               }
             ]
           },
@@ -8468,7 +8478,7 @@
               {
                 "id": 5,
                 "name": "top_k",
-                "type": "uint32"
+                "type": "uint64"
               },
               {
                 "id": 6,
@@ -9393,22 +9403,26 @@
               {
                 "id": 1,
                 "name": "record",
-                "type": "TopSQLRecord"
+                "type": "TopSQLRecord",
+                "oneof_parent": "resp_oneof"
               },
               {
                 "id": 2,
                 "name": "sql_meta",
-                "type": "SQLMeta"
+                "type": "SQLMeta",
+                "oneof_parent": "resp_oneof"
               },
               {
                 "id": 3,
                 "name": "plan_meta",
-                "type": "PlanMeta"
+                "type": "PlanMeta",
+                "oneof_parent": "resp_oneof"
               },
               {
                 "id": 4,
                 "name": "ru_record",
-                "type": "TopRURecord"
+                "type": "TopRURecord",
+                "oneof_parent": "resp_oneof"
               }
             ]
           }
