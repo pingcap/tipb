@@ -5,12 +5,14 @@ package tipb
 
 import (
 	encoding_binary "encoding/binary"
-	fmt "fmt"
+	"fmt"
+	"io"
+	"math"
+
 	_ "github.com/gogo/protobuf/gogoproto"
 	github_com_golang_protobuf_proto "github.com/golang/protobuf/proto"
 	proto "github.com/golang/protobuf/proto"
-	io "io"
-	math "math"
+
 	math_bits "math/bits"
 )
 

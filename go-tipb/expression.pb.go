@@ -4,11 +4,13 @@
 package tipb
 
 import (
-	fmt "fmt"
+	"fmt"
+	"io"
+	"math"
+
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/golang/protobuf/proto"
-	io "io"
-	math "math"
+
 	math_bits "math/bits"
 )
 
