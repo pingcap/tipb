@@ -1936,6 +1936,7 @@ type FTSBooleanNode struct {
 	Occur    FTSBooleanOccur    `protobuf:"varint,1,opt,name=occur,enum=tipb.FTSBooleanOccur" json:"occur"`
 	Modifier FTSBooleanModifier `protobuf:"varint,2,opt,name=modifier,enum=tipb.FTSBooleanModifier" json:"modifier"`
 	// Types that are valid to be assigned to Node:
+	//
 	//	*FTSBooleanNode_Term
 	//	*FTSBooleanNode_SubExpression
 	Node isFTSBooleanNode_Node `protobuf_oneof:"node"`
