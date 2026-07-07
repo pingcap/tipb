@@ -2528,6 +2528,12 @@
                 "name": "runtime_filter_list",
                 "type": "RuntimeFilter",
                 "is_repeated": true
+              },
+              {
+                "id": 15,
+                "name": "is_null_eq",
+                "type": "bool",
+                "is_repeated": true
               }
             ]
           },
@@ -4461,6 +4467,18 @@
               {
                 "name": "ApproxCountDistinct",
                 "integer": 3020
+              },
+              {
+                "name": "SumInt",
+                "integer": 3021
+              },
+              {
+                "name": "MinCount",
+                "integer": 3022
+              },
+              {
+                "name": "MaxCount",
+                "integer": 3023
               },
               {
                 "name": "RowNumber",
@@ -8502,7 +8520,7 @@
               },
               {
                 "id": 9,
-                "name": "base_beam_size",
+                "name": "search_beam_size",
                 "type": "uint32"
               },
               {

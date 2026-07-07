@@ -32,8 +32,8 @@ message SPFreshSearchRequest {
 
     // Optional tuning parameters.
     double oversample_factor = 8;
-    // If zero, the server uses its default base beam size.
-    uint32 base_beam_size = 9;
+    // If zero, the server uses its default search beam size.
+    uint32 search_beam_size = 9;
 
     // read_only disables background fixups (split/merge) triggered by search
     // observations. When enabled, the server must not enqueue fixups and should
