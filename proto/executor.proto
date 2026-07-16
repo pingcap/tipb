@@ -41,6 +41,7 @@ enum ExecType {
 	TypeCTESink = 18;
 	TypeCTESource = 19;
 	TypeIndexLookUp = 20;
+	TypeExplainForConnection = 21;
 }
 
 // It represents a Executor.
@@ -72,6 +73,7 @@ message Executor {
 	// It indicates the parent index of current executor.
 	// Not set indicates its parent is the next executor in `DAGRequest.executors`.
 	optional uint32 parent_idx = 25;
+	optional ExplainForConnection explain_for_connection = 26;
 }
 
 enum ExchangeType {
@@ -470,6 +472,10 @@ message Kill {
 	//   If Query is false, terminates the connection associated with the given ConnectionID, after terminating any statement the connection is executing.
 	//   See https://dev.mysql.com/doc/refman/8.0/en/kill.html.
 	optional bool query = 2 [(gogoproto.nullable) = false];
+}
+
+message ExplainForConnection {
+	optional uint64 connection_id = 1 [(gogoproto.nullable) = false];
 }
 
 message ExecutorExecutionSummary {
