@@ -56,6 +56,7 @@ It has these top-level messages:
 	TopN
 	Limit
 	Kill
+	ExplainForConnection
 	ExecutorExecutionSummary
 	TiFlashExecutionInfo
 	TiFlashRegionNumOfInstance
