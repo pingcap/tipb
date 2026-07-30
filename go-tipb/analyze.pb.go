@@ -60,6 +60,10 @@ It has these top-level messages:
 	TiFlashExecutionInfo
 	TiFlashRegionNumOfInstance
 	TiFlashScanContext
+	TiFlashMultiStageLateMaterializationScanContext
+	TiFlashMSLMReadStageContext
+	TiFlashMSLMFilterContext
+	TiFlashMSLMRunningTopNContext
 	TiFlashWaitSummary
 	Sort
 	WindowFrameBound

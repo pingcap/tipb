@@ -380,6 +380,7 @@ message TiFlashScanContext {
 	optional uint64 dmfile_mvcc_skipped_rows = 32;
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
+	optional TiFlashMultiStageLateMaterializationScanContext multi_stage_late_materialization = 35;
 
 	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
 	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
@@ -390,6 +391,48 @@ message TiFlashScanContext {
 	optional uint64 total_vector_idx_search_discarded_nodes = 106;
 	optional uint64 total_vector_idx_read_vec_time_ms = 107;
 	optional uint64 total_vector_idx_read_others_time_ms = 108;
+}
+
+message TiFlashMultiStageLateMaterializationScanContext {
+	optional uint64 streams = 1;
+	optional uint64 late_mode_blocks = 2;
+	optional uint64 direct_mode_blocks = 3;
+
+	optional TiFlashMSLMReadStageContext pushed_filter_read = 10;
+	optional TiFlashMSLMReadStageContext candidate_read = 11;
+	optional TiFlashMSLMReadStageContext final_rest_read = 12;
+
+	optional TiFlashMSLMFilterContext pushed_filter = 20;
+	optional TiFlashMSLMFilterContext residual_filter = 21;
+	optional TiFlashMSLMRunningTopNContext running_topn = 22;
+
+	optional uint64 final_rest_input_rows = 30;
+}
+
+message TiFlashMSLMReadStageContext {
+	optional uint64 dmfile_scanned_rows = 1;
+	optional uint64 dmfile_skipped_rows = 2;
+	optional uint64 read_bytes = 3;
+	optional uint64 read_time_ms = 4;
+}
+
+message TiFlashMSLMFilterContext {
+	optional uint64 input_rows = 1;
+	optional uint64 selected_rows = 2;
+	optional uint64 filtered_rows = 3;
+}
+
+message TiFlashMSLMRunningTopNContext {
+	optional uint64 input_rows = 1;
+	optional uint64 selected_rows = 2;
+	optional uint64 bypass_rows = 3;
+	optional uint64 filtered_rows = 4;
+	optional uint64 heap_size_sum = 5;
+
+	optional uint64 adaptive_warmup_rows = 10;
+	optional uint64 adaptive_post_warmup_input_rows = 11;
+	optional uint64 adaptive_post_warmup_candidate_rows = 12;
+	optional uint64 adaptive_disabled_streams = 13;
 }
 
 message TiFlashWaitSummary {

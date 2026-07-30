@@ -2882,6 +2882,12 @@
                 "optional": true
               },
               {
+                "id": 35,
+                "name": "multi_stage_late_materialization",
+                "type": "TiFlashMultiStageLateMaterializationScanContext",
+                "optional": true
+              },
+              {
                 "id": 100,
                 "name": "vector_idx_load_from_s3",
                 "type": "uint64",
@@ -3130,6 +3136,182 @@
               {
                 "id": 174,
                 "name": "fts_brute_total_search_ms",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashMultiStageLateMaterializationScanContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "streams",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "late_mode_blocks",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "direct_mode_blocks",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 10,
+                "name": "pushed_filter_read",
+                "type": "TiFlashMSLMReadStageContext",
+                "optional": true
+              },
+              {
+                "id": 11,
+                "name": "candidate_read",
+                "type": "TiFlashMSLMReadStageContext",
+                "optional": true
+              },
+              {
+                "id": 12,
+                "name": "final_rest_read",
+                "type": "TiFlashMSLMReadStageContext",
+                "optional": true
+              },
+              {
+                "id": 20,
+                "name": "pushed_filter",
+                "type": "TiFlashMSLMFilterContext",
+                "optional": true
+              },
+              {
+                "id": 21,
+                "name": "residual_filter",
+                "type": "TiFlashMSLMFilterContext",
+                "optional": true
+              },
+              {
+                "id": 22,
+                "name": "running_topn",
+                "type": "TiFlashMSLMRunningTopNContext",
+                "optional": true
+              },
+              {
+                "id": 30,
+                "name": "final_rest_input_rows",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashMSLMReadStageContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "dmfile_scanned_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "dmfile_skipped_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "read_bytes",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 4,
+                "name": "read_time_ms",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashMSLMFilterContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "input_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "selected_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "filtered_rows",
+                "type": "uint64",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashMSLMRunningTopNContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "input_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "selected_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "bypass_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 4,
+                "name": "filtered_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 5,
+                "name": "heap_size_sum",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 10,
+                "name": "adaptive_warmup_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 11,
+                "name": "adaptive_post_warmup_input_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 12,
+                "name": "adaptive_post_warmup_candidate_rows",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 13,
+                "name": "adaptive_disabled_streams",
                 "type": "uint64",
                 "optional": true
               }
