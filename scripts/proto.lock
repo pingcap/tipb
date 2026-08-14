@@ -8471,9 +8471,79 @@
       }
     },
     {
-      "protopath": "spfresh_search.proto",
+      "protopath": "spfresh.proto",
       "def": {
+        "enums": [
+          {
+            "name": "SPFreshTruncateMode",
+            "enum_fields": [
+              {
+                "name": "TruncateError"
+              },
+              {
+                "name": "TruncateIgnore",
+                "integer": 1
+              },
+              {
+                "name": "TruncateWarning",
+                "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "SPFreshFilterExprColumnSource",
+            "enum_fields": [
+              {
+                "name": "SPFreshFilterExprColumnSourceUnspecified"
+              },
+              {
+                "name": "Stored",
+                "integer": 1
+              },
+              {
+                "name": "Handle",
+                "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "SPFreshErrorCode",
+            "enum_fields": [
+              {
+                "name": "SPFreshErrorCodeUnspecified"
+              },
+              {
+                "name": "SPFreshIndexCorruption",
+                "integer": 9015
+              },
+              {
+                "name": "SPFreshResponseTooLarge",
+                "integer": 9016
+              }
+            ]
+          }
+        ],
         "messages": [
+          {
+            "name": "SPFreshTeardownRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "keyspace_id",
+                "type": "uint32"
+              },
+              {
+                "id": 2,
+                "name": "table_id",
+                "type": "int64"
+              },
+              {
+                "id": 3,
+                "name": "index_id",
+                "type": "int64"
+              }
+            ]
+          },
           {
             "name": "SPFreshSearchRequest",
             "fields": [
@@ -8532,11 +8602,138 @@
                 "id": 11,
                 "name": "need_distance",
                 "type": "bool"
+              },
+              {
+                "id": 12,
+                "name": "filter_expr",
+                "type": "Expr"
+              },
+              {
+                "id": 13,
+                "name": "filter_expr_columns",
+                "type": "SPFreshFilterExprColumn",
+                "is_repeated": true
+              },
+              {
+                "id": 14,
+                "name": "eval_context",
+                "type": "SPFreshEvalContext"
+              },
+              {
+                "id": 15,
+                "name": "max_response_bytes",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "SPFreshEvalContext",
+            "fields": [
+              {
+                "id": 1,
+                "name": "time_zone_name",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "time_zone_offset",
+                "type": "int64"
+              },
+              {
+                "id": 3,
+                "name": "max_warning_count",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "div_precision_increment",
+                "type": "uint32"
+              },
+              {
+                "id": 5,
+                "name": "truncate_mode",
+                "type": "SPFreshTruncateMode"
+              },
+              {
+                "id": 6,
+                "name": "overflow_as_warning",
+                "type": "bool"
+              },
+              {
+                "id": 11,
+                "name": "ignore_zero_in_date",
+                "type": "bool"
+              },
+              {
+                "id": 12,
+                "name": "divided_by_zero_as_warning",
+                "type": "bool"
+              },
+              {
+                "id": 14,
+                "name": "max_allowed_packet",
+                "type": "uint64"
+              },
+              {
+                "id": 15,
+                "name": "sql_mode",
+                "type": "uint64"
+              }
+            ],
+            "reserved_ids": [
+              7,
+              8,
+              9,
+              10,
+              13
+            ],
+            "reserved_names": [
+              "no_zero_in_date",
+              "no_zero_date",
+              "allow_invalid_dates",
+              "strict_sql_mode",
+              "error_for_division_by_zero"
+            ]
+          },
+          {
+            "name": "SPFreshFilterExprColumn",
+            "fields": [
+              {
+                "id": 1,
+                "name": "column_id",
+                "type": "int64"
+              },
+              {
+                "id": 2,
+                "name": "source",
+                "type": "SPFreshFilterExprColumnSource"
+              },
+              {
+                "id": 3,
+                "name": "field_type",
+                "type": "FieldType"
               }
             ]
           },
           {
             "name": "SPFreshSearchResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "success",
+                "type": "SPFreshSearchResult",
+                "oneof_parent": "result"
+              },
+              {
+                "id": 2,
+                "name": "error",
+                "type": "Error",
+                "oneof_parent": "result"
+              }
+            ]
+          },
+          {
+            "name": "SPFreshSearchResult",
             "fields": [
               {
                 "id": 1,
@@ -8548,6 +8745,17 @@
                 "id": 2,
                 "name": "stats",
                 "type": "SPFreshSearchStats"
+              },
+              {
+                "id": 3,
+                "name": "warnings",
+                "type": "Error",
+                "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "warning_count",
+                "type": "uint64"
               }
             ]
           },
@@ -8655,84 +8863,14 @@
         ],
         "imports": [
           {
+            "path": "expression.proto"
+          },
+          {
             "path": "schema.proto"
           },
           {
-            "path": "gogoproto/gogo.proto"
+            "path": "select.proto"
           },
-          {
-            "path": "rustproto.proto"
-          }
-        ],
-        "package": {
-          "name": "tipb"
-        },
-        "options": [
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_package",
-            "value": "com.pingcap.tidb.tipb"
-          },
-          {
-            "name": "(gogoproto.marshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.sizer_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.unmarshaler_all)",
-            "value": "true"
-          },
-          {
-            "name": "(gogoproto.goproto_unkeyed_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_unrecognized_all)",
-            "value": "false"
-          },
-          {
-            "name": "(gogoproto.goproto_sizecache_all)",
-            "value": "false"
-          },
-          {
-            "name": "(rustproto.lite_runtime_all)",
-            "value": "true"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "spfresh_teardown.proto",
-      "def": {
-        "messages": [
-          {
-            "name": "SPFreshTeardownRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "keyspace_id",
-                "type": "uint32"
-              },
-              {
-                "id": 2,
-                "name": "table_id",
-                "type": "int64"
-              },
-              {
-                "id": 3,
-                "name": "index_id",
-                "type": "int64"
-              }
-            ]
-          }
-        ],
-        "imports": [
           {
             "path": "gogoproto/gogo.proto"
           },
