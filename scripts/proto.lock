@@ -963,6 +963,10 @@
               {
                 "name": "TypeIndexLookUp",
                 "integer": 20
+              },
+              {
+                "name": "TypeExplainForConnection",
+                "integer": 21
               }
             ]
           },
@@ -1473,6 +1477,12 @@
                 "id": 25,
                 "name": "parent_idx",
                 "type": "uint32",
+                "optional": true
+              },
+              {
+                "id": 26,
+                "name": "explain_for_connection",
+                "type": "ExplainForConnection",
                 "optional": true
               }
             ]
@@ -2873,6 +2883,23 @@
                 "id": 2,
                 "name": "query",
                 "type": "bool",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ExplainForConnection",
+            "fields": [
+              {
+                "id": 1,
+                "name": "connection_id",
+                "type": "uint64",
                 "optional": true,
                 "options": [
                   {
@@ -8856,6 +8883,91 @@
               {
                 "id": 15,
                 "name": "partition_cache_misses",
+                "type": "uint64"
+              },
+              {
+                "id": 16,
+                "name": "ann",
+                "type": "SPFreshANNStats"
+              }
+            ]
+          },
+          {
+            "name": "SPFreshANNStats",
+            "fields": [
+              {
+                "id": 1,
+                "name": "exact_fallback",
+                "type": "bool"
+              },
+              {
+                "id": 2,
+                "name": "search_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "partitions_scanned",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "centroids_scanned",
+                "type": "uint64"
+              },
+              {
+                "id": 5,
+                "name": "leaf_vectors_scanned",
+                "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "rough_candidates",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "bound_pruned_candidates",
+                "type": "uint64"
+              },
+              {
+                "id": 8,
+                "name": "rerank_candidates",
+                "type": "uint64"
+              },
+              {
+                "id": 9,
+                "name": "exact_evaluated",
+                "type": "uint64"
+              },
+              {
+                "id": 10,
+                "name": "partition_cache_hits",
+                "type": "uint64"
+              },
+              {
+                "id": 11,
+                "name": "partition_cache_misses",
+                "type": "uint64"
+              },
+              {
+                "id": 12,
+                "name": "partition_cache_lookup_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 13,
+                "name": "partition_cache_miss_load_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 14,
+                "name": "table_lookup_micros",
+                "type": "uint64"
+              },
+              {
+                "id": 15,
+                "name": "rerank_micros",
                 "type": "uint64"
               }
             ]

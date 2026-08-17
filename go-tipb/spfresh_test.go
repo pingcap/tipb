@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/gogo/protobuf/proto"
+	"github.com/golang/protobuf/proto"
 )
 
 func TestSPFreshFilterExprColumnSourceWireValues(t *testing.T) {
@@ -107,6 +107,102 @@ func TestSPFreshSearchResponseResultIsExclusive(t *testing.T) {
 	decoded.Reset()
 	if decoded.GetResult() != nil || decoded.GetSuccess() != nil || decoded.GetError() != nil {
 		t.Fatalf("empty response result = %T, want unset", decoded.GetResult())
+	}
+}
+
+func TestSPFreshANNStatsWireRoundTrip(t *testing.T) {
+	tests := []struct {
+		name string
+		want *SPFreshSearchStats
+	}{
+		{
+			name: "absent",
+			want: &SPFreshSearchStats{PartitionsScanned: 1},
+		},
+		{
+			name: "present_zero",
+			want: &SPFreshSearchStats{
+				PartitionsScanned: 1,
+				Ann:               &SPFreshANNStats{},
+			},
+		},
+		{
+			name: "all_fields",
+			want: &SPFreshSearchStats{Ann: &SPFreshANNStats{
+				ExactFallback:                true,
+				SearchMicros:                 uint64(1)<<63 | 1,
+				PartitionsScanned:            18,
+				CentroidsScanned:             120,
+				LeafVectorsScanned:           1460,
+				RoughCandidates:              200,
+				BoundPrunedCandidates:        76,
+				RerankCandidates:             124,
+				ExactEvaluated:               124,
+				PartitionCacheHits:           15,
+				PartitionCacheMisses:         3,
+				PartitionCacheLookupMicros:   uint64(1)<<63 | 12,
+				PartitionCacheMissLoadMicros: 2800,
+				TableLookupMicros:            2400,
+				RerankMicros:                 700,
+			}},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			encoded, err := proto.Marshal(test.want)
+			if err != nil {
+				t.Fatalf("proto.Marshal(SPFreshSearchStats) failed: %v", err)
+			}
+			var decoded SPFreshSearchStats
+			if err := proto.Unmarshal(encoded, &decoded); err != nil {
+				t.Fatalf("proto.Unmarshal(SPFreshSearchStats) failed: %v", err)
+			}
+			if !proto.Equal(&decoded, test.want) {
+				t.Fatalf("SPFreshSearchStats round trip = %v, want %v", &decoded, test.want)
+			}
+			if got, want := decoded.GetAnn() != nil, test.want.GetAnn() != nil; got != want {
+				t.Fatalf("SPFreshSearchStats.GetAnn() presence = %t, want %t", got, want)
+			}
+		})
+	}
+}
+
+func TestSPFreshSearchStatsFieldNumbers(t *testing.T) {
+	want := map[string]int{
+		"partitions_scanned":     1,
+		"vectors_scanned":        2,
+		"table_lookup_keys":      3,
+		"table_lookup_bytes":     4,
+		"permit_micros":          5,
+		"config_micros":          6,
+		"index_open_micros":      7,
+		"search_micros":          8,
+		"table_lookup_micros":    9,
+		"tikv_client_rpc_count":  10,
+		"tikv_client_rpc_micros": 11,
+		"read_only":              12,
+		"oversample_factor":      13,
+		"partition_cache_hits":   14,
+		"partition_cache_misses": 15,
+		"ann":                    16,
+	}
+
+	fields := proto.MessageReflect(&SPFreshSearchStats{}).Descriptor().Fields()
+	got := make(map[string]int, fields.Len())
+	for i := 0; i < fields.Len(); i++ {
+		field := fields.Get(i)
+		got[string(field.Name())] = int(field.Number())
+	}
+	for name, wantNumber := range want {
+		gotNumber, ok := got[name]
+		if !ok {
+			t.Errorf("SPFreshSearchStats is missing field %q", name)
+			continue
+		}
+		if gotNumber != wantNumber {
+			t.Errorf("SPFreshSearchStats field %q number = %d, want %d", name, gotNumber, wantNumber)
+		}
 	}
 }
 

@@ -148,4 +148,30 @@ message SPFreshSearchStats {
     // Process-local partition cache stats for this request.
     uint64 partition_cache_hits = 14;
     uint64 partition_cache_misses = 15;
+
+    // When present, ann contains a complete report whose zero values are
+    // explicitly reported zeros.
+    SPFreshANNStats ann = 16;
+}
+
+message SPFreshANNStats {
+    bool exact_fallback = 1;
+
+    uint64 search_micros = 2;
+    uint64 partitions_scanned = 3;
+    uint64 centroids_scanned = 4;
+    uint64 leaf_vectors_scanned = 5;
+
+    uint64 rough_candidates = 6;
+    uint64 bound_pruned_candidates = 7;
+    uint64 rerank_candidates = 8;
+    uint64 exact_evaluated = 9;
+
+    uint64 partition_cache_hits = 10;
+    uint64 partition_cache_misses = 11;
+    uint64 partition_cache_lookup_micros = 12;
+    uint64 partition_cache_miss_load_micros = 13;
+
+    uint64 table_lookup_micros = 14;
+    uint64 rerank_micros = 15;
 }
