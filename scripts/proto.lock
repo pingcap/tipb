@@ -2972,6 +2972,12 @@
                 "name": "tiflash_network_summary",
                 "type": "TiFlashNetWorkSummary",
                 "optional": true
+              },
+              {
+                "id": 11,
+                "name": "tiflash_hash_table_stats",
+                "type": "TiFlashHashTableStats",
+                "optional": true
               }
             ]
           },
@@ -3915,6 +3921,23 @@
                 "id": 1,
                 "name": "query",
                 "type": "string",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "TiFlashHashTableStats",
+            "fields": [
+              {
+                "id": 1,
+                "name": "ndv",
+                "type": "uint64",
+                "optional": true
+              },
+              {
+                "id": 2,
+                "name": "bytes",
+                "type": "uint64",
                 "optional": true
               }
             ]

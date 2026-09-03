@@ -508,6 +508,9 @@ message ExecutorExecutionSummary {
 
 	// Only for tiflash, records network info.
 	optional TiFlashNetWorkSummary tiflash_network_summary = 9;
+
+	// Only populated for TiFlash hash join/hash aggregation executors.
+	optional TiFlashHashTableStats tiflash_hash_table_stats = 11;
 }
 
 message TiFlashExecutionInfo {
@@ -729,4 +732,12 @@ message Expand2{
 
 message BroadcastQuery {
 	optional string query = 1;
+}
+
+message TiFlashHashTableStats {
+	// Number of distinct keys in the hash table.
+	optional uint64 ndv = 1;
+
+	// Bytes occupied by the hash table and its key/value storage.
+	optional uint64 bytes = 2;
 }
