@@ -155,6 +155,36 @@ message ANNQueryInfo {
 	optional uint32 hnsw_ef_search = 20 [(gogoproto.nullable) = false]; // Only for HNSW indexes
 }
 
+enum FTSQueryType {
+	FTSQueryTypeInvalid = 0;
+	FTSQueryTypeNoScore = 1;   // Means no scoring is ever needed, encourages the engine to use a fast path.
+	FTSQueryTypeWithScore = 2;
+}
+
+message FTSQueryInfo {
+	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
+
+	optional int64 index_id = 2 [(gogoproto.nullable) = false];
+
+	// Currently only one column is supported.
+	repeated ColumnInfo columns = 3;
+	repeated string column_names = 4; // For debug purpose only. Currently only used in explain.
+
+	optional string query_text = 5 [(gogoproto.nullable) = false];
+	optional string query_tokenizer = 6 [(gogoproto.nullable) = false]; // Always the same as parser/model/index_full_text.go:FullTextParserType
+
+	// These fields support pushdown for order-by and limit scenarios.
+	optional uint32 top_k = 10;
+	repeated int64 sort_column_ids = 11;
+	repeated bool sort_column_asc = 12;
+
+	// Distinguish match_word, match_expression, match_prefix, match_regexp
+	optional ScalarFuncSig query_func = 20 [(gogoproto.nullable) = false];
+
+	// Filter pushed down to tici
+	repeated Expr match_expr = 21 [(gogoproto.nullable) = false];
+}
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
@@ -245,6 +275,7 @@ message IndexScan {
 	optional bool desc = 4 [(gogoproto.nullable) = false];
 	optional bool unique = 5; // check whether it is a unique index.
 	repeated int64 primary_column_ids = 6;
+	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
 }
 
 message Selection {
@@ -338,7 +369,7 @@ message ExecutorExecutionSummary {
 	// And it's the ru consumption of one MPPTask/cop/batchCop instead of one executor.
 	optional bytes ru_consumption = 7;
 
-	// Only for tiflash, records the wait info. 
+	// Only for tiflash, records the wait info.
 	optional TiFlashWaitSummary tiflash_wait_summary = 8;
 }
 
@@ -387,7 +418,6 @@ message TiFlashScanContext {
 	optional uint64 dmfile_mvcc_skipped_rows = 32;
 	optional uint64 dmfile_lm_filter_scanned_rows = 33;
 	optional uint64 dmfile_lm_filter_skipped_rows = 34;
-
 	optional uint64 total_vector_idx_load_from_s3 = 100;  // Index file not available in disk
 	optional uint64 total_vector_idx_load_from_disk = 101;  // Index file available in disk and not cached in memory
 	optional uint64 total_vector_idx_load_from_cache = 102;  // Index file available in disk and cached in memory
@@ -397,6 +427,34 @@ message TiFlashScanContext {
 	optional uint64 total_vector_idx_search_discarded_nodes = 106;
 	optional uint64 total_vector_idx_read_vec_time_ms = 107;
 	optional uint64 total_vector_idx_read_others_time_ms = 108;
+
+	/// fulltext index related fields
+
+	optional uint32 fts_n_from_inmemory_noindex = 150;
+	optional uint32 fts_n_from_tiny_index = 151;
+	optional uint32 fts_n_from_tiny_noindex = 152;
+	optional uint32 fts_n_from_dmf_index = 153;
+	optional uint32 fts_n_from_dmf_noindex = 154;
+	optional uint64 fts_rows_from_inmemory_noindex = 155;
+	optional uint64 fts_rows_from_tiny_index = 156;
+	optional uint64 fts_rows_from_tiny_noindex = 157;
+	optional uint64 fts_rows_from_dmf_index = 158;
+	optional uint64 fts_rows_from_dmf_noindex = 159;
+	optional uint64 fts_idx_load_total_ms = 160;
+	optional uint32 fts_idx_load_from_cache = 161;
+	optional uint32 fts_idx_load_from_column_file = 162;
+	optional uint32 fts_idx_load_from_stable_s3 = 163;
+	optional uint32 fts_idx_load_from_stable_disk = 164;
+	optional uint32 fts_idx_search_n = 165;
+	optional uint64 fts_idx_search_total_ms = 166;
+	optional uint64 fts_idx_dm_search_rows = 167;
+	optional uint64 fts_idx_dm_total_read_fts_ms = 168;
+	optional uint64 fts_idx_dm_total_read_others_ms = 169;
+	optional uint64 fts_idx_tiny_search_rows = 170;
+	optional uint64 fts_idx_tiny_total_read_fts_ms = 171;
+	optional uint64 fts_idx_tiny_total_read_others_ms = 172;
+	optional uint64 fts_brute_total_read_ms = 173;
+	optional uint64 fts_brute_total_search_ms = 174;
 }
 
 message TiFlashWaitSummary {
