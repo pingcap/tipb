@@ -86,7 +86,10 @@ message AnalyzeColumnsReq {
     // There must be one non-zero value in sample_rate and sample_size.
     optional double sample_rate = 11;
 
-    // ndv_rate is the sampling rate that determines how many samples will be used to calculate the NDV.
+    // ndv_rate is the probability that the server keeps a row for NDV. If it is
+    // absent, the server keeps all rows. The server takes samples only from the
+    // kept rows, so ndv_rate must not be less than sample_rate. A server that
+    // does not support ndv_rate ignores it.
     optional double ndv_rate = 12;
 }
 
@@ -138,6 +141,10 @@ message Histogram {
 message FMSketch {
     optional uint64 mask = 1 [(gogoproto.nullable) = false];
     repeated uint64 hashset = 2;
+    // multi_hashset is used only when RowSampleCollector.ndv_sample_count is
+    // set. It has the hashes seen more than once, and hashset then has only the
+    // hashes seen once, because the NDV estimate scales up only those.
+    repeated uint64 multi_hashset = 3;
 }
 
 // SampleCollector is used for collect samples and calculate the count and ndv of an column.
@@ -156,10 +163,14 @@ message RowSampleCollector {
     optional int64 count = 3 [(gogoproto.nullable) = false];
     repeated FMSketch fm_sketch = 4;
     repeated int64 total_size = 5;
-    // singleton_sketch estimates the number of values that appear only once in the sample.
-    repeated FMSketch singleton_sketch = 6;
-    // sketch_sample_count is the number of samples processed when building fm_sketch and singleton_sketch.
-    optional int64 sketch_sample_count = 7 [(gogoproto.nullable) = false];
+    reserved 6, 7;
+    // ndv_sample_count is the number of rows that the server kept for NDV. The
+    // server sets it only when AnalyzeColumnsReq.ndv_rate is less than 1, even
+    // if it kept no rows. The count field includes the rows that were not kept,
+    // and the server scales null_counts and total_size up to match count. If
+    // ndv_sample_count is 0, there is nothing to scale: null_counts and
+    // total_size are 0 and do not describe the rows in count.
+    optional int64 ndv_sample_count = 8;
 }
 
 message RowSample {

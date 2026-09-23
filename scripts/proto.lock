@@ -435,6 +435,12 @@
                 "name": "hashset",
                 "type": "uint64",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "multi_hashset",
+                "type": "uint64",
+                "is_repeated": true
               }
             ]
           },
@@ -537,23 +543,15 @@
                 "is_repeated": true
               },
               {
-                "id": 6,
-                "name": "singleton_sketch",
-                "type": "FMSketch",
-                "is_repeated": true
-              },
-              {
-                "id": 7,
-                "name": "sketch_sample_count",
+                "id": 8,
+                "name": "ndv_sample_count",
                 "type": "int64",
-                "optional": true,
-                "options": [
-                  {
-                    "name": "(gogoproto.nullable)",
-                    "value": "false"
-                  }
-                ]
+                "optional": true
               }
+            ],
+            "reserved_ids": [
+              6,
+              7
             ]
           },
           {
