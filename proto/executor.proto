@@ -194,6 +194,11 @@ message FTSBooleanQuery {
 	// TiFlash does not have to infer NGRAM semantics from the raw query text.
 	optional string query_tokenizer = 2 [(gogoproto.nullable) = false];
 	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
+	// STANDARD_V1 analyzer settings. Zero values mean the legacy defaults for
+	// backward compatibility with requests created before these fields existed.
+	optional uint32 innodb_ft_min_token_size = 4 [(gogoproto.nullable) = false];
+	optional uint32 innodb_ft_max_token_size = 5 [(gogoproto.nullable) = false];
+	optional bool innodb_ft_enable_stopword = 6 [(gogoproto.nullable) = false];
 }
 
 message FTSBooleanNode {
