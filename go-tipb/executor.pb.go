@@ -1322,8 +1322,8 @@ type FTSBooleanQuery struct {
 	// TiFlash does not have to infer NGRAM semantics from the raw query text.
 	QueryTokenizer string `protobuf:"bytes,2,opt,name=query_tokenizer,json=queryTokenizer" json:"query_tokenizer"`
 	NgramTokenSize uint32 `protobuf:"varint,3,opt,name=ngram_token_size,json=ngramTokenSize" json:"ngram_token_size"`
-	// STANDARD_V1 analyzer settings. Zero values mean the legacy defaults for
-	// backward compatibility with requests created before these fields existed.
+	// STANDARD_V1 analyzer settings. If both token-size fields are zero, TiFlash
+	// uses the default STANDARD_V1 analyzer settings.
 	InnodbFtMinTokenSize   uint32 `protobuf:"varint,4,opt,name=innodb_ft_min_token_size,json=innodbFtMinTokenSize" json:"innodb_ft_min_token_size"`
 	InnodbFtMaxTokenSize   uint32 `protobuf:"varint,5,opt,name=innodb_ft_max_token_size,json=innodbFtMaxTokenSize" json:"innodb_ft_max_token_size"`
 	InnodbFtEnableStopword bool   `protobuf:"varint,6,opt,name=innodb_ft_enable_stopword,json=innodbFtEnableStopword" json:"innodb_ft_enable_stopword"`
