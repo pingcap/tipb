@@ -84,6 +84,7 @@ It has these top-level messages:
 	FieldType
 	FTSBooleanTerm
 	FTSBooleanQuery
+	FTSMatchExpressionMetadata
 	FTSBooleanNode
 	Expr
 	RpnExpr

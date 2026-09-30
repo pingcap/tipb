@@ -818,6 +818,15 @@ message FTSBooleanQuery {
 	optional bool innodb_ft_enable_stopword = 6 [(gogoproto.nullable) = false];
 }
 
+// Versioned Boolean MATCH metadata stored in Expr.val when Expr.sig is
+// FTSMatchExpression. Expr.val is already the generic scalar-function
+// metadata slot, so this avoids adding an FTS-specific field to Expr while
+// keeping the SQL arguments in Expr.children unchanged.
+message FTSMatchExpressionMetadata {
+	optional uint32 version = 1 [(gogoproto.nullable) = false];
+	optional FTSBooleanQuery boolean_query = 2;
+}
+
 message FTSBooleanNode {
 	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
 	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
@@ -837,10 +846,6 @@ message Expr {
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 	repeated ByItem order_by = 8;
 	optional AggFunctionMode aggFuncMode = 9;
-	// Boolean MATCH metadata for scalar functions such as FTSMatchExpression.
-	// This is separate from children so query syntax/configuration cannot be
-	// mistaken for a MATCH document column.
-	optional FTSBooleanQuery fts_boolean_query = 10;
 }
 
 // Expression organized in RPN form.
