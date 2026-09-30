@@ -45,9 +45,6 @@ It has these top-level messages:
 	EncodedBytesSlice
 	ExchangeReceiver
 	ANNQueryInfo
-	FTSBooleanTerm
-	FTSBooleanQuery
-	FTSBooleanNode
 	FTSQueryInfo
 	ColumnarIndexInfo
 	TableScan
@@ -85,6 +82,9 @@ It has these top-level messages:
 	ScanAccessObject
 	IndexAccess
 	FieldType
+	FTSBooleanTerm
+	FTSBooleanQuery
+	FTSBooleanNode
 	Expr
 	RpnExpr
 	ByItem

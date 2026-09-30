@@ -774,6 +774,59 @@ enum ScalarFuncSig {
 }
 
 // Evaluators should implement evaluation functions for every expression type.
+// Boolean full-text query representation shared by scan-level FTS metadata and
+// scalar expressions. These types live in expression.proto so Expr can carry
+// the query as a typed field without introducing an import cycle with
+// executor.proto.
+enum FTSBooleanOccur {
+	FTSBooleanOccurInvalid = 0;
+	FTSBooleanOccurShould = 1;
+	FTSBooleanOccurMust = 2;
+	FTSBooleanOccurMustNot = 3;
+}
+
+enum FTSBooleanModifier {
+	FTSBooleanModifierNone = 0;
+	FTSBooleanModifierBoost = 1;
+	FTSBooleanModifierDeBoost = 2;
+	FTSBooleanModifierNegate = 3;
+}
+
+enum FTSBooleanTermType {
+	FTSBooleanTermInvalid = 0;
+	FTSBooleanTermWord = 1;
+	FTSBooleanTermPhrase = 2;
+	FTSBooleanTermPrefix = 3;
+}
+
+message FTSBooleanTerm {
+	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
+	optional string text = 2 [(gogoproto.nullable) = false];
+	optional uint32 phrase_distance = 3 [(gogoproto.nullable) = false];
+}
+
+message FTSBooleanQuery {
+	repeated FTSBooleanNode nodes = 1;
+	// The Boolean query carries the analyzer selected by the FULLTEXT index so
+	// TiFlash does not have to infer NGRAM semantics from the raw query text.
+	optional string query_tokenizer = 2 [(gogoproto.nullable) = false];
+	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
+	// STANDARD_V1 analyzer settings. If both token-size fields are zero, TiFlash
+	// uses the default STANDARD_V1 analyzer settings.
+	optional uint32 innodb_ft_min_token_size = 4 [(gogoproto.nullable) = false];
+	optional uint32 innodb_ft_max_token_size = 5 [(gogoproto.nullable) = false];
+	optional bool innodb_ft_enable_stopword = 6 [(gogoproto.nullable) = false];
+}
+
+message FTSBooleanNode {
+	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
+	oneof node {
+		FTSBooleanTerm term = 3;
+		FTSBooleanQuery sub_expression = 4;
+	}
+}
+
 message Expr {
 	optional ExprType tp = 1 [(gogoproto.nullable) = false];
 	optional bytes val = 2;
@@ -784,6 +837,10 @@ message Expr {
 	optional bool has_distinct = 7 [(gogoproto.nullable) = false];
 	repeated ByItem order_by = 8;
 	optional AggFunctionMode aggFuncMode = 9;
+	// Boolean MATCH metadata for scalar functions such as FTSMatchExpression.
+	// This is separate from children so query syntax/configuration cannot be
+	// mistaken for a MATCH document column.
+	optional FTSBooleanQuery fts_boolean_query = 10;
 }
 
 // Expression organized in RPN form.
