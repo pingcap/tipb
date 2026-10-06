@@ -435,6 +435,12 @@
                 "name": "hashset",
                 "type": "uint64",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "multi_hashset",
+                "type": "uint64",
+                "is_repeated": true
               }
             ]
           },
@@ -535,7 +541,17 @@
                 "name": "total_size",
                 "type": "int64",
                 "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "ndv_sample_count",
+                "type": "int64",
+                "optional": true
               }
+            ],
+            "reserved_ids": [
+              6,
+              7
             ]
           },
           {
