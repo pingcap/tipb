@@ -161,6 +161,9 @@ enum FTSQueryType {
 	FTSQueryTypeWithScore = 2;
 }
 
+// FTSQueryInfo describes a scan-level request to use a TiFlash full-text
+// columnar index. It is separate from the FTSMatchBooleanExpression scalar
+// function, which evaluates each row and does not consult an index.
 message FTSQueryInfo {
 	optional FTSQueryType query_type = 1 [(gogoproto.nullable) = false];
 	optional int64 index_id = 2 [(gogoproto.nullable) = false];

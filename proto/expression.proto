@@ -538,6 +538,7 @@ enum ScalarFuncSig {
 	/*fts*/
 	FTSMatchWord = 5201;
 	FTSMatchExpression = 5202;
+	FTSMatchBooleanExpression = 5206;
 	FTSMatchPrefix = 5203;
 	FTSMatchRegexp = 5204;
 
@@ -819,7 +820,7 @@ message FTSBooleanQuery {
 }
 
 // Versioned Boolean MATCH metadata stored in Expr.val when Expr.sig is
-// FTSMatchExpression. Expr.val is already the generic scalar-function
+// FTSMatchBooleanExpression. Expr.val is already the generic scalar-function
 // metadata slot, so this avoids adding an FTS-specific field to Expr while
 // keeping the SQL arguments in Expr.children unchanged.
 message FTSMatchExpressionMetadata {

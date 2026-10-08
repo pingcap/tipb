@@ -1163,6 +1163,9 @@ func (m *ANNQueryInfo) GetHnswEfSearch() uint32 {
 	return 0
 }
 
+// FTSQueryInfo describes a scan-level request to use a TiFlash full-text
+// columnar index. It is separate from the FTSMatchBooleanExpression scalar
+// function, which evaluates each row and does not consult an index.
 type FTSQueryInfo struct {
 	QueryType        FTSQueryType     `protobuf:"varint,1,opt,name=query_type,json=queryType,enum=tipb.FTSQueryType" json:"query_type"`
 	IndexId          int64            `protobuf:"varint,2,opt,name=index_id,json=indexId" json:"index_id"`
