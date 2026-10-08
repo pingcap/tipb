@@ -535,8 +535,8 @@ enum ScalarFuncSig {
 	IfVectorFloat32 = 5161;
 	CaseWhenVectorFloat32 = 5162;
 
-	/*fts*/
-	FTSMatchBooleanExpression = 5206;
+	/*Local MATCH*/
+	LocalMatchAgainstBoolean = 5206;
 
 	/*time*/
 	DateFormatSig = 6001;
@@ -772,51 +772,53 @@ enum ScalarFuncSig {
 
 // Evaluators should implement evaluation functions for every expression type.
 // Boolean full-text query representation carried as metadata by the
-// FTSMatchBooleanExpression scalar function.
-enum FTSBooleanOccur {
-	FTSBooleanOccurInvalid = 0;
-	FTSBooleanOccurShould = 1;
-	FTSBooleanOccurMust = 2;
-	FTSBooleanOccurMustNot = 3;
+// LocalMatchAgainstBoolean scalar function.
+enum LocalMatchAgainstBooleanOccur {
+	LocalMatchAgainstBooleanOccurInvalid = 0;
+	LocalMatchAgainstBooleanOccurShould = 1;
+	LocalMatchAgainstBooleanOccurMust = 2;
+	LocalMatchAgainstBooleanOccurMustNot = 3;
 }
 
-enum FTSBooleanTermType {
-	FTSBooleanTermInvalid = 0;
-	FTSBooleanTermWord = 1;
-	FTSBooleanTermPhrase = 2;
-	FTSBooleanTermPrefix = 3;
+enum LocalMatchAgainstBooleanTermType {
+	LocalMatchAgainstBooleanTermInvalid = 0;
+	LocalMatchAgainstBooleanTermWord = 1;
+	LocalMatchAgainstBooleanTermPhrase = 2;
+	LocalMatchAgainstBooleanTermPrefix = 3;
 }
 
-message FTSBooleanTerm {
-	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
-	optional string text = 2 [(gogoproto.nullable) = false];
+enum LocalMatchAgainstParser {
+	LocalMatchAgainstParserInvalid = 0;
+	LocalMatchAgainstParserStandard = 1;
+	LocalMatchAgainstParserNgram = 2;
 }
 
-message FTSBooleanQuery {
-	repeated FTSBooleanNode nodes = 1;
-// The query carries the analyzer selected by TiDB so TiFlash does not have to
-// infer NGRAM semantics from the raw query text.
-	optional string query_tokenizer = 2 [(gogoproto.nullable) = false];
+enum LocalMatchAgainstStopwordMode {
+	LocalMatchAgainstStopwordModeInvalid = 0;
+	LocalMatchAgainstStopwordModeDisabled = 1;
+	LocalMatchAgainstStopwordModeBuiltin = 2;
+}
+
+message LocalMatchAgainstBooleanQuery {
+	repeated LocalMatchAgainstBooleanNode nodes = 1;
+	optional LocalMatchAgainstParser parser = 2 [(gogoproto.nullable) = false];
 	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
-	// STANDARD_V1 analyzer settings. If both token-size fields are zero, TiFlash
-	// uses the default STANDARD_V1 analyzer settings.
+	// STANDARD_V1 analyzer settings.
 	optional uint32 innodb_ft_min_token_size = 4 [(gogoproto.nullable) = false];
 	optional uint32 innodb_ft_max_token_size = 5 [(gogoproto.nullable) = false];
-	optional bool innodb_ft_enable_stopword = 6 [(gogoproto.nullable) = false];
+	optional LocalMatchAgainstStopwordMode stopword_mode = 6 [(gogoproto.nullable) = false];
+	// Stopword lookup uses collation_server, independently of MATCH-column collation.
+	optional string stopword_collation = 7 [(gogoproto.nullable) = false];
+	// This versions Local MATCH wire semantics, including the built-in stopword
+	// set selected by Builtin. TiFlash must support a version before TiDB emits it;
+	// unknown versions must be rejected, never interpreted using another version.
+	optional uint32 version = 8 [(gogoproto.nullable) = false];
 }
 
-// Versioned Boolean MATCH metadata stored in Expr.val when Expr.sig is
-// FTSMatchBooleanExpression. Expr.val is already the generic scalar-function
-// metadata slot, so this avoids adding an FTS-specific field to Expr while
-// keeping the SQL arguments in Expr.children unchanged.
-message FTSMatchBooleanMetadata {
-	optional uint32 version = 1 [(gogoproto.nullable) = false];
-	optional FTSBooleanQuery boolean_query = 2;
-}
-
-message FTSBooleanNode {
-	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
-	optional FTSBooleanTerm term = 3;
+message LocalMatchAgainstBooleanNode {
+	optional LocalMatchAgainstBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional LocalMatchAgainstBooleanTermType term_type = 2 [(gogoproto.nullable) = false];
+	optional string text = 3 [(gogoproto.nullable) = false];
 }
 
 message Expr {

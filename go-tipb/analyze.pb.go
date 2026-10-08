@@ -80,10 +80,8 @@ It has these top-level messages:
 	ScanAccessObject
 	IndexAccess
 	FieldType
-	FTSBooleanTerm
-	FTSBooleanQuery
-	FTSMatchBooleanMetadata
-	FTSBooleanNode
+	LocalMatchAgainstBooleanQuery
+	LocalMatchAgainstBooleanNode
 	Expr
 	RpnExpr
 	ByItem
