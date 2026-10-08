@@ -45,8 +45,6 @@ It has these top-level messages:
 	EncodedBytesSlice
 	ExchangeReceiver
 	ANNQueryInfo
-	FTSQueryInfo
-	ColumnarIndexInfo
 	TableScan
 	PartitionTableScan
 	Join
@@ -84,7 +82,7 @@ It has these top-level messages:
 	FieldType
 	FTSBooleanTerm
 	FTSBooleanQuery
-	FTSMatchExpressionMetadata
+	FTSMatchBooleanMetadata
 	FTSBooleanNode
 	Expr
 	RpnExpr

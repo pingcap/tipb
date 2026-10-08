@@ -536,11 +536,7 @@ enum ScalarFuncSig {
 	CaseWhenVectorFloat32 = 5162;
 
 	/*fts*/
-	FTSMatchWord = 5201;
-	FTSMatchExpression = 5202;
 	FTSMatchBooleanExpression = 5206;
-	FTSMatchPrefix = 5203;
-	FTSMatchRegexp = 5204;
 
 	/*time*/
 	DateFormatSig = 6001;
@@ -775,22 +771,13 @@ enum ScalarFuncSig {
 }
 
 // Evaluators should implement evaluation functions for every expression type.
-// Boolean full-text query representation shared by scan-level FTS metadata and
-// scalar expressions. These types live in expression.proto so Expr can carry
-// the query as a typed field without introducing an import cycle with
-// executor.proto.
+// Boolean full-text query representation carried as metadata by the
+// FTSMatchBooleanExpression scalar function.
 enum FTSBooleanOccur {
 	FTSBooleanOccurInvalid = 0;
 	FTSBooleanOccurShould = 1;
 	FTSBooleanOccurMust = 2;
 	FTSBooleanOccurMustNot = 3;
-}
-
-enum FTSBooleanModifier {
-	FTSBooleanModifierNone = 0;
-	FTSBooleanModifierBoost = 1;
-	FTSBooleanModifierDeBoost = 2;
-	FTSBooleanModifierNegate = 3;
 }
 
 enum FTSBooleanTermType {
@@ -803,13 +790,12 @@ enum FTSBooleanTermType {
 message FTSBooleanTerm {
 	optional FTSBooleanTermType term_type = 1 [(gogoproto.nullable) = false];
 	optional string text = 2 [(gogoproto.nullable) = false];
-	optional uint32 phrase_distance = 3 [(gogoproto.nullable) = false];
 }
 
 message FTSBooleanQuery {
 	repeated FTSBooleanNode nodes = 1;
-	// The Boolean query carries the analyzer selected by the FULLTEXT index so
-	// TiFlash does not have to infer NGRAM semantics from the raw query text.
+// The query carries the analyzer selected by TiDB so TiFlash does not have to
+// infer NGRAM semantics from the raw query text.
 	optional string query_tokenizer = 2 [(gogoproto.nullable) = false];
 	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
 	// STANDARD_V1 analyzer settings. If both token-size fields are zero, TiFlash
@@ -823,18 +809,14 @@ message FTSBooleanQuery {
 // FTSMatchBooleanExpression. Expr.val is already the generic scalar-function
 // metadata slot, so this avoids adding an FTS-specific field to Expr while
 // keeping the SQL arguments in Expr.children unchanged.
-message FTSMatchExpressionMetadata {
+message FTSMatchBooleanMetadata {
 	optional uint32 version = 1 [(gogoproto.nullable) = false];
 	optional FTSBooleanQuery boolean_query = 2;
 }
 
 message FTSBooleanNode {
 	optional FTSBooleanOccur occur = 1 [(gogoproto.nullable) = false];
-	optional FTSBooleanModifier modifier = 2 [(gogoproto.nullable) = false];
-	oneof node {
-		FTSBooleanTerm term = 3;
-		FTSBooleanQuery sub_expression = 4;
-	}
+	optional FTSBooleanTerm term = 3;
 }
 
 message Expr {
