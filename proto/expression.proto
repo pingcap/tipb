@@ -535,6 +535,9 @@ enum ScalarFuncSig {
 	IfVectorFloat32 = 5161;
 	CaseWhenVectorFloat32 = 5162;
 
+	/*Local MATCH*/
+	LocalMatchAgainstBoolean = 5250;
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
@@ -768,6 +771,56 @@ enum ScalarFuncSig {
 }
 
 // Evaluators should implement evaluation functions for every expression type.
+// Boolean full-text query representation carried as metadata by the
+// LocalMatchAgainstBoolean scalar function.
+enum LocalMatchAgainstBooleanOccur {
+	LocalMatchAgainstBooleanOccurInvalid = 0;
+	LocalMatchAgainstBooleanOccurShould = 1;
+	LocalMatchAgainstBooleanOccurMust = 2;
+	LocalMatchAgainstBooleanOccurMustNot = 3;
+}
+
+enum LocalMatchAgainstBooleanTermType {
+	LocalMatchAgainstBooleanTermInvalid = 0;
+	LocalMatchAgainstBooleanTermWord = 1;
+	LocalMatchAgainstBooleanTermPhrase = 2;
+	LocalMatchAgainstBooleanTermPrefix = 3;
+}
+
+enum LocalMatchAgainstParser {
+	LocalMatchAgainstParserInvalid = 0;
+	LocalMatchAgainstParserStandard = 1;
+	LocalMatchAgainstParserNgram = 2;
+}
+
+enum LocalMatchAgainstStopwordMode {
+	LocalMatchAgainstStopwordModeInvalid = 0;
+	LocalMatchAgainstStopwordModeDisabled = 1;
+	LocalMatchAgainstStopwordModeBuiltin = 2;
+}
+
+message LocalMatchAgainstBooleanQuery {
+	repeated LocalMatchAgainstBooleanNode nodes = 1;
+	optional LocalMatchAgainstParser parser = 2 [(gogoproto.nullable) = false];
+	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
+	// STANDARD_V1 analyzer settings.
+	optional uint32 innodb_ft_min_token_size = 4 [(gogoproto.nullable) = false];
+	optional uint32 innodb_ft_max_token_size = 5 [(gogoproto.nullable) = false];
+	optional LocalMatchAgainstStopwordMode stopword_mode = 6 [(gogoproto.nullable) = false];
+	// Stopword lookup uses collation_server, independently of MATCH-column collation.
+	optional string stopword_collation = 7 [(gogoproto.nullable) = false];
+	// This versions Local MATCH wire semantics, including the built-in stopword
+	// set selected by Builtin. TiFlash must support a version before TiDB emits it;
+	// unknown versions must be rejected, never interpreted using another version.
+	optional uint32 version = 8 [(gogoproto.nullable) = false];
+}
+
+message LocalMatchAgainstBooleanNode {
+	optional LocalMatchAgainstBooleanOccur occur = 1 [(gogoproto.nullable) = false];
+	optional LocalMatchAgainstBooleanTermType term_type = 2 [(gogoproto.nullable) = false];
+	optional string text = 3 [(gogoproto.nullable) = false];
+}
+
 message Expr {
 	optional ExprType tp = 1 [(gogoproto.nullable) = false];
 	optional bytes val = 2;
