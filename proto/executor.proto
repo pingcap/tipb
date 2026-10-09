@@ -479,6 +479,7 @@ message Expand2{
 	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
 	optional Executor child = 3;
 }
+
 message BroadcastQuery {
 	optional string query = 1;
 }
