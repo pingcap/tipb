@@ -6251,6 +6251,10 @@
                 "integer": 5205
               },
               {
+                "name": "LocalMatchAgainstBoolean",
+                "integer": 5250
+              },
+              {
                 "name": "DateFormatSig",
                 "integer": 6001
               },
