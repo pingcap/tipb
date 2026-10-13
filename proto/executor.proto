@@ -751,4 +751,12 @@ message TiFlashHashTableStats {
 
 	// Bytes occupied by the hash table and its key/value storage.
 	optional uint64 memory_bytes = 3;
+
+	// Total number of row pairs matched by the equi-join keys: each pair of
+	// one probe-side row and one build-side row with equal join keys is
+	// counted once, i.e. the join result size before other conditions are
+	// applied. Note that semi/anti joins without other conditions may stop
+	// at the first match of each probe row. Only reported by hash join
+	// executors; unset for hash aggregation.
+	optional uint64 joined_rows = 4;
 }
