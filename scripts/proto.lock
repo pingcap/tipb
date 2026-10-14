@@ -3955,6 +3955,12 @@
                 "name": "memory_bytes",
                 "type": "uint64",
                 "optional": true
+              },
+              {
+                "id": 4,
+                "name": "joined_rows",
+                "type": "uint64",
+                "optional": true
               }
             ]
           }
