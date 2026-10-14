@@ -511,6 +511,9 @@ message ExecutorExecutionSummary {
 
 	// Only populated for TiFlash hash join/hash aggregation executors.
 	optional TiFlashHashTableStats tiflash_hash_table_stats = 11;
+
+	// Only populated for TiFlash join executors, all join kinds included.
+	optional TiFlashJoinStats tiflash_join_stats = 12;
 }
 
 message TiFlashExecutionInfo {
@@ -751,12 +754,19 @@ message TiFlashHashTableStats {
 
 	// Bytes occupied by the hash table and its key/value storage.
 	optional uint64 memory_bytes = 3;
+}
 
-	// Total number of row pairs matched by the equi-join keys: each pair of
-	// one probe-side row and one build-side row with equal join keys is
-	// counted once, i.e. the join result size before other conditions are
-	// applied. Note that semi/anti joins without other conditions may stop
-	// at the first match of each probe row. Only reported by hash join
-	// executors; unset for hash aggregation.
-	optional uint64 joined_rows = 4;
+message TiFlashJoinStats {
+	// Total number of row pairs matched by the join, i.e. the join result
+	// size before other conditions are applied. Each pair of one probe-side
+	// row and one build-side row is counted once:
+	// - Hash joins: pairs whose equi-join keys are equal. Semi/anti joins
+	//   without other conditions may stop at the first match of each probe
+	//   row.
+	// - Cross joins: the candidate pairs of each probe-side row with the
+	//   build-side rows, with the same first-match shortcut for cross
+	//   semi/anti joins.
+	// Every join executor reports it once its probe finishes, where 0 means
+	// the join matched nothing.
+	optional uint64 joined_rows = 1;
 }
