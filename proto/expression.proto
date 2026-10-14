@@ -553,6 +553,9 @@ enum ScalarFuncSig {
 	FTSMatchRegexp = 5204;
 	FTSMatchPhrase = 5205;
 
+	/*Local MATCH scalar evaluation (row-wise; not an index access method)*/
+	LocalMatchAgainstBoolean = 5250;
+
 	/*time*/
 	DateFormatSig = 6001;
 	DateLiteral = 6002;
