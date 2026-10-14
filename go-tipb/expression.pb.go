@@ -2428,6 +2428,16 @@ func (m *FieldType) GetArray() bool {
 }
 
 type LocalMatchAgainstBooleanQuery struct {
+	// Each node describes one top-level BOOLEAN MODE clause; a query can have
+	// multiple clauses. A phrase occupies one node, not one node per word.
+	// For AGAINST ('+apple -banana +"hello world" app*' IN BOOLEAN MODE):
+	//   clause          occur    term_type  text
+	//   +apple          Must     Word       apple
+	//   -banana         MustNot  Word       banana
+	//   +"hello world"  Must     Phrase     hello world
+	//   app*            Should   Prefix     app
+	// Nodes are clauses, not analyzer tokens. Clause order is not significant;
+	// occur defines each clause's role. This flat list excludes nested groups.
 	Nodes          []*LocalMatchAgainstBooleanNode `protobuf:"bytes,1,rep,name=nodes" json:"nodes,omitempty"`
 	Parser         LocalMatchAgainstParser         `protobuf:"varint,2,opt,name=parser,enum=tipb.LocalMatchAgainstParser" json:"parser"`
 	NgramTokenSize uint32                          `protobuf:"varint,3,opt,name=ngram_token_size,json=ngramTokenSize" json:"ngram_token_size"`

@@ -800,6 +800,16 @@ enum LocalMatchAgainstStopwordMode {
 }
 
 message LocalMatchAgainstBooleanQuery {
+	// Each node describes one top-level BOOLEAN MODE clause; a query can have
+	// multiple clauses. A phrase occupies one node, not one node per word.
+	// For AGAINST ('+apple -banana +"hello world" app*' IN BOOLEAN MODE):
+	//   clause          occur    term_type  text
+	//   +apple          Must     Word       apple
+	//   -banana         MustNot  Word       banana
+	//   +"hello world"  Must     Phrase     hello world
+	//   app*            Should   Prefix     app
+	// Nodes are clauses, not analyzer tokens. Clause order is not significant;
+	// occur defines each clause's role. This flat list excludes nested groups.
 	repeated LocalMatchAgainstBooleanNode nodes = 1;
 	optional LocalMatchAgainstParser parser = 2 [(gogoproto.nullable) = false];
 	optional uint32 ngram_token_size = 3 [(gogoproto.nullable) = false];
