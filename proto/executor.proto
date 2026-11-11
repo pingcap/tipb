@@ -328,6 +328,7 @@ message TableScan {
 	optional int32 max_wait_time_ms = 12  [(gogoproto.nullable) = false]; // only used by TiFlash
 	optional ANNQueryInfo deprecated_ann_query = 13; // only used by TiFlash
 	repeated ColumnarIndexInfo used_columnar_indexes = 14; // only used by TiFlash
+	optional SkipScan skip_scan = 15; // only used by TiKV, requires a common handle table
 }
 
 message PartitionTableScan {
@@ -409,6 +410,18 @@ message IndexScan {
 	repeated int64 primary_column_ids = 6;
 	optional FTSQueryInfo fts_query_info = 7; // only used by TiFlash
 	optional TiCIVectorQueryInfo tici_vector_query_info = 8; // only used by TiFlash, for TiCI hybrid vector queries
+	optional SkipScan skip_scan = 9; // only used by TiKV
+}
+
+// SkipScan makes a scan return only the first row, in scan order, of each group of rows, and then
+// skip the rest of the group instead of reading it row by row.
+// A group consists of the rows that share the same values of the first `prefix_column_count` key
+// columns, and that agree on whether the next key column is NULL. Rows whose next key column is NULL
+// form a group of their own, so that MIN over that column stays correct in a forward scan.
+// Key columns are the index columns for IndexScan, and the common handle columns for TableScan.
+message SkipScan {
+	// The number of leading key columns that identify a group. Must be at least 1.
+	optional uint32 prefix_column_count = 1 [(gogoproto.nullable) = false];
 }
 
 message Selection {
