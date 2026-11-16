@@ -80,6 +80,8 @@ It has these top-level messages:
 	ScanAccessObject
 	IndexAccess
 	FieldType
+	LocalMatchAgainstBooleanQuery
+	LocalMatchAgainstBooleanNode
 	Expr
 	RpnExpr
 	ByItem
