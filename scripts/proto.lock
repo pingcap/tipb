@@ -2346,6 +2346,12 @@
                 "name": "used_columnar_indexes",
                 "type": "ColumnarIndexInfo",
                 "is_repeated": true
+              },
+              {
+                "id": 15,
+                "name": "skip_scan",
+                "type": "SkipScan",
+                "optional": true
               }
             ]
           },
@@ -2702,6 +2708,29 @@
                 "name": "tici_vector_query_info",
                 "type": "TiCIVectorQueryInfo",
                 "optional": true
+              },
+              {
+                "id": 9,
+                "name": "skip_scan",
+                "type": "SkipScan",
+                "optional": true
+              }
+            ]
+          },
+          {
+            "name": "SkipScan",
+            "fields": [
+              {
+                "id": 1,
+                "name": "prefix_column_count",
+                "type": "uint32",
+                "optional": true,
+                "options": [
+                  {
+                    "name": "(gogoproto.nullable)",
+                    "value": "false"
+                  }
+                ]
               }
             ]
           },
